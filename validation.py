@@ -83,6 +83,7 @@ def update_all(title, check=None):
             if host in unix_hosts: inaccessible.add(result[0])
 
     # Update DB
+    opsautodb.reconnect()
     if len(up) > 0:
         opsautodb.update(table="dashboard_activity_monitor",
                          value={"ping_status": "up",
@@ -123,6 +124,7 @@ def update_all(title, check=None):
         st.start()
         sts.append(st)
     for t in tqdm(sts, desc='Finishing ssh check'): t.join()
+    opsautodb.reconnect()
     while not sq.empty():
         result = sq.get()
         if result[1] == "accessible":
@@ -164,6 +166,7 @@ if __name__ == "__main__":
                             "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                      where={"title": title})
     while True:
+        opsautodb.reconnect()
         records = opsautodb.select(table="dashboard_activity_monitor",
                                   where={"title": title, "ping_status": "up",
                                          "ignored": 0})
@@ -180,6 +183,7 @@ if __name__ == "__main__":
                             "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                      where={"title": title})
     while True:
+        opsautodb.reconnect()
         records = opsautodb.select(table="dashboard_activity_monitor",
                                   where={"title": title, "overall_status": 0,
                                          "ignored": 0})
