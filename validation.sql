@@ -1,6 +1,8 @@
+
 CREATE TABLE `dashboard_activity_monitor` (
   `id` int(11) NOT NULL,
   `title` text NOT NULL,
+  `banner` longtext,
   `step` varchar(200) NOT NULL DEFAULT 'precheck',
   `hostname` varchar(200) NOT NULL,
   `os` varchar(200) NOT NULL,
@@ -16,4 +18,4 @@ CREATE TABLE `dashboard_activity_monitor` (
 ALTER TABLE `dashboard_activity_monitor`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `dashboard_activity_monitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
