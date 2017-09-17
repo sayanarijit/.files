@@ -8,16 +8,22 @@ import json
 from pprint import pprint
 import sys
 import os
+import argparse
 from tqdm import tqdm, trange
 from opsauto import *
+# from dictmysql import DictMySQL, cursors
 
+
+# opsautodb = DictMySQL(db='opsauto', host="localhost",
+#                       user="root", passwd="",
+#                       cursorclass=cursors.DictCursor)
 threadLimiter = threading.BoundedSemaphore(50) # Max threads
 
 
 def ping_check(host, pq):
     threadLimiter.acquire()
     try:
-        for i in range(1,5):
+        for i in range(1,2):
             p = Popen(["ping", "-c"+str(i), "-w"+str(i), host], stdout=PIPE, stderr=PIPE)
             p.communicate()
             rc = p.returncode
@@ -51,9 +57,15 @@ def ssh_check(host, sq):
         threadLimiter.release()
 
 
-def update_all(title, check=None):
+def update_all(title, check=None, hosts=[]):
+
+    if len(hosts) == 0:
+        where = {"title": title}
+    else:
+        where = {"title": title, "$IN": {"hostname": hosts}}
+
     report = opsautodb.select(table="dashboard_activity_monitor",
-                              where={"title": title})
+                              where=where)
 
     hosts, unix_hosts = set(), set()
 
@@ -83,7 +95,6 @@ def update_all(title, check=None):
             if host in unix_hosts: inaccessible.add(result[0])
 
     # Update DB
-    opsautodb.reconnect()
     if len(up) > 0:
         opsautodb.update(table="dashboard_activity_monitor",
                          value={"ping_status": "up",
@@ -124,7 +135,6 @@ def update_all(title, check=None):
         st.start()
         sts.append(st)
     for t in tqdm(sts, desc='Finishing ssh check'): t.join()
-    opsautodb.reconnect()
     while not sq.empty():
         result = sq.get()
         if result[1] == "accessible":
@@ -134,7 +144,7 @@ def update_all(title, check=None):
                              value=value,
                              where={"title": title, "ignored": 0,
                                     "hostname": result[0]})
-            if check == "postcheck" and prechecks[result[0]] == result[2]:
+            if check == "postcheck" and (not prechecks[result[0]] or prechecks[result[0]] == result[2]):
                 validated.add(result[0])
         else:
             inaccessible.add(result[0])
@@ -155,41 +165,71 @@ def update_all(title, check=None):
 
 if __name__ == "__main__":
 
-    title = " ".join(sys.argv[1:])
+    ap = argparse.ArgumentParser(prog=__file__, description=None)
 
-    # Perform precheck
-    update_all(title, "precheck")
+    ap.add_argument('-title', dest="title", nargs='*', default=[],
+                    help='Title for the activity')
+    ap.add_argument('-hosts', dest="hosts", nargs='*', default=[],
+                    help='Hostnames to scan (optional)')
+    ap.add_argument('--postcheck', dest="postcheck", action='store_true', default=False,
+                    help='Perform scan for postcheck activity rather than only ping check (if hosts are mentioned)')
+    ap.add_argument('--version', action='version', version='%(prog)s 1.0')
 
-    # Start shutdown activity
-    opsautodb.update(table="dashboard_activity_monitor",
-                     value={"step": "shutdown",
-                            "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
-                     where={"title": title})
-    while True:
-        opsautodb.reconnect()
-        records = opsautodb.select(table="dashboard_activity_monitor",
-                                  where={"title": title, "ping_status": "up",
-                                         "ignored": 0})
-        if len(records) == 0: break
-        os.system("clear")
-        print(len(records),"hosts still online")
-        update_all(title)
-        time.sleep(2)
+    args = ap.parse_args()
 
-    # Start poweron activity
-    opsautodb.update(table="dashboard_activity_monitor",
-                     value={"step": "poweron",
-                            "ignored": 0,
-                            "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
-                     where={"title": title})
-    while True:
-        opsautodb.reconnect()
-        records = opsautodb.select(table="dashboard_activity_monitor",
-                                  where={"title": title, "overall_status": 0,
-                                         "ignored": 0})
-        if len(records) == 0: break
-        os.system("clear")
-        print(len(records),"hosts still having issue")
-        update_all(title, "postcheck")
-        time.sleep(2)
+    if len(args.title) == 0:
+        ap.print_help()
+        quit(1)
+
+    title = " ".join(args.title)
+
+    if len(args.hosts) > 0:
+        # Perform scan only on specified hosts
+        check = "postcheck" if args.postcheck else None
+        hosts = args.hosts
+        update_all(title, check, hosts)
+        quit(0)
+
+
+    # Else perform scan on all hosts and enter monitoring mode
+
+    if not args.postcheck:
+        # Perform precheck
+        update_all(title, "precheck")
+
+        # Start shutdown activity
+        opsautodb.update(table="dashboard_activity_monitor",
+                         value={"step": "shutdown",
+                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
+                         where={"title": title})
+        while True:
+            records = opsautodb.select(table="dashboard_activity_monitor",
+                                      where={"title": title, "ping_status": "up",
+                                             "ignored": 0})
+            if len(records) == 0: break
+            os.system("clear")
+            print(len(records),"hosts still online")
+            update_all(title)
+            time.sleep(2)
+
+    else:
+        # Start poweron activity
+        opsautodb.update(table="dashboard_activity_monitor",
+                         value={"step": "poweron",
+                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
+                         where={"title": title})
+        while True:
+            records = opsautodb.select(table="dashboard_activity_monitor",
+                                      where={"title": title, "overall_status": 0,
+                                             "ignored": 0})
+            if len(records) == 0: break
+            os.system("clear")
+            print(len(records),"hosts still having issue")
+            update_all(title, "postcheck")
+            time.sleep(2)
+
+        opsautodb.update(table="dashboard_activity_monitor",
+                         value={"step": "complete",
+                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
+                         where={"title": title})
     print("Activity complete...")
