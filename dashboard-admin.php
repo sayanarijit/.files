@@ -1,278 +1,603 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+$osicon = array("unix"=>"<i class='fa fa-terminal'></i> UNIX",
+                "windows"=>"<i class='fa fa-windows'></i> Windows",
+                "others"=>"<i class='fa fa-cube'></i> Others")
+?>
 
-class Pages extends CI_Controller {
+<!-- Auto refresh -->
+<?php if(in_array($step, array("precheck", "shutdown", "poweron")))  { ?>
+  <meta http-equiv="refresh" content="30; URL=<?php echo base_url().'activity-monitor/'.$activity_title; ?>">
+<?php ;}; ?>
 
-  function __construct()
-  {
-		// constructor
-    parent::__construct();
-  }
+<div class="right_col" role="main">
+  <!-- Admin controls -->
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Admin controls </h2>
+          <ul class="nav navbar-left panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <form method="post">
+            <?php if(in_array($step,array("cancelled","postponed"))){ ?>
+              <textarea required class="form-control" name="banner" placeholder="Update banner"><?php echo $banner; ?></textarea>
+              <p>&nbsp</p>
+              <button name="updatebanner" class="btn btn-block btn-dark" type="submit">
+                <i class="fa fa-pencil-square-o"></i> Update banner
+              </button>
+              <p>&nbsp</p>
+            <?php ;}; ?>
+            <?php if(($step == "shutdown")&&(count($down) == count($hosts))){ ?>
+              <button name="startpoweron" class="btn btn-primary" type="submit">
+                <i class="fa fa-play"></i> Start power-on activity
+              </button>
+            <?php ;}; ?>
+            <?php if($step != "postponed"){ ?>
+              <button name="postpone" class="btn btn-default" type="submit">
+                <i class="fa fa-pause"></i> Postpone
+              </button>
+            <?php ;}; ?>
+            <?php if($step == "postponed"){ ?>
+              <button name="startshutdown" class="btn btn-default" type="submit">
+                <i class="fa fa-play"></i> Resume from shutdown
+              </button>
+              <button name="startpoweron" class="btn btn-default" type="submit">
+                <i class="fa fa-play"></i> Resume from power-on
+              </button>
+            <?php ;}; ?>
+            <button name="restart" class="btn btn-default" type="submit">
+              <i class="fa fa-repeat"></i> Restart
+            </button>
+            <?php if($step != "cancelled"){ ?>
+              <button name="cancel" class="btn btn-warning" type="submit">
+                <i class="fa fa-ban"></i> Cancel
+              </button>
+            <?php ;}; ?>
+            <button name="delete" class="btn btn-danger" type="submit">
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Admin controls -->
 
-	public function view_page( $page = "home",$param1 = null,$param2 = null )
-	{
-		// Function to load a page
+  <?php if(in_array($step, array("postponed", "cancelled"))){ ?>
+    <div class="row">
+      <p>&nbsp;</p>
+      <div class="jumbotron text-center">
+        <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+        <h1><i class="fa fa-exclamation-triangle red"></i> Activity <?php echo $step; ?></h1>
+        <p><?php echo htmlspecialchars($banner); ?></p>
+        <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+      </div>
+      <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+    </div>
+  <?php ;}else { ?>
+    <!-- top tiles -->
+    <div class="row tile_count">
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-desktop"></i> Total Hosts</span>
+        <div class="count"><?php echo count($hosts); ?></div>
+        <span class="count_bottom"><?php echo (count($ignored) > 0) ? count($ignored)." ignored" : "&nbsp;"; ?></span>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-thumbs-o-up"></i> Hosts up</span>
+        <div class="count"><?php echo ($step == "precheck") ? "<i class='fa fa-spinner fa-spin'></i>" : count($up); ?></div>
+        <span class="count_bottom">
+          <?php echo ($step == "precheck") ? "..." : intval((count($up)*100)/count($hosts))."% of total hosts"; ?>
+        </span>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-thumbs-o-down"></i> Hosts down</span>
+        <div class="count"><?php echo ($step == "precheck") ? "<i class='fa fa-spinner fa-spin'></i>" : count($down); ?></div>
+        <span class="count_bottom">
+          <?php echo ($step == "precheck") ? "..." : intval((count($down)*100)/count($hosts))."% of total hosts"; ?>
+        </span>
+      </div>
+      <?php foreach ($osicon as $os_type=>$icon) { if (!in_array($os_type, $os_types)) {continue;} ?>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><?php echo $icon; ?> hosts</span>
+          <div class="count"><?php echo count($consolidated[$os_type]); ?></div>
+          <span class="count_bottom">
+            <?php echo intval((count($consolidated[$os_type])*100)/count($hosts)); ?>% of total hosts
+          </span>
+        </div>
+      <?php ;}; ?>
+    </div>
+    <!-- /top tiles -->
 
-    $data['title'] = $page;
+    <!-- overall_status -->
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="dashboard_graph">
 
-    $this->load->view('pages/header',$data);
-    $this->load->view('pages/navbar',$data);
-    $this->load->view('pages/scripts');
+          <div class="x_title">
+            <h2><?php echo strtoupper(htmlspecialchars($activity_title)); ?></h2>
+            <div class="clearfix"></div>
+          </div>
 
-    if ($page == "home")
-    {
-      echo "yo";
-    }
-    else if($page == "activity-monitor")
-    {
-      $this->load->library('session');
+          <div class="x_content">
+            <div class="widget_summary">
+              <div class="w_left w_25">
+                <span>Step 1: Pre-activity scan</span>
+              </div>
+              <div class="w_center w_55">
+                <div class="progress">
+                  <?php $c = intval(((count($up)+count($down))*100)/count($hosts));?>
+                  <div class="progress-bar bg-green" role="progressbar" style="width: <?php echo $c; ?>%;">
+                    <span class="sr-only"><?php echo $c; ?>% complete</span>
+                  </div>
+                </div>
+              </div>
+              <div class="w_right w_20">
+                <span><?php echo ($c == 100) ? '<i class="fa fa-check green"></i>' : $c."%" ; ?></span>
+              </div>
+              <div class="clearfix"></div>
+            </div>
 
-      $scriptpath = "sudo /home/sayan/practice/validate.py";
+            <div class="widget_summary">
+              <div class="w_left w_25">
+                <span>Step 2: Shutdown hosts</span>
+              </div>
 
-      if (!isset($param1)||(empty($param1)))
-      {
-        $titles = [];
-        $qtitles = $this->db->distinct()->select("title")->get("dashboard_activity_monitor")->result_array();
-        foreach ($qtitles as $value) {
-          $titles[] = $value["title"];
-        }
+              <?php if($step == "precheck") { ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <div class="progress-bar bg-green" role="progressbar" style="width: 0%;">
+                      <span class="sr-only">0% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><i class="fa fa-pause"></i></span>
+                </div>
+              <?php }else if($step == "shutdown") { ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <?php $c = intval((count($down)*100)/count($hosts)); ?>
+                    <div class="progress-bar bg-green" role="progressbar" style="width: <?php echo $c; ?>%;">
+                      <span class="sr-only"><?php echo $c; ?>% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><?php echo ($c == 100) ? '<i class="fa fa-check green"></i>' : $c."%" ; ?></span>
+                </div>
+              <?php }else{ ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <div class="progress-bar bg-green" role="progressbar" style="width: 100%;">
+                      <span class="sr-only">100% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span class="green"><i class="fa fa-check green"></i></span>
+                </div>
+              <?php ;}; ?>
+              <div class="clearfix"></div>
+            </div>
 
-        # Enter Admin page
-        if (isset($_POST)&&(!empty($_POST))){
-          # Admin login action
-          if(isset($_POST["login"])){
-            if(md5($_POST["username"].$_POST["password"]."$3cr31") == "d3ffd3c4ac547d7a79ace603f7d03497"){
-              $_SESSION["username"] = "admin";
-              $_SESSION["roles"][] = "activity-admin";
-            }
-          }
-          # Validate if admin
-          if(!isset($_SESSION)||(!isset($_SESSION["roles"]))||(!in_array("activity-admin", $_SESSION["roles"]))){
-            show_404();
-          }
-          # Start new activity action
-          if(isset($_POST["startnew"])){
-            $activity_title = str_replace(" -", "- ", preg_replace("/[^A-Za-z0-9-]/"," ",$_POST["title"]));
-            if(in_array($activity_title, array_merge($titles, array(null,"","admin","login")))){
-              show_error("Invalid title: ".$activity_title);
-            }
-            $hosts = array();
-            foreach (array("unix","windows","others") as $os_type) {
-              foreach (explode("\n", str_replace(" ","", $_POST[$os_type])) as $host){
-                $host = strtolower(preg_replace("/[^A-Za-z0-9.-]/","", $host));
-                if(empty($host)||(in_array($host, $hosts))) {continue;}
-                $hosts[] = $host;
-                $this->db->insert("dashboard_activity_monitor",
-                                  array("os"=>$os_type,"hostname"=>$host,
-                                        "title"=>$activity_title));
-              }
-            }
-            if(count($hosts) == 0) {show_error("No hostname mentioned");}
+            <div class="widget_summary">
+              <div class="w_left w_25">
+                <span>Step 3: Power-on hosts</span>
+              </div>
+              <?php if($step == "precheck") { ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <div class="progress-bar bg-green" role="progressbar" style="width: 0%;">
+                      <span class="sr-only">0% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><i class="fa fa-pause"></i></span>
+                </div>
+              <?php }else if($step == "shutdown") { ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <div class="progress-bar bg-green" role="progressbar" style="width: 0%;">
+                      <span class="sr-only">0% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><i class="fa fa-pause"></i></span>
+                </div>
+              <?php }else{ ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <?php $c = intval((count($up)*100)/count($hosts)); ?>
+                    <div class="progress-bar bg-green" role="progressbar" style="width: <?php echo $c; ?>%;">
+                      <span class="sr-only"><?php echo $c; ?>% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><?php echo ($c == 100) ? '<i class="fa fa-check green"></i>' : $c."%" ; ?></span>
+                </div>
+              <?php ;}; ?>
+              <div class="clearfix"></div>
+            </div>
 
-            $cmd = "sudo screen -d -m ".$scriptpath." -title ".$activity_title;
-            // echo $cmd; die();
-            shell_exec($cmd);
+            <div class="widget_summary">
+              <div class="w_left w_25">
+                <span>Step 4: Post validation</span>
+              </div>
+              <?php if($step == "precheck") { ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <div class="progress-bar bg-green" role="progressbar" style="width: 0%;">
+                      <span class="sr-only">0% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><i class="fa fa-pause"></i></span>
+                </div>
+              <?php }else if($step == "shutdown") { ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <div class="progress-bar bg-green" role="progressbar" style="width: 0%;">
+                      <span class="sr-only">0% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><i class="fa fa-pause"></i></span>
+                </div>
+              <?php }else{ ?>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <?php $c = intval((count($validated)*100)/count($hosts)); ?>
+                    <div class="progress-bar bg-green" role="progressbar" style="width: <?php echo $c; ?>%;">
+                      <span class="sr-only"><?php echo $c; ?>% complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span><?php echo ($c == 100) ? '<i class="fa fa-check green"></i>' : $c."%" ; ?></span>
+                </div>
+              <?php ;}; ?>
 
-            header("Location: ".base_url()."activity-monitor/".rawurlencode($activity_title));
-            die();
-          }
-        }
-        if(isset($_SESSION)&&(isset($_SESSION["roles"]))&&(in_array("activity-admin", $_SESSION["roles"]))){
-          $this->load->view("pages/activity-monitor/admin.php");
-        }else{
-          $this->load->view("pages/activity-monitor/login");
-        }
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
 
-      }else{
-        # Enter dashboard
-        $data["activity_title"] = rawurldecode($param1);
+    </div>
+    <!-- /overall_status -->
+    <br />
 
-        if (isset($_POST)&&(!empty($_POST))){
-          # Validate if admin
-          if(!isset($_SESSION)||(!isset($_SESSION["roles"]))||(!in_array("activity-admin", $_SESSION["roles"]))){
-            show_404();
-          }
-          // Ignore action
-          if (isset($_POST["ignore"])&&(!empty($_POST["ignore"]))){
-            $this->db->update("dashboard_activity_monitor",
-                              array("ignored"=>1),
-                              array("title"=> $data["activity_title"],
-                                    "hostname"=> $_POST["ignore"]));
-          }
-          // Add in scan action
-          if (isset($_POST["addinscan"])&&(!empty($_POST["addinscan"]))){
-            $this->db->update("dashboard_activity_monitor",
-                              array("ignored"=>0),
-                              array("title"=> $data["activity_title"],
-                                    "hostname"=> $_POST["addinscan"]));
-          }
-          // Flashcheck action
-          if (isset($_POST["flashcheck"])&&(!empty($_POST["flashcheck"]))){
-            if((count(explode(" ",$_POST["flashcheck"])) > 0)
-                ||(!in_array(explode(" ",$_POST["flashcheck"])[0],$hosts))
-                ||(count(explode(";",$_POST["flashcheck"])) > 0)){
-              show_404();
-            }
-            $cmd = $scriptpath." -title ".$data["activity_title"]." -hosts ".$_POST["flashcheck"];
-            // echo $cmd; die();
-            shell_exec($cmd);
-          }
-          // Start shutdown activity action
-          if (isset($_POST["startshutdown"])){
-            $this->db->update("dashboard_activity_monitor",
-                              array("step"=>"shutdown", "banner"=>null,
-                              "ping_status"=>null,"ssh_status"=>null,
-                              "validation"=>null, "overall_status"=>0),
-                              array("title"=>$data["activity_title"]));
-            $this->db->update("dashboard_activity_monitor",
-                              array("ignored"=>0),
-                              array("title"=>$data["activity_title"],
-                                    "ping_precheck"=>"up"));
-            $cmd = "sudo screen -d -m ".$scriptpath." -title ".$data["activity_title"];
-            // echo $cmd; die();
-            shell_exec($cmd);
-          }
-          // Start power-on activity action
-          if (isset($_POST["startpoweron"])){
-            $this->db->update("dashboard_activity_monitor",
-                              array("step"=>"poweron", "banner"=>null,
-                                    "ping_status"=>null,"ssh_status"=>null,
-                                    "validation"=>null, "overall_status"=>0),
-                              array("title"=>$data["activity_title"]));
-            $this->db->update("dashboard_activity_monitor",
-                              array("ignored"=>0),
-                              array("title"=>$data["activity_title"],
-                                    "ping_precheck"=>"up"));
-            $cmd = "sudo screen -d -m ".$scriptpath." -title ".$data["activity_title"]." --postcheck";
-            // echo $cmd; die();
-            shell_exec($cmd);
-          }
-          // Cancel action
-          if (isset($_POST["cancel"])){
-            $this->db->update("dashboard_activity_monitor",
-                              array("step"=>"cancelled",
-                                    "ignored"=>1,
-                                    "banner"=>ucfirst($data["activity_title"])." has been cancelled"),
-                              array("title"=>$data["activity_title"]));
-          }
-          // Postpone action
-          if (isset($_POST["postpone"])){
-            $this->db->update("dashboard_activity_monitor",
-                              array("step"=>"postponed",
-                                    "ignored"=>1,
-                                    "banner"=>ucfirst($data["activity_title"])." has been posponed"),
-                              array("title"=>$data["activity_title"]));
-          }
-          // Restart action
-          if (isset($_POST["restart"])){
-            $this->db->delete("dashboard_activity_monitor",
-                              array("step"=>"precheck",
-                                    "banner"=>null,
-                                    "ping_precheck"=>null,
-                                    "ssh_precheck"=>null,
-                                    "ping_status"=>null,
-                                    "ssh_status"=>null,
-                                    "validation_precheck"=>null,
-                                    "validation"=>null,
-                                    "ignored"=>0,
-                                    "overall_status"=>0),
-                              array("title"=>$data["activity_title"]));
-            $cmd = "sudo screen -d -m ".$scriptpath." -title ".$data["activity_title"];
-            // echo $cmd; die();
-            shell_exec($cmd);
-          }
-          // Delete action
-          if (isset($_POST["delete"])){
-            $this->db->delete("dashboard_activity_monitor",
-                              array("title"=>$data["activity_title"]));
-            header("Location: ".base_url()."activity-monitor");
-            die();
-          }
-          // Update banner action
-          if (isset($_POST["updatebanner"])){
-            $this->db->update("dashboard_activity_monitor",
-                              array("banner"=>$_POST["banner"]),
-                              array("title"=>$data["activity_title"]));
-            header("Location: ".base_url()."activity-monitor/".rawurlencode($data["activity_title"]));
-            die();
-          }
-        }
+    <!-- current step progress -->
+    <?php if ($step == "precheck") { ?>
+      <div class="row">
+        <div class="jumbotron text-center">
+          <h1><i class="fa fa-spinner fa-spin"></i></h1>
+        </div>
+      </div>
+    <?php } elseif ($step == "complete") { ?>
+      <div class="row">
+        <div class="jumbotron text-center">
+          <h1><i class="fa fa-check green"></i> Activity complete</h1>
+          <p>Activity has been successfully completed</p>
+        </div>
+      </div>
+    <?php } elseif ($step == "shutdown") { ?>
+      <!-- Shutdown activity -->
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Shutdown progress</a></h2>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
 
-        $report = $data["report"] = $this->db->get_where("dashboard_activity_monitor",
-                                                        array("title"=>$data["activity_title"])
-                                                        )->result_array();
+              <div class="col-xs-3">
+                  <ul class="nav nav-tabs tabs-left">
+                    <li class="active"><a href="#stats" data-toggle="tab" aria-expanded="true"><i class="fa fa-pie-chart"></i> Stats</a>
+                    </li>
+                    <?php foreach ($osicon as $os_type=>$icon) {
+                      if (!in_array($os_type, $os_types)) {continue;}
+                      echo '<li class=""><a href="#stats_'.$os_type.'" data-toggle="tab" aria-expanded="false">'.$icon.'</a></li>';
+                    }; ?>
+                  </ul>
+              </div>
 
-        if(count($report) == 0){
-          show_404();
-        }
+              <div class="col-xs-9">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane active" id="stats">
+                    <?php $data = json_encode(array(count($down), count($up), count($ignored))); ?>
+                    <canvas id="stats_canvas"></canvas>
+                    <script>
+                      var ctx = document.getElementById('stats_canvas').getContext('2d');
+                      var chart = new Chart(ctx, {
+                          type: 'pie',
+                          data: {
+                              labels: ["Completed", "Remaining", "Ignored"],
+                              datasets: [{
+                                  data: <?php echo $data; ?>,
+                                  backgroundColor: ['#1ABB9C','#f5f5f5','#73879C',]
+                              }]
+                          }
+                      });
+                    </script>
+                  </div>
+                  <?php foreach ($os_types as $os_type) { ?>
+                    <div class="tab-pane" id="stats_<?php echo $os_type; ?>">
+                        <canvas id="stats_canvas_<?php echo $os_type; ?>"></canvas>
+                        <?php
+                          $data = json_encode(array(
+                            count(array_intersect($consolidated[$os_type], $down, $hosts)),
+                            count(array_intersect($consolidated[$os_type], $up, $hosts)),
+                            count(array_intersect($consolidated[$os_type], $ignored))
+                          ));
+                        ?>
+                        <script>
+                          var ctx = document.getElementById('stats_canvas_<?php echo $os_type; ?>').getContext('2d');
+                          var chart = new Chart(ctx, {
+                              type: 'pie',
+                              data: {
+                                  labels: ["Completed", "Remaining", "Ignored"],
+                                  datasets: [{
+                                      data: <?php echo $data; ?>,
+                                      backgroundColor: ['#1ABB9C','#f5f5f5','#73879C',]
+                                  }]
+                              }
+                          });
+                        </script>
+                    </div>
+                  <?php ;}; ?>
+                </div>
+              </div>
 
-        foreach (array("up","down","accessible","inaccessible","unix", "ignored",
-                        "windows","others","os_types", "validated") as $value) {
-          $data[$value] = array();
-          $data["consolidated"][$value] = array();
-        }
+              <div class="clearfix"></div>
 
-        $data["step"] = $data["report"][0]["step"];
-        $data["banner"] = $data["report"][0]["banner"];
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Current step progress -->
 
-        foreach ($report as $r) {
+      <!-- Remaining hosts -->
 
-          $data["ping_status"][$r["hostname"]] = $r["ping_status"];
-          $data["ssh_status"][$r["hostname"]] = $r["ssh_status"];
-          $data["ping_status"][$r["hostname"]] = $r["ping_status"];
-          $data["validation_precheck"][$r["hostname"]] = $r["validation_precheck"];
-          $data["validation"][$r["hostname"]] = $r["validation"];
-          $data["overall_status"][$r["hostname"]] = $r["overall_status"];
-          $data["os"][$r["hostname"]] = $r["os"];
-          $data["ping_precheck"][$r["hostname"]] = $r["ping_precheck"];
-          $data["ssh_precheck"][$r["hostname"]] = $r["ssh_precheck"];
-          $data["consolidated"][$r["os"]][] = $r["hostname"];
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Remaining hosts</a></h2>
+              <div class="clearfix"></div>
+            </div>
 
-          if ($r["ignored"]) {
-            $data["ignored"][] = $r["hostname"];
-            continue;
-          }
+            <div class="x_content">
 
-          $data["hosts"][] = $r["hostname"];
+              <!-- start accordion -->
+              <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                <?php foreach ($osicon as $os_type=>$icon) {
+                  if (!in_array($os_type, $os_types)) {continue;}
+                  if (count(array_intersect($consolidated[$os_type], $up, $hosts)) == 0){continue;}
+                ;?>
+                  <div class="panel">
+                    <a class="panel-heading" role="tab" id="heading_<?php echo $os_type; ?>" data-toggle="collapse" data-parent="#accordion" href="#collapse_<?php echo $os_type; ?>" aria-expanded="false" aria-controls="collapse_<?php echo $os_type; ?>">
+                      <h4 class="panel-title text-center"><?php echo $icon; ?></h4>
+                    </a>
+                    <div id="collapse_<?php echo $os_type; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<?php echo $os_type; ?>" aria-expanded="false">
+                      <div class="panel-body" style="overflow: auto">
+                        <?php
+                          $data = array();
+                          $data["tabledata"] = array(array("Action", "Hostname", "Ping status", ""));
+                          foreach (array_intersect($consolidated[$os_type], $up, $hosts) as $host) {
+                            $btn = '<form method="post"><div class="btn-group btn-group-xs">';
+                            $btn .=   '<button name="flashcheck" class="btn btn-info btn-xs" type="submit" value="'.$host.'">Flash check</button>';
+                            $btn .=   '<button name="ignore" class="btn btn-danger btn-xs" type="submit" value="'.$host.'">Ignore</button>';
+                            $btn .= '</div></form>';
+                            $data["tabledata"][] = array($btn, $host, "up");
+                          }
+                          $data["tableid"] = "table_".$os_type;
+                          $this->load->view("pages/table",$data);
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+                  <p>&nbsp;</p>
+                <?php ;}; ?>
+              </div>
+              <!-- end of accordion -->
 
-          if($r["overall_status"] == 1){
-            $data["validated"][] = $r["hostname"];
-          }else{
-            $data["issue"][] = $r["hostname"];
-          }
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- /Remaining hosts -->
+      <?php ;}else{ ?>
+        <!-- Power-on activity -->
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Power-on progress</a></h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="col-xs-3">
+                    <ul class="nav nav-tabs tabs-left">
+                      <li class="active"><a href="#stats" data-toggle="tab" aria-expanded="true"><i class="fa fa-pie-chart"></i> Stats</a>
+                      </li>
+                      <?php foreach ($osicon as $os_type=>$icon) {
+                        if (!in_array($os_type, $os_types)) {continue;}
+                        echo '<li class=""><a href="#stats_'.$os_type.'" data-toggle="tab" aria-expanded="false">'.$icon.'</a></li>';
+                      }; ?>
+                    </ul>
+                </div>
 
-          foreach ($r as $key => $value) {
-            if(in_array($value, array("up","down","accessible","inaccessible","unix","windows","others"))){
-              if(!in_array($r["hostname"], $data[$value])){
-                $data[$value][] = $r["hostname"];
-              }
-              if(!in_array($r["hostname"], $data["consolidated"][$value])){
-                $data["consolidated"][$value][] = $r["hostname"];
-              }
-            }
-          }
-          if(!in_array($r["os"], $data["os_types"])){
-            $data["os_types"][] = $r["os"];
-          }
-        }
+                <div class="col-xs-9">
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="stats">
+                      <?php $data = json_encode(array(count($validated), count($issue), count($ignored))); ?>
+                      <canvas id="stats_canvas"></canvas>
+                      <script>
+                        var ctx = document.getElementById('stats_canvas').getContext('2d');
+                        var chart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ["Completed", "Remaining", "Ignored"],
+                                datasets: [{
+                                    data: <?php echo $data; ?>,
+                                    backgroundColor: ['#1ABB9C','#f5f5f5','#73879C',]
+                                }]
+                            }
+                        });
+                      </script>
+                    </div>
+                    <?php foreach ($os_types as $os_type) { ?>
+                      <div class="tab-pane" id="stats_<?php echo $os_type; ?>">
+                          <canvas id="stats_canvas_<?php echo $os_type; ?>"></canvas>
+                          <?php
+                            $data = json_encode(array(
+                              count(array_intersect($consolidated[$os_type], $hosts, $validated)),
+                              count(array_intersect($consolidated[$os_type], $hosts, $issue)),
+                              count(array_intersect($consolidated[$os_type], $ignored))
+                            ));
+                          ?>
+                          <script>
+                            var ctx = document.getElementById('stats_canvas_<?php echo $os_type; ?>').getContext('2d');
+                            var chart = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: ["Completed", "Remaining", "Ignored"],
+                                    datasets: [{
+                                        data: <?php echo $data; ?>,
+                                        backgroundColor: ['#1ABB9C','#f5f5f5','#73879C',]
+                                    }]
+                                }
+                            });
+                          </script>
+                      </div>
+                    <?php ;}; ?>
+                  </div>
+                </div>
 
-        // If all hosts are ignored
-        if((count($data["hosts"]) == 0)&&(!in_array($data["step"], array("postponed", "cancelled")))){
-          $this->db->delete("dashboard_activity_monitor",
-                            array("title"=>$data["activity_title"]));
-          show_error("All hosts are ignored");
-        }
+                <div class="clearfix"></div>
 
-        // Load view
-        if(isset($_SESSION)&&(isset($_SESSION["roles"]))&&(in_array("activity-admin", $_SESSION["roles"]))){
-          $this->load->view('pages/activity-monitor/dashboard-admin', $data);
-        }else{
-          $this->load->view('pages/activity-monitor/dashboard', $data);
-        }
-      }
-    }else{
-      show_404();
-    }
-    $this->load->view('pages/footer');
-	}
-}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Current step progress -->
+
+        <!-- Remaining hosts -->
+
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Remaining hosts</a></h2>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="x_content">
+
+                <!-- start accordion -->
+                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                  <?php foreach ($osicon as $os_type=>$icon) {
+                    if (!in_array($os_type, $os_types)) {continue;}
+                    if (count(array_intersect($consolidated[$os_type], $issue, $hosts)) == 0){continue;}
+                  ;?>
+                    <div class="panel">
+                      <a class="panel-heading" role="tab" id="heading_<?php echo $os_type; ?>" data-toggle="collapse" data-parent="#accordion" href="#collapse_<?php echo $os_type; ?>" aria-expanded="false" aria-controls="collapse_<?php echo $os_type; ?>">
+                        <h4 class="panel-title text-center"><?php echo $icon; ?></h4>
+                      </a>
+                      <div id="collapse_<?php echo $os_type; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<?php echo $os_type; ?>" aria-expanded="false">
+                        <div class="panel-body" style="overflow: auto">
+                          <?php
+                            $data = array();
+                            if($os_type == "unix"){
+                              $data["tabledata"] = array(array("Action", "Hostname", "Ping status", "SSH status", "Validation"));
+                            }else{
+                              $data["tabledata"] = array(array("Action", "Hostname", "Ping status", ""));
+                            }
+                            foreach (array_intersect($consolidated[$os_type], $issue, $hosts) as $host) {
+                              $btn = '<form method="post"><div class="btn-group btn-group-xs">';
+                              $btn .=   '<button name="flashcheck" class="btn btn-info btn-xs" type="submit" value="'.$host.' --postcheck">Flash check</button>';
+                              $btn .=   '<button name="ignore" class="btn btn-danger btn-xs" type="submit" value="'.$host.'">Ignore</button>';
+                              $btn .= '</div></form>';
+                              if($os_type == "unix"){
+                                if(($overall_status[$host] == 0)&&($ssh_status[$host] == "accessible")){
+                                  $validation = json_encode([($precheck[$host]) ? json_decode($precheck[$host],JSON_PRETTY_PRINT) : [],
+                                                            ($postcheck[$host]) ? json_decode($postcheck[$host],JSON_PRETTY_PRINT) : []]);
+                                }elseif($overall_status[$host] == 0){
+                                  $validation = "failed";
+                                }else{
+                                  $validation = "success";
+                                }
+                                $data["tabledata"][] = array($btn, $host, $ping_status[$host], $ssh_status[$host],
+                                                             ($overall_status[$host] == 1) ? "success" : $validation
+                                                            );
+                              }else{
+                                $data["tabledata"][] = array($btn, $host, "down");
+                              }
+                            }
+                            $data["tableid"] = "table_".$os_type;
+                            $this->load->view("pages/table",$data);
+                          ?>
+                        </div>
+                      </div>
+                    </div>
+                    <p>&nbsp;</p>
+                  <?php ;}; ?>
+                </div>
+                <!-- end of accordion -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Remaining hosts -->
+      <?php  ;}; ?>
+  <?php ;}; ?>
+
+
+  <!-- Ignored hosts -->
+  <?php if(count($ignored) > 0) { ?>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Ignored hosts</a></h2>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="x_content">
+            <div class="table-responsive">
+              <?php
+                $data = array();
+                $data["tabledata"] = array(array("Action", "Hostname", "OS", "Initial Ping status", "Initial SSH status", "Last ping status", "Last SSH status"));
+                foreach ($ignored as $host) {
+                  $btn = '<form method="post">';
+                  $btn .=   '<button name="addinscan" class="btn btn-primary btn-xs" type="submit" value="'.$host.'">Add in scan</button>';
+                  $btn .= '</form>';
+                  $data["tabledata"][] = array($btn, $host, $osicon[$os[$host]], $ping_precheck[$host], $ssh_precheck[$host], $ping_status[$host], $ssh_status[$host]);
+                }
+                $data["tableid"] = "table_ignored";
+                $this->load->view("pages/table",$data);
+              ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- /Ignored hosts -->
+  <?php ;}; ?>
+
+</div>
