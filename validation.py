@@ -15,7 +15,7 @@ from opsauto import *
 
 
 # opsautodb = DictMySQL(db='opsauto', host="localhost",
-#                       user="root", passwd="",
+#                       user="root", passwd="abcd",
 #                       cursorclass=cursors.DictCursor)
 threadLimiter = threading.BoundedSemaphore(50) # Max threads
 
@@ -50,9 +50,9 @@ def ssh_check(host, sq):
                 checks = json.dumps(stdout.decode().split("[---x---]\n"))
                 sq.put([host, "accessible", checks])
             else:
-                sq.put([host, "inaccessible"])
+                sq.put([host, "inaccessible", None])
         except:
-            sq.put([host, "inaccessible"])
+            sq.put([host, "inaccessible", None])
     finally:
         threadLimiter.release()
 
@@ -67,11 +67,12 @@ def update_all(title, check=None, hosts=[]):
     report = opsautodb.select(table="dashboard_activity_monitor",
                               where=where)
 
-    hosts, unix_hosts = set(), set()
+    hosts, unix_hosts, ping_prechecks = set(), set(), {}
 
     for r in report:
         hosts.add(r["hostname"])
         if r["os"] == "unix": unix_hosts.add(r["hostname"])
+        ping_prechecks[r["hostname"]] = r["ping_precheck"]
 
     if len(hosts) == 0: quit()
 
@@ -88,7 +89,7 @@ def update_all(title, check=None, hosts=[]):
         result = pq.get()
         if result[1] == "up":
             up.add(result[0])
-            if check == "postcheck" and result[0] not in unix_hosts:
+            if check == "postcheck" and result[0] not in unix_hosts and ping_prechecks[result[0]] == result[1]:
                 validated.add(result[0])
         else:
             down.add(result[0])
@@ -96,18 +97,31 @@ def update_all(title, check=None, hosts=[]):
 
     # Update DB
     if len(up) > 0:
+        value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
+        if check == "precheck":
+            value["ping_precheck"] = "up"
+        value["ping_status"] = "up"
         opsautodb.update(table="dashboard_activity_monitor",
-                         value={"ping_status": "up",
-                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
+                         value=value,
                          where={"title": title, "ignored": 0,
                                 "$IN": {"hostname": list(up)}})
     if len(down) > 0:
+        value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
+        if check == "precheck":
+            value["ping_precheck"] = "down"
+            value["ssh_precheck"] = "inaccessible"
+            value["ignored"] = 1
+        value["ping_status"] = "down"
+        value["ssh_status"] = "inaccessible"
         opsautodb.update(table="dashboard_activity_monitor",
-                         value={"ping_status": "down",
-                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
+                         value=value,
                          where={"title": title, "ignored": 0,
                                 "$IN": {"hostname": list(down)}})
     if len(inaccessible) > 0:
+        value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
+        if check == "precheck":
+            value["ssh_precheck"] = "inaccessible"
+        value["ssh_status"] = "inaccessible"
         opsautodb.update(table="dashboard_activity_monitor",
                          value={"ssh_status": "inaccessible",
                                 "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
@@ -120,6 +134,7 @@ def update_all(title, check=None, hosts=[]):
                          where={"title": title, "ignored": 0,
                                 "$IN": {"hostname": list(validated)}})
 
+
     if check == None: return
 
     up_unix_hosts, inaccessible, validated = (unix_hosts & up), set(), set()
@@ -127,7 +142,7 @@ def update_all(title, check=None, hosts=[]):
     if len(up_unix_hosts) == 0: return
 
     if check == "postcheck":
-        prechecks = {r["hostname"]: r["precheck"] for r in report}
+        ssh_validations = {r["hostname"]: [r["ssh_precheck"], r["validation_precheck"]] for r in report}
 
     # Perform ssh check
     for host in tqdm(up_unix_hosts, desc='Starting ssh check'):
@@ -135,17 +150,25 @@ def update_all(title, check=None, hosts=[]):
         st.start()
         sts.append(st)
     for t in tqdm(sts, desc='Finishing ssh check'): t.join()
+
     while not sq.empty():
         result = sq.get()
         if result[1] == "accessible":
-            value = {"ssh_status": "accessible","updated": time.strftime('%Y-%m-%d %H:%M:%S')}
-            if check != None: value[check] = result[2]
+            value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
+            if check == "precheck":
+                value["ssh_precheck"] = "accessible"
+                value["validation_precheck"] = result[2]
+            else:
+                value["ssh_status"] = "accessible"
+                value["validation"] = result[2]
+            if check == "postcheck" and ping_prechecks[result[0]] == "up":
+                if ssh_validations[result[0]] == result[1:]:
+                    value["overall_status"] = 1
+
             opsautodb.update(table="dashboard_activity_monitor",
                              value=value,
                              where={"title": title, "ignored": 0,
                                     "hostname": result[0]})
-            if check == "postcheck" and (not prechecks[result[0]] or prechecks[result[0]] == result[2]):
-                validated.add(result[0])
         else:
             inaccessible.add(result[0])
 
@@ -156,12 +179,6 @@ def update_all(title, check=None, hosts=[]):
                                 "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                          where={"title": title, "ignored": 0,
                                 "$IN": {"hostname": list(inaccessible)}})
-    if len(validated) > 0:
-        opsautodb.update(table="dashboard_activity_monitor",
-                         value={"overall_status": 1,
-                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
-                         where={"title": title, "ignored": 0,
-                                "$IN": {"hostname": list(validated)}})
 
 if __name__ == "__main__":
 
