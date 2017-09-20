@@ -150,6 +150,7 @@ def update_all(title, check=None, hosts=[]):
         value["ssh_status"] = "inaccessible"
         opsautodb.update(table="dashboard_activity_monitor",
                          value={"ssh_status": "inaccessible",
+                                "validation": None,
                                 "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                          where={"title": title, "ignored": 0,
                                 "$IN": {"hostname": list(inaccessible)}})
