@@ -15,7 +15,7 @@ from opsauto import *
 
 
 # opsautodb = DictMySQL(db='opsauto', host="localhost",
-#                       user="root", passwd="abcd",
+#                       user="root", passwd="",
 #                       cursorclass=cursors.DictCursor)
 threadLimiter = threading.BoundedSemaphore(50) # Max threads
 
@@ -35,18 +35,25 @@ def ping_check(host, pq):
         pass
         threadLimiter.release()
 
-def ssh_check(host, sq):
+def ssh_check(host, check, sq):
     threadLimiter.acquire()
     if check == "precheck":
         cmds = ["mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
-                "ifconfig|grep 'inet '",
-                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /dev|grep -v /var|grep -v /tmp|grep -v /etc|grep -v /var|cut -d' ' -f1|while read -r line; do touch $line/ro_test && echo $line; done"]
+                "ifconfig -a|grep 'inet '","cat /etc/fstab|grep -v ^#","ypwhich",
+                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /opt|grep -v /var|grep -v /tmp|grep -v /var|grep -v tmpfs|cut -d' ' -f3|while read -r line; do touch $line/ro_test && echo $line; done > ro_test; cat ro_test",
+                "mount|grep nfs|grep /vol|tail -1|cut -d' ' -f3 > nfs_vol;cat nfs_vol",
+                "mount|grep nfs|grep /homes|tail -1|cut -d' ' -f3 > nfs_home; cat nfs_home"]
     else:
-        cmds = []
+        cmds = ["mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
+                "ifconfig|grep 'inet '","cat /etc/fstab|grep -v ^#","ypwhich",
+                "cat ro_test|while read -r line; do touch $line/ro_test && echo $line; done",
+                "touch $(cat nfs_vol)/ro_test && echo $(cat nfs_vol)",
+                "touch $(cat nfs_home)/ro_test && echo $(cat nfs_home)"]
+
     cmd = "/bin/sh -c '"+(" 2>/dev/null; echo [---x---];".join(cmds))+"; echo'"
     try:
-        p = Popen(["ssh","-q","-l","root","-i","/script/.ssh/id_rsa.jump","-o","StrictHostKeyChecking=no",host,cmd],
-        # p = Popen(["sudo","ssh","-q","-l","root","-o","StrictHostKeyChecking=no",host,cmd],
+        # p = Popen(["ssh","-q","-l","root","-i","/script/.ssh/id_rsa.jump","-o","StrictHostKeyChecking=no",host,cmd],
+        p = Popen(["sudo","ssh","-q","-l","root","-o","StrictHostKeyChecking=no",host,cmd],
                   stdout=PIPE, stderr=PIPE)
         try:
             stdout, stderr = p.communicate(timeout=120)
@@ -61,6 +68,20 @@ def ssh_check(host, sq):
     finally:
         threadLimiter.release()
 
+def validate(prechecks, postchecks):
+    if not prechecks or len(prechecks) == 0: return []
+    if not postchecks or len(postchecks) == 0: postchecks = json.dumps([[] for i in range(len(prechecks))])
+
+    prechecks, postchecks = json.loads(prechecks), json.loads(postchecks)
+    checks = ["Local mounts","IP routes","IP address","fstab","NIS server",
+              "Local rw test","NFS rw test","Homedir rw test"]
+    failed = []
+    for i in range(len(prechecks)):
+        if i == len(checks): break
+        if i == len(postchecks): postchecks.append([])
+        if len(set(prechecks[i].splitlines()) - set(postchecks[i].splitlines())) > 0:
+            failed.append([checks[i], prechecks[i], postchecks[i]])
+    return failed
 
 def update_all(title, check=None, hosts=[]):
 
@@ -151,7 +172,7 @@ def update_all(title, check=None, hosts=[]):
 
     # Perform ssh check
     for host in tqdm(up_unix_hosts, desc='Starting ssh check'):
-        st = threading.Thread(target=ssh_check, args=(host,sq,))
+        st = threading.Thread(target=ssh_check, args=(host,check,sq,))
         st.start()
         sts.append(st)
     for t in tqdm(sts, desc='Finishing ssh check'): t.join()
@@ -164,11 +185,15 @@ def update_all(title, check=None, hosts=[]):
             value["validation_precheck"] = result[2]
         else:
             value["ssh_status"] = result[1]
-            value["validation"] = result[2]
 
-        if check == "postcheck" and ping_prechecks[result[0]] == "up":
-            if ssh_validations[result[0]] == result[1:]:
-                value["overall_status"] = 1
+            if ping_prechecks[result[0]] == "up":
+                if ssh_validations[result[0]][0] == result[1]:
+                    failed = validate(ssh_validations[result[0]][1], result[2])
+                    if len(failed) == 0:
+                        value["overall_status"] = 1
+                    else:
+                        value["validation"] = json.dumps(failed)
+                        print(result[0],"\n===========\n".join(["\n--------\n".join(f) for f in failed]),sep="\n______\n")
 
         opsautodb.update(table="dashboard_activity_monitor",
                          value=value,
@@ -246,16 +271,3 @@ if __name__ == "__main__":
                                 "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                          where={"title": title})
     print("Activity complete...")
-
-
-"""
-•	Ping check
-•	SSH check
-•	fstab validation. 
-•	IP address validation
-•	Route validation
-•	NFS volume check.
-•	Read only local mount points.
-•	User validation.
-•	NIS Validation
-"""
