@@ -8,6 +8,7 @@ import json
 from pprint import pprint
 import sys
 import os
+import re
 import argparse
 from tqdm import tqdm, trange
 from opsauto import *
@@ -35,25 +36,28 @@ def ping_check(host, pq):
         pass
         threadLimiter.release()
 
-def ssh_check(host, check, sq):
+def ssh_check(host, check, title, sq):
     threadLimiter.acquire()
+    filepath = "/activity-monitor/"+re.sub("[^a-zA-Z0-9-]","_",title)+"-"
     if check == "precheck":
-        cmds = ["mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
-                "ifconfig -a|grep 'inet '","cat /etc/fstab|grep -v ^#","ypwhich",
-                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /opt|grep -v /var|grep -v /tmp|grep -v /var|grep -v tmpfs|cut -d' ' -f3|while read -r line; do touch $line/ro_test && echo $line; done > ro_test; cat ro_test",
-                "mount|grep nfs|grep /vol|tail -1|cut -d' ' -f3 > nfs_vol;cat nfs_vol",
-                "mount|grep nfs|grep /homes|tail -1|cut -d' ' -f3 > nfs_home; cat nfs_home"]
+        cmds = ["mkdir /activity-monitor;mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
+                "ifconfig -a|grep \"inet \"","cat /etc/fstab|grep -v ^#","ypwhich",
+                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /opt|grep -v /var|grep -v /tmp|grep -v /var|grep -v tmpfs|cut -d\" \" -f3|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_pre; cat "+filepath+"rw_test_pre",
+                "mount|grep nfs|grep /vol|grep -v /homes|tail -1|cut -d\" \" -f3 > "+filepath+"nfs_vol_pre;cat "+filepath+"nfs_vol_pre",
+                "mount|grep nfs|grep /homes|tail -1|cut -d\" \" -f3 > "+filepath+"nfs_home_pre; cat "+filepath+"nfs_home_pre"]
     else:
         cmds = ["mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
-                "ifconfig|grep 'inet '","cat /etc/fstab|grep -v ^#","ypwhich",
-                "cat ro_test|while read -r line; do touch $line/ro_test && echo $line; done",
-                "touch $(cat nfs_vol)/ro_test && echo $(cat nfs_vol)",
-                "touch $(cat nfs_home)/ro_test && echo $(cat nfs_home)"]
+                "ifconfig|grep \"inet \"","cat /etc/fstab|grep -v ^#","ypwhich",
+                "cat "+filepath+"rw_test_pre|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_post; cat "+filepath+"rw_test_post",
+                "ls -d $(cat "+filepath+"nfs_vol_pre) > "+filepath+"nfs_vol_post; cat "+filepath+"nfs_vol_post",
+                "ls -d $(cat "+filepath+"nfs_home_pre) > "+filepath+"nfs_home_post; cat "+filepath+"nfs_home_post"]
 
     cmd = "/bin/sh -c '"+(" 2>/dev/null; echo [---x---];".join(cmds))+"; echo'"
+    # with open("testcmd","w") as f: f.write(cmd)
+    # quit()
     try:
-        # p = Popen(["ssh","-q","-l","root","-i","/script/.ssh/id_rsa.jump","-o","StrictHostKeyChecking=no",host,cmd],
-        p = Popen(["sudo","ssh","-q","-l","root","-o","StrictHostKeyChecking=no",host,cmd],
+        p = Popen(["ssh","-q","-l","root","-i","/script/.ssh/id_rsa.jump","-o","StrictHostKeyChecking=no",host,cmd],
+        # p = Popen(["sudo","ssh","-q","-l","root","-o","StrictHostKeyChecking=no",host,cmd],
                   stdout=PIPE, stderr=PIPE)
         try:
             stdout, stderr = p.communicate(timeout=120)
@@ -74,12 +78,14 @@ def validate(prechecks, postchecks):
 
     prechecks, postchecks = json.loads(prechecks), json.loads(postchecks)
     checks = ["Local mounts","IP routes","IP address","fstab","NIS server",
-              "Local rw test","NFS rw test","Homedir rw test"]
+              "Local rw test","NFS mount check","Home directory check"]
     failed = []
     for i in range(len(prechecks)):
         if i == len(checks): break
         if i == len(postchecks): postchecks.append([])
-        if len(set(prechecks[i].splitlines()) - set(postchecks[i].splitlines())) > 0:
+        set1 = set([" ".join(x.strip().split()[:3]) for x in prechecks[i].splitlines()])
+        set2 = set([" ".join(x.strip().split()[:3]) for x in postchecks[i].splitlines()])
+        if len(set1 - set2) > 0:
             failed.append([checks[i], prechecks[i], postchecks[i]])
     return failed
 
@@ -103,7 +109,8 @@ def update_all(title, check=None, hosts=[]):
     if len(hosts) == 0: quit()
 
     pts, sts, pq, sq, = [], [], Queue(), Queue()
-    up, down, accessible, inaccessible, validated = set(), set(), set(), set(), set()
+    up, down, accessible = set(), set(), set()
+    inaccessible, validated, issue =  set(), set(), set()
 
     # Perform ping check
     for host in tqdm(hosts, desc='Starting ping check'):
@@ -115,11 +122,16 @@ def update_all(title, check=None, hosts=[]):
         result = pq.get()
         if result[1] == "up":
             up.add(result[0])
-            if check == "postcheck" and result[0] not in unix_hosts and ping_prechecks[result[0]] == result[1]:
-                validated.add(result[0])
         else:
             down.add(result[0])
             if host in unix_hosts: inaccessible.add(result[0])
+
+        if check == "precheck" or result[0] in unix_hosts: continue
+
+        if ping_prechecks[result[0]] == result[1]:
+            validated.add(result[0])
+        else:
+            issue.add(result[0])
 
     # Update DB
     if len(up) > 0:
@@ -127,6 +139,7 @@ def update_all(title, check=None, hosts=[]):
         if check == "precheck":
             value["ping_precheck"] = "up"
         value["ping_status"] = "up"
+
         opsautodb.update(table="dashboard_activity_monitor",
                          value=value,
                          where={"title": title, "ignored": 0,
@@ -160,6 +173,12 @@ def update_all(title, check=None, hosts=[]):
                                 "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                          where={"title": title, "ignored": 0,
                                 "$IN": {"hostname": list(validated)}})
+    if len(issue) > 0:
+        opsautodb.update(table="dashboard_activity_monitor",
+                         value={"overall_status": 0,
+                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
+                         where={"title": title, "ignored": 0,
+                                "$IN": {"hostname": list(issue)}})
 
 
     if check == None: return
@@ -173,7 +192,7 @@ def update_all(title, check=None, hosts=[]):
 
     # Perform ssh check
     for host in tqdm(up_unix_hosts, desc='Starting ssh check'):
-        st = threading.Thread(target=ssh_check, args=(host,check,sq,))
+        st = threading.Thread(target=ssh_check, args=(host,check,title,sq,))
         st.start()
         sts.append(st)
     for t in tqdm(sts, desc='Finishing ssh check'): t.join()
@@ -187,14 +206,17 @@ def update_all(title, check=None, hosts=[]):
         else:
             value["ssh_status"] = result[1]
 
-            if ping_prechecks[result[0]] == "up":
-                if ssh_validations[result[0]][0] == result[1]:
-                    failed = validate(ssh_validations[result[0]][1], result[2])
-                    if len(failed) == 0:
-                        value["overall_status"] = 1
-                    else:
-                        value["validation"] = json.dumps(failed)
-                        print(result[0],"\n===========\n".join(["\n--------\n".join(f) for f in failed]),sep="\n______\n")
+            if ping_prechecks[result[0]] == "down": continue
+            if ssh_validations[result[0]][0] != result[1]: continue
+
+            failed = validate(ssh_validations[result[0]][1], result[2])
+            if len(failed) == 0:
+                value["validation"] = None
+                value["overall_status"] = 1
+            else:
+                value["validation"] = json.dumps(failed)
+                value["overall_status"] = 0
+                print(result[0],"\n===========\n".join(["\n--------\n".join(f) for f in failed]),sep="\n______\n")
 
         opsautodb.update(table="dashboard_activity_monitor",
                          value=value,
@@ -242,13 +264,16 @@ if __name__ == "__main__":
                                 "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                          where={"title": title})
         while True:
-            records = opsautodb.select(table="dashboard_activity_monitor",
-                                      where={"title": title, "ping_status": "up",
-                                             "ignored": 0})
-            if len(records) == 0: break
-            os.system("clear")
-            print(len(records),"hosts still online")
-            update_all(title)
+            try:
+                records = opsautodb.select(table="dashboard_activity_monitor",
+                                          where={"title": title, "ping_status": "up",
+                                                 "ignored": 0})
+                if len(records) == 0: break
+                os.system("clear")
+                print(len(records),"hosts still online")
+                update_all(title)
+            except Exception as e:
+                print(e)
             time.sleep(2)
 
     else:
@@ -258,14 +283,18 @@ if __name__ == "__main__":
                                 "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
                          where={"title": title})
         while True:
-            records = opsautodb.select(table="dashboard_activity_monitor",
-                                      where={"title": title, "overall_status": 0,
-                                             "ignored": 0})
-            if len(records) == 0: break
-            os.system("clear")
-            print(len(records),"hosts still having issue")
-            update_all(title, "postcheck")
-            time.sleep(2)
+            try:
+                records = opsautodb.select(table="dashboard_activity_monitor",
+                                          where={"title": title, "overall_status": 0,
+                                                 "ignored": 0})
+                if len(records) == 0: break
+                os.system("clear")
+                print(len(records),"hosts still having issue")
+                update_all(title, "postcheck")
+                time.sleep(2)
+            except Exception as e:
+                print(e)
+                quit()
 
         opsautodb.update(table="dashboard_activity_monitor",
                          value={"step": "complete",
