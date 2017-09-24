@@ -43,13 +43,13 @@ def ssh_check(host, check, title, sq):
     if check == "precheck":
         cmds = ["mkdir /activity-monitor;mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
                 "ifconfig -a|grep \"inet \"","cat /etc/fstab|grep -v ^#","ypwhich",
-                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /opt|grep -v /var|grep -v /tmp|grep -v /var|grep -v tmpfs|cut -d\" \" -f3|wh,
+                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /opt|grep -v /var|grep -v /tmp|grep -v /var|grep -v tmpfs|cut -d\" \" -f3|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_pre; cat "+filepath+"rw_test_pre",
                 "mount|grep nfs|grep /vol|grep -v /homes|tail -1|cut -d\" \" -f3 > "+filepath+"nfs_vol_pre;cat "+filepath+"nfs_vol_pre",
                 "mount|grep nfs|grep /homes|tail -1|cut -d\" \" -f3 > "+filepath+"nfs_home_pre; cat "+filepath+"nfs_home_pre"]
     else:
         cmds = ["mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
                 "ifconfig|grep \"inet \"","cat /etc/fstab|grep -v ^#","ypwhich",
-                "cat "+filepath+"rw_test_pre|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_post; cat "+filep,
+                "cat "+filepath+"rw_test_pre|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_post; cat "+filepath+"rw_test_post",
                 "ls -d $(cat "+filepath+"nfs_vol_pre) > "+filepath+"nfs_vol_post; cat "+filepath+"nfs_vol_post",
                 "ls -d $(cat "+filepath+"nfs_home_pre) > "+filepath+"nfs_home_post; cat "+filepath+"nfs_home_post"]
 
@@ -92,9 +92,9 @@ def validate(prechecks, postchecks):
 def update_all(title, check=None, hosts=[]):
 
     if len(hosts) == 0:
-        where = {"title": title}
+        where = {"title": title, "ignored": 0}
     else:
-        where = {"title": title, "$IN": {"hostname": hosts}}
+        where = {"title": title, "ignored": 0, "$IN": {"hostname": hosts}}
 
     report = opsautodb.select(table="dashboard_activity_monitor",
                               where=where)
@@ -125,6 +125,7 @@ def update_all(title, check=None, hosts=[]):
         value = {"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
         if check == "precheck":
             value["ping_precheck"] = value["ping_status"] = status
+            if status == "down": value["ignored"] = 1
         elif check == None:
             value["ping_status"] = status
         elif check == "postcheck":
@@ -253,7 +254,7 @@ if __name__ == "__main__":
                 time.sleep(2)
             except Exception as e:
                 print(e)
-                quit()
+            time.sleep(2)
 
         opsautodb.update(table="dashboard_activity_monitor",
                          value={"step": "complete",
