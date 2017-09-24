@@ -9,6 +9,7 @@ from pprint import pprint
 import sys
 import os
 import re
+from shlex import quote
 import argparse
 from tqdm import tqdm, trange
 from opsauto import *
@@ -24,16 +25,16 @@ threadLimiter = threading.BoundedSemaphore(50) # Max threads
 def ping_check(host, pq):
     threadLimiter.acquire()
     try:
-        for i in range(1,2):
-            p = Popen(["ping", "-c"+str(i), "-w"+str(i), host], stdout=PIPE, stderr=PIPE)
-            p.communicate()
-            rc = p.returncode
-            if rc == 0:
-                pq.put([host, "up"])
-                return
+        p = Popen(["ping", "-c2", "-w2", host], stdout=PIPE, stderr=PIPE)
+        p.communicate(timeout=10)
+        rc = p.returncode
+        if rc == 0:
+            pq.put([host, "up"])
+        else:
+            pq.put([host, "down"])
+    except:
         pq.put([host, "down"])
     finally:
-        pass
         threadLimiter.release()
 
 def ssh_check(host, check, title, sq):
@@ -42,33 +43,32 @@ def ssh_check(host, check, title, sq):
     if check == "precheck":
         cmds = ["mkdir /activity-monitor;mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
                 "ifconfig -a|grep \"inet \"","cat /etc/fstab|grep -v ^#","ypwhich",
-                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /opt|grep -v /var|grep -v /tmp|grep -v /var|grep -v tmpfs|cut -d\" \" -f3|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_pre; cat "+filepath+"rw_test_pre",
+                "mount|grep ^/dev/|grep -v /boot|grep -v /proc|grep -v /opt|grep -v /var|grep -v /tmp|grep -v /var|grep -v tmpfs|cut -d\" \" -f3|wh,
                 "mount|grep nfs|grep /vol|grep -v /homes|tail -1|cut -d\" \" -f3 > "+filepath+"nfs_vol_pre;cat "+filepath+"nfs_vol_pre",
                 "mount|grep nfs|grep /homes|tail -1|cut -d\" \" -f3 > "+filepath+"nfs_home_pre; cat "+filepath+"nfs_home_pre"]
     else:
         cmds = ["mount|grep ^/dev/", "netstat -nr;route -n;ip route show",
                 "ifconfig|grep \"inet \"","cat /etc/fstab|grep -v ^#","ypwhich",
-                "cat "+filepath+"rw_test_pre|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_post; cat "+filepath+"rw_test_post",
+                "cat "+filepath+"rw_test_pre|while read -r line; do touch $line/rw_test && echo $line; done > "+filepath+"rw_test_post; cat "+filep,
                 "ls -d $(cat "+filepath+"nfs_vol_pre) > "+filepath+"nfs_vol_post; cat "+filepath+"nfs_vol_post",
                 "ls -d $(cat "+filepath+"nfs_home_pre) > "+filepath+"nfs_home_post; cat "+filepath+"nfs_home_post"]
 
-    cmd = "/bin/sh -c '"+(" 2>/dev/null; echo [---x---];".join(cmds))+"; echo'"
-    # with open("testcmd","w") as f: f.write(cmd)
+    cmd = "/bin/sh -c "+quote((" 2>/dev/null; echo [---x---];".join(cmds))+"; echo")
+    with open("testcmd","w") as f: f.write(cmd)
     # quit()
     try:
         p = Popen(["ssh","-q","-l","root","-i","/script/.ssh/id_rsa.jump","-o","StrictHostKeyChecking=no",host,cmd],
         # p = Popen(["sudo","ssh","-q","-l","root","-o","StrictHostKeyChecking=no",host,cmd],
                   stdout=PIPE, stderr=PIPE)
-        try:
-            stdout, stderr = p.communicate(timeout=120)
-            rc = p.returncode
-            if rc == 0:
-                checks = json.dumps(stdout.decode().split("[---x---]\n"))
-                sq.put([host, "accessible", checks])
-            else:
-                sq.put([host, "inaccessible", None])
-        except:
+        stdout, stderr = p.communicate(timeout=120)
+        rc = p.returncode
+        if rc == 0:
+            checks = json.dumps(stdout.decode().split("[---x---]\n"))
+            sq.put([host, "accessible", checks])
+        else:
             sq.put([host, "inaccessible", None])
+    except:
+        sq.put([host, "inaccessible", None])
     finally:
         threadLimiter.release()
 
@@ -99,12 +99,13 @@ def update_all(title, check=None, hosts=[]):
     report = opsautodb.select(table="dashboard_activity_monitor",
                               where=where)
 
-    hosts, unix_hosts, ping_prechecks = set(), set(), {}
+    hosts, unix_hosts, ping_prechecks, ssh_validations = set(), set(), {}, {}
 
     for r in report:
         hosts.add(r["hostname"])
         if r["os"] in ["unix","ccpvm"]: unix_hosts.add(r["hostname"])
         ping_prechecks[r["hostname"]] = r["ping_precheck"]
+        ssh_validations[r["hostname"]] = [r["ssh_precheck"], r["validation_precheck"]]
 
     if len(hosts) == 0: quit()
 
@@ -118,77 +119,35 @@ def update_all(title, check=None, hosts=[]):
         pt.start()
         pts.append(pt)
     for t in tqdm(pts, desc='Finishing ping check'): t.join()
+
     while not pq.empty():
-        result = pq.get()
-        if result[1] == "up":
-            up.add(result[0])
-        else:
-            down.add(result[0])
-            if host in unix_hosts: inaccessible.add(result[0])
-
-        if check == "precheck" or result[0] in unix_hosts: continue
-
-        if ping_prechecks[result[0]] == result[1]:
-            validated.add(result[0])
-        else:
-            issue.add(result[0])
-
-    # Update DB
-    if len(up) > 0:
-        value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
+        host, status = pq.get()
+        value = {"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
         if check == "precheck":
-            value["ping_precheck"] = "up"
-        value["ping_status"] = "up"
-
+            value["ping_precheck"] = value["ping_status"] = status
+        elif check == None:
+            value["ping_status"] = status
+        elif check == "postcheck":
+            value["ping_status"] = status
+            if ping_prechecks[host] == status and host not in unix_hosts:
+                value["overall_status"] = 1
+            elif host not in unix_hosts:
+                value["overall_status"] = 0
+        if status == "up":
+            up.add(host)
+        elif host in unix_hosts:
+            value["ssh_status"] = "inaccessible"
         opsautodb.update(table="dashboard_activity_monitor",
                          value=value,
                          where={"title": title, "ignored": 0,
-                                "$IN": {"hostname": list(up)}})
-    if len(down) > 0:
-        value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
-        if check == "precheck":
-            value["ping_precheck"] = "down"
-            value["ssh_precheck"] = "inaccessible"
-            value["ignored"] = 1
-        value["ping_status"] = "down"
-        value["ssh_status"] = "inaccessible"
-        opsautodb.update(table="dashboard_activity_monitor",
-                         value=value,
-                         where={"title": title, "ignored": 0,
-                                "$IN": {"hostname": list(down)}})
-    if len(inaccessible) > 0:
-        value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
-        if check == "precheck":
-            value["ssh_precheck"] = "inaccessible"
-        value["ssh_status"] = "inaccessible"
-        opsautodb.update(table="dashboard_activity_monitor",
-                         value={"ssh_status": "inaccessible",
-                                "validation": None,
-                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
-                         where={"title": title, "ignored": 0,
-                                "$IN": {"hostname": list(inaccessible)}})
-    if len(validated) > 0:
-        opsautodb.update(table="dashboard_activity_monitor",
-                         value={"overall_status": 1,
-                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
-                         where={"title": title, "ignored": 0,
-                                "$IN": {"hostname": list(validated)}})
-    if len(issue) > 0:
-        opsautodb.update(table="dashboard_activity_monitor",
-                         value={"overall_status": 0,
-                                "updated": time.strftime('%Y-%m-%d %H:%M:%S')},
-                         where={"title": title, "ignored": 0,
-                                "$IN": {"hostname": list(issue)}})
+                                "hostname": host})
 
 
     if check == None: return
 
-    up_unix_hosts, inaccessible, validated = (unix_hosts & up), set(), set()
+    up_unix_hosts = (unix_hosts & up)
 
     if len(up_unix_hosts) == 0: return
-
-    if check == "postcheck":
-        ssh_validations = {r["hostname"]: [r["ssh_precheck"], r["validation_precheck"]] for r in report}
 
     # Perform ssh check
     for host in tqdm(up_unix_hosts, desc='Starting ssh check'):
@@ -198,30 +157,30 @@ def update_all(title, check=None, hosts=[]):
     for t in tqdm(sts, desc='Finishing ssh check'): t.join()
 
     while not sq.empty():
-        result = sq.get()
+        host, status, validation = sq.get()
         value={"updated": time.strftime('%Y-%m-%d %H:%M:%S')}
         if check == "precheck":
-            value["ssh_precheck"] = result[1]
-            value["validation_precheck"] = result[2]
+            value["ssh_precheck"] = value["ssh_status"] = status
+            value["validation_precheck"] = validation
         else:
-            value["ssh_status"] = result[1]
+            value["ssh_status"] = status
 
-            if ping_prechecks[result[0]] == "down": continue
-            if ssh_validations[result[0]][0] != result[1]: continue
-
-            failed = validate(ssh_validations[result[0]][1], result[2])
-            if len(failed) == 0:
-                value["validation"] = None
-                value["overall_status"] = 1
-            else:
-                value["validation"] = json.dumps(failed)
+            if status != ssh_validations[host][0]:
                 value["overall_status"] = 0
-                print(result[0],"\n===========\n".join(["\n--------\n".join(f) for f in failed]),sep="\n______\n")
+            else:
+                failed = validate(ssh_validations[host][1], validation)
+                if len(failed) == 0:
+                    value["validation"] = None
+                    value["overall_status"] = 1
+                else:
+                    value["validation"] = json.dumps(failed)
+                    value["overall_status"] = 0
+                    print(host,"\n===========\n".join(["\n--------\n".join(f) for f in failed]),sep="\n______\n")
 
         opsautodb.update(table="dashboard_activity_monitor",
                          value=value,
                          where={"title": title, "ignored": 0,
-                                "hostname": result[0]})
+                                "hostname": host})
 
 
 if __name__ == "__main__":
