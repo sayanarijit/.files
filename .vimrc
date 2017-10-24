@@ -12,4 +12,7 @@ endtry
 
 set nu
 
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
+if has('unix')
+    set t_Co=256
+endif
