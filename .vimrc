@@ -16,3 +16,5 @@ set nu
 if has('unix')
     set t_Co=256
 endif
+
+let g:multi_cursor_next_key='<C-n>'
