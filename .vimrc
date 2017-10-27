@@ -10,7 +10,7 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
-set nu
+set number relativenumber
 
 " hi Normal guibg=NONE ctermbg=NONE
 if has('unix')
@@ -18,4 +18,3 @@ if has('unix')
 endif
 
 let g:multi_cursor_next_key='<C-n>'
-set relativenumber
