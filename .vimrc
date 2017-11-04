@@ -18,3 +18,4 @@ if has('unix')
 endif
 
 let g:multi_cursor_next_key='<C-n>'
+let g:syntastic_quiet_messages={'level':'warnings'}
