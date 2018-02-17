@@ -6,11 +6,6 @@ source ~/.vim_runtime/vimrcs/plugins_config.vim
 source ~/.vim_runtime/vimrcs/extended.vim
 
 try
-source ~/.vim_runtime/my_configs.vim
-catch
-endtry
-
-set number relativenumbertry
     source ~/.vim_runtime/my_configs.vim
 catch
 endtry
@@ -42,12 +37,3 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-
-
-" hi Normal guibg=NONE ctermbg=NONE
-if has('unix')
-    set t_Co=256
-endif
-
-let g:multi_cursor_next_key='<C-n>'
-let g:syntastic_quiet_messages={'level':'warnings'}
