@@ -39,3 +39,6 @@ map <Leader>k <Plug>(easymotion-k)
 
 let g:qs_first_occurrence_highlight_color = 155
 let g:qs_second_occurrence_highlight_color = 81
+
+" Fuzzy finder
+let g:ctrlp_map = '<c-p>'
