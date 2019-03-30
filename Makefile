@@ -58,7 +58,6 @@ ${VIM}: ${BREW}
 
 .PHONY: sync
 sync:
-	echo ${NOW}
 	@git add . --all
 	@git commit -m "${NOW}"
 	@git push
