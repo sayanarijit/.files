@@ -1,8 +1,8 @@
 # My Dotfiles
 
-Here is the technique I use to automate setting up my dev environment in mac using dotfiles while keeping it up-to-date.
+Here is the technique I use to automate setting up my dev environment in mac using [dotfiles](https://dotfiles.github.io) while keeping it up-to-date.
 
-It's all based of the Makefile.
+It's all based on Makefile.
 
 ## Setup
 
