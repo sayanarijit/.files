@@ -13,6 +13,8 @@ export LC_ALL=en_US.UTF-8
 # For pkg-config to find readline you may need to set:
 # export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
 
+alias dotsync="cd ~/.files && make sync"
+
 alias ubuntu="VBoxManage startvm --type headless ubuntu && sleep 15 && ssh ubuntu"
 alias venv="virtualenv .venv && activate"
 alias activate="source .venv/bin/activate"
@@ -20,7 +22,6 @@ alias reactivate="deactivate && activate"
 alias ebn="cd ~/Documents/GitHub/ebn && tmux new pipenv shell"
 alias minisites="cd ~/Documents/GitHub/minisites && tmux new pipenv shell"
 alias clab="cd ~/Documents/GitHub/clab && tmux new vim main.c"
-alias dotsync="cd ~/Documents/GitHub/.files && make sync"
 
 # export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 

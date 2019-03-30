@@ -7,7 +7,7 @@ It's all based of the Makefile.
 ## Setup
 
 ```bash
-git clone https://github.com/sayanarijit/.files && cd .files && make
+cd && git clone https://github.com/sayanarijit/.files && cd ~/.files && make
 ```
 
 ## Sync
@@ -19,5 +19,5 @@ dotsync
 Or
 
 ```bash
-make sync
+cd ~/.files && make sync
 ```
