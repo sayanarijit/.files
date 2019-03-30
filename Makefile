@@ -4,6 +4,7 @@ PYTHON = $(which python || echo NOT_INSTALLED)
 TMUX = $(which tmux || echo NOT_INSTALLED)
 VIM = $(which vim || echo NOT_INSTALLED)
 ZSH = $(which zsh || echo NOT_INSTALLED)
+NOW = $(date)
 
 .PHONY: all
 all: brew zsh tmux git pyenv profile vim
@@ -21,14 +22,14 @@ ${ZSH}: ${BREW}
 ~/.oh-my-zsh: ${GIT}
 	@git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ~/.zshrc: .zshrc
-	@cp -vf .zshrc ~/.zshrc
+	@ln -sf "${PWD}/.zshrc" ~/.zshrc
 
 .PHONY: tmux
 tmux: ${TMUX} ~/.tmux.conf
 ${TMUX}: ${BREW}
 	@brew install tmux
 ~/.tmux.conf: .tmux.conf
-	@cp -vf .tmux.conf ~/.tmux.conf
+	@ln -sf "${PWD}/.tmux.conf" ~/.tmux.conf
 
 .PHONY: git
 git: ${GIT}
@@ -43,7 +44,7 @@ pyenv: ${PYTHON} ~/.profile ~/.pyenv
 .PHONY: profile
 profile: ~/.profile
 ~/.profile: .profile
-	@cp -vf .profile ~/.profile
+	@ln -sf "${PWD}/.profile" ~/.profile
 
 .PHONY: vim
 vim: ${VIM} ~/.vim_runtime ~/.vimrc
@@ -53,4 +54,10 @@ ${VIM}: ${BREW}
 	@git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 	@sh ~/.vim_runtime/install_awesome_vimrc.sh
 ~/.vimrc: .vimrc
-	@cp -vf .vimrc ~/.vimrc
+	@ln -sf "${PWD}/.vimrc" ~/.vimrc
+
+.PHONY: sync
+sync:
+	@git add . --all
+	@git commit -m "{now}"
+	@git push
