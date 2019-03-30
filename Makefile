@@ -4,7 +4,7 @@ PYTHON = $(which python || echo NOT_INSTALLED)
 TMUX = $(which tmux || echo NOT_INSTALLED)
 VIM = $(which vim || echo NOT_INSTALLED)
 ZSH = $(which zsh || echo NOT_INSTALLED)
-NOW = $(date)
+NOW = $(shell date)
 
 .PHONY: all
 all: brew zsh tmux git pyenv profile vim
@@ -58,6 +58,7 @@ ${VIM}: ${BREW}
 
 .PHONY: sync
 sync:
+	echo ${NOW}
 	@git add . --all
-	@git commit -m "{now}"
+	@git commit -m "${NOW}"
 	@git push
