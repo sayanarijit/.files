@@ -13,7 +13,7 @@ export LC_ALL=en_US.UTF-8
 # For pkg-config to find readline you may need to set:
 # export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
 
-alias dotsync="cd ~/.files && make sync"
+alias dotsync="cd ~/.files && make sync && 1"
 
 alias ubuntu="VBoxManage startvm --type headless ubuntu && sleep 15 && ssh ubuntu"
 alias venv="virtualenv .venv && activate"
