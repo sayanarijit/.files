@@ -22,6 +22,7 @@ alias reactivate="deactivate && activate"
 alias ebn="cd ~/Documents/GitHub/ebn && tmux new pipenv shell"
 alias minisites="cd ~/Documents/GitHub/minisites && tmux new pipenv shell"
 alias clab="cd ~/Documents/GitHub/clab && tmux new vim main.c"
+alias assignments="cd ~/Google\ Drive/BCA\ IGNOU/Assignments/Sem\ 2/programs && tmux new"
 
 # export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 
