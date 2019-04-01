@@ -26,7 +26,7 @@ let g:multi_cursor_next_key='<C-n>'
 " nmap s <Plug>(easymotion-overwin-f)
 " nmap s <Plug>(easymotion-overwin-f2)
 
-map  <Leader>a <Plug>(easymotion-bd-w)
+" map  <Leader>a <Plug>(easymotion-bd-w)
 " nmap <Leader>a <Plug>(easymotion-overwin-w)
 
 " Turn on case insensitive feature
@@ -40,5 +40,5 @@ let g:qs_first_occurrence_highlight_color = 155
 let g:qs_second_occurrence_highlight_color = 81
 
 " Fuzzy finder
-let g:ctrlp_map = '<c-e>'
+let g:ctrlp_map = '<c-f>'
 let g:elm_setup_keybindings = 0
