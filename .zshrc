@@ -101,5 +101,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 # export LANG=de_AT.UTF-8
 
+export DISABLE_AUTO_TITLE='true'
+
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/sayan/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
