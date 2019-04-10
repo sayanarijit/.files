@@ -37,9 +37,11 @@ ${GIT}: ${BREW}
 	@brew install git
 
 .PHONY: pyenv
-pyenv: ${PYTHON} ~/.profile ~/.pyenv
+pyenv: ${PYTHON} ~/.profile ~/.pyenv/plugins
 ~/.pyenv: ${GIT}
 	@git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+~/.pyenv/plugins: ${GIT} ~/.pyenv
+	@git clone git://github.com/concordusapps/pyenv-implict.git ~/.pyenv/plugins/pyenv-implict
 
 .PHONY: profile
 profile: ~/.profile
