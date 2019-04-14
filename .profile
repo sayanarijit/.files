@@ -19,6 +19,7 @@ alias ubuntu="VBoxManage startvm --type headless ubuntu && sleep 15 && ssh ubunt
 alias venv="virtualenv .venv && activate"
 alias activate="source .venv/bin/activate"
 alias reactivate="deactivate && activate"
+alias github="cd ~/Documents/GitHub"
 alias ebn="cd ~/Documents/GitHub/ebn"
 alias minisites="cd ~/Documents/GitHub/minisites"
 alias clab="cd ~/Documents/GitHub/clab && tmux new vim main.c"
