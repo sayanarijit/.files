@@ -1,5 +1,6 @@
 export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 export PATH="$PATH:$HOME/eclipse/jee-2018-12/Eclipse.app/Contents/MacOS:$HOME/Library/Python/3.6/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.npm-global/bin"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export LANG=C
@@ -24,6 +25,8 @@ alias ebn="cd ~/Documents/GitHub/ebn"
 alias minisites="cd ~/Documents/GitHub/minisites"
 alias clab="cd ~/Documents/GitHub/clab && tmux new vim main.c"
 alias assignments="cd ~/Google\ Drive/BCA\ IGNOU/Assignments/Sem\ 2/programs && tmux new"
+
+alias ctags="`brew --prefix`/bin/ctags"
 
 # export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 

@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": ".venv/bin/python",
+    "python.jediEnabled": false,
+    "python.linting.enabled": true,
+    "python.autoComplete.extraPaths": [
+        "src"
+    ],
+    "coc.preferences.hoverTarget": "echo",
+    "signature.target": "echo",
+    "diagnostic.messageTarget": "echo"
+}

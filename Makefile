@@ -3,11 +3,12 @@ GIT = $(which git || echo NOT_INSTALLED)
 PYTHON = $(which python || echo NOT_INSTALLED)
 TMUX = $(which tmux || echo NOT_INSTALLED)
 VIM = $(which vim || echo NOT_INSTALLED)
+NVIM = $(which nvim || echo NOT_INSTALLED)
 ZSH = $(which zsh || echo NOT_INSTALLED)
 NOW = $(shell date)
 
 .PHONY: all
-all: brew zsh tmux git pyenv profile vim
+all: brew zsh tmux git pyenv profile vim nvim
 
 .PHONY: brew
 brew: ${BREW}
@@ -64,3 +65,10 @@ sync:
 	@git add . --all
 	@git commit -m "${NOW}"
 	@git push
+
+.PHONY: nvim
+nvim: ${NVIM} ~/.config/nvim
+${NVIM}:
+	@brew install neovim
+~/.config/nvim:
+	@ln -sf "${PWD}/nvim" ~/.config/nvim
