@@ -1,6 +1,8 @@
 syntax on
 set shell=/bin/sh
 
+
+"""<Plugins>"""
 call plug#begin('~/.vim/plugged')
 Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -19,20 +21,30 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'joshdick/onedark.vim'
 call plug#end()
+"""</Plugins>"""
 
-""" Custom settings
-set mouse=r
+
+"""<Custom settings>"""
+" GUI features
+set mouse=i
 set clipboard+=unnamedplus
+
 set nu relativenumber
 set autoread
 set notagrelative
+
+" tags
 set tags=.vscode/tags,./.vscode/tags
 let g:autotagTagsFile=".vscode/tags"
-set undofile
-set undodir=/tmp/vimundo/
-let mapleader = ","
 map tt :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
 command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
+
+" history
+set undofile
+set undodir=/tmp/vimundo/
+
+" mappings
+let mapleader = ","
 nnoremap <leader>w :w<CR>
 nnoremap <c-up> :tp<CR>
 nnoremap <c-down> :tn<CR>
@@ -41,15 +53,25 @@ inoremap <a-left> <esc>vb
 inoremap <a-right> <esc>ve
 inoremap <c-s> <esc>:w<CR>
 
-""" Testing: vim-test
-let test#strategy = "vimux"
+" code folding
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+"""</Custom settings>"""
 
-""" Searching: ctrlp.vim
+
+"""<Testing: vim-test>"""
+let test#strategy = "vimux"
+"""</Testing>
+
+
+"""<Searching: ctrlp.vim>"""
 nnoremap <c-t> :CtrlPTag<cr>
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+"""</Searching"""
 
-""" Auto completion: coc.nvim
-
+"""<Auto completion: coc.nvim>"""
 
 " let g:coc_force_debug = 1
 
@@ -89,22 +111,22 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Remap for rename current word
 nmap <leader>r <Plug>(coc-rename)
 
 " Remap for format selected region
 vmap <neader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+"""</Auto completion>"""
 
 
-""" Tagbar: tagbar
+"""<Tagbar: tagbar>"""
 map \\ :TagbarToggle<CR>
 autocmd BufNewFile,BufRead * :call tagbar#autoopen()
+"""</Tagbar>"""
 
-""" SyntaxCheck: syntastic
+
+"""</Syntax check: syntastic>"""
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -112,10 +134,13 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+"""</Syntax check>"""
 
-""" Theme: color theme
+
+"""<Theme>"""
 set cursorline
 set cursorcolumn
 " set background=light
 " colorscheme solarized8
 colorscheme onedark
+"""</Theme>"""
