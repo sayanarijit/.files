@@ -13,6 +13,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-fugitive'
 Plug 'janko-m/vim-test'
+Plug 'benmills/vimux'
 Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
 " Plug 'lifepillar/vim-solarized8'
@@ -20,7 +21,8 @@ Plug 'joshdick/onedark.vim'
 call plug#end()
 
 """ Custom settings
-set mouse=i
+set mouse=r
+set clipboard+=unnamedplus
 set nu relativenumber
 set autoread
 set notagrelative
@@ -40,7 +42,7 @@ inoremap <a-right> <esc>ve
 inoremap <c-s> <esc>:w<CR>
 
 """ Testing: vim-test
-let test#strategy = "neovim"
+let test#strategy = "vimux"
 
 """ Searching: ctrlp.vim
 nnoremap <c-t> :CtrlPTag<cr>

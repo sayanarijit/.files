@@ -109,3 +109,11 @@ HEROKU_AC_ZSH_SETUP_PATH=/Users/sayan/Library/Caches/heroku/autocomplete/zsh_set
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+if [ -n "$VIRTUAL_ENV" ]; then
+    source $VIRTUAL_ENV/bin/activate;
+fi
+
+if [[ -n "$TMUX" ]]; then
+    tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+fi
