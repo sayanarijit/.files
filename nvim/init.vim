@@ -57,35 +57,34 @@ set hidden
 set nobackup
 set nowritebackup
 
-" " Smaller updatetime for CursorHold & CursorHoldI
-" set updatetime=300
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
 
-" " don't give |ins-completion-menu| messages.
-" set shortmess+=c
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
 
-" " always show signcolumns
-" set signcolumn=yes
+" always show signcolumns
+set signcolumn=yes
 
-" " Use tab for trigger completion with characters ahead and navigate.
-" " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
-" " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-" " Use K to show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if &filetype == 'vim'
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -96,6 +95,7 @@ nmap <leader>r <Plug>(coc-rename)
 " Remap for format selected region
 vmap <neader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
 
 """ Tagbar: tagbar
 map \\ :TagbarToggle<CR>
@@ -113,3 +113,7 @@ let g:syntastic_check_on_wq = 0
 """ Theme: vim-solarized8
 " set background=light
 colorscheme solarized8
+
+
+
+
