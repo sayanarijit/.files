@@ -15,7 +15,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'janko-m/vim-test'
 Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
-Plug 'lifepillar/vim-solarized8'
+" Plug 'lifepillar/vim-solarized8'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 """ Custom settings
@@ -110,10 +111,9 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-""" Theme: vim-solarized8
+""" Theme: color theme
+set cursorline
+set cursorcolumn
 " set background=light
-colorscheme solarized8
-
-
-
-
+" colorscheme solarized8
+colorscheme onedark
