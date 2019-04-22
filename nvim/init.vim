@@ -18,6 +18,7 @@ Plug 'janko-m/vim-test'
 Plug 'benmills/vimux'
 Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-multiple-cursors'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'joshdick/onedark.vim'
 call plug#end()
@@ -26,7 +27,7 @@ call plug#end()
 
 """<Custom settings>"""
 " GUI features
-set mouse=i
+set mouse=a
 set clipboard+=unnamedplus
 
 set nu relativenumber
@@ -36,7 +37,7 @@ set notagrelative
 " tags
 set tags=.vscode/tags,./.vscode/tags
 let g:autotagTagsFile=".vscode/tags"
-map tt :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
+map gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
 command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
 
 " history
@@ -52,6 +53,8 @@ autocmd QuickFixCmdPost *grep* cwindow
 inoremap <a-left> <esc>vb
 inoremap <a-right> <esc>ve
 inoremap <c-s> <esc>:w<CR>
+map <leader>m :set mouse=""<CR>
+map <leader>M :set mouse=a<CR>
 
 " code folding
 set foldmethod=indent
@@ -112,7 +115,8 @@ function! s:show_documentation()
 endfunction
 
 " Remap for rename current word
-nmap <leader>r <Plug>(coc-rename)
+" nmap <leader>r <Plug>(coc-rename)
+vnoremap <leader>r "hy:%s/<C-r>h//gc<left><left><left>
 
 " Remap for format selected region
 vmap <neader>f  <Plug>(coc-format-selected)
