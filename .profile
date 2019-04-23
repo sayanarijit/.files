@@ -6,6 +6,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export LANG=C
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export EDITOR=nvim
 
 # For compilers to find readline you may need to set:
 # export LDFLAGS="-L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/readline/lib"

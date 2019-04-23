@@ -70,5 +70,6 @@ sync:
 nvim: ${NVIM} ~/.config/nvim
 ${NVIM}:
 	@brew install neovim
+	@git config --global core.editor nvim
 ~/.config/nvim:
 	@ln -sf "${PWD}/nvim" ~/.config/nvim
