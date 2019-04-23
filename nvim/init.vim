@@ -19,6 +19,8 @@ Plug 'benmills/vimux'
 Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'joshdick/onedark.vim'
 call plug#end()
@@ -139,6 +141,12 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 """</Syntax check>"""
+
+"""<Snippets: ultisnips>"""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"""</Snippets>"""
 
 
 """<Theme>"""
