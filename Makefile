@@ -68,7 +68,7 @@ sync:
 
 .PHONY: nvim
 nvim: ${NVIM} ~/.config/nvim
-${NVIM}:
+${NVIM}: ${BREW} ${GIT}
 	@brew install neovim
 	@git config --global core.editor nvim
 ~/.config/nvim:
