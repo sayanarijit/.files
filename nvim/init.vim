@@ -11,58 +11,67 @@ Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 Plug 'tpope/vim-commentary'  "comment-out by gc
 Plug 'ncm2/ncm2-path'  " filepath completion
 Plug 'kien/ctrlp.vim'  " fuzzy search files
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'craigemery/vim-autotag'
-Plug 'tpope/vim-fugitive'
-Plug 'janko-m/vim-test'
-Plug 'benmills/vimux'
-Plug 'vim-syntastic/syntastic'
-Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-" Plug 'lifepillar/vim-solarized8'
-Plug 'joshdick/onedark.vim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
+Plug 'craigemery/vim-autotag'  " Update tags
+Plug 'tpope/vim-fugitive'  " Git integration
+Plug 'janko-m/vim-test'  " Test runner
+Plug 'benmills/vimux'  " Runs tests in new tmux window
+Plug 'vim-syntastic/syntastic'  " Syntax check
+Plug 'easymotion/vim-easymotion'  " Quick movement
+Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
+Plug 'SirVer/ultisnips'  " Snippets
+Plug 'honza/vim-snippets'  " More snippets
+" Plug 'lifepillar/vim-solarized8'  " Light and dark theme
+Plug 'joshdick/onedark.vim'  " Atom onedark theme
 call plug#end()
 """</Plugins>"""
 
 
 """<Custom settings>"""
 " GUI features
-set mouse=a
-set clipboard+=unnamedplus
+set mouse=a  " By default mouse is activated
+set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
 
-set nu relativenumber
-set autoread
-set notagrelative
+set nu relativenumber  " No need to count lines from current position
+set autoread  " Auto reload when file changes
+set notagrelative  " Use full file path when generating tags
 
-" tags
-set tags=.vscode/tags,./.vscode/tags
-let g:autotagTagsFile=".vscode/tags"
-map gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
-command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
-
-" history
+" Persistant undo history
 set undofile
 set undodir=/tmp/vimundo/
-
-" mappings
-let mapleader = ","
-nnoremap <leader>w :w<CR>
-nnoremap <c-up> :tp<CR>
-nnoremap <c-down> :tn<CR>
-autocmd QuickFixCmdPost *grep* cwindow
-inoremap <a-left> <esc>vb
-inoremap <a-right> <esc>ve
-inoremap <c-s> <esc>:w<CR>
-map <leader>m :set mouse=""<CR>
-map <leader>M :set mouse=a<CR>
 
 " code folding
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
+
+" tags
+set tags=.vscode/tags,./.vscode/tags  " Where to store tags file
+let g:autotagTagsFile=".vscode/tags"  " ^^
+
+" Generate ctags ignoring untracked files
+command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
+
+" Key mappings
+let mapleader = ","
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>t :Texplore<CR>
+nnoremap <leader>T :tabnew .<CR>
+nnoremap <c-up> :tp<CR>
+nnoremap <c-down> :tn<CR>
+nnoremap <silent> <a-left> :tabprevious<CR>
+nnoremap <silent> <a-right> :tabnext<CR>
+nnoremap gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
+inoremap <a-left> <esc>vb
+inoremap <a-right> <esc>ve
+inoremap <c-s> <esc>:w<CR>
+nnoremap <leader>m :set mouse=""<CR>
+nnoremap <leader>M :set mouse=a<CR>
+
+" I forgot what it is
+autocmd QuickFixCmdPost *grep* cwindow
 """</Custom settings>"""
 
 
@@ -136,6 +145,7 @@ autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes':   [],'passive_filetypes': [] }
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
