@@ -21,6 +21,7 @@ Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'SirVer/ultisnips'  " Snippets
 Plug 'honza/vim-snippets'  " More snippets
+Plug 'rhysd/git-messenger.vim'  " Display git commit information
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 call plug#end()
