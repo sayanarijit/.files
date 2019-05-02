@@ -57,7 +57,9 @@ command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\
 " Key mappings
 let mapleader = ","
 nnoremap <leader>w :w<CR>
+nnoremap <leader>W :wall<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qall<CR>
 nnoremap <leader>t :Texplore<CR>
 nnoremap <leader>T :tabnew .<CR>
 nnoremap <c-up> :tp<CR>
@@ -70,6 +72,7 @@ inoremap <a-right> <esc>ve
 inoremap <c-s> <esc>:w<CR>
 nnoremap <leader>m :set mouse=""<CR>
 nnoremap <leader>M :set mouse=a<CR>
+nnoremap O }i
 
 " I forgot what it is
 autocmd QuickFixCmdPost *grep* cwindow
