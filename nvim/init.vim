@@ -53,6 +53,7 @@ let g:autotagTagsFile=".vscode/tags"  " ^^
 
 " Generate ctags ignoring untracked files
 command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
+command Python :exec(":!pip install pynvim") <bar> :exec(":CocInstall coc-pyls")
 
 " Key mappings
 let mapleader = ","
