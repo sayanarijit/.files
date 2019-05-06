@@ -57,14 +57,14 @@ command Python :exec(":!pip install pynvim") <bar> :exec(":CocInstall coc-pyls")
 
 " Key mappings
 let mapleader = ","
-nnoremap <leader>w :w<CR>
-nnoremap <leader>W :wall<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :qall<CR>
-nnoremap <leader>t :Texplore<CR>
-nnoremap <leader>T :tabnew .<CR>
-nnoremap <c-up> :tp<CR>
-nnoremap <c-down> :tn<CR>
+nnoremap <silent> <leader>w :w<CR>
+nnoremap <silent> <leader>W :wall<CR>
+nnoremap <silent> <leader>q :q<CR>
+nnoremap <silent> <leader>Q :qall<CR>
+nnoremap <silent> <leader>t :Texplore<CR>
+nnoremap <silent> <leader>T :tabnew .<CR>
+nnoremap <silent> <c-up> :tp<CR>
+nnoremap <silent> <c-down> :tn<CR>
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 nnoremap gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
@@ -141,7 +141,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 
 """<Tagbar: tagbar>"""
-map \\ :TagbarToggle<CR>
+nnoremap <silent> \\ :TagbarToggle<CR>
 autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
 
