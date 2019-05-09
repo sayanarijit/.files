@@ -2,5 +2,6 @@
     "coc.preferences.hoverTarget": "echo",
     "signature.target": "echo",
     "diagnostic.messageTarget": "echo",
-    "pyls.plugins.pydocstyle.enabled": true
+    "python.jediEnabled": false,
+    "python.autoComplete.extraPaths": ["src"]
 }

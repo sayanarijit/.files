@@ -28,6 +28,7 @@ alias clab="cd ~/Documents/GitHub/clab && tmux new vim main.c"
 alias assignments="cd ~/Google\ Drive/BCA\ IGNOU/Assignments/Sem\ 2/programs && tmux new"
 
 alias ctags="`brew --prefix`/bin/ctags"
+alias emacs="`brew --prefix`/bin/emacs"
 
 # export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 
