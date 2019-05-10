@@ -22,6 +22,7 @@ Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'SirVer/ultisnips'  " Snippets
 Plug 'honza/vim-snippets'  " More snippets
 Plug 'rhysd/git-messenger.vim'  " Display git commit information
+Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 call plug#end()
@@ -53,7 +54,7 @@ let g:autotagTagsFile=".vscode/tags"  " ^^
 
 " Generate ctags ignoring untracked files
 command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
-command Python :exec(":!pip install pynvim") <bar> :exec(":CocInstall coc-pyls")
+command Python :exec(":!pip install pynvim pylint") <bar> :exec(":CocInstall coc-pyls")
 
 " Key mappings
 let mapleader = ","
