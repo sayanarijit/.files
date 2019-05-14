@@ -48,13 +48,15 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 
+" NeoVim configuration
+command Config :tabnew ~/.files/nvim/init.vim
+
 " tags
 set tags=.vscode/tags,./.vscode/tags  " Where to store tags file
 let g:autotagTagsFile=".vscode/tags"  " ^^
 
 " Generate ctags ignoring untracked files
 command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
-command Python :exec(":!pip install pynvim pylint") <bar> :exec(":CocInstall coc-pyls")
 
 " Key mappings
 let mapleader = ","
@@ -75,6 +77,18 @@ inoremap <c-s> <esc>:w<CR>
 nnoremap <leader>m :set mouse=""<CR>
 nnoremap <leader>M :set mouse=a<CR>
 nnoremap O }i
+
+" Python development
+command Python :exec(":!pip install pynvim pylint") <bar> :exec(":CocInstall coc-pyls")
+
+" JavaScript development
+autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
+
+" JavaScript development
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+
+" YAML development
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " I forgot what it is
 autocmd QuickFixCmdPost *grep* cwindow
