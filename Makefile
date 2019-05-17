@@ -26,11 +26,14 @@ ${ZSH}: ${BREW}
 	@ln -sf "${PWD}/.zshrc" ~/.zshrc
 
 .PHONY: tmux
-tmux: ${TMUX} ~/.tmux.conf
+tmux: ${TMUX} ~/.tmux.conf ~/.tmux/plugins/tpm
 ${TMUX}: ${BREW}
 	@brew install tmux
+	@tmux source ~/.tmux.conf
 ~/.tmux.conf: .tmux.conf
 	@ln -sf "${PWD}/.tmux.conf" ~/.tmux.conf
+~/.tmux/plugins/tpm: ${GIT}
+	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 .PHONY: git
 git: ${GIT}

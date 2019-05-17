@@ -184,6 +184,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 set cursorline
 set cursorcolumn
 " set background=light
+" set background=dark
 " colorscheme solarized8
 colorscheme onedark
+let g:onedark_terminal_italics = 1
+let g:airline_theme='onedark'
+let g:onedark_termcolors=256
 """</Theme>"""
