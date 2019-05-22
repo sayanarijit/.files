@@ -30,13 +30,15 @@ call plug#end()
 
 
 """<Custom settings>"""
-" GUI features
-set mouse=a  " By default mouse is activated
-set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
-
+" Basic config
 set nu relativenumber  " No need to count lines from current position
 set autoread  " Auto reload when file changes
 set notagrelative  " Use full file path when generating tags
+set showtabline=2  " Show tabname even if only one file is open
+
+" GUI features
+set mouse=a  " By default mouse is activated
+set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
 
 " Persistant undo history
 set undofile
