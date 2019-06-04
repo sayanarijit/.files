@@ -3,5 +3,6 @@
     "signature.target": "echo",
     "diagnostic.messageTarget": "echo",
     "python.jediEnabled": false,
+    "python.venvPath": ".venv",
     "python.autoComplete.extraPaths": ["src"]
 }
