@@ -24,8 +24,6 @@ alias reactivate="deactivate && activate"
 alias github="cd ~/Documents/GitHub"
 alias ebn="cd ~/Documents/GitHub/ebn"
 alias minisites="cd ~/Documents/GitHub/minisites"
-alias clab="cd ~/Documents/GitHub/clab && tmux new vim main.c"
-alias assignments="cd ~/Google\ Drive/BCA\ IGNOU/Assignments/Sem\ 2/programs && tmux new"
 
 alias ctags="`brew --prefix`/bin/ctags"
 alias emacs="`brew --prefix`/bin/emacs"
