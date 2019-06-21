@@ -23,6 +23,8 @@ Plug 'SirVer/ultisnips'  " Snippets
 Plug 'honza/vim-snippets'  " More snippets
 Plug 'rhysd/git-messenger.vim'  " Display git commit information
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
+Plug 'python/black'  " Python code formatter
+Plug 'fisadev/vim-isort'  " Python code formatter
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 call plug#end()
@@ -181,6 +183,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """</Snippets>"""
 
+"""<Black>"""
+autocmd BufWritePre *.py execute ':Black'
+"""</Black>"""
+
+"""<Black>"""
+autocmd BufWritePre *.py execute ':Isort'
+"""</Black>"""
 
 """<Theme>"""
 set cursorline
