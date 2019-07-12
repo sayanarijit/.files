@@ -74,6 +74,8 @@ nnoremap <silent> <c-up> :tp<CR>
 nnoremap <silent> <c-down> :tn<CR>
 nnoremap <silent> <s-up> {
 nnoremap <silent> <s-down> }
+nnoremap <silent> <c-s-up> <c-u>
+nnoremap <silent> <c-s-down> <c-d>
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 nnoremap gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
@@ -83,7 +85,7 @@ inoremap <c-s> <esc>:w<CR>
 nnoremap <leader>m :set mouse=""<CR>
 nnoremap <leader>M :set mouse=a<CR>
 nnoremap <leader>s :set spell<CR>
-nnoremap <leader>S :set mouse=a<CR>
+nnoremap <leader>S :set nospell<CR>
 nnoremap O }i
 
 " Python development
