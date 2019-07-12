@@ -72,6 +72,8 @@ nnoremap <silent> <leader>t :Texplore<CR>
 nnoremap <silent> <leader>T :tabnew .<CR>
 nnoremap <silent> <c-up> :tp<CR>
 nnoremap <silent> <c-down> :tn<CR>
+nnoremap <silent> <s-up> {
+nnoremap <silent> <s-down> }
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 nnoremap gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
@@ -80,6 +82,8 @@ inoremap <a-right> <esc>ve
 inoremap <c-s> <esc>:w<CR>
 nnoremap <leader>m :set mouse=""<CR>
 nnoremap <leader>M :set mouse=a<CR>
+nnoremap <leader>s :set spell<CR>
+nnoremap <leader>S :set mouse=a<CR>
 nnoremap O }i
 
 " Python development
@@ -87,9 +91,6 @@ command Python :exec(":!pip install pynvim pylint") <bar> :exec(":CocInstall coc
 
 " JavaScript development
 autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
-
-" JavaScript development
-autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 
 " YAML development
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -102,6 +103,7 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 """<Testing: vim-test>"""
 let test#strategy = "vimux"
+let test#python#runner = 'pytest'
 """</Testing>
 
 
@@ -183,12 +185,12 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """</Snippets>"""
 
-"""<Black>"""
-autocmd BufWritePre *.py execute ':Black'
-"""</Black>"""
+"""<Isort>"""
+autocmd BufWritePre *.py execute ':Isort'
+"""</Isort>"""
 
 """<Black>"""
-autocmd BufWritePre *.py execute ':Isort'
+autocmd BufWritePre *.py execute ':Black'
 """</Black>"""
 
 """<Theme>"""

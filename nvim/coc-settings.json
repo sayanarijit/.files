@@ -4,5 +4,14 @@
     "diagnostic.messageTarget": "echo",
     "python.jediEnabled": false,
     "python.venvPath": ".venv",
-    "python.autoComplete.extraPaths": ["src"]
+    "python.autoComplete.extraPaths": ["src"],
+    "html.enable": true,
+    "html.format.enable": true,
+    "html.filetypes": [
+    	"html",
+    	"handlebars",
+	"j2",
+	"jinja2",
+	"pt"
+    ]
 }
