@@ -84,6 +84,10 @@ nnoremap gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
 inoremap <a-left> <esc>vb
 inoremap <a-right> <esc>ve
 inoremap <c-s> <esc>:w<CR>
+inoremap <a-s-left> <esc>vb
+inoremap <a-s-right> <esc><right>vw
+nnoremap <a-s-left> vb
+nnoremap <a-s-right> vw
 nnoremap <leader>m :set mouse=""<CR>
 nnoremap <leader>M :set mouse=a<CR>
 nnoremap <leader>s :set spell<CR>
