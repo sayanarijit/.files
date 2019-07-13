@@ -74,6 +74,8 @@ nnoremap <silent> <c-up> :tp<CR>
 nnoremap <silent> <c-down> :tn<CR>
 nnoremap <silent> <s-up> {
 nnoremap <silent> <s-down> }
+inoremap <silent> <s-up> <ESC>{i
+inoremap <silent> <s-down> <ESC>}i
 nnoremap <silent> <c-s-up> <c-u>
 nnoremap <silent> <c-s-down> <c-d>
 nnoremap <silent> <a-left> :tabprevious<CR>
