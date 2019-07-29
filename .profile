@@ -9,11 +9,11 @@ export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 
 # For compilers to find readline you may need to set:
-# export LDFLAGS="-L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/readline/lib"
-# export CPPFLAGS="-I/usr/local/opt/readline/include -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+export LDFLAGS="-L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/readline/lib"
+export CPPFLAGS="-I/usr/local/opt/readline/include -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
 
 # For pkg-config to find readline you may need to set:
-# export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
 
 alias dotsync="cd ~/.files && make sync && 1"
 
