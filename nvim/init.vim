@@ -65,6 +65,10 @@ command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\
 
 " Key mappings
 let mapleader = ","
+nnoremap <silent> <c-a> ^
+nnoremap <silent> <c-e> $
+inoremap <silent> <c-a> <ESC>I
+inoremap <silent> <c-e> <ESC>A
 nnoremap <silent> <leader>w :w<CR>
 nnoremap <silent> <leader>W :wall<CR>
 nnoremap <silent> <leader>q :q<CR>
