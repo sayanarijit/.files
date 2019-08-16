@@ -20,9 +20,11 @@ Plug 'vim-syntastic/syntastic'  " Syntax check
 Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'SirVer/ultisnips'  " Snippets
+Plug 'honza/vim-snippets'  " The snippet engine
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'python/black'  " Python code formatter
 Plug 'fisadev/vim-isort'  " Python code formatter
+" Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 call plug#end()
@@ -202,6 +204,16 @@ autocmd BufWritePre *.py execute ':Isort'
 """<Black>"""
 autocmd BufWritePre *.py execute ':Black'
 """</Black>"""
+
+"""<Tree view: nerdtree>"""
+" nnoremap <silent> // :NERDTreeToggle<CR>
+"""</Tree view>"""
+
+"""<Snippets: ultisnips>"""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"""<Snippets>
 
 """<Theme>"""
 set cursorline
