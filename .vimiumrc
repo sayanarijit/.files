@@ -1,0 +1,10 @@
+map <c-p> Vomnibar.activateTabSelection
+map <a-left> previousTab
+map <a-right> nextTab
+map <c-o> goBack
+map <c-i> goForward
+map } scrollPageDown
+map { scrollPageUp
+map <c-down> scrollFullPageDown
+map <c-up> scrollFullPageUp
+map ,t createTab
