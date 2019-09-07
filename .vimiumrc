@@ -8,3 +8,5 @@ map { scrollPageUp
 map <c-down> scrollFullPageDown
 map <c-up> scrollFullPageUp
 map ,t createTab
+map ,q removeTab
+map ,Q closeOtherTabs
