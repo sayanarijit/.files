@@ -1,4 +1,5 @@
 map <c-p> Vomnibar.activateTabSelection
+map <c-t> Vomnibar.activateInNewTab
 map <a-left> previousTab
 map <a-right> nextTab
 map <c-o> goBack
