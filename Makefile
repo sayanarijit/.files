@@ -65,6 +65,7 @@ ${VIM}: ${BREW}
 
 .PHONY: sync
 sync:
+	@git pull --rebase --autostash
 	@git add . --all
 	@git commit -m "${NOW}"
 	@git push

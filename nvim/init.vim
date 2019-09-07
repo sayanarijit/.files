@@ -215,6 +215,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """<Snippets>
 
+"""<Quick movements: easymotion>"""
+map f <Plug>(easymotion-prefix)w
+map f <Plug>(easymotion-prefix)w
+nmap F <Plug>(easymotion-prefix)b
+nmap F <Plug>(easymotion-prefix)b
+"""</Quick movements>"""
+
 """<Theme>"""
 set cursorline
 set cursorcolumn
