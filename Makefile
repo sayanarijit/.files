@@ -17,7 +17,7 @@ ${BREW}:
 	@brew tap caskroom/cask
 
 .PHONY: zsh
-zsh: ${ZSH} ~/.oh-my-zsh ~/.zshrc
+zsh: ${ZSH} ~/.oh-my-zsh ~/.zshrc ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 ${ZSH}: ${BREW}
 	@brew install zsh
 ~/.oh-my-zsh: ${GIT}
