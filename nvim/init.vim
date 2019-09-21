@@ -99,7 +99,7 @@ nnoremap <leader>S :set nospell<CR>
 nnoremap O }i
 
 " Python development
-command Python :exec(":!pip install pynvim pylint") <bar> :exec(":CocInstall coc-pyls")
+command Python :exec(":!pip install pynvim pylint") <bar> :exec(":CocInstall coc-python")
 
 " JavaScript development
 autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
@@ -110,6 +110,10 @@ autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
 
 " I forgot what it is
 autocmd QuickFixCmdPost *grep* cwindow
+
+" HTML and HTML templates
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType pt setlocal ts=2 sts=2 sw=2 expandtab
 """</Custom settings>"""
 
 
@@ -221,6 +225,23 @@ map f <Plug>(easymotion-prefix)w
 nmap F <Plug>(easymotion-prefix)b
 nmap F <Plug>(easymotion-prefix)b
 """</Quick movements>"""
+
+"""<Auto completion: coc>"""
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W' . info['warning'])
+  endif
+  return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
+endfunction
+
+set statusline+=%{StatusDiagnostic()}
+"""</Auto completion>"""
 
 """<Theme>"""
 set cursorline
