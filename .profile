@@ -15,7 +15,7 @@ export CPPFLAGS="-I/usr/local/opt/readline/include -I/usr/local/opt/sqlite/inclu
 # For pkg-config to find readline you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
 
-alias dotsync="cd ~/.files && make sync && 1"
+alias dotsync="(cd ~/.files && make sync)"
 
 alias ubuntu="VBoxManage startvm --type headless ubuntu && sleep 15 && ssh ubuntu"
 alias venv="virtualenv .venv && activate"
