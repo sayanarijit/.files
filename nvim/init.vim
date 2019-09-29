@@ -24,6 +24,9 @@ Plug 'honza/vim-snippets'  " The snippet engine
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'python/black'  " Python code formatter
 Plug 'fisadev/vim-isort'  " Python code formatter
+Plug 'fatih/vim-go'  " Go development
+Plug 'rust-lang/rust.vim'  " Rust development
+Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
@@ -242,6 +245,14 @@ endfunction
 
 set statusline+=%{StatusDiagnostic()}
 """</Auto completion>"""
+
+"""<Rust development: rust.vim>"""
+let g:rustfmt_autosave = 1
+"""</Rust development>"""
+
+"""<Git commit message: git-messanger>"""
+nmap <Leader>gm <Plug>(git-messenger)
+"""</Git commit message>"""
 
 """<Theme>"""
 set cursorline
