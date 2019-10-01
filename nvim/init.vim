@@ -173,7 +173,7 @@ endfunction
 
 " Remap for rename current word
 " nmap <leader>r <Plug>(coc-rename)
-vnoremap <leader>r "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 " Remap for format selected region
 vmap <neader>f  <Plug>(coc-format-selected)
