@@ -16,14 +16,9 @@ Plug 'craigemery/vim-autotag'  " Update tags
 Plug 'tpope/vim-fugitive'  " Git integration
 Plug 'janko-m/vim-test'  " Test runner
 Plug 'benmills/vimux'  " Runs tests in new tmux window
-Plug 'vim-syntastic/syntastic'  " Syntax check
 Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
-Plug 'SirVer/ultisnips'  " Snippets
-Plug 'honza/vim-snippets'  " The snippet engine
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
-Plug 'python/black'  " Python code formatter
-Plug 'fisadev/vim-isort'  " Python code formatter
 Plug 'fatih/vim-go'  " Go development
 Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
@@ -203,14 +198,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """</Snippets>"""
-
-"""<Isort>"""
-autocmd BufWritePre *.py execute ':Isort'
-"""</Isort>"""
-
-"""<Black>"""
-autocmd BufWritePre *.py execute ':Black'
-"""</Black>"""
 
 """<Tree view: nerdtree>"""
 " nnoremap <silent> // :NERDTreeToggle<CR>

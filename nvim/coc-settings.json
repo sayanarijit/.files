@@ -1,10 +1,17 @@
 {
+    "coc.preferences.rootPatterns": [".git", "pyproject.toml", "setup.py", ".env", ".vscode"],
     "coc.preferences.hoverTarget": "echo",
+    "coc.preferences.formatOnSaveFiletypes": ["python", "html", "javascript", "css"],
     "signature.target": "echo",
     "diagnostic.messageTarget": "echo",
     "python.jediEnabled": false,
     "python.venvPath": ".venv",
     "python.autoComplete.extraPaths": ["src"],
+    "python.formatting.provider": "black",
+    "python.sortImports.path": "isort",
+    "python.linting.enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.flake8Enabled": true,
     "html.enable": true,
     "html.format.enable": true,
     "html.filetypes": [
