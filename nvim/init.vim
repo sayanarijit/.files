@@ -97,7 +97,7 @@ nnoremap <leader>S :set nospell<CR>
 nnoremap O }i
 
 " Python development
-command Python :exec(":!pip install pynvim pylint") <bar> :exec(":CocInstall coc-python")
+command Python :exec(":!pip install pynvim pylint mypy autopep8 black") <bar> :exec(":CocInstall coc-python")
 
 " JavaScript development
 autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
