@@ -26,6 +26,9 @@ ${ZSH}: ${BREW}
 	@ln -sf "${PWD}/.zshrc" ~/.zshrc
 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: ~/.oh-my-zsh
 	@git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: ~/.oh-my-zsh
+	@git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 
 .PHONY: tmux
 tmux: ${TMUX} ~/.tmux.conf ~/.tmux/plugins/tpm
