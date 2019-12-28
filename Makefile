@@ -85,5 +85,7 @@ nvim: ${NVIM} ~/.config/nvim
 ${NVIM}: ${BREW} ${GIT}
 	@brew install neovim
 	@git config --global core.editor nvim
+	@curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ~/.config/nvim:
 	@ln -sf "${PWD}/nvim" ~/.config/nvim

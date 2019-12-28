@@ -1,5 +1,6 @@
 syntax on
 set shell=/bin/sh
+set rtp +=~/.vim
 
 
 """<Plugins>"""
