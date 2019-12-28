@@ -24,10 +24,11 @@ ${ZSH}: ${BREW}
 	@git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ~/.zshrc: .zshrc
 	@ln -sf "${PWD}/.zshrc" ~/.zshrc
+	@chmod +x ~/.zshrc
 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: ~/.oh-my-zsh
-	@git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	@git clone https://github.com/zsh-users/zsh-autosuggestions $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: ~/.oh-my-zsh
-# 	@git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# 	@git clone https://github.com/zsh-users/zsh-syntax-highlighting $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 
 .PHONY: tmux
@@ -44,6 +45,8 @@ ${TMUX}: ${BREW}
 git: ${GIT}
 ${GIT}: ${BREW}
 	@brew install git
+	@git config --global user.email "sayanarijit@gmail.com"
+	@git config --global user.email "Arijit Basu"
 
 .PHONY: pyenv
 pyenv: ${PYTHON} ~/.profile ~/.pyenv/plugins
@@ -56,6 +59,7 @@ pyenv: ${PYTHON} ~/.profile ~/.pyenv/plugins
 profile: ~/.profile
 ~/.profile: .profile
 	@ln -sf "${PWD}/.profile" ~/.profile
+	@chmod +x ~/.profile
 
 .PHONY: vim
 vim: ${VIM} ~/.vim_runtime ~/.vimrc
