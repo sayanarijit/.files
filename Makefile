@@ -50,6 +50,7 @@ ${GIT}: ${BREW}
 
 .PHONY: pyenv
 pyenv: ${PYTHON} ~/.profile ~/.pyenv/plugins
+	brew install --HEAD pyenv-virtualenv
 ~/.pyenv: ${GIT}
 	@git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 ~/.pyenv/plugins: ${GIT} ~/.pyenv
