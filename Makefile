@@ -46,7 +46,7 @@ git: ${GIT}
 ${GIT}: ${BREW}
 	@brew install git
 	@git config --global user.email "sayanarijit@gmail.com"
-	@git config --global user.email "Arijit Basu"
+	@git config --global user.name "Arijit Basu"
 
 .PHONY: pyenv
 pyenv: ${PYTHON} ~/.profile ~/.pyenv/plugins
