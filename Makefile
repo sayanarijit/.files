@@ -89,3 +89,12 @@ ${NVIM}: ${BREW} ${GIT}
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ~/.config/nvim:
 	@ln -sf "${PWD}/nvim" ~/.config/nvim
+
+.PHONY: fonts
+fonts: git
+	@git clone https://github.com/powerline/fonts --depth=1 /tmp/fonts
+	@cd /tmp/fonts && chmod +x install.sh && ./install.sh
+
+.PHONY: utils
+utils:
+	@brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
