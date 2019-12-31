@@ -120,4 +120,4 @@ if [[ -n "$TMUX" ]]; then
     tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
 fi
 
-eval "$(direnv hook bash)"
+eval "$(direnv hook zsh)"

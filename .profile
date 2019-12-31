@@ -28,6 +28,8 @@ alias minisites="cd ~/Documents/GitHub/minisites"
 alias ctags="`brew --prefix`/bin/ctags"
 alias emacs="`brew --prefix`/bin/emacs"
 
+alias nixd="launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist && launchctl start org.nixos.nix-daemon"
+
 # export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 
 export PATH="$HOME/.cargo/bin:$PATH"
