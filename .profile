@@ -27,6 +27,7 @@ alias minisites="cd ~/Documents/GitHub/minisites"
 
 alias ctags="`brew --prefix`/bin/ctags"
 alias emacs="`brew --prefix`/bin/emacs"
+alias vim="nvim"
 
 alias nixd="launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist && launchctl start org.nixos.nix-daemon"
 
@@ -38,5 +39,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+source $HOME/.poetry/env
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh"  ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
