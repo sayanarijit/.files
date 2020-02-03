@@ -98,3 +98,7 @@ fonts: git
 .PHONY: utils
 utils:
 	@brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
+
+.PHONY: bash-completion
+bash-completion: $(BREW)
+	@brew install bash-completion

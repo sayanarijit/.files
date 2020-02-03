@@ -121,3 +121,5 @@ if [[ -n "$TMUX" ]]; then
 fi
 
 eval "$(direnv hook zsh)"
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
