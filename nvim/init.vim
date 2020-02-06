@@ -23,6 +23,8 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'fatih/vim-go'  " Go development
 Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
+Plug 'wellle/context.vim'  " Context of current buffer
+Plug 'SidOfc/mkdx'  " Some goodies for documentation
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
@@ -241,6 +243,16 @@ let g:rustfmt_autosave = 1
 """<Git commit message: git-messanger>"""
 nmap <Leader>gm <Plug>(git-messenger)
 """</Git commit message>"""
+
+
+let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
+                        \ 'enter': { 'shift': 1 },
+                        \ 'links': { 'external': { 'enable': 1 } },
+                        \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
+                        \ 'fold': { 'enable': 1 } }
+let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
+                                       " plugin which unfortunately interferes with mkdx list indentation.
+"""</mkdx"""
 
 """<Theme>"""
 set cursorline
