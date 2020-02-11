@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'fatih/vim-go'  " Go development
 Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
-Plug 'wellle/context.vim'  " Context of current buffer
+" Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'SidOfc/mkdx'  " Some goodies for documentation
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
@@ -38,6 +38,7 @@ set nu relativenumber  " No need to count lines from current position
 set autoread  " Auto reload when file changes
 set notagrelative  " Use full file path when generating tags
 set showtabline=2  " Show tabname even if only one file is open
+set scrolloff=5  " Keep some space while scrolling vertically
 
 " GUI features
 set mouse=a  " By default mouse is activated
@@ -100,7 +101,7 @@ nnoremap <leader>S :set nospell<CR>
 nnoremap O }i
 
 " Python development
-command Python :exec(":!pip install pynvim pylint mypy autopep8 black") <bar> :exec(":CocInstall coc-python")
+command Python :exec(":!pip install pynvim pylint mypy autopep8 black") <bar> :exec(":CocInstall coc-python coc-snippets")
 
 " JavaScript development
 autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
