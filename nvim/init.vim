@@ -23,8 +23,9 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'fatih/vim-go'  " Go development
 Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
-" Plug 'wellle/context.vim'  " Context of current buffer
+Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'SidOfc/mkdx'  " Some goodies for documentation
+Plug 'LnL7/vim-nix'  " Nix support
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
