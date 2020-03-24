@@ -130,6 +130,7 @@ let test#python#runner = 'pytest'
 nnoremap <c-t> :Tags<cr>
 nnoremap <c-p> :GFiles<cr>
 nnoremap <c-e> :Files<cr>
+nnoremap <c-l> :Lines<cr>
 """</Searching>"""
 
 """<Auto completion: coc.nvim>"""
