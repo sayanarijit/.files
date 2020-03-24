@@ -11,7 +11,7 @@ Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 Plug 'tpope/vim-commentary'  "comment-out by gc
 Plug 'ncm2/ncm2-path'  " filepath completion
-Plug 'kien/ctrlp.vim'  " fuzzy search files
+" Plug 'kien/ctrlp.vim'  " fuzzy search files
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
 Plug 'craigemery/vim-autotag'  " Update tags
 Plug 'tpope/vim-fugitive'  " Git integration
@@ -26,6 +26,8 @@ Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'SidOfc/mkdx'  " Some goodies for documentation
 Plug 'LnL7/vim-nix'  " Nix support
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
+Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
@@ -59,11 +61,9 @@ set foldlevel=2
 command Config :tabnew ~/.files/nvim/init.vim
 
 " tags
-set tags=.vscode/tags,./.vscode/tags  " Where to store tags file
+set tags=.vscode/tags  " Where to store tags file
 let g:autotagTagsFile=".vscode/tags"  " ^^
-
-" Generate ctags ignoring untracked files
-command Ctags :exec(":!ctags -f \"$(git rev-parse --show-toplevel)/.vscode/tags\" $(git ls-files -co --exclude-standar)")
+let g:fzf_tags_command = 'ctags -R -f .vscode/tags --exclude=.vscode/*'
 
 " Key mappings
 let mapleader = ","
@@ -126,10 +126,11 @@ let test#python#runner = 'pytest'
 """</Testing>
 
 
-"""<Searching: ctrlp.vim>"""
-nnoremap <c-t> :CtrlPTag<cr>
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-"""</Searching"""
+"""<Searching: fzf>"""
+nnoremap <c-t> :Tags<cr>
+nnoremap <c-p> :GFiles<cr>
+nnoremap <c-e> :Files<cr>
+"""</Searching>"""
 
 """<Auto completion: coc.nvim>"""
 
