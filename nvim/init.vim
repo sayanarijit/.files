@@ -21,7 +21,7 @@ Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'fatih/vim-go'  " Go development
-Plug 'rust-lang/rust.vim'  " Rust development
+" Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'SidOfc/mkdx'  " Some goodies for documentation
@@ -129,7 +129,7 @@ let test#python#runner = 'pytest'
 """<Searching: fzf>"""
 nnoremap <c-t> :Tags<cr>
 nnoremap <c-p> :GFiles<cr>
-nnoremap <c-e> :Files<cr>
+nnoremap <c-f> :Files<cr>
 nnoremap <c-l> :Lines<cr>
 """</Searching>"""
 
