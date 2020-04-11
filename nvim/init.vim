@@ -278,12 +278,12 @@ let g:expand_region_text_objects = {
 """</Expand Region>"""
 
 """<File Manager: nnn>"""
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
 let g:nnn#action = {
       \ '<c-t>': 'tab split',
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit' }
-let g:nnn#command = 'NNN_TRASH=1 nnn -d'
+let g:nnn#command = 'nnn -d'
 """</File Manager>"""
 
 """<Theme>"""
