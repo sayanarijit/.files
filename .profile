@@ -26,10 +26,13 @@ alias ebn="cd ~/Documents/GitHub/ebn"
 alias minisites="cd ~/Documents/GitHub/minisites"
 
 alias ctags="`brew --prefix`/bin/ctags"
-alias emacs="`brew --prefix`/bin/emacs"
 alias vim="nvim"
 
 alias nixd="launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist && launchctl start org.nixos.nix-daemon"
+
+# Getting rusty
+alias cat="bat"
+alias ls="lsd"
 
 # export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 

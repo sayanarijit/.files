@@ -21,13 +21,16 @@ Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'fatih/vim-go'  " Go development
-" Plug 'rust-lang/rust.vim'  " Rust development
+Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'SidOfc/mkdx'  " Some goodies for documentation
 Plug 'LnL7/vim-nix'  " Nix support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
+Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
+" Plug 'lotabout/skim.vim'
+" Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
@@ -118,7 +121,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType pt setlocal ts=2 sts=2 sw=2 expandtab
 """</Custom settings>"""
-
 
 """<Testing: vim-test>"""
 let test#strategy = "vimux"
@@ -240,15 +242,13 @@ endfunction
 set statusline+=%{StatusDiagnostic()}
 """</Auto completion>"""
 
-"""<Rust development: rust.vim>"""
-let g:rustfmt_autosave = 1
-"""</Rust development>"""
 
 """<Git commit message: git-messanger>"""
 nmap <Leader>gm <Plug>(git-messenger)
 """</Git commit message>"""
 
 
+"""<Documentation: mkdx>"""
 let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
                         \ 'enter': { 'shift': 1 },
                         \ 'links': { 'external': { 'enable': 1 } },
@@ -256,7 +256,23 @@ let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
                         \ 'fold': { 'enable': 1 } }
 let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
                                        " plugin which unfortunately interferes with mkdx list indentation.
-"""</mkdx"""
+"""</Documentation>"""
+
+
+"""<Expand Region: vim-expand-region>"""
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'is'  :1,
+      \ 'ip'  :1,
+      \ 'it'  :1,
+      \ 'i"'  :1,
+      \ 'i''' :1,
+      \ 'i]'  :1,
+      \ 'ib'  :1,
+      \ 'iB'  :1,
+      \ }
+"""</Expand Region>"""
 
 """<Theme>"""
 set cursorline
