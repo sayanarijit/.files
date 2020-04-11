@@ -77,7 +77,7 @@ inoremap <silent> <c-a> <ESC>I
 inoremap <silent> <c-e> <ESC>A
 nnoremap <silent> <leader>w :w<CR>
 nnoremap <silent> <leader>W :wall<CR>
-nnoremap <silent> <leader>q :q<CR>
+nnoremap <silent> <leader>q gg:q<CR>
 nnoremap <silent> <leader>Q :qall<CR>
 nnoremap <silent> <leader>t :NnnPicker '%:p:h'<CR>
 nnoremap <silent> <leader>T :NnnPicker<CR>
