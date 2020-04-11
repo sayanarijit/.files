@@ -29,6 +29,7 @@ Plug 'LnL7/vim-nix'  " Nix support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
+Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -78,8 +79,8 @@ nnoremap <silent> <leader>w :w<CR>
 nnoremap <silent> <leader>W :wall<CR>
 nnoremap <silent> <leader>q :q<CR>
 nnoremap <silent> <leader>Q :qall<CR>
-nnoremap <silent> <leader>t :Texplore<CR>
-nnoremap <silent> <leader>T :tabnew .<CR>
+nnoremap <silent> <leader>t :NnnPicker '%:p:h'<CR>
+nnoremap <silent> <leader>T :NnnPicker<CR>
 nnoremap <silent> <c-up> :tp<CR>
 nnoremap <silent> <c-down> :tn<CR>
 nnoremap <silent> <s-up> {
@@ -275,6 +276,15 @@ let g:expand_region_text_objects = {
       \ 'i`'  :1,
       \ }
 """</Expand Region>"""
+
+"""<File Manager: nnn>"""
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
+let g:nnn#command = 'NNN_TRASH=1 nnn -d'
+"""</File Manager>"""
 
 """<Theme>"""
 set cursorline
