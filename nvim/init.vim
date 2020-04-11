@@ -264,6 +264,7 @@ let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasti
 let g:expand_region_text_objects = {
       \ 'iw'  :0,
       \ 'iW'  :0,
+      \ 'V'  :1,
       \ 'is'  :1,
       \ 'ip'  :1,
       \ 'it'  :1,
