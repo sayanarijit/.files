@@ -134,6 +134,7 @@ nnoremap <c-t> :Tags<cr>
 nnoremap <c-p> :GFiles<cr>
 nnoremap <c-f> :Files<cr>
 nnoremap <c-l> :Lines<cr>
+nnoremap <c-g> :Rg<cr>
 """</Searching>"""
 
 """<Auto completion: coc.nvim>"""
@@ -212,6 +213,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """<Tree view: nerdtree>"""
 " nnoremap <silent> // :NERDTreeToggle<CR>
 """</Tree view>"""
+
+"""<Rust Development>"""
+autocmd BufWritePost *.rs :RustFmt
+"""</Rust Development>"""
 
 """<Snippets: ultisnips>"""
 let g:UltiSnipsExpandTrigger="<tab>"
