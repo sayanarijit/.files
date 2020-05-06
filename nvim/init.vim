@@ -106,7 +106,7 @@ nnoremap <leader>S :set nospell<CR>
 nnoremap O }i
 
 " Python development
-command Python :exec(":!pip install pynvim pylint mypy autopep8 black") <bar> :exec(":CocInstall coc-python coc-snippets")
+command Python :exec(":!pip install pynvim pylint mypy autopep8 black")
 
 " JavaScript development
 autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
@@ -204,11 +204,6 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 """</Syntax check>"""
 
-"""<Snippets: ultisnips>"""
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"""</Snippets>"""
 
 """<Tree view: nerdtree>"""
 " nnoremap <silent> // :NERDTreeToggle<CR>
@@ -218,11 +213,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 autocmd BufWritePost *.rs :RustFmt
 """</Rust Development>"""
 
-"""<Snippets: ultisnips>"""
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"""<Snippets>
 
 """<Quick movements: easymotion>"""
 map f <Plug>(easymotion-prefix)w
