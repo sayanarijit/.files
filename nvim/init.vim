@@ -36,7 +36,9 @@ Plug 'honza/vim-snippets' " Snippets are separated from the engine
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
-Plug 'joshdick/onedark.vim'  " Atom onedark theme
+" Plug 'joshdick/onedark.vim'  " Atom onedark theme
+" Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
+Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
 call plug#end()
 """</Plugins>"""
 
@@ -292,11 +294,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 """<Theme>"""
 set cursorline
 set cursorcolumn
-" set background=light
-" set background=dark
-" colorscheme solarized8
-colorscheme onedark
-let g:onedark_terminal_italics = 1
-let g:airline_theme='onedark'
-let g:onedark_termcolors=256
+set background=dark
+colorscheme neodark
+let g:airline_theme='neodark'
+let g:neodark#background = '#202020'
 """</Theme>"""
