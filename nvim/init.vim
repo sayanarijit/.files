@@ -30,6 +30,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
 Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
+Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
+Plug 'honza/vim-snippets' " Snippets are separated from the engine
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -49,7 +51,7 @@ set scrolloff=5  " Keep some space while scrolling vertically
 
 " GUI features
 set mouse=a  " By default mouse is activated
-set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
+" set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
 
 " Persistant undo history
 set undofile
@@ -281,6 +283,11 @@ let g:nnn#action = {
       \ '<c-v>': 'vsplit' }
 let g:nnn#command = 'nnn -d'
 """</File Manager>"""
+
+"""<Snippets: Ultisnips>"""
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"""</Snippets>"""
 
 """<Theme>"""
 set cursorline
