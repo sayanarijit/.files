@@ -16,7 +16,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisen
 Plug 'craigemery/vim-autotag'  " Update tags
 Plug 'tpope/vim-fugitive'  " Git integration
 Plug 'janko-m/vim-test'  " Test runner
-Plug 'benmills/vimux'  " Runs tests in new tmux window
+" Plug 'benmills/vimux'  " Runs tests in new tmux window
 Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
@@ -128,7 +128,7 @@ autocmd FileType pt setlocal ts=2 sts=2 sw=2 expandtab
 """</Custom settings>"""
 
 """<Testing: vim-test>"""
-let test#strategy = "vimux"
+let test#strategy = "basic"
 let test#python#runner = 'pytest'
 """</Testing>
 
