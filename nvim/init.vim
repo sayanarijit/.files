@@ -219,9 +219,9 @@ autocmd BufWritePost *.rs :RustFmt
 
 
 """<Quick movements: easymotion>"""
+let g:EasyMotion_keys='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+[]{}|;:",./<>?'
+let g:EasyMotion_smartcase = 1
 map f <Plug>(easymotion-prefix)w
-map f <Plug>(easymotion-prefix)w
-nmap F <Plug>(easymotion-prefix)b
 nmap F <Plug>(easymotion-prefix)b
 """</Quick movements>"""
 
