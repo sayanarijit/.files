@@ -39,6 +39,7 @@ Plug 'honza/vim-snippets' " Snippets are separated from the engine
 " Plug 'joshdick/onedark.vim'  " Atom onedark theme
 " Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
 Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
+" Plug 'morhetz/gruvbox' " Retro groove color scheme for Vim
 call plug#end()
 """</Plugins>"""
 
@@ -182,12 +183,44 @@ function! s:show_documentation()
 endfunction
 
 " Remap for rename current word
-" nmap <leader>r <Plug>(coc-rename)
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 " Remap for format selected region
-vmap <neader>f  <Plug>(coc-format-selected)
+xmap <neader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """</Auto completion>"""
 
 
@@ -299,5 +332,4 @@ set cursorcolumn
 set background=dark
 colorscheme neodark
 let g:airline_theme='neodark'
-let g:neodark#background = '#202020'
 """</Theme>"""
