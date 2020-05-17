@@ -31,7 +31,9 @@ Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
 Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
 Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
-Plug 'honza/vim-snippets' " Snippets are separated from the engine
+Plug 'honza/vim-snippets'  " Snippets are separated from the engine
+Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
+Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -39,7 +41,7 @@ Plug 'honza/vim-snippets' " Snippets are separated from the engine
 " Plug 'joshdick/onedark.vim'  " Atom onedark theme
 " Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
 Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
-" Plug 'morhetz/gruvbox' " Retro groove color scheme for Vim
+" Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
 call plug#end()
 """</Plugins>"""
 
@@ -76,42 +78,17 @@ let g:fzf_tags_command = 'ctags -R -f .vscode/tags --exclude=.vscode/*'
 
 " Key mappings
 let mapleader = ","
-nnoremap <silent> <c-a> ^
-nnoremap <silent> <c-e> $
 inoremap <silent> <c-a> <ESC>I
 inoremap <silent> <c-e> <ESC>A
-nnoremap <silent> <leader>w :w<CR>
-nnoremap <silent> <leader>W :wall<CR>
-nnoremap <silent> <leader>q gg:q<CR>
-nnoremap <silent> <leader>Q :qall<CR>
-nnoremap <silent> <leader>t :NnnPicker '%:p:h'<CR>
-nnoremap <silent> <leader>T :NnnPicker<CR>
-nnoremap <silent> <c-up> :tp<CR>
-nnoremap <silent> <c-down> :tn<CR>
 nnoremap <silent> <s-up> {
 nnoremap <silent> <s-down> }
-inoremap <silent> <s-up> <ESC>{i
-inoremap <silent> <s-down> <ESC>}i
 nnoremap <silent> <c-s-up> <c-u>
 nnoremap <silent> <c-s-down> <c-d>
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
-nnoremap gD :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
-inoremap <a-left> <esc>vb
-inoremap <a-right> <esc>ve
-inoremap <c-s> <esc>:w<CR>
-inoremap <a-s-left> <esc>vb
-inoremap <a-s-right> <esc><right>ve
-nnoremap <a-s-left> vb
-nnoremap <a-s-right> ve
-nnoremap <leader>m :set mouse=""<CR>
-nnoremap <leader>M :set mouse=a<CR>
-nnoremap <leader>s :set spell<CR>
-nnoremap <leader>S :set nospell<CR>
-nnoremap O }i
 
 " Python development
-command Python :exec(":!pip install pynvim pylint mypy autopep8 black")
+command SetupPythonProject :exec(":!pip install pynvim pylint mypy autopep8 black")
 
 " JavaScript development
 autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
@@ -133,15 +110,6 @@ let test#strategy = "basic"
 let test#python#runner = 'pytest'
 """</Testing>
 
-
-"""<Searching: fzf>"""
-nnoremap <c-t> :Tags<cr>
-nnoremap <c-p> :GFiles<cr>
-nnoremap <c-f> :Files<cr>
-nnoremap <c-l> :Lines<cr>
-nnoremap <c-g> :Rg<cr>
-"""</Searching>"""
-
 """<Auto completion: coc.nvim>"""
 
 " let g:coc_force_debug = 1
@@ -162,16 +130,6 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -185,43 +143,15 @@ endfunction
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
-" Remap for format selected region
-xmap <neader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
 
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-"""</Auto completion>"""
+""""</Auto completion>"""
 
 
 """<Tagbar: tagbar>"""
@@ -247,7 +177,7 @@ let g:syntastic_check_on_wq = 0
 """</Tree view>"""
 
 """<Rust Development>"""
-autocmd BufWritePost *.rs :RustFmt
+" autocmd BufWritePost *.rs :RustFmt
 """</Rust Development>"""
 
 
@@ -276,11 +206,6 @@ endfunction
 
 set statusline+=%{StatusDiagnostic()}
 """</Auto completion>"""
-
-
-"""<Git commit message: git-messanger>"""
-nmap <Leader>gm <Plug>(git-messenger)
-"""</Git commit message>"""
 
 
 """<Documentation: mkdx>"""
@@ -325,6 +250,175 @@ let g:nnn#command = 'nnn -d'
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 """</Snippets>"""
+
+"""<Keybindings Helper: WhichKey>"""
+  
+" Map leader to which_key
+nnoremap <silent> <space> :silent WhichKey '<Space>'<CR>
+vnoremap <silent> <space> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+
+" Create map to add keys to
+let g:which_key_map =  {}
+
+" a is for actions
+let g:which_key_map.a = {
+	\ 'name' : '+actions',
+	\ '!' : ['wqall!', 'wqall!'],
+	\ '/' : ['gcc', 'toggle comment'],
+	\ 'x' : [':NnnPicker', 'explore files'],
+	\ }
+
+" p for project
+let g:which_key_map.p = {
+	\ 'name' : '+project',
+	\ }
+
+let g:which_key_map.p.s = {
+	\ 'name' : '+setup',
+	\ 'p' : [':SetupPythonProject', 'Python'],
+	\ }
+
+let g:which_key_map.w = {
+	\ 'name' : '+window',
+	\ 'f' : ['Windows', 'find'],
+	\ }
+
+let g:which_key_map.w.s = {
+	\ 'name' : '+split',
+	\ 'h' : ['<C-W>s', 'split horizontally'],
+	\ 'v' : ['<C-W>v', 'split vertically']
+	\ }
+
+let g:which_key_map.w.m = {
+	\ 'name' : '+manage',
+	\ 'h' : ['<c-w>_', 'max height'],
+	\ 'w' : ['<c-w>_', 'max width'],
+	\ 'o' : ['<c-w>o', 'close others'],
+	\ 't' : ['<c-w>T', 'move to new tab'],
+	\ }
+
+let g:which_key_map.w.g = {
+	\ 'name' : '+goto',
+	\ 'h' : ['<c-w>h', 'left'],
+	\ 'j' : ['<c-w>j', 'down'],
+	\ 'k' : ['<c-w>k', 'up'],
+	\ 'l' : ['<c-w>l', 'right'],
+	\ }
+
+" c for config
+let g:which_key_map.c = {
+	\ 'name' : '+config' ,
+	\ 'c' : [':Config', 'neovim config'],
+	\ 'o' : [':CocConfig', 'coc config'],
+	\ }
+
+" s is for search
+let g:which_key_map.s = {
+      \ 'name' : '+search' ,
+      \ '/' : [':History/'     , 'history'],
+      \ ';' : [':Commands'     , 'commands'],
+      \ 'b' : [':BLines'       , 'current buffer'],
+      \ 'B' : [':Buffers'      , 'open buffers'],
+      \ 'c' : [':Commits'      , 'commits'],
+      \ 'C' : [':BCommits'     , 'buffer commits'],
+      \ 'f' : [':Files'        , 'files'],
+      \ 'g' : [':GFiles'       , 'git files'],
+      \ 'G' : [':GFiles?'      , 'modified git files'],
+      \ 'h' : [':History'      , 'file history'],
+      \ 'H' : [':History:'     , 'command history'],
+      \ 'l' : [':Lines'        , 'lines'] ,
+      \ 'm' : [':Marks'        , 'marks'] ,
+      \ 'M' : [':Maps'         , 'normal maps'] ,
+      \ 'p' : [':Helptags'     , 'help tags'] ,
+      \ 'P' : [':Tags'         , 'project tags'],
+      \ 's' : [':Snippets'     , 'snippets'],
+      \ 'S' : [':Colors'       , 'color schemes'],
+      \ 't' : [':Rg'           , 'text Rg'],
+      \ 'T' : [':BTags'        , 'buffer tags'],
+      \ 'w' : [':Windows'      , 'search windows'],
+      \ 'y' : [':Filetypes'    , 'file types'],
+      \ 'z' : [':FZF'          , 'FZF'],
+      \ }
+
+" g is for git
+let g:which_key_map.g = {
+      \ 'name' : '+git' ,
+      \ 'a' : [':Git add %'                        , 'add current'],
+      \ 'A' : [':Git add .'                        , 'add all'],
+      \ 'b' : [':Git blame'                        , 'blame'],
+      \ 'B' : [':GBrowse'                          , 'browse'],
+      \ 'c' : [':Git commit'                       , 'commit'],
+      \ 'd' : [':Git diff'                         , 'diff'],
+      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
+      \ 's' : [':Gstatus'                          , 'status'],
+      \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
+      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
+      \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
+      \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
+      \ 'm' : ['<Plug>(git-messenger)'             , 'show commit message'],
+      \ 'l' : [':Git log'                          , 'log'],
+      \ 'p' : [':Git push'                         , 'push'],
+      \ 'P' : [':Git pull'                         , 'pull'],
+      \ 'r' : [':GRemove'                          , 'remove'],
+      \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
+      \ }
+
+" l is for language server protocol
+let g:which_key_map.l = {
+      \ 'name' : '+lsp' ,
+      \ '.' : [':CocConfig'                          , 'config'],
+      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
+      \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
+      \ 'b' : [':CocNext'                            , 'next action'],
+      \ 'B' : [':CocPrev'                            , 'prev action'],
+      \ 'c' : [':CocList commands'                   , 'commands'],
+      \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
+      \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
+      \ 'e' : [':CocList extensions'                 , 'extensions'],
+      \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
+      \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
+      \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
+      \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
+      \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
+      \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
+      \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
+      \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
+      \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
+      \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
+      \ 'O' : [':CocList outline'                    , 'outline'],
+      \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
+      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
+      \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
+      \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
+      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
+      \ 's' : [':CocList -I symbols'                 , 'references'],
+      \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
+      \ 'u' : [':CocListResume'                      , 'resume list'],
+      \ 'U' : [':CocUpdate'                          , 'update CoC'],
+      \ 'z' : [':CocDisable'                         , 'disable CoC'],
+      \ 'Z' : [':CocEnable'                          , 'enable CoC'],
+      \ }
+
+" t is for test
+let g:which_key_map.t = {
+	\ 'name' : '+test',
+	\ }
+
+let g:which_key_map.t.t = {
+	\ 'name' : '+nearest',
+	\ 't' : [':TestNearest', 'test normally'],
+	\ 'p' : [':TestNearest --pdb', 'test with pdb'],
+	\ }
+
+let g:which_key_map.t.f = {
+	\ 'name' : '+file',
+	\ 't' : [':TestFile', 'test normally'],
+	\ 'p' : [':TestFile --pdb', 'test with pdb'],
+	\ }
+
+" Register which key map
+call which_key#register('<Space>', "g:which_key_map")
+"""</Keybindings Helper>"""
 
 """<Theme>"""
 set cursorline
