@@ -80,12 +80,15 @@ let g:fzf_tags_command = 'ctags -R -f .vscode/tags --exclude=.vscode/*'
 let mapleader = ","
 inoremap <silent> <c-a> <ESC>I
 inoremap <silent> <c-e> <ESC>A
-nnoremap <silent> <s-up> {
-nnoremap <silent> <s-down> }
-nnoremap <silent> <c-s-up> <c-u>
-nnoremap <silent> <c-s-down> <c-d>
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
+tnoremap <Esc> <C-\><C-n>
+
+" Terminal in a new tab
+command Terminal :tabnew term://$SHELL
+
+" Open all modified git files
+command GitModified :args `git diff --name-only origin/master; git ls-files --other --exclude-standard` | argdo tabe
 
 " Python development
 command SetupPythonProject :exec(":!pip install pynvim pylint mypy autopep8 black")
@@ -111,8 +114,6 @@ let test#python#runner = 'pytest'
 """</Testing>
 
 """<Auto completion: coc.nvim>"""
-
-" let g:coc_force_debug = 1
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -159,19 +160,6 @@ nnoremap <silent> \\ :TagbarToggle<CR>
 autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
 
-
-"""</Syntax check: syntastic>"""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes':   [],'passive_filetypes': [] }
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-"""</Syntax check>"""
-
-
 """<Tree view: nerdtree>"""
 " nnoremap <silent> // :NERDTreeToggle<CR>
 """</Tree view>"""
@@ -184,10 +172,7 @@ let g:syntastic_check_on_wq = 0
 """<Quick movements: easymotion>"""
 let g:EasyMotion_keys='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+[]{}|;:",./<>?'
 let g:EasyMotion_smartcase = 1
-map f <Plug>(easymotion-prefix)w
-nmap f <Plug>(easymotion-prefix)w
-map F <Plug>(easymotion-prefix)b
-nmap F <Plug>(easymotion-prefix)b
+
 """</Quick movements>"""
 
 """<Auto completion: coc>"""
@@ -251,6 +236,10 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 """</Snippets>"""
 
+"""<Explorer: nnn>"""
+command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
+"""</Explorer>"""
+
 """<Keybindings Helper: WhichKey>"""
   
 " Map leader to which_key
@@ -260,24 +249,60 @@ vnoremap <silent> <space> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 " Create map to add keys to
 let g:which_key_map =  {}
 
-" a is for actions
+" a is for actions (custom)
 let g:which_key_map.a = {
 	\ 'name' : '+actions',
-	\ '!' : ['wqall!', 'wqall!'],
-	\ '/' : ['gcc', 'toggle comment'],
-	\ 'x' : [':NnnPicker', 'explore files'],
 	\ }
 
-" p for project
-let g:which_key_map.p = {
+let g:which_key_map.a.o = {
+	\ 'name' : '+open',
+	\ 't' : [':tabnew', 'tab'],
+	\ 'T' : [':Terminal', 'terminal'],
+	\ }
+
+let g:which_key_map.a.w = {
+	\ 'name' : '+write',
+	\ 'w' : [':w', 'current file'],
+	\ 'W' : [':w!', 'current file forced'],
+	\ 'a' : [':wall', 'all files'],
+	\ 'A' : [':wall!', 'all files forced'],
+	\ }
+
+let g:which_key_map.a.q = {
+	\ 'name' : '+quit',
+	\ 'q' : [':q', 'current file'],
+	\ 'Q' : [':q!', 'current file forced'],
+	\ 'a' : [':qall', 'all files'],
+	\ 'A' : [':qall!', 'all files forced'],
+	\ }
+
+let g:which_key_map.a.x = {
+	\ 'name' : '+write & quit',
+	\ 'x' : [':wq', 'current file'],
+	\ 'X' : [':wq!', 'current file forced'],
+	\ 'a' : [':wqall', 'all files'],
+	\ 'A' : [':wqall!', 'all files forced'],
+	\ }
+
+let g:which_key_map.a.p = {
 	\ 'name' : '+project',
 	\ }
 
-let g:which_key_map.p.s = {
+let g:which_key_map.a.p.s = {
 	\ 'name' : '+setup',
-	\ 'p' : [':SetupPythonProject', 'Python'],
+	\ 'p' : [':SetupPythonProject', 'python'],
+	\ 'g' : [':GitModified', 'git modified files'],
 	\ }
 
+" f for find word
+let g:which_key_map.f = {
+	\ 'name' : '+find',
+	\ '1' : ['<Plug>(easymotion-overwin-f)', 'find by 1 char'],
+	\ '2' : ['<Plug>(easymotion-overwin-f2)', 'find by 2 chars'],
+	\ }
+
+
+" w for window
 let g:which_key_map.w = {
 	\ 'name' : '+window',
 	\ 'f' : ['Windows', 'find'],
@@ -292,9 +317,10 @@ let g:which_key_map.w.s = {
 let g:which_key_map.w.m = {
 	\ 'name' : '+manage',
 	\ 'h' : ['<c-w>_', 'max height'],
-	\ 'w' : ['<c-w>_', 'max width'],
+	\ 'w' : ['<c-w>|', 'max width'],
 	\ 'o' : ['<c-w>o', 'close others'],
 	\ 't' : ['<c-w>T', 'move to new tab'],
+	\ 'r' : ['<c-w>=', 'reset'],
 	\ }
 
 let g:which_key_map.w.g = {
@@ -350,6 +376,7 @@ let g:which_key_map.g = {
       \ 'c' : [':Git commit'                       , 'commit'],
       \ 'd' : [':Git diff'                         , 'diff'],
       \ 'D' : [':Gdiffsplit'                       , 'diff split'],
+      \ 'e' : [':GitModified'                      , 'edit modified'],
       \ 's' : [':Gstatus'                          , 'status'],
       \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
       \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
@@ -382,6 +409,7 @@ let g:which_key_map.l = {
       \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
       \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
       \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
+      \ 'm' : [':CocList marketplace'                , 'marketplace'],
       \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
       \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
       \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
@@ -414,6 +442,15 @@ let g:which_key_map.t.f = {
 	\ 'name' : '+file',
 	\ 't' : [':TestFile', 'test normally'],
 	\ 'p' : [':TestFile --pdb', 'test with pdb'],
+	\ }
+
+" x for explore
+let g:which_key_map.x = {
+	\ 'name' : '+explore',
+	\ '.' : [':NnnPicker', 'present working directory'],
+	\ 'p' : [':NnnPicker ', 'project root'],
+	\ '~' : [':NnnPicker ~', 'home directory'],
+	\ '/' : [':NnnPicker /', 'fs root'],
 	\ }
 
 " Register which key map
