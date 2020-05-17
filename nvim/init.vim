@@ -144,10 +144,6 @@ endfunction
 
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
-
-" Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
 """"</Auto completion>"""
 
 
@@ -254,6 +250,7 @@ let g:which_key_map.a.o = {
 	\ 'name' : '+open',
 	\ 't' : [':tabnew', 'tab'],
 	\ 'T' : [':Terminal', 'terminal'],
+	\ 'g' : [':GitModified', 'git modified files'],
 	\ }
 
 let g:which_key_map.a.w = {
@@ -282,12 +279,12 @@ let g:which_key_map.a.x = {
 
 let g:which_key_map.a.p = {
 	\ 'name' : '+project',
+	\ 'g' : [':GitModified', 'git modified files'],
 	\ }
 
 let g:which_key_map.a.p.s = {
 	\ 'name' : '+setup',
 	\ 'p' : [':SetupPythonProject', 'python'],
-	\ 'g' : [':GitModified', 'git modified files'],
 	\ }
 
 " f for find word
@@ -413,9 +410,8 @@ let g:which_key_map.l = {
       \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
       \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
       \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
-      \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
-      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
-      \ 's' : [':CocList -I symbols'                 , 'references'],
+      \ 'r' : ['<Plug>(coc-references)'              , 'references'],
+      \ 's' : [':CocList -I symbols'                 , 'symbols'],
       \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
       \ 'u' : [':CocListResume'                      , 'resume list'],
       \ 'U' : [':CocUpdate'                          , 'update CoC'],
