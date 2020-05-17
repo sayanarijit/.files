@@ -82,6 +82,7 @@ inoremap <silent> <c-a> <ESC>I
 inoremap <silent> <c-e> <ESC>A
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
+
 tnoremap <Esc> <C-\><C-n>
 
 " Terminal in a new tab
@@ -442,8 +443,9 @@ let g:which_key_map.t.f = {
 " x for explore
 let g:which_key_map.x = {
 	\ 'name' : '+explore',
-	\ '.' : [':NnnPicker', 'present working directory'],
-	\ 'p' : [':NnnPicker ', 'project root'],
+	\ 'p' : [':NnnPicker %:p:h', 'present working directory'],
+	\ 'P' : [':NnnPicker ', 'project root'],
+	\ 'v' : [':NnnPicker', 'vim root'],
 	\ '~' : [':NnnPicker ~', 'home directory'],
 	\ '/' : [':NnnPicker /', 'fs root'],
 	\ }
