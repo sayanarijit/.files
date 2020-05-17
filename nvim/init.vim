@@ -147,11 +147,6 @@ vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Symbol renaming.
-
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
 """"</Auto completion>"""
 
 
