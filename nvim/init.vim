@@ -34,6 +34,7 @@ Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
 Plug 'honza/vim-snippets'  " Snippets are separated from the engine
 Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
+Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -221,16 +222,13 @@ let g:nnn#action = {
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit' }
 let g:nnn#command = 'nnn -d'
+command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
 """</File Manager>"""
 
 """<Snippets: Ultisnips>"""
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 """</Snippets>"""
-
-"""<Explorer: nnn>"""
-command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
-"""</Explorer>"""
 
 """<Keybindings Helper: WhichKey>"""
   
@@ -397,7 +395,7 @@ let g:which_key_map.l = {
       \ 'e' : [':CocList extensions'                 , 'extensions'],
       \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
       \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
-      \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
+      \ 'h' : ['K'                                   , 'help'],
       \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
       \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
       \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
@@ -439,10 +437,10 @@ let g:which_key_map.t.f = {
 " x for explore
 let g:which_key_map.x = {
 	\ 'name' : '+explore',
-	\ 'p' : [':NnnPicker %:p:h', 'present working directory'],
-	\ 'P' : [':NnnPicker ', 'project root'],
-	\ 'v' : [':NnnPicker', 'vim root'],
-	\ '~' : [':NnnPicker ~', 'home directory'],
+	\ 'p' : [':NnnPicker %:p:h', 'present directory'],
+	\ 'w' : [':NnnPicker', 'working directory'],
+	\ 'g' : [':NnnProjectRoot', 'git project root'],
+	\ 'h' : [':NnnPicker ~', 'home directory'],
 	\ '/' : [':NnnPicker /', 'fs root'],
 	\ }
 
