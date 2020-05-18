@@ -161,6 +161,15 @@ autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 " autocmd BufWritePost *.rs :RustFmt
 """</Rust Development>"""
 
+"""<Start page: Startify>"""
+let g:startify_lists = [
+	\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+	\ { 'type': 'files',     'header': ['   MRU']            },
+	\ { 'type': 'sessions',  'header': ['   Sessions']       },
+	\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+	\ { 'type': 'commands',  'header': ['   Commands']       },
+	\ ]
+"""</Start page>"""
 
 """<Quick movements: easymotion>"""
 let g:EasyMotion_keys='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+[]{}|;:",./<>?'
