@@ -163,11 +163,16 @@ autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 
 """<Start page: Startify>"""
 let g:startify_lists = [
+	\ { 'type': 'commands',  'header': ['   Commands']       },
 	\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
 	\ { 'type': 'files',     'header': ['   MRU']            },
 	\ { 'type': 'sessions',  'header': ['   Sessions']       },
 	\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-	\ { 'type': 'commands',  'header': ['   Commands']       },
+	\ ]
+
+let g:startify_commands = [
+	\ {'x': ['Explorer', ':NnnPicker']},
+	\ {'s': ['Search Files', ':Files']},
 	\ ]
 """</Start page>"""
 
