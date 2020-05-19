@@ -35,6 +35,7 @@ Plug 'honza/vim-snippets'  " Snippets are separated from the engine
 Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
+Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -73,9 +74,9 @@ set foldlevel=2
 command Config :tabnew ~/.files/nvim/init.vim
 
 " tags
-set tags=.vscode/tags  " Where to store tags file
-let g:autotagTagsFile=".vscode/tags"  " ^^
-let g:fzf_tags_command = 'ctags -R -f .vscode/tags --exclude=.vscode/*'
+set tags=.vim/tags  " Where to store tags file
+let g:autotagTagsFile=".vim/tags"  " ^^
+let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
 
 " Key mappings
 let mapleader = ","
@@ -84,7 +85,7 @@ inoremap <silent> <c-e> <ESC>A
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 
-tnoremap <Esc> <C-\><C-n>
+tnoremap <C-q> <C-\><C-n>
 
 " Terminal in a new tab
 command Terminal :tabnew term://$SHELL
@@ -352,7 +353,7 @@ let g:which_key_map.s = {
       \ 'B' : [':Buffers'      , 'open buffers'],
       \ 'c' : [':Commits'      , 'commits'],
       \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'        , 'files'],
+      \ 'f' : [':Files .'        , 'files'],
       \ 'g' : [':GFiles'       , 'git files'],
       \ 'G' : [':GFiles?'      , 'modified git files'],
       \ 'h' : [':History'      , 'file history'],
