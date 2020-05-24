@@ -24,7 +24,6 @@ Plug 'fatih/vim-go'  " Go development
 Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 Plug 'wellle/context.vim'  " Context of current buffer
-Plug 'SidOfc/mkdx'  " Some goodies for documentation
 Plug 'LnL7/vim-nix'  " Nix support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
@@ -165,15 +164,17 @@ autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """<Start page: Startify>"""
 let g:startify_lists = [
 	\ { 'type': 'commands',  'header': ['   Commands']       },
+	\ { 'type': 'sessions',  'header': ['   Sessions']       },
 	\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
 	\ { 'type': 'files',     'header': ['   MRU']            },
-	\ { 'type': 'sessions',  'header': ['   Sessions']       },
 	\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
 	\ ]
 
 let g:startify_commands = [
 	\ {'x': ['Explorer', ':NnnPicker']},
-	\ {'s': ['Search Files', ':Files']},
+	\ {'f': ['Search Files', ':Files']},
+	\ {'g': ['Search GitHub Files', ':GFiles']},
+	\ {'T': ['Open Terminal', ':terminal $SHELL']},
 	\ ]
 """</Start page>"""
 
@@ -199,17 +200,6 @@ endfunction
 
 set statusline+=%{StatusDiagnostic()}
 """</Auto completion>"""
-
-
-"""<Documentation: mkdx>"""
-let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
-                        \ 'enter': { 'shift': 1 },
-                        \ 'links': { 'external': { 'enable': 1 } },
-                        \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
-                        \ 'fold': { 'enable': 1 } }
-let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
-                                       " plugin which unfortunately interferes with mkdx list indentation.
-"""</Documentation>"""
 
 
 """<Expand Region: vim-expand-region>"""
