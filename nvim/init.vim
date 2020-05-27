@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'fatih/vim-go'  " Go development
 Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
-Plug 'wellle/context.vim'  " Context of current buffer
+" Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'LnL7/vim-nix'  " Nix support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
@@ -85,8 +85,7 @@ nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 
 " For terminal mode
-tnoremap <C-q> <C-\><C-n>
-nnoremap <C-q> <ECS>
+tnoremap <C-a> <C-\><C-n>
 
 " Terminal in a new tab
 command TerminalTab :tabnew term://$SHELL
@@ -179,6 +178,7 @@ let g:startify_lists = [
 	\ ]
 
 let g:startify_commands = [
+	\ {'G': ['Git Modified Files', ':GitModified']},
 	\ {'x': ['Explorer', ':NnnPicker']},
 	\ {'f': ['Search Files', ':Files']},
 	\ {'g': ['Search GitHub Files', ':GFiles']},
@@ -260,11 +260,10 @@ let g:which_key_map.a = {
 let g:which_key_map.a.o = {
 	\ 'name' : '+open',
 	\ 't' : [':tabnew', 'tab'],
-	\ 'T' : [':Terminal', 'terminal'],
-	\ 'g' : [':GitModified', 'git modified files'],
+	\ 'G' : [':GitModified', 'git modified files'],
 	\ }
 
-let g:which_key_map.a.o.T = {
+let g:which_key_map.a.t = {
 	\ 'name' : '+terminal',
 	\ 't' : [':TerminalTab', 'new tab'],
 	\ 'h' : [':TerminalHSplit', 'horizontal split'],
@@ -297,7 +296,7 @@ let g:which_key_map.a.x = {
 
 let g:which_key_map.a.p = {
 	\ 'name' : '+project',
-	\ 'g' : [':GitModified', 'git modified files'],
+	\ 'G' : [':GitModified', 'git modified files'],
 	\ }
 
 let g:which_key_map.a.p.s = {
@@ -387,7 +386,7 @@ let g:which_key_map.g = {
       \ 'c' : [':Git commit'                       , 'commit'],
       \ 'd' : [':Git diff'                         , 'diff'],
       \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'e' : [':GitModified'                      , 'edit modified'],
+      \ 'G' : [':GitModified'                      , 'edit modified'],
       \ 's' : [':Gstatus'                          , 'status'],
       \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
       \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
