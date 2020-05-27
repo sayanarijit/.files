@@ -84,10 +84,18 @@ inoremap <silent> <c-e> <ESC>A
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 
+" For terminal mode
 tnoremap <C-q> <C-\><C-n>
+nnoremap <C-q> <ECS>
 
 " Terminal in a new tab
-command Terminal :tabnew term://$SHELL
+command TerminalTab :tabnew term://$SHELL
+
+" Terminal in a horizontal split
+command TerminalHSplit :split term://$SHELL
+
+" Terminal in a vertical split
+command TerminalVSplit :vsplit term://$SHELL
 
 " Open all modified git files
 command GitModified :args `git diff --name-only origin/master; git ls-files --other --exclude-standard` | argdo tabe
@@ -111,7 +119,7 @@ autocmd FileType pt setlocal ts=2 sts=2 sw=2 expandtab
 """</Custom settings>"""
 
 """<Testing: vim-test>"""
-let test#strategy = "basic"
+let test#strategy = "neovim"
 let test#python#runner = 'pytest'
 """</Testing>
 
@@ -254,6 +262,13 @@ let g:which_key_map.a.o = {
 	\ 't' : [':tabnew', 'tab'],
 	\ 'T' : [':Terminal', 'terminal'],
 	\ 'g' : [':GitModified', 'git modified files'],
+	\ }
+
+let g:which_key_map.a.o.T = {
+	\ 'name' : '+terminal',
+	\ 't' : [':TerminalTab', 'new tab'],
+	\ 'h' : [':TerminalHSplit', 'horizontal split'],
+	\ 'v' : [':TerminalVSplit', 'vertical split'],
 	\ }
 
 let g:which_key_map.a.w = {
