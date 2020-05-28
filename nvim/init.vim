@@ -54,6 +54,8 @@ set autoread  " Auto reload when file changes
 set notagrelative  " Use full file path when generating tags
 set showtabline=2  " Show tabname even if only one file is open
 set scrolloff=5  " Keep some space while scrolling vertically
+set splitbelow  " Opens new hsplits below the current window
+set splitright  " Opens new vsplits right side of the current window
 
 " GUI features
 set mouse=a  " By default mouse is activated
@@ -85,7 +87,7 @@ nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 
 " For terminal mode
-tnoremap <C-a> <C-\><C-n>
+tnoremap <c-\><c-\> <c-\><c-n>
 
 " Terminal in a new tab
 command TerminalTab :tabnew term://$SHELL
@@ -178,10 +180,9 @@ let g:startify_lists = [
 	\ ]
 
 let g:startify_commands = [
-	\ {'G': ['Git Modified Files', ':GitModified']},
-	\ {'x': ['Explorer', ':NnnPicker']},
+	\ {'*': ['Git Modified Files', ':GitModified']},
 	\ {'f': ['Search Files', ':Files']},
-	\ {'g': ['Search GitHub Files', ':GFiles']},
+	\ {'F': ['Search GitHub Files', ':GFiles']},
 	\ {'T': ['Open Terminal', ':terminal $SHELL']},
 	\ ]
 """</Start page>"""
