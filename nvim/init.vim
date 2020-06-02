@@ -35,6 +35,7 @@ Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
+Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -216,9 +217,10 @@ let g:expand_region_text_objects = {
       \ 'iw'  :0,
       \ 'iW'  :0,
       \ 'V'  :1,
-      \ 'is'  :1,
-      \ 'ip'  :1,
       \ 'it'  :1,
+      \ 'if'  :1,
+      \ 'ic'  :1,
+      \ 'ip'  :1,
       \ 'i"'  :1,
       \ 'i''' :1,
       \ 'i]'  :1,
