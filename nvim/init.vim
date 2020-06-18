@@ -50,6 +50,7 @@ call plug#end()
 
 """<Custom settings>"""
 " Basic config
+set noautochdir  " Don't change directory when opening a file
 set nu relativenumber  " No need to count lines from current position
 set autoread  " Auto reload when file changes
 set notagrelative  " Use full file path when generating tags
