@@ -161,7 +161,7 @@ vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 """<Tagbar: tagbar>"""
 nnoremap <silent> \\ :TagbarToggle<CR>
-autocmd BufNewFile,BufRead * :call tagbar#autoopen()
+" autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
 
 """<Tree view: nerdtree>"""
