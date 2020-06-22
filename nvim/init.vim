@@ -87,6 +87,8 @@ inoremap <silent> <c-a> <ESC>I
 inoremap <silent> <c-e> <ESC>A
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
+nnoremap <silent> <a-s-right> :tabm +1<CR>
+nnoremap <silent> <a-s-left> :tabm -1<CR>
 
 " For terminal mode
 tnoremap <c-\><c-\> <c-\><c-n>
@@ -105,6 +107,9 @@ command GitModified :args `git diff --name-only origin/master; git ls-files --ot
 
 " Python development
 command SetupPythonProject :exec(":!pip install pynvim pylint mypy autopep8 black")
+
+" Markdown
+autocmd FileType md setlocal ts=2 sts=2 sw=2 expandtab
 
 " JavaScript development
 autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
