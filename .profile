@@ -34,6 +34,7 @@ alias nixd="launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist && 
 # Getting rusty
 alias cat="bat"
 alias ls="lsd"
+alias m="mind"
 
 # export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 
