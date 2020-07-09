@@ -48,5 +48,5 @@ eval "$(pyenv virtualenv-init -)"
 source $HOME/.poetry/env
 
 [[ -r /usr/local/etc/profile.d/bash_completion.sh  ]] && . /usr/local/etc/profile.d/bash_completion.sh
-[[ -r /Users/sayan/.nix-profile/etc/profile.d/nix.sh ]] && . /Users/sayan/.nix-profile/etc/profile.d/nix.sh
-[[ -r /Users/sayan/Library/Preferences/org.dystroy.broot/launcher/bash/br ]] && . /Users/sayan/Library/Preferences/org.dystroy.broot/launcher/bash/br
+[[ -r "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+[[ -r "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br" ]] && . "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
