@@ -36,6 +36,7 @@ Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
+Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -166,6 +167,19 @@ vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 """<Tagbar: tagbar>"""
 nnoremap <silent> \\ :TagbarToggle<CR>
+
+let g:tagbar_type_elm = {
+      \ 'kinds' : [
+      \ 'f:function:0:0',
+      \ 'm:modules:0:0',
+      \ 'i:imports:1:0',
+      \ 't:types:1:0',
+      \ 'a:type aliases:0:0',
+      \ 'c:type constructors:0:0',
+      \ 'p:ports:0:0',
+      \ 's:functions:0:0',
+      \ ]
+      \}
 " autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
 
