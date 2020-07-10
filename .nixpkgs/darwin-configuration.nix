@@ -10,7 +10,13 @@
       pkgs.yarn
       pkgs.urlview
       pkgs.tmux
+      pkgs.bat
+      pkgs.lsd
+      pkgs.sysctl
     ];
+
+  # https://github.com/NixOS/nixpkgs/issues/5713#issuecomment-69523355
+  programs.zsh.enable = true;
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
@@ -34,4 +40,5 @@
   nix.maxJobs = 1;
   nix.buildCores = 1;
   nix.useDaemon = true;
+  nix.useSandbox = false;
 }
