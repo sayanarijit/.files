@@ -16,7 +16,6 @@
     ];
 
   # https://github.com/NixOS/nixpkgs/issues/5713#issuecomment-69523355
-  programs.zsh.enable = true;
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
@@ -24,11 +23,11 @@
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
+  nix.package = pkgs.nix;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.bash.enable = true;
-  # programs.zsh.enable = true;
+  # programs.bash.enable = true;
+  programs.zsh.enable = true;
   # programs.fish.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
@@ -39,6 +38,6 @@
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 1;
   nix.buildCores = 1;
-  nix.useDaemon = true;
+  nix.useDaemon = false;
   nix.useSandbox = false;
 }

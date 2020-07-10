@@ -10,6 +10,9 @@ NOW = $(shell date)
 .PHONY: all
 all: brew zsh tmux git pyenv profile vim nvim
 
+nix:
+	@sh <(curl -L https://nixos.org/nix/install) --no-daemon --darwin-use-unencrypted-nix-store-volume
+
 ~/.nixpkgs:
 	@ln -sf "${PWD}/.nixpkgs" ~/.nixpkgs
 
