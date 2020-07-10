@@ -3,6 +3,7 @@ export PATH="$PATH:$HOME/eclipse/jee-2018-12/Eclipse.app/Contents/MacOS:$HOME/Li
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.bin"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/run/current-system/sw/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export LANG=en_US
