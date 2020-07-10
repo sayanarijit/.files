@@ -41,8 +41,6 @@
       pkgs.tmuxPlugins.fzf-tmux-url
     ];
 
-  # https://github.com/NixOS/nixpkgs/issues/5713#issuecomment-69523355
-
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
   # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
