@@ -10,6 +10,9 @@ NOW = $(shell date)
 .PHONY: all
 all: brew zsh tmux git pyenv profile vim nvim
 
+~/.nixpkgs:
+	@ln -sf "${PWD}/.nixpkgs" ~/.nixpkgs
+
 .PHONY: brew
 brew: ${BREW}
 ${BREW}:
