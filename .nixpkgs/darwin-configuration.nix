@@ -90,5 +90,5 @@ set -ga terminal-overrides ",xterm-256color:Tc"
   nix.maxJobs = 1;
   nix.buildCores = 1;
   nix.useDaemon = false;
-  nix.useSandbox = false;
+  nix.useSandbox = true;
 }
