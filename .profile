@@ -1,5 +1,5 @@
 # export PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/postgresql@9.6/bin:/usr/local/sbin:/usr/local/bin:$PATH"
-export PATH="$PATH:$HOME/eclipse/jee-2018-12/Eclipse.app/Contents/MacOS:$HOME/Library/Python/3.6/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.npm-global/bin:/Applications/Firefox Developer Edition.app/Contents/MacOS"
+export PATH="$PATH:/usr/local/bin:$HOME/eclipse/jee-2018-12/Eclipse.app/Contents/MacOS:$HOME/Library/Python/3.6/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.npm-global/bin:/Applications/Firefox Developer Edition.app/Contents/MacOS"
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # export PATH="$PATH:$HOME/.bin"
 # export PATH="/usr/local/opt/ncurses/bin:$PATH"
@@ -48,6 +48,12 @@ eval $(thefuck --alias)
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 source $HOME/.poetry/env
+
+
+function paste() {
+    local file=${1:-/dev/stdin}
+    curl --data-binary @${file} https://paste.rs
+}
 
 [[ -r /usr/local/etc/profile.d/bash_completion.sh  ]] && . /usr/local/etc/profile.d/bash_completion.sh
 [[ -r "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br" ]] && . "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
