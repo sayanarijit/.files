@@ -1,6 +1,26 @@
 { config, pkgs, ... }:
 
 {
+  # Allow licensed binaries
+  nixpkgs.config.allowUnfree = true;
+
+  # make sure firewall is up & running
+  system.defaults.alf.globalstate = 1;
+  system.defaults.alf.stealthenabled = 1;
+
+  # Personalization
+  networking.hostName = "saber";
+  system.defaults.dock.autohide = true;
+  system.defaults.dock.orientation = "right";
+  system.defaults.dock.tilesize = 0;
+  system.defaults.finder._FXShowPosixPathInTitle = true;
+  system.defaults.finder.AppleShowAllExtensions = true;
+  system.defaults.loginwindow.GuestEnabled = true;
+  system.defaults.trackpad.FirstClickThreshold = 0;
+  system.defaults.trackpad.SecondClickThreshold = 0;
+  system.keyboard.enableKeyMapping = true;
+  # system.defaults.screencapture.disable-shadow = true;
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
@@ -38,6 +58,11 @@
       pkgs.circleci-cli  # CircleCI CLI
       pkgs.bash-completion
       pkgs.asciinema  # Terminal session recorder
+      pkgs.ngrok
+      pkgs.gitAndTools.diff-so-fancy
+      pkgs.tldr
+      pkgs.unrar
+      pkgs.curl
       pkgs.tmuxPlugins.fzf-tmux-url
     ];
 
