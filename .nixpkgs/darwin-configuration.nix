@@ -20,6 +20,7 @@
   system.defaults.trackpad.SecondClickThreshold = 0;
   system.keyboard.enableKeyMapping = true;
   # system.defaults.screencapture.disable-shadow = true;
+  system.keyboard.remapCapsLockToEscape = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
