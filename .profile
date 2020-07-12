@@ -50,6 +50,5 @@ eval "$(pyenv virtualenv-init -)"
 source $HOME/.poetry/env
 
 [[ -r /usr/local/etc/profile.d/bash_completion.sh  ]] && . /usr/local/etc/profile.d/bash_completion.sh
-[[ -r "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 [[ -r "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br" ]] && . "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
-if [ -e /Users/sayan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/sayan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+[[ -r "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
