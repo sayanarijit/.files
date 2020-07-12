@@ -61,7 +61,12 @@
       pkgs.tldr
       pkgs.unrar
       pkgs.curl
+      pkgs.yarn
+      pkgs.nodejs
       pkgs.tmuxPlugins.fzf-tmux-url
+      pkgs.alacritty
+      pkgs.bandwhich
+      pkgs.gitAndTools.delta
     ];
 
   # Use a custom configuration.nix location.

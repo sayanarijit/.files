@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # vi mode
 # bindkey -v
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 # export LANG=de_AT.UTF-8
@@ -117,7 +117,7 @@ HEROKU_AC_ZSH_SETUP_PATH=/Users/$USER/Library/Caches/heroku/autocomplete/zsh_set
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # # Automatically activate virtualenv
 # if [ -n "$VIRTUAL_ENV" ]; then
