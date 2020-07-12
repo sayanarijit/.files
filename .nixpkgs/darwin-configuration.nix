@@ -28,11 +28,9 @@
     [
       pkgs.vim
       pkgs.neovim  # vscode replacement
-      pkgs.yarn
       pkgs.bat  # cat replacement
       pkgs.lsd  # ls replacement
       pkgs.sysctl
-      pkgs.yarn
       pkgs.xz
       pkgs.thefuck  # fuck: correct previous command
       pkgs.telnet
@@ -44,7 +42,6 @@
       pkgs.pandoc  # File converter
       pkgs.p11-kit  # Terminal colors
       pkgs.openssl
-      pkgs.nodejs
       pkgs.nnn  # Terminal file browser
       pkgs.cachix
       pkgs.ncdu  # Disk utilization viewer
