@@ -78,6 +78,7 @@
       pkgs.tmuxPlugins.fzf-tmux-url
       pkgs.tmuxPlugins.fpp
       pkgs.tmuxPlugins.resurrect
+      pkgs.tmuxPlugins.copycat
       pkgs.alacritty
       pkgs.bandwhich
       pkgs.gitAndTools.delta
@@ -116,6 +117,7 @@
       run-shell ${pkgs.tmuxPlugins.fzf-tmux-url}/share/tmux-plugins/fzf-tmux-url/fzf-url.tmux
       run-shell ${pkgs.tmuxPlugins.fpp}/share/tmux-plugins/fpp/fpp.tmux
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
+      run-shell ${pkgs.tmuxPlugins.copycat}/share/tmux-plugins/copycat/copycat.tmux
     '';
   };
 }
