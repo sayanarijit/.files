@@ -1,14 +1,13 @@
 BREW = $(which brew || echo NOT_INSTALLED)
 GIT = $(which git || echo NOT_INSTALLED)
 PYTHON = $(which python || echo NOT_INSTALLED)
-TMUX = $(which tmux || echo NOT_INSTALLED)
 VIM = $(which vim || echo NOT_INSTALLED)
 NVIM = $(which nvim || echo NOT_INSTALLED)
 ZSH = $(which zsh || echo NOT_INSTALLED)
 NOW = $(shell date)
 
 .PHONY: all
-all: brew zsh tmux git pyenv profile vim nvim
+all: brew zsh  git pyenv profile vim nvim
 
 nix:
 	@sh <(curl -L https://nixos.org/nix/install) --no-daemon --darwin-use-unencrypted-nix-store-volume
@@ -36,16 +35,6 @@ ${ZSH}: ${BREW}
 # ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: ~/.oh-my-zsh
 # 	@git clone https://github.com/zsh-users/zsh-syntax-highlighting $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-
-.PHONY: tmux
-tmux: ${TMUX} ~/.tmux.conf ~/.tmux/plugins/tpm
-${TMUX}: ${BREW}
-	@brew install tmux
-	@tmux source ~/.tmux.conf
-~/.tmux.conf: .tmux.conf
-	@ln -sf "${PWD}/.tmux.conf" ~/.tmux.conf
-~/.tmux/plugins/tpm: ${GIT}
-	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 .PHONY: git
 git: ${GIT}

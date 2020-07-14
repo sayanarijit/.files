@@ -63,7 +63,10 @@
       pkgs.curl
       pkgs.yarn
       pkgs.nodejs
+      pkgs.fzf
       pkgs.tmuxPlugins.fzf-tmux-url
+      pkgs.tmuxPlugins.fpp
+      pkgs.tmuxPlugins.resurrect
       pkgs.alacritty
       pkgs.bandwhich
       pkgs.gitAndTools.delta
@@ -85,25 +88,26 @@
   programs.tmux = {
     enable = true;
     extraConfig = ''
-# List of plugins
-set -g @plugin 'odedlaz/tmux-onedark-theme'
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-# set -g @plugin 'tmux-plugins/tmux-urlview'
-set -g @plugin 'wfxr/tmux-fzf-url'
+      set -s escape-time 0
+      set -g status-interval 5
+      set -g utf8 on
+      set -g default-command "reattach-to-user-namespace -l $SHELL"
+      set -g status-keys emacs
+      set -g focus-events on
+      set -g status-utf8 on
+      set -g history-limit 50000
+      set -g default-terminal "screen-256color"
+      set -ga terminal-overrides ",xterm-256color:Tc"
+      setw -g aggressive-resize on
+      
+      set-option -g mouse on
+      
+      # set-option -g prefix C-Space
+      # bind C-Space send-prefix
 
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'git@github.com/user/plugin'
-# set -g @plugin 'git@bitbucket.com/user/plugin'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run -b '~/.tmux/plugins/tpm/tpm'
-
-set-option -g mouse on
-set -ga terminal-overrides ",xterm-256color:Tc"
-# set-option -g prefix C-Space
-# bind C-Space send-prefix
+      run-shell ${pkgs.tmuxPlugins.fzf-tmux-url}/share/tmux-plugins/fzf-tmux-url/fzf-url.tmux
+      run-shell ${pkgs.tmuxPlugins.fpp}/share/tmux-plugins/fpp/fpp.tmux
+      run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
     '';
   };
 

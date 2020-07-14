@@ -59,6 +59,7 @@ set showtabline=2  " Show tabname even if only one file is open
 set scrolloff=5  " Keep some space while scrolling vertically
 set splitbelow  " Opens new hsplits below the current window
 set splitright  " Opens new vsplits right side of the current window
+set lazyredraw  " Prevent screen flickering when opening vim inside vim
 
 " GUI features
 set mouse=a  " By default mouse is activated
