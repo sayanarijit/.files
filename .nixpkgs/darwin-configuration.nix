@@ -1,6 +1,17 @@
 { config, pkgs, ... }:
 
 {
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 4;
+
+  # You should generally set this to the total number of logical cores in your system.
+  # $ sysctl -n hw.ncpu
+  nix.maxJobs = 1;
+  nix.buildCores = 1;
+  nix.useDaemon = false;
+  nix.useSandbox = false;
+
   # Allow licensed binaries
   nixpkgs.config.allowUnfree = true;
 
@@ -90,11 +101,8 @@
     extraConfig = ''
       set -s escape-time 0
       set -g status-interval 5
-      set -g utf8 on
-      set -g default-command "reattach-to-user-namespace -l $SHELL"
       set -g status-keys emacs
       set -g focus-events on
-      set -g status-utf8 on
       set -g history-limit 50000
       set -g default-terminal "screen-256color"
       set -ga terminal-overrides ",xterm-256color:Tc"
@@ -110,15 +118,4 @@
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
     '';
   };
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
-
-  # You should generally set this to the total number of logical cores in your system.
-  # $ sysctl -n hw.ncpu
-  nix.maxJobs = 1;
-  nix.buildCores = 1;
-  nix.useDaemon = false;
-  nix.useSandbox = false;
 }
