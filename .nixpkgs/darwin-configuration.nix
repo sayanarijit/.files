@@ -75,6 +75,7 @@
       pkgs.yarn
       pkgs.nodejs
       pkgs.fzf
+      pkgs.tmuxinator
       pkgs.tmuxPlugins.fzf-tmux-url
       pkgs.tmuxPlugins.fpp
       pkgs.tmuxPlugins.resurrect

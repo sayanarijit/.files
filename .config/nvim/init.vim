@@ -36,6 +36,8 @@ Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
+Plug 'ElmCast/elm-vim'  " Elm support
+Plug 'bitterjug/vim-tagbar-ctags-elm'  " Elm tagbar support
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
@@ -165,6 +167,9 @@ endfunction
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 """"</Auto completion>"""
 
+"""<elm-vim>"""
+let g:elm_setup_keybindings = 0
+"""</elm-vim>"""
 
 """<Tagbar: tagbar>"""
 nnoremap <silent> \\ :TagbarToggle<CR>
