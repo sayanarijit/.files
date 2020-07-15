@@ -39,6 +39,8 @@ Plug 'vim-scripts/haproxy'  " syntax for haproxy
 Plug 'ElmCast/elm-vim'  " Elm support
 Plug 'bitterjug/vim-tagbar-ctags-elm'  " Elm tagbar support
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
+Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
+Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
