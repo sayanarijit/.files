@@ -78,7 +78,7 @@ set nofoldenable
 set foldlevel=2
 
 " NeoVim configuration
-command Config :tabnew ~/.files/nvim/init.vim
+command Config :tabnew ~/.files/.config/nvim/init.vim
 
 " tags
 set tags=.vim/tags  " Where to store tags file
