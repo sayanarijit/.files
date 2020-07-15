@@ -50,7 +50,6 @@ windows:
       # synchronize: after
       panes:
         - "kai && nvim"
-        - "kaif && make run"
         - "kaib && make run"
         - "kaib && make db"
   - server: "kaib && make up"
