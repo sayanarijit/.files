@@ -44,13 +44,13 @@ root: ~/
 
 windows:
   - editor:
-      layout: main-vertical
+      layout: main-horizontal
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - "kaib && nvim"
-        - "kaib && make db"
-        - "kaib && make run"
         - "kaif && make run"
-  - server: make up
+        - "kaib && make run"
+        - "kaib && make db"
+  - server: "kaib && make up"
