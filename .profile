@@ -1,8 +1,6 @@
-# export PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/postgresql@9.6/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 export PATH="$PATH:/usr/local/bin:$HOME/eclipse/jee-2018-12/Eclipse.app/Contents/MacOS:$HOME/Library/Python/3.6/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.npm-global/bin:/Applications/Firefox Developer Edition.app/Contents/MacOS"
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# export PATH="$PATH:$HOME/.bin"
-# export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/.bin"
 export PATH="/run/current-system/sw/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced

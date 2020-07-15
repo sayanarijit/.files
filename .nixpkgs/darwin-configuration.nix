@@ -114,6 +114,8 @@
       # set-option -g prefix C-Space
       # bind C-Space send-prefix
 
+      bind-key w run -b ftwind  # ~/.bin/ftwind
+
       run-shell ${pkgs.tmuxPlugins.fzf-tmux-url}/share/tmux-plugins/fzf-tmux-url/fzf-url.tmux
       run-shell ${pkgs.tmuxPlugins.fpp}/share/tmux-plugins/fpp/fpp.tmux
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
