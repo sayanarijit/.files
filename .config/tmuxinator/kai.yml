@@ -52,6 +52,7 @@ windows:
         - "kai && nvim"
         - "kaib && make db && make run"
         - "kaib"
-  - pshell: "kaib && make pshell"
+  - shell: "kaib"
+  - pshell: "kaib && sleep 10 && make pshell"
   - pgcli: "kaib && make pgcli"
   - docker: "kaib && make up"
