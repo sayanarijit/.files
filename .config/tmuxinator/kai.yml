@@ -52,4 +52,6 @@ windows:
         - "kai && nvim"
         - "kaib && make db && make run"
         - "kaib"
-  - server: "kaib && make up"
+  - pshell: "kaib && make pshell"
+  - pgcli: "kaib && make pgcli"
+  - docker: "kaib && make up"
