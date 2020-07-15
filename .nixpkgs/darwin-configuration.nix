@@ -35,54 +35,53 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
-      pkgs.vim
-      pkgs.neovim  # vscode replacement
-      pkgs.bat  # cat replacement
-      pkgs.lsd  # ls replacement
-      pkgs.sysctl
-      pkgs.xz
-      pkgs.thefuck  # fuck: correct previous command
-      pkgs.telnet
-      pkgs.sqlite
-      pkgs.skim  # scim: fzf alternative in rust
-      pkgs.scim  # sk: spreadsheet
-      pkgs.readline
-      pkgs.pgcli  # postgres cli
-      pkgs.pandoc  # File converter
-      pkgs.p11-kit  # Terminal colors
-      pkgs.openssl
-      pkgs.nnn  # Terminal file browser
-      pkgs.cachix
-      pkgs.ncdu  # Disk utilization viewer
-      pkgs.jq  # JSON viewer
-      pkgs.httpie  # curl replacement
-      pkgs.heroku  # Heroku CLI
-      pkgs.git
-      pkgs.findutils  # find replacement for mac
-      pkgs.direnv  # ENV loader for projects
-      pkgs.ctags  # Tags creator for vim
-      pkgs.coreutils  # GNU coreutils
-      pkgs.circleci-cli  # CircleCI CLI
-      pkgs.bash-completion
-      pkgs.asciinema  # Terminal session recorder
-      pkgs.ngrok
-      pkgs.gitAndTools.diff-so-fancy
-      pkgs.tldr
-      pkgs.unrar
-      pkgs.curl
-      pkgs.yarn
-      pkgs.nodejs
-      pkgs.fzf
-      pkgs.tmuxinator
-      pkgs.tmuxPlugins.fzf-tmux-url
-      pkgs.tmuxPlugins.fpp
-      pkgs.tmuxPlugins.resurrect
-      pkgs.tmuxPlugins.copycat
-      pkgs.alacritty
-      pkgs.bandwhich
-      pkgs.gitAndTools.delta
+  environment.systemPackages = with pkgs; [
+      vim
+      neovim  # vscode replacement
+      bat  # cat replacement
+      lsd  # ls replacement
+      sysctl
+      xz
+      thefuck  # fuck: correct previous command
+      telnet
+      sqlite
+      skim  # scim: fzf alternative in rust
+      scim  # sk: spreadsheet
+      readline
+      pgcli  # postgres cli
+      pandoc  # File converter
+      p11-kit  # Terminal colors
+      openssl
+      nnn  # Terminal file browser
+      cachix
+      ncdu  # Disk utilization viewer
+      jq  # JSON viewer
+      httpie  # curl replacement
+      heroku  # Heroku CLI
+      git
+      findutils  # find replacement for mac
+      direnv  # ENV loader for projects
+      ctags  # Tags creator for vim
+      coreutils  # GNU coreutils
+      circleci-cli  # CircleCI CLI
+      bash-completion
+      asciinema  # Terminal session recorder
+      ngrok
+      gitAndTools.diff-so-fancy
+      tldr
+      unrar
+      curl
+      yarn
+      nodejs
+      fzf
+      tmuxinator
+      tmuxPlugins.fzf-tmux-url
+      tmuxPlugins.fpp
+      tmuxPlugins.resurrect
+      tmuxPlugins.copycat
+      alacritty
+      bandwhich
+      gitAndTools.delta
     ];
 
   # Use a custom configuration.nix location.
