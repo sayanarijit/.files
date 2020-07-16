@@ -77,6 +77,7 @@
       tmuxinator
       tmuxPlugins.fzf-tmux-url
       tmuxPlugins.fpp
+      tmuxPlugins.gruvbox
       tmuxPlugins.resurrect
       tmuxPlugins.copycat
       alacritty
@@ -114,12 +115,13 @@
       # set-option -g prefix C-Space
       # bind C-Space send-prefix
 
-      bind-key w run -b ftwind  # ~/.bin/ftwind
+      bind-key C-b run -b ftwind  # ~/.bin/ftwind
 
       run-shell ${pkgs.tmuxPlugins.fzf-tmux-url}/share/tmux-plugins/fzf-tmux-url/fzf-url.tmux
       run-shell ${pkgs.tmuxPlugins.fpp}/share/tmux-plugins/fpp/fpp.tmux
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
       run-shell ${pkgs.tmuxPlugins.copycat}/share/tmux-plugins/copycat/copycat.tmux
+      run-shell ${pkgs.tmuxPlugins.gruvbox}/share/tmux-plugins/gruvbox/gruvbox-tpm.tmux
     '';
   };
 }
