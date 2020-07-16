@@ -53,6 +53,6 @@ windows:
         - "kaib && make db && make run"
         - "kaib"
   - shell: "kaib"
-  - pshell: "kaib && make wait-for-db && sleep 5 && make pshell"
+  - pshell: "kaib && sleep 15 && make pshell"
   - pgcli: "kaib && make pgcli"
   - docker: "kaib && make up"
