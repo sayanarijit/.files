@@ -74,6 +74,7 @@
       yarn
       nodejs
       fzf
+      aria2
       tmuxinator
       tmuxPlugins.fzf-tmux-url
       tmuxPlugins.fpp
@@ -83,6 +84,7 @@
       alacritty
       bandwhich
       gitAndTools.delta
+      jpegoptim
     ];
 
   # Use a custom configuration.nix location.
