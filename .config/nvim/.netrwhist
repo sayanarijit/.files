@@ -1,12 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/Users/sayan/Documents/GitHub/localizations/.github/workflows'
+let g:netrw_dirhist_6='/Users/sayan/Documents/GitHub/localizations/.github'
+let g:netrw_dirhist_5='/Users/sayan/Documents/GitHub/localizations/.github/workflows'
+let g:netrw_dirhist_4='/Users/sayan/Documents/GitHub/localizations/.github'
 let g:netrw_dirhist_3='/Users/sayan/Documents/GitHub/ebn-haproxy-tests/.git'
 let g:netrw_dirhist_2='/Users/sayan/Documents/GitHub/viper/viper'
 let g:netrw_dirhist_1='/Users/sayan/Documents/GitHub/ebn/src/ebn/templates/blog'
 let g:netrw_dirhist_0='/Users/sayan/Documents/GitHub/ebn'
 let g:netrw_dirhist_9='/Users/sayan/Documents/GitHub/ebn/apidocs'
 let g:netrw_dirhist_8='/Users/sayan'
-let g:netrw_dirhist_7='/Users/sayan/Documents/GitHub/termpixels'
-let g:netrw_dirhist_6='/Users/sayan'
-let g:netrw_dirhist_5='/Users/sayan/.files'
-let g:netrw_dirhist_4='/Users/sayan/.files/nvim'
