@@ -5,8 +5,10 @@ set rtp +=~/.vim
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at top)
 Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'vim-airline/vim-airline'  " make statusline awesome
+" Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
 Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 Plug 'tpope/vim-commentary'  "comment-out by gc
@@ -41,7 +43,9 @@ Plug 'bitterjug/vim-tagbar-ctags-elm'  " Elm tagbar support
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
 Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
+Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Semantic Highlighting for Python in Neovim
+Plug 'ap/vim-css-color'
 " Plug 'wakatime/vim-wakatime'  " The open source plugin for productivity metrics, goals, leaderboards, and automatic time tracking.
 " Plug 'lotabout/skim.vim'
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
@@ -335,6 +339,12 @@ let g:which_key_map.a.p = {
 let g:which_key_map.a.p.s = {
 	\ 'name' : '+setup',
 	\ 'p' : [':SetupPythonProject', 'python'],
+	\ }
+
+let g:which_key_map.a.s = {
+	\ 'name' : '+splitjoin',
+	\ 's' : ['gS', 'split line'],
+	\ 'j' : ['gJ', 'join lines'],
 	\ }
 
 " f for find word

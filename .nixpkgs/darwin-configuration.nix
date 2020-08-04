@@ -85,6 +85,8 @@
       bandwhich
       gitAndTools.delta
       jpegoptim
+      pstree
+      ffmpeg
     ];
 
   # Use a custom configuration.nix location.

@@ -1,6 +1,7 @@
 [user]
 	email = sayanarijit@gmail.com
 	name = Arijit Basu
+	signingkey = A3585E2E7A6EE457
 
 [core]
 	pager = delta
