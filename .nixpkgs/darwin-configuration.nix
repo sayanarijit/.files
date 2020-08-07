@@ -45,8 +45,8 @@
       thefuck  # fuck: correct previous command
       telnet
       sqlite
-      skim  # scim: fzf alternative in rust
-      scim  # sk: spreadsheet
+      skim  # sk: fzf alternative in rust
+      scim  # spreadsheet
       readline
       pgcli  # postgres cli
       pandoc  # File converter
