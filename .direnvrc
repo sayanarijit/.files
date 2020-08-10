@@ -1,0 +1,3 @@
+if [ -f /run/current-system/sw/share/nix-direnv/direnvrc ]; then
+  source /run/current-system/sw/share/nix-direnv/direnvrc
+fi

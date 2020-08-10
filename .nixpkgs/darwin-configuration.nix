@@ -87,6 +87,7 @@
       jpegoptim
       pstree
       ffmpeg
+      nix-direnv
     ];
 
   # Use a custom configuration.nix location.
@@ -95,7 +96,13 @@
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
+  nix = {
+    package = pkgs.nix;
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+  };
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   # programs.bash.enable = true;
