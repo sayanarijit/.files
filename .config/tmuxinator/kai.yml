@@ -50,10 +50,10 @@ windows:
       # synchronize: after
       panes:
         - "kaib && nvim"
-        - "kaib && make db && make run"
+        - "kaib && while ! make db; do sleep 1; done && make run"
         - "kaib"
   - shell: "kaib"
-  - worker: "kaib && sleep 15 && make worker"
-  - pshell: "kaib && sleep 15 && make pshell"
-  - pgcli: "kaib && make pgcli"
-  - docker: "kaib && make up"
+  - worker: "kaib && while ! make worker; do sleep 1; done"
+  - pshell: "kaib && while ! make pshell; do sleep 1; done"
+  - pgcli: "kaib && while ! make pgcli; do sleep 1; done"
+  - docker: "kaib && while ! make up; do sleep 1; done"
