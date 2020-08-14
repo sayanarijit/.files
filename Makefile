@@ -1,11 +1,9 @@
 .PHONY: all
 all:
         curl -L https://nixos.org/nix/install | sh
+	for f in $(ls -d .*); do [ -f $f ] && ln -s $f ~/; done
         mkdir ~/.config || true
-	ln -s .nixpkgs ~/
-	ln -s .profile ~/
-	ln -s .direnvrc ~/
-	ln -s .zshrc ~/
+	for d in $(ls -d .config/*); do [ -d $d ] && ln -s .config/$d ~/.config/; done
 	ln -s .config/alacritty ~/.config/
 	ln -s .config/nvim ~/.config/
 	ln -s .config/tmunixnator ~/.config/
