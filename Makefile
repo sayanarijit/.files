@@ -2,6 +2,8 @@
 all:
 	curl -L https://nixos.org/nix/install | sh
 	for f in $(ls -d .*); do [ -f $f ] && ln -s $f ~/; done
+	ln -s .bin ~/
+	ln -s .nixpkgs ~/
 	mkdir ~/.config || true
 	for d in $(ls -d .config/*); do [ -d .config/$d ] && ln -s .config/$d ~/.config/; done
 	source ~/.profile
