@@ -29,7 +29,6 @@ alias kai="cd ~/Documents/GitHub/kai-app"
 alias kaib="cd ~/Documents/GitHub/kai-app/backend"
 alias kaif="cd ~/Documents/GitHub/kai-app/frontend"
 
-alias ctags="`brew --prefix`/bin/ctags"
 alias vim="nvim"
 
 alias nixd="launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist && launchctl start org.nixos.nix-daemon"

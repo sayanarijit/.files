@@ -35,7 +35,7 @@
 		"jinja2",
 		"pt"
 	],
-	"codeLens.enable": true,
+	"codeLens.enable": false,
 	"languageserver": {
 		"elmLS": {
 			"command": "elm-language-server",

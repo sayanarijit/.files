@@ -39,7 +39,6 @@ Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
 Plug 'ElmCast/elm-vim'  " Elm support
-Plug 'bitterjug/vim-tagbar-ctags-elm'  " Elm tagbar support
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
 Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
@@ -70,6 +69,7 @@ set scrolloff=5  " Keep some space while scrolling vertically
 set splitbelow  " Opens new hsplits below the current window
 set splitright  " Opens new vsplits right side of the current window
 set lazyredraw  " Prevent screen flickering when opening vim inside vim
+set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 
 " GUI features
 set mouse=a  " By default mouse is activated
@@ -133,6 +133,9 @@ autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
 " I forgot what it is
 autocmd QuickFixCmdPost *grep* cwindow
 
+" Elm
+autocmd FileType md setlocal ts=2 sts=2 sw=2 expandtab
+
 " HTML and HTML templates
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType pt setlocal ts=2 sts=2 sw=2 expandtab
@@ -181,19 +184,15 @@ let g:elm_setup_keybindings = 0
 
 """<Tagbar: tagbar>"""
 nnoremap <silent> \\ :TagbarToggle<CR>
-
 let g:tagbar_type_elm = {
-      \ 'kinds' : [
-      \ 'f:function:0:0',
-      \ 'm:modules:0:0',
-      \ 'i:imports:1:0',
-      \ 't:types:1:0',
-      \ 'a:type aliases:0:0',
-      \ 'c:type constructors:0:0',
-      \ 'p:ports:0:0',
-      \ 's:functions:0:0',
-      \ ]
-      \}
+          \   'ctagstype':'elm'
+          \ , 'kinds':['h:header', 'i:import', 't:type', 'f:function', 'e:exposing']
+          \ , 'sro':'&&&'
+          \ , 'kind2scope':{ 'h':'header', 'i':'import'}
+          \ , 'sort':0
+          \ , 'ctagsbin':'~/.bin/elmtags.py'
+          \ , 'ctagsargs': ''
+          \ }
 " autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
 

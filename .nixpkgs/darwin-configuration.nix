@@ -61,7 +61,7 @@
       git
       findutils  # find replacement for mac
       direnv  # ENV loader for projects
-      ctags  # Tags creator for vim
+      universal-ctags  # Tags creator for vim
       coreutils  # GNU coreutils
       circleci-cli  # CircleCI CLI
       bash-completion
@@ -88,6 +88,10 @@
       pstree
       ffmpeg
       nix-direnv
+      elmPackages.elm
+      elmPackages.elm-test
+      elmPackages.elm-language-server
+      elmPackages.elm-format
     ];
 
   # Use a custom configuration.nix location.
