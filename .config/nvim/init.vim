@@ -38,7 +38,6 @@ Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
-Plug 'ElmCast/elm-vim'  " Elm support
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
 Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
