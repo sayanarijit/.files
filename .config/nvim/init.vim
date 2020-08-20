@@ -263,6 +263,10 @@ let g:expand_region_text_objects = {
       \ }
 """</Expand Region>"""
 
+"""<Fuzzy search: fzf>"""
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+"""</FUzzy search>"""
+
 """<File Manager: nnn>"""
 let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
 let g:nnn#action = {
