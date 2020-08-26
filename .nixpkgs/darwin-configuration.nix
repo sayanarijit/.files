@@ -92,7 +92,19 @@
       elmPackages.elm-test
       elmPackages.elm-language-server
       elmPackages.elm-format
+      starship
     ];
+
+    fonts = {
+      enableFontDir = true;
+      fonts = with pkgs; [
+        (nerdfonts.override {
+          fonts = [ 
+            "FiraCode"
+          ];
+        })
+      ];
+    };
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
@@ -110,7 +122,21 @@
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   # programs.bash.enable = true;
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableFzfCompletion = true;
+    enableFzfGit = true;
+    enableFzfHistory = true;
+    enableSyntaxHighlighting = true;
+    promptInit = "";
+    shellInit = ''
+      eval "$(direnv hook zsh)"
+      eval "$(starship init zsh)"
+    '';
+    loginShellInit = ''
+      [ -f ~/.profile ] && source ~/.profile
+    '';
+  };
   # programs.fish.enable = true;
   
   programs.tmux = {

@@ -19,6 +19,8 @@ export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
 
 alias dotsync="(cd ~/.files && make sync)"
 
+alias ~="cd"
+alias ..="cd .."
 alias venv="virtualenv .venv && activate"
 alias activate="source .venv/bin/activate"
 alias reactivate="deactivate && activate"
