@@ -129,7 +129,7 @@
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
     promptInit = "";
-    shellInit = ''
+    interactiveShellInit = ''
       eval "$(direnv hook zsh)"
       eval "$(starship init zsh)"
     '';
