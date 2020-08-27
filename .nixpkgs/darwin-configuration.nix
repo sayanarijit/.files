@@ -93,6 +93,7 @@
       elmPackages.elm-language-server
       elmPackages.elm-format
       starship
+      zsh-autosuggestions
     ];
 
     fonts = {
@@ -129,9 +130,8 @@
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
     promptInit = "";
-    interactiveShellInit = ''
-      eval "$(direnv hook zsh)"
-      eval "$(starship init zsh)"
+    interactiveShellInit = (builtins.readFile ./zshrc) + ''
+      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     '';
     loginShellInit = ''
       [ -f ~/.profile ] && source ~/.profile
@@ -150,9 +150,9 @@
       set -g default-terminal "screen-256color"
       set -ga terminal-overrides ",xterm-256color:Tc"
       setw -g aggressive-resize on
-      
+
       set-option -g mouse on
-      
+
       # set-option -g prefix C-Space
       # bind C-Space send-prefix
 
