@@ -1,5 +1,21 @@
 { config, pkgs, ... }:
 
+let
+  nvim-nightly = pkgs.stdenv.mkDerivation {
+    name = "nvim-nightly";
+    src = pkgs.fetchurl {
+      url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz";
+      sha256 = "1ckf02gbalb7hd62bx2rx387j0cdjff2cyfmgg1jqxn2mbjzxr7b";
+    };
+    phases = ["installPhase" "patchPhase"];
+    installPhase = ''
+      tar xzvf $src
+      mkdir -p $out
+      mv nvim-osx64/* $out/
+    '';
+  };
+
+in
 {
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -36,8 +52,16 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-      vim
-      neovim  # vscode replacement
+      niv  #  Easy dependency management for Nix projects
+      # neovim  # vscode replacement (I'll use the HEAD for now)
+      nvim-nightly
+      (python38.withPackages (ps: with ps; [
+        pynvim
+        black
+        mypy
+        flake8
+        autopep8
+      ]))
       bat  # cat replacement
       lsd  # ls replacement
       sysctl

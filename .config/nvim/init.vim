@@ -5,6 +5,9 @@ set rtp +=~/.vim
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
+Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
 Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at top)
 Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -14,7 +17,7 @@ Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 Plug 'tpope/vim-commentary'  "comment-out by gc
 Plug 'ncm2/ncm2-path'  " filepath completion
 " Plug 'kien/ctrlp.vim'  " fuzzy search files
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
 Plug 'craigemery/vim-autotag'  " Update tags
 Plug 'tpope/vim-fugitive'  " Git integration
 Plug 'janko-m/vim-test'  " Test runner
@@ -22,8 +25,8 @@ Plug 'janko-m/vim-test'  " Test runner
 Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
-Plug 'fatih/vim-go'  " Go development
-Plug 'rust-lang/rust.vim'  " Rust development
+" Plug 'fatih/vim-go'  " Go development
+" Plug 'rust-lang/rust.vim'  " Rust development
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 " Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'LnL7/vim-nix'  " Nix support
@@ -43,10 +46,7 @@ Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
 Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Semantic Highlighting for Python in Neovim
-Plug 'ap/vim-css-color'
-" Plug 'wakatime/vim-wakatime'  " The open source plugin for productivity metrics, goals, leaderboards, and automatic time tracking.
-" Plug 'lotabout/skim.vim'
-" Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 " Plug 'joshdick/onedark.vim'  " Atom onedark theme
@@ -69,6 +69,15 @@ set splitbelow  " Opens new hsplits below the current window
 set splitright  " Opens new vsplits right side of the current window
 set lazyredraw  " Prevent screen flickering when opening vim inside vim
 set expandtab  " Convert tabs to spaces (I don't write golang anymore)
+set hidden
+set nobackup
+set nowritebackup
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+
+" Remap for rename current word
+vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 " GUI features
 set mouse=a  " By default mouse is activated
@@ -145,38 +154,6 @@ let test#strategy = "neovim"
 let test#python#runner = 'pytest'
 """</Testing>
 
-"""<Auto completion: coc.nvim>"""
-
-" if hidden is not set, TextEdit might fail.
-set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Remap for rename current word
-vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
-""""</Auto completion>"""
-
 """<elm-vim>"""
 let g:elm_setup_keybindings = 0
 """</elm-vim>"""
@@ -199,10 +176,6 @@ let g:tagbar_type_elm = {
 " nnoremap <silent> // :NERDTreeToggle<CR>
 """</Tree view>"""
 
-"""<Rust Development>"""
-" autocmd BufWritePost *.rs :RustFmt
-"""</Rust Development>"""
-
 """<Start page: Startify>"""
 let g:startify_lists = [
 	\ { 'type': 'commands',  'header': ['   Commands']       },
@@ -223,25 +196,7 @@ let g:startify_commands = [
 """<Quick movements: easymotion>"""
 let g:EasyMotion_keys='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+[]{}|;:",./<>?'
 let g:EasyMotion_smartcase = 1
-
 """</Quick movements>"""
-
-"""<Auto completion: coc>"""
-function! StatusDiagnostic() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'E' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'W' . info['warning'])
-  endif
-  return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
-endfunction
-
-set statusline+=%{StatusDiagnostic()}
-"""</Auto completion>"""
 
 
 """<Expand Region: vim-expand-region>"""
@@ -390,7 +345,6 @@ let g:which_key_map.w.g = {
 let g:which_key_map.c = {
 	\ 'name' : '+config' ,
 	\ 'c' : [':Config', 'neovim config'],
-	\ 'o' : [':CocConfig', 'coc config'],
 	\ }
 
 " s is for search
@@ -402,7 +356,7 @@ let g:which_key_map.s = {
       \ 'B' : [':Buffers'      , 'open buffers'],
       \ 'c' : [':Commits'      , 'commits'],
       \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files .'        , 'files'],
+      \ 'f' : [':Files .'      , 'files'],
       \ 'g' : [':GFiles'       , 'git files'],
       \ 'G' : [':GFiles?'      , 'modified git files'],
       \ 'h' : [':History'      , 'file history'],
@@ -448,36 +402,18 @@ let g:which_key_map.g = {
 " l is for language server protocol
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
-      \ '.' : [':CocConfig'                          , 'config'],
-      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
-      \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
-      \ 'b' : [':CocNext'                            , 'next action'],
-      \ 'B' : [':CocPrev'                            , 'prev action'],
-      \ 'c' : [':CocList commands'                   , 'commands'],
-      \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
-      \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
-      \ 'e' : [':CocList extensions'                 , 'extensions'],
-      \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
-      \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
-      \ 'h' : ['K'                                   , 'help'],
-      \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
-      \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
-      \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
-      \ 'l' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
-      \ 'L' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
-      \ 'm' : [':CocList marketplace'                , 'marketplace'],
-      \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
-      \ 'O' : [':CocList outline'                    , 'outline'],
-      \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
-      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
-      \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
-      \ 'r' : ['<Plug>(coc-references)'              , 'references'],
-      \ 's' : [':CocList -I symbols'                 , 'symbols'],
-      \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
-      \ 'u' : [':CocListResume'                      , 'resume list'],
-      \ 'U' : [':CocUpdate'                          , 'update CoC'],
-      \ 'z' : [':CocDisable'                         , 'disable CoC'],
-      \ 'Z' : [':CocEnable'                          , 'enable CoC'],
+      \ 'd' : [':Definition'                         , 'definition'],
+      \ 'D' : [':Declaration'                        , 'declaration'],
+      \ 'F' : [':Format'                             , 'format'],
+      \ 'h' : [':Hover'                              , 'hover'],
+      \ 'i' : [':Implementation'                     , 'implementation'],
+      \ 'l' : [':NextDiagnostic'                     , 'next diagnostic'],
+      \ 'L' : [':PrevDiagnostic'                     , 'prev diagnostic'],
+      \ 'I' : [':OpenDiagnostic'                     , 'diagnostics'],
+      \ 'r' : [':References'                         , 'references'],
+      \ 's' : [':DocumentSymbol'                     , 'document symbols'],
+      \ 'S' : [':WorkspaceSymbol'                    , 'workspace symbols'],
+      \ 't' : [':TypeDefinition'                     , 'type definition'],
       \ }
 
 " t is for test
@@ -511,6 +447,41 @@ let g:which_key_map.x = {
 call which_key#register('<Space>', "g:which_key_map")
 """</Keybindings Helper>"""
 
+"""<Language server and auto completion>"""
+let g:diagnostic_enable_virtual_text = 1
+let g:completion_enable_snippet = 'UltiSnips'
+let g:python3_host_prog = '/run/current-system/sw/bin/python3'
+set completeopt=menuone,noinsert
+autocmd BufEnter * lua require'completion'.on_attach()
+
+:lua << EOF
+require'nvim_lsp'.gopls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.pyls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.html.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.elmls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.dockerls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.cssls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.diagnosticls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.bashls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.vimls.setup{on_attach=require'diagnostic'.on_attach}
+EOF
+
+command Declaration :lua vim.lsp.buf.declaration()
+command Definition :lua vim.lsp.buf.definition()
+command Hover :lua vim.lsp.buf.hover()
+command Implementation :lua vim.lsp.buf.implementation()
+command SignatureHelp :lua vim.lsp.buf.signature_help()
+command TypeDefinition :lua vim.lsp.buf.type_definition()
+command References :lua vim.lsp.buf.references()
+command DocumentSymbol :lua vim.lsp.buf.document_symbol()
+command WorkspaceSymbol :lua vim.lsp.buf.workspace_symbol()
+command Format :lua vim.lsp.buf.formatting_sync(nil, 1000)
+
+nnoremap <silent> K     <cmd>Hover<CR>
+"""</Language server and auto completion>"""
+
 """<Theme>"""
 set cursorline
 set cursorcolumn
@@ -518,3 +489,4 @@ set background=dark
 colorscheme neodark
 let g:airline_theme='neodark'
 """</Theme>"""
+
