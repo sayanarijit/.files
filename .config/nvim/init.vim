@@ -10,7 +10,6 @@ Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at top)
 Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'vim-airline/vim-airline'  " make statusline awesome
 " Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
@@ -55,12 +54,15 @@ Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
 Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
 " Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
+Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at the bottom)
 call plug#end()
 """</Plugins>"""
 
 
 """<Custom settings>"""
 " Basic config
+let mapleader = ","  " Keep it at the top
+
 set noautochdir  " Don't change directory when opening a file
 set nu relativenumber  " No need to count lines from current position
 set autoread  " Auto reload when file changes
@@ -96,7 +98,7 @@ set nofoldenable
 set foldlevel=2
 
 " NeoVim configuration
-command Config :tabnew ~/.files/.config/nvim/init.vim
+command Config :tabnew ~/.config/nvim/init.vim
 
 " tags
 set tags=.vim/tags  " Where to store tags file
@@ -104,7 +106,6 @@ let g:autotagTagsFile=".vim/tags"  " ^^
 let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
 
 " Key mappings
-let mapleader = ","
 inoremap <silent> <c-a> <ESC>I
 inoremap <silent> <c-e> <ESC>A
 nnoremap <silent> <a-left> :tabprevious<CR>
@@ -499,4 +500,3 @@ set background=dark
 colorscheme neodark
 let g:airline_theme='neodark'
 """</Theme>"""
-
