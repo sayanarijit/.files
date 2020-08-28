@@ -112,6 +112,13 @@ in
       pstree
       ffmpeg
       nix-direnv
+      nodePackages.bash-language-server
+      nodePackages.dockerfile-language-server-nodejs
+      nodePackages.vim-language-server
+      nodePackages.vscode-css-languageserver-bin
+      nodePackages.vscode-html-languageserver-bin
+      # nodePackages.json-language-server
+      nodePackages.yaml-language-server
       elmPackages.elm
       elmPackages.elm-test
       elmPackages.elm-language-server
