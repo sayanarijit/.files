@@ -6,8 +6,10 @@ set rtp +=~/.vim
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
+Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
 Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at top)
 Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -448,11 +450,18 @@ call which_key#register('<Space>', "g:which_key_map")
 """</Keybindings Helper>"""
 
 """<Language server and auto completion>"""
-let g:diagnostic_enable_virtual_text = 1
-let g:completion_enable_snippet = 'UltiSnips'
-let g:python3_host_prog = '/run/current-system/sw/bin/python3'
 set completeopt=menuone,noinsert
-autocmd BufEnter * lua require'completion'.on_attach()
+let g:python3_host_prog = '/run/current-system/sw/bin/python3'
+
+"" diagnostic-nvim
+let g:diagnostic_enable_virtual_text = 1
+
+"" completion-nvim
+" let g:completion_enable_snippet = 'UltiSnips'
+" autocmd BufEnter * lua require'completion'.on_attach()
+
+"" deoplete-lsp
+let g:deoplete#enable_at_startup = 1
 
 :lua << EOF
 require'nvim_lsp'.gopls.setup{on_attach=require'diagnostic'.on_attach}
@@ -465,6 +474,7 @@ require'nvim_lsp'.diagnosticls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.bashls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.vimls.setup{on_attach=require'diagnostic'.on_attach}
 EOF
 
