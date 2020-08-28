@@ -118,6 +118,8 @@ in
       nodePackages.vscode-css-languageserver-bin
       nodePackages.vscode-html-languageserver-bin
       # nodePackages.json-language-server
+      # nodePackages.diagnostic-languageserver
+      # nodePackages.json-language-server
       nodePackages.yaml-language-server
       elmPackages.elm
       elmPackages.elm-test
