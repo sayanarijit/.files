@@ -10,7 +10,8 @@ Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
+" Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
+Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
 " Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
 Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
@@ -162,18 +163,43 @@ let g:elm_setup_keybindings = 0
 """</elm-vim>"""
 
 """<Tagbar: tagbar>"""
-nnoremap <silent> \\ :TagbarToggle<CR>
-let g:tagbar_type_elm = {
-          \   'ctagstype':'elm'
-          \ , 'kinds':['h:header', 'i:import', 't:type', 'f:function', 'e:exposing']
-          \ , 'sro':'&&&'
-          \ , 'kind2scope':{ 'h':'header', 'i':'import'}
-          \ , 'sort':0
-          \ , 'ctagsbin':'~/.bin/elmtags.py'
-          \ , 'ctagsargs': ''
-          \ }
+" nnoremap <silent> \\ :TagbarToggle<CR>
+" let g:tagbar_type_elm = {
+"           \   'ctagstype':'elm'
+"           \ , 'kinds':['h:header', 'i:import', 't:type', 'f:function', 'e:exposing']
+"           \ , 'sro':'&&&'
+"           \ , 'kind2scope':{ 'h':'header', 'i':'import'}
+"           \ , 'sort':0
+"           \ , 'ctagsbin':'~/.bin/elmtags.py'
+"           \ , 'ctagsargs': ''
+"           \ }
 " autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
+
+"""<Tagbar: vista>"""
+" How each level is indented and what to prepend.
+" This could make the display more compact or more spacious.
+" e.g., more compact: ["▸ ", ""]
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Executive used when opening vista sidebar without specifying it.
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'nvim_lsp'
+
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+let g:vista_fzf_preview = ['right:50%']
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+
+" Update the vista on |TextChanged| and |TextChangedI|.
+let g:vista_update_on_text_changed = 1
+
+nnoremap <silent> \\ :Vista!!<CR>
+"""</Tagbar>
 
 """<Tree view: nerdtree>"""
 " nnoremap <silent> // :NERDTreeToggle<CR>
@@ -369,10 +395,10 @@ let g:which_key_map.s = {
       \ 'M' : [':Maps'         , 'normal maps'] ,
       \ 'p' : [':Helptags'     , 'help tags'] ,
       \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
       \ 'S' : [':Colors'       , 'color schemes'],
       \ 't' : [':Rg'           , 'text Rg'],
       \ 'T' : [':BTags'        , 'buffer tags'],
+      \ 'v' : [':Vista finder! ctags' , 'symbols'],
       \ 'w' : [':Windows'      , 'search windows'],
       \ 'y' : [':Filetypes'    , 'file types'],
       \ 'z' : [':FZF'          , 'FZF'],
@@ -434,6 +460,14 @@ let g:which_key_map.t.f = {
 	\ 'name' : '+file',
 	\ 't' : [':TestFile', 'test normally'],
 	\ 'p' : [':TestFile --pdb', 'test with pdb'],
+	\ }
+
+" v for vista
+let g:which_key_map.v = {
+	\ 'name' : '+vista',
+	\ 'v' : [':Vista!!', 'toggle window'],
+	\ 'f' : [':Vista finder', 'find symbol'],
+	\ 'F' : [':Vista finder! ctags', 'find symbol recursive'],
 	\ }
 
 " x for explore
