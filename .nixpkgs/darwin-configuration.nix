@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  # Let's use the lsp_nvim from nightly.
   nvim-nightly = pkgs.stdenv.mkDerivation {
     name = "nvim-nightly";
     src = pkgs.fetchurl {
@@ -15,6 +16,7 @@ let
     '';
   };
 
+  # Python LSP requires a dedicated py env.
   pyEnv = pkgs.python38.withPackages (
     ps: with ps; [
       pynvim
@@ -25,6 +27,7 @@ let
     ]
   );
 
+  # Some language servers and global nodejs tools.
   yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
     name = "yarnPkgs";
     src = ./yarn;
@@ -40,6 +43,14 @@ let
       "vscode-json-languageserver"
       "yaml-language-server"
     ];
+  };
+
+  # Make zsh's tab completion even more better
+  fzf-tab-completion = pkgs.fetchFromGitHub { 
+     owner = "lincheney"; 
+     repo = "fzf-tab-completion"; 
+     rev= "a39091b6e903d34c53f5f259c6b66c40069c7986";
+     sha256= "0df77k339im84z8x49q56s26bircyyn9dasz0s1xxb7q29dxix7z";
   };
 
 in
@@ -138,10 +149,13 @@ in
       elmPackages.elm-test
       elmPackages.elm-language-server
       elmPackages.elm-format
-      starship
-      zsh-autosuggestions
+      starship  # oh-my-zsh replacement for speed
+      zsh-autosuggestions  # No need of fish shell with this around
+      oh-my-zsh  # Only for some selected plugins
+      fzf-tab-completion
     ];
 
+    # FiraCode font has everything a modern terminal needs.
     fonts = {
       enableFontDir = true;
       fonts = with pkgs; [
@@ -167,24 +181,35 @@ in
     '';
   };
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  # programs.bash.enable = true;
+  # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
     enable = true;
+    enableSyntaxHighlighting = true;
+
+    # This makes the fzf-tab-completion work
     enableFzfCompletion = true;
     enableFzfGit = true;
     enableFzfHistory = true;
-    enableSyntaxHighlighting = true;
+
+    # Disable the unnecessary prompt.
     promptInit = "";
-    interactiveShellInit = (builtins.readFile ./zshrc) + ''
-      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    '';
-    loginShellInit = ''
+
+    # Try keeping it to a bare minimun (don't want to inherit the oh-my-zsh slowness)
+    interactiveShellInit = ''
+
       [ -f ~/.profile ] && source ~/.profile
+      autoload -Uz compinit && compinit -i
+
+      source ${fzf-tab-completion}/zsh/fzf-zsh-completion.sh
+      source ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/git/git.plugin.zsh
+      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+      eval "$(direnv hook zsh)"
+      eval "$(starship init zsh)"
     '';
   };
-  # programs.fish.enable = true;
   
+  # tmux + alacritty > iterm2
   programs.tmux = {
     enable = true;
     extraConfig = ''
