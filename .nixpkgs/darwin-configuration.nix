@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  # Let's use the lsp_nvim from nightly.
+  # Let's use the nightly build for native LSP support.
   nvim-nightly = pkgs.stdenv.mkDerivation {
     name = "nvim-nightly";
     src = pkgs.fetchurl {
