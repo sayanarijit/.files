@@ -15,6 +15,33 @@ let
     '';
   };
 
+  pyEnv = pkgs.python38.withPackages (
+    ps: with ps; [
+      pynvim
+      black
+      mypy
+      flake8
+      autopep8
+    ]
+  );
+
+  yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
+    name = "yarnPkgs";
+    src = ./yarn;
+    packageJSON = ./yarn/package.json;
+    yarnLock = ./yarn/yarn.lock;
+    publishBinsFor = [
+      "bash-language-server"
+      "diagnostic-languageserver"
+      "dockerfile-language-server-nodejs"
+      "vim-language-server"
+      "vscode-css-languageserver-bin"
+      "vscode-html-languageserver-bin"
+      "vscode-json-languageserver"
+      "yaml-language-server"
+    ];
+  };
+
 in
 {
   # Used for backwards compatibility, please read the changelog before changing.
@@ -55,13 +82,8 @@ in
       niv  #  Easy dependency management for Nix projects
       # neovim  # vscode replacement (I'll use the HEAD for now)
       nvim-nightly
-      (python38.withPackages (ps: with ps; [
-        pynvim
-        black
-        mypy
-        flake8
-        autopep8
-      ]))
+      pyEnv  # Custom python env with language servers and tools
+      yarnPkgs  # Global nodejs tools
       bat  # cat replacement
       lsd  # ls replacement
       sysctl
@@ -112,15 +134,6 @@ in
       pstree
       ffmpeg
       nix-direnv
-      nodePackages.bash-language-server
-      nodePackages.dockerfile-language-server-nodejs
-      nodePackages.vim-language-server
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.vscode-html-languageserver-bin
-      # nodePackages.json-language-server
-      # nodePackages.diagnostic-languageserver
-      # nodePackages.json-language-server
-      nodePackages.yaml-language-server
       elmPackages.elm
       elmPackages.elm-test
       elmPackages.elm-language-server
