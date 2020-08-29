@@ -196,7 +196,6 @@ in
 
     # Try keeping it to a bare minimun (don't want to inherit the oh-my-zsh slowness)
     interactiveShellInit = ''
-
       [ -f ~/.profile ] && source ~/.profile
       autoload -Uz compinit && compinit -i
 
