@@ -45,7 +45,7 @@ let
     ];
   };
 
-  # Make zsh's tab completion even more better
+  # Make zsh's tab completion even better
   fzf-tab-completion = pkgs.fetchFromGitHub { 
      owner = "lincheney"; 
      repo = "fzf-tab-completion"; 
