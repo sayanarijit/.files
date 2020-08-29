@@ -464,8 +464,8 @@ let g:diagnostic_enable_virtual_text = 1
 "" deoplete-lsp
 let g:deoplete#enable_at_startup = 1
 
-:lua << EOF
 "" language servers are installed with nix-darwin
+:lua << EOF
 require'nvim_lsp'.pyls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.html.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.elmls.setup{on_attach=require'diagnostic'.on_attach}
