@@ -301,6 +301,12 @@ in
 
       # toggle zoom fullscreen
       shift + cmd - return : yabai -m window --toggle zoom-fullscreen
+
+      # resize windows
+      shift + cmd - u : yabai -m window --resize left:-50:0 || { yabai -m window --resize right:-50:0 }
+      shift + cmd - i : yabai -m window --resize bottom:0:-50 || { yabai -m window --resize top:0:-50 }
+      shift + cmd - o : yabai -m window --resize top:0:50 || { yabai -m window --resize bottom:0:50 }
+      shift + cmd - p : yabai -m window --resize right:50:0 || { yabai -m window --resize left:50:0 }
     '';
   };
 }
