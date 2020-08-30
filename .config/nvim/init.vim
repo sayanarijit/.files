@@ -25,7 +25,6 @@ Plug 'tpope/vim-fugitive'  " Git integration
 Plug 'janko-m/vim-test'  " Test runner
 " Plug 'benmills/vimux'  " Runs tests in new tmux window
 Plug 'easymotion/vim-easymotion'  " Quick movement
-Plug 'terryma/vim-multiple-cursors'  " Use multiple cursors
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 " Plug 'fatih/vim-go'  " Go development
 " Plug 'rust-lang/rust.vim'  " Rust development
