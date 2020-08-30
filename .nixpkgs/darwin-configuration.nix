@@ -153,7 +153,6 @@ in
       zsh-autosuggestions  # No need of fish shell with this around
       oh-my-zsh  # Only for some selected plugins
       fzf-tab-completion
-      skhd
     ];
 
     # FiraCode font has everything a modern terminal needs.
