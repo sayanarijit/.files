@@ -153,6 +153,7 @@ in
       zsh-autosuggestions  # No need of fish shell with this around
       oh-my-zsh  # Only for some selected plugins
       fzf-tab-completion
+      skhd
     ];
 
     # FiraCode font has everything a modern terminal needs.
@@ -238,6 +239,69 @@ in
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
       run-shell ${pkgs.tmuxPlugins.copycat}/share/tmux-plugins/copycat/copycat.tmux
       run-shell ${pkgs.tmuxPlugins.gruvbox}/share/tmux-plugins/gruvbox/gruvbox-tpm.tmux
+    '';
+  };
+
+  services.yabai = {
+    package = pkgs.yabai;
+    enable = true;
+    enableScriptingAddition = false;
+    config = {
+      focus_follows_mouse          = "autoraise";
+      mouse_follows_focus          = "off";
+      window_placement             = "second_child";
+      window_opacity               = "off";
+      window_opacity_duration      = "0.0";
+      window_border                = "on";
+      window_border_placement      = "inset";
+      window_border_width          = 0;
+      window_border_radius         = 0;
+      active_window_border_topmost = "off";
+      window_topmost               = "on";
+      window_shadow                = "float";
+      active_window_border_color   = "0xff5c7e81";
+      normal_window_border_color   = "0xff505050";
+      insert_window_border_color   = "0xffd75f5f";
+      active_window_opacity        = "1.0";
+      normal_window_opacity        = "1.0";
+      split_ratio                  = "0.50";
+      auto_balance                 = "on";
+      mouse_modifier               = "fn";
+      mouse_action1                = "move";
+      mouse_action2                = "resize";
+      layout                       = "bsp";
+      top_padding                  = 0;
+      bottom_padding               = 0;
+      left_padding                 = 0;
+      right_padding                = 0;
+      window_gap                   = 5;
+    };
+  };
+
+  services.skhd = {
+    package = pkgs.skhd;
+    enable = true;
+    skhdConfig = ''
+      # focus window
+      shift + cmd - left : yabai -m window --focus west || yabai -m display --focus prev
+      shift + cmd - down : yabai -m window --focus south
+      shift + cmd - up : yabai -m window --focus north
+      shift + cmd - right : yabai -m window --focus east || yabai -m display --focus next
+
+      # move window
+      shift + cmd - h : yabai -m window --warp west || { yabai -m window --display prev && yabai -m display --focus prev }
+      shift + cmd - j : yabai -m window --warp south
+      shift + cmd - k : yabai -m window --warp north
+      shift + cmd - l : yabai -m window --warp east || { yabai -m window --display next && yabai -m display --focus next }
+
+      # balance size of windows
+      shift + cmd - 0 : yabai -m space --balance
+
+      # toggle window split type
+      shift + cmd - space : yabai -m window --toggle split
+
+      # toggle zoom fullscreen
+      shift + cmd - return : yabai -m window --toggle zoom-fullscreen
     '';
   };
 }
