@@ -275,6 +275,11 @@ in
       right_padding                = 0;
       window_gap                   = 5;
     };
+
+    extraConfig = ''
+      # rules
+      yabai -m rule --add app='System Preferences' manage=off
+    '';
   };
 
   services.skhd = {
