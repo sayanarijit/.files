@@ -129,9 +129,6 @@ command TerminalVSplit :vsplit term://$SHELL
 " Open all modified git files
 command GitModified :args `git diff --name-only origin/master; git ls-files --other --exclude-standard` | argdo tabe
 
-" Python development
-command SetupPythonProject :exec(":!pip install pynvim pylint mypy autopep8 black")
-
 " Markdown
 autocmd FileType md setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -315,16 +312,6 @@ let g:which_key_map.a.x = {
 	\ 'X' : [':wq!', 'current file forced'],
 	\ 'a' : [':wqall', 'all files'],
 	\ 'A' : [':wqall!', 'all files forced'],
-	\ }
-
-let g:which_key_map.a.p = {
-	\ 'name' : '+project',
-	\ 'G' : [':GitModified', 'git modified files'],
-	\ }
-
-let g:which_key_map.a.p.s = {
-	\ 'name' : '+setup',
-	\ 'p' : [':SetupPythonProject', 'python'],
 	\ }
 
 let g:which_key_map.a.s = {

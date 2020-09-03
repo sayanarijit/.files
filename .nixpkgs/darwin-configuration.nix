@@ -23,7 +23,6 @@ let
       black
       mypy
       flake8
-      autopep8
     ]
   );
 
