@@ -51,9 +51,9 @@ Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R
 Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
-" Plug 'joshdick/onedark.vim'  " Atom onedark theme
+Plug 'joshdick/onedark.vim'  " Atom onedark theme
 " Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
-Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
+" Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
 " Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
 Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at the bottom)
 call plug#end()
@@ -515,9 +515,10 @@ nnoremap <silent> K     <cmd>Hover<CR>
 """</Language server and auto completion>"""
 
 """<Theme>"""
+set termguicolors
 set cursorline
 set cursorcolumn
 set background=dark
-colorscheme neodark
-let g:airline_theme='neodark'
+colorscheme onedark
+let g:airline_theme='onedark'
 """</Theme>"""
