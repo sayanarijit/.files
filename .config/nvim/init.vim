@@ -101,8 +101,8 @@ set foldlevel=2
 " NeoVim configuration
 command Config :tabnew ~/.config/nvim/init.vim
 
-" Nix configuration
-command NixConfig :tabnew ~/.nixpkgs/darwin-configuration.nix
+" Darwin configuration
+command DarwinConfig :tabnew ~/.nixpkgs/darwin-configuration.nix
 
 " tags
 set tags=.vim/tags  " Where to store tags file
@@ -364,7 +364,7 @@ let g:which_key_map.w.g = {
 let g:which_key_map.c = {
 	\ 'name' : '+config' ,
 	\ 'c' : [':Config', 'neovim config'],
-	\ 'n' : [':NixConfig', 'nix config'],
+	\ 'n' : [':DarwinConfig', 'darwin config'],
 	\ }
 
 " s is for search
