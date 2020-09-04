@@ -5,6 +5,7 @@ set rtp +=~/.vim
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
@@ -17,7 +18,6 @@ Plug 'vim-airline/vim-airline'  " make statusline awesome
 Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 Plug 'tpope/vim-commentary'  "comment-out by gc
-Plug 'ncm2/ncm2-path'  " filepath completion
 " Plug 'kien/ctrlp.vim'  " fuzzy search files
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
 Plug 'craigemery/vim-autotag'  " Update tags
@@ -100,6 +100,9 @@ set foldlevel=2
 
 " NeoVim configuration
 command Config :tabnew ~/.config/nvim/init.vim
+
+" Nix configuration
+command NixConfig :tabnew ~/.nixpkgs/darwin-configuration.nix
 
 " tags
 set tags=.vim/tags  " Where to store tags file
@@ -361,6 +364,7 @@ let g:which_key_map.w.g = {
 let g:which_key_map.c = {
 	\ 'name' : '+config' ,
 	\ 'c' : [':Config', 'neovim config'],
+	\ 'n' : [':NixConfig', 'nix config'],
 	\ }
 
 " s is for search
@@ -472,14 +476,23 @@ call which_key#register('<Space>', "g:which_key_map")
 """</Keybindings Helper>"""
 
 """<Language server and auto completion>"""
-set completeopt=menuone,noinsert
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
+set completeopt=menuone,noinsert,noselect
+
 
 "" diagnostic-nvim
 let g:diagnostic_enable_virtual_text = 0
 
 "" completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_chain_complete_list = {
+    \'default' : [
+    \    {'complete_items': ['lsp', 'snippet', 'path']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+    \}
+let g:completion_matching_ignore_case = 1
 autocmd BufEnter * lua require'completion'.on_attach()
 
 "" deoplete-lsp
