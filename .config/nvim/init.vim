@@ -1,4 +1,3 @@
-syntax on
 set shell=/bin/sh
 set rtp +=~/.vim
 
@@ -7,6 +6,7 @@ set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
+Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
@@ -46,7 +46,6 @@ Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
 Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
 Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Semantic Highlighting for Python in Neovim
 Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R 
 Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
@@ -92,12 +91,6 @@ set mouse=a  " By default mouse is activated
 set undofile
 set undodir=/tmp/vimundo/
 
-" code folding
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=2
-
 " NeoVim configuration
 command Config :tabnew ~/.config/nvim/init.vim
 
@@ -132,25 +125,8 @@ command TerminalVSplit :vsplit term://$SHELL
 " Open all modified git files
 command GitModified :args `git diff --name-only origin/master; git ls-files --other --exclude-standard` | argdo tabe
 
-" Markdown
-autocmd FileType md setlocal ts=2 sts=2 sw=2 expandtab
-
-" JavaScript development
-autocmd FileType js setlocal ts=4 sts=4 sw=4 expandtab
-
-" YAML development
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
-
 " I forgot what it is
 autocmd QuickFixCmdPost *grep* cwindow
-
-" Elm
-autocmd FileType md setlocal ts=2 sts=2 sw=2 expandtab
-
-" HTML and HTML templates
-autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType pt setlocal ts=2 sts=2 sw=2 expandtab
 """</Custom settings>"""
 
 """<Testing: vim-test>"""
@@ -231,19 +207,31 @@ let g:EasyMotion_smartcase = 1
 """<Expand Region: vim-expand-region>"""
 let g:expand_region_text_objects = {
       \ 'iw'  :0,
+      \ 'aw'  :0,
       \ 'iW'  :0,
       \ 'V'  :1,
       \ 'it'  :1,
+      \ 'at'  :1,
       \ 'if'  :1,
+      \ 'af'  :1,
       \ 'ic'  :1,
+      \ 'ac'  :1,
       \ 'ip'  :1,
+      \ 'ap'  :1,
       \ 'i"'  :1,
+      \ 'a"'  :1,
       \ 'i''' :1,
+      \ 'a''' :1,
       \ 'i]'  :1,
+      \ 'a]'  :1,
       \ 'i)'  :1,
+      \ 'a)'  :1,
       \ 'i}'  :1,
+      \ 'a}'  :1,
       \ 'i>'  :1,
+      \ 'a>'  :1,
       \ 'i`'  :1,
+      \ 'a`'  :1,
       \ }
 """</Expand Region>"""
 
@@ -511,7 +499,49 @@ require'nvim_lsp'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.vimls.setup{on_attach=require'diagnostic'.on_attach}
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",     -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},               -- list of language that will be disabled
+  },
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = true },
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = ",r",
+      },
+    },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+
+        -- Or you can define your own textobjects like this
+        ["iF"] = {
+          python = "(function_definition) @function",
+          cpp = "(function_definition) @function",
+          c = "(function_definition) @function",
+          java = "(method_declaration) @function",
+        },
+      },
+    },
+  },
+}
 EOF
+
+"" code folding
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
 
 command Declaration :lua vim.lsp.buf.declaration()
 command Definition :lua vim.lsp.buf.definition()
