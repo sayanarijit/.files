@@ -6,10 +6,10 @@ set rtp +=~/.vim
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
-Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
+" Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -476,14 +476,14 @@ set completeopt=menuone,noinsert
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
 
 "" diagnostic-nvim
-let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_enable_virtual_text = 0
 
 "" completion-nvim
-" let g:completion_enable_snippet = 'UltiSnips'
-" autocmd BufEnter * lua require'completion'.on_attach()
+let g:completion_enable_snippet = 'UltiSnips'
+autocmd BufEnter * lua require'completion'.on_attach()
 
 "" deoplete-lsp
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF

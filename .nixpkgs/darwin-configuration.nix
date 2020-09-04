@@ -254,7 +254,7 @@ in
       window_border_placement      = "inset";
       window_border_width          = 0;
       window_border_radius         = 0;
-      active_window_border_topmost = "off";
+      active_window_border_topmost = "on";
       window_topmost               = "on";
       window_shadow                = "float";
       active_window_border_color   = "0xff5c7e81";
