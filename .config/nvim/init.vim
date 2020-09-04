@@ -364,7 +364,7 @@ let g:which_key_map.w.g = {
 let g:which_key_map.c = {
 	\ 'name' : '+config' ,
 	\ 'c' : [':Config', 'neovim config'],
-	\ 'n' : [':DarwinConfig', 'darwin config'],
+	\ 'd' : [':DarwinConfig', 'darwin config'],
 	\ }
 
 " s is for search
