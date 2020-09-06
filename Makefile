@@ -7,11 +7,12 @@ all:
 		&& rm -f install.sh
 	. ~/.nix-profile/etc/profile.d/nix.sh
 	[ -d ~/.config ] || mkdir ~/.config
-	ln -sf ~/.files/.bin ~/
-	ln -sf ~/.files/.gitconfig ~/
-	ln -sf ~/.files/.direnvrc ~/
-	ln -sf ~/.files/.nixpkgs ~/
-	for x in ~/.files/.config/*; do ln -sf $x ~/.config/; done
+	ln -sf .profile ~/
+	ln -sf .bin ~/
+	ln -sf .gitconfig ~/
+	ln -sf .direnvrc ~/
+	ln -sf .nixpkgs ~/
+	for x in .config/*; do ln -sf $$x ~/.config/; done
 	nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 	./result/bin/darwin-installer
 	rm -rf ./result

@@ -87,9 +87,6 @@ in
   system.keyboard.remapCapsLockToEscape = true;
 
   environment = {
-    # Shells to install and allow
-    shells = [ pkgs.bashInteractive pkgs.zsh ];
-
     # List packages installed in system profile. To search by name, run:
     # $ nix-env -qaP | grep wget
     systemPackages = with pkgs; [
