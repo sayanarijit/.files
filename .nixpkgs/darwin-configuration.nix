@@ -300,8 +300,8 @@ in
       # balance size of windows
       shift + cmd - 0 : yabai -m space --balance
 
-      # toggle window split type
-      shift + cmd - space : yabai -m window --toggle split
+      # float / unfloat window and center on screen
+      shift + cmd - space : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
 
       # toggle zoom fullscreen
       shift + cmd - return : yabai -m window --toggle zoom-fullscreen
