@@ -1,4 +1,4 @@
-name: Run All Installations
+name: Build From Scratch
 
 on: [push]
 
@@ -9,6 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run help command.
+    - name: Build
       run: |
         cd && git clone https://github.com/sayanarijit/.files && cd .files && make
