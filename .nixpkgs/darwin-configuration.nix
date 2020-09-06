@@ -86,9 +86,13 @@ in
   # system.defaults.screencapture.disable-shadow = true;
   system.keyboard.remapCapsLockToEscape = true;
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
+  environment = {
+    # Shells to install and allow
+    shells = [ pkgs.bashInteractive pkgs.zsh ];
+
+    # List packages installed in system profile. To search by name, run:
+    # $ nix-env -qaP | grep wget
+    systemPackages = with pkgs; [
       niv  #  Easy dependency management for Nix projects
       # neovim  # vscode replacement (I'll use the HEAD for now)
       nvim-nightly
@@ -153,18 +157,19 @@ in
       oh-my-zsh  # Only for some selected plugins
       fzf-tab-completion
     ];
+  };
 
-    # FiraCode font has everything a modern terminal needs.
-    fonts = {
-      enableFontDir = true;
-      fonts = with pkgs; [
-        (nerdfonts.override {
-          fonts = [ 
-            "FiraCode"
-          ];
-        })
-      ];
-    };
+  # FiraCode font has everything a modern terminal needs.
+  fonts = {
+    enableFontDir = true;
+    fonts = with pkgs; [
+      (nerdfonts.override {
+        fonts = [ 
+          "FiraCode"
+        ];
+      })
+    ];
+  };
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
