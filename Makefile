@@ -1,7 +1,8 @@
+SHELL := /bin/sh
+
 .PHONY: all
 all:
-	(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
-	sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+	echo -e "$(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume" | sh
 	for f in $(ls -d .*); do [ -f $f ] && ln -s $f ~/; done
 	ln -s .bin ~/
 	ln -s .nixpkgs ~/
