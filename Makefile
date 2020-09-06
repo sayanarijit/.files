@@ -6,20 +6,13 @@ all:
 		&& sh install.sh --darwin-use-unencrypted-nix-store-volume \
 		&& rm -f install.sh
 	. ~/.nix-profile/etc/profile.d/nix.sh
-	[ -d ~/.config ] || mkdir ~/.config
-	ln -sf .profile ~/
-	ln -sf .bin ~/
-	ln -sf .gitconfig ~/
-	ln -sf .direnvrc ~/
-	ln -sf .nixpkgs ~/
-	for x in .config/*; do ln -sf $$x ~/.config/; done
-	. ~/.profile
+	nix-channel --update
+	nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
 	nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 	./result/bin/darwin-installer
 	rm -rf ./result
-	. ~/.profile
 	darwin-rebuild switch
-	. ~/.nix-profile/etc/profile.d/nix.sh
+	nix-shell '<home-manager>' -A install
 	which dotsync
 
 .PHONY: sync

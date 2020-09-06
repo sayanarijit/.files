@@ -87,6 +87,8 @@ in
   system.keyboard.remapCapsLockToEscape = true;
 
   environment = {
+    interactiveShellInit = builtins.readFile ./.profile;
+
     # List packages installed in system profile. To search by name, run:
     # $ nix-env -qaP | grep wget
     systemPackages = with pkgs; [
@@ -139,7 +141,6 @@ in
       tmuxPlugins.resurrect
       tmuxPlugins.copycat
       alacritty
-      bandwhich
       gitAndTools.delta
       jpegoptim
       pstree
@@ -197,7 +198,6 @@ in
 
     # Try keeping it to a bare minimun (don't want to inherit the oh-my-zsh slowness)
     interactiveShellInit = ''
-      [ -f ~/.profile ] && source ~/.profile
       autoload -Uz compinit && compinit -i
 
       source ${fzf-tab-completion}/zsh/fzf-zsh-completion.sh
