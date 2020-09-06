@@ -1,6 +1,7 @@
 .PHONY: all
 all:
-	sh -c "$(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume"
+	which curl
+	sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
 	for f in $(ls -d .*); do [ -f $f ] && ln -s $f ~/; done
 	ln -s .bin ~/
 	ln -s .nixpkgs ~/
