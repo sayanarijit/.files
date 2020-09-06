@@ -6,11 +6,11 @@ all:
 		&& sh install.sh --darwin-use-unencrypted-nix-store-volume \
 		&& rm -f install.sh
 	. ~/.nix-profile/etc/profile.d/nix.sh
-	for f in $(ls -d .*); do [ -f $f ] && ln -sf $f ~/; done
+	for f in $$(ls -d .*); do [ -f $$f ] && ln -sf $$f ~/; done
 	ln -sf .bin ~/
 	ln -sf .nixpkgs ~/
 	[ ! -d ~/.config ] && mkdir ~/.config || true
-	for d in $(ls -d .config/*); do [ -d .config/$d ] && ln -sf .config/$d ~/.config/; done
+	for d in $$(ls -d .config/*); do [ -d .config/$$d ] && ln -sf .config/$$d ~/.config/; done
 	source ~/.profile
 	nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 	./result/bin/darwin-installer
