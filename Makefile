@@ -6,7 +6,7 @@ all:
 		&& sh install.sh --darwin-use-unencrypted-nix-store-volume \
 		&& rm -f install.sh
 	. ~/.nix-profile/etc/profile.d/nix.sh
-	for f in $$(ls -A); do [ -f $$f ] && rm -f ~/$$f; ln -s $$f ~/$$f; done
+	for f in $$(ls -A); do rm -f ~/$$f; ln -s $$f ~/$$f; done
 	source ~/.profile
 	nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 	./result/bin/darwin-installer
