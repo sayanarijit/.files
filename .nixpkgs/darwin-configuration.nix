@@ -77,11 +77,13 @@ in
   system.defaults.dock.autohide = true;
   system.defaults.dock.orientation = "right";
   system.defaults.dock.tilesize = 0;
+  system.defaults.dock.mru-spaces = false;  # yabai recommendation
   system.defaults.finder._FXShowPosixPathInTitle = true;
   system.defaults.finder.AppleShowAllExtensions = true;
   system.defaults.loginwindow.GuestEnabled = true;
   system.defaults.trackpad.FirstClickThreshold = 0;
   system.defaults.trackpad.SecondClickThreshold = 0;
+  system.defaults.spaces.spans-displays = false;  # yabai requirement
   system.keyboard.enableKeyMapping = true;
   # system.defaults.screencapture.disable-shadow = true;
   system.keyboard.remapCapsLockToEscape = true;
