@@ -7,10 +7,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
-Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
-" Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
+Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
+" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }  " 
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -472,19 +473,19 @@ set completeopt=menuone,noinsert,noselect
 let g:diagnostic_enable_virtual_text = 0
 
 "" completion-nvim
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_chain_complete_list = {
-    \'default' : [
-    \    {'complete_items': ['lsp', 'snippet', 'path']},
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'}
-    \]
-    \}
-let g:completion_matching_ignore_case = 1
-autocmd BufEnter * lua require'completion'.on_attach()
+" let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_chain_complete_list = {
+"     \'default' : [
+"     \    {'complete_items': ['lsp', 'snippet', 'path']},
+"     \    {'mode': '<c-p>'},
+"     \    {'mode': '<c-n>'}
+"     \]
+"     \}
+" let g:completion_matching_ignore_case = 1
+" autocmd BufEnter * lua require'completion'.on_attach()
 
 "" deoplete-lsp
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF
