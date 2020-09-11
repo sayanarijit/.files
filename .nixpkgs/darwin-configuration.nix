@@ -83,10 +83,12 @@ in
   system.defaults.loginwindow.GuestEnabled = true;
   system.defaults.trackpad.FirstClickThreshold = 0;
   system.defaults.trackpad.SecondClickThreshold = 0;
-  system.defaults.spaces.spans-displays = false;  # yabai requirement
+  # system.defaults.spaces.spans-displays = false;  # yabai requirement
   system.keyboard.enableKeyMapping = true;
   # system.defaults.screencapture.disable-shadow = true;
   system.keyboard.remapCapsLockToEscape = true;
+  # Disables key repeat (training myself with vim)
+  system.defaults.NSGlobalDomain.InitialKeyRepeat = 0;
 
   environment = {
     interactiveShellInit = builtins.readFile ./.profile;
@@ -244,77 +246,80 @@ in
     '';
   };
 
-  services.yabai = {
-    package = pkgs.yabai;
-    enable = true;
-    enableScriptingAddition = false;
-    config = {
-      focus_follows_mouse          = "autoraise";
-      mouse_follows_focus          = "off";
-      window_placement             = "second_child";
-      window_opacity               = "off";
-      window_opacity_duration      = "0.0";
-      window_border                = "on";
-      window_border_placement      = "inset";
-      window_border_width          = 0;
-      window_border_radius         = 0;
-      active_window_border_topmost = "on";
-      window_topmost               = "on";
-      window_shadow                = "float";
-      active_window_border_color   = "0xff5c7e81";
-      normal_window_border_color   = "0xff505050";
-      insert_window_border_color   = "0xffd75f5f";
-      active_window_opacity        = "1.0";
-      normal_window_opacity        = "1.0";
-      split_ratio                  = "0.50";
-      auto_balance                 = "on";
-      mouse_modifier               = "fn";
-      mouse_action1                = "move";
-      mouse_action2                = "resize";
-      layout                       = "bsp";
-      top_padding                  = 0;
-      bottom_padding               = 0;
-      left_padding                 = 0;
-      right_padding                = 0;
-      window_gap                   = 5;
-    };
+#   services.yabai = {
+#     package = pkgs.yabai;
+#     enable = true;
+#     enableScriptingAddition = false;
+#     config = {
+#       focus_follows_mouse          = "autoraise";
+#       mouse_follows_focus          = "off";
+#       window_placement             = "second_child";
+#       window_opacity               = "off";
+#       window_opacity_duration      = "0.0";
+#       window_border                = "on";
+#       window_border_placement      = "inset";
+#       window_border_width          = 0;
+#       window_border_radius         = 0;
+#       active_window_border_topmost = "on";
+#       window_topmost               = "on";
+#       window_shadow                = "float";
+#       active_window_border_color   = "0xff5c7e81";
+#       normal_window_border_color   = "0xff505050";
+#       insert_window_border_color   = "0xffd75f5f";
+#       active_window_opacity        = "1.0";
+#       normal_window_opacity        = "1.0";
+#       split_ratio                  = "0.50";
+#       auto_balance                 = "on";
+#       mouse_modifier               = "fn";
+#       mouse_action1                = "move";
+#       mouse_action2                = "resize";
+#       layout                       = "bsp";
+#       top_padding                  = 0;
+#       bottom_padding               = 0;
+#       left_padding                 = 0;
+#       right_padding                = 0;
+#       window_gap                   = 5;
+#     };
 
-    extraConfig = ''
-      # rules
-      yabai -m rule --add app='System Preferences' manage=off
-    '';
-  };
+#     extraConfig = ''
+#       # signals
+#       # yabai -m signal --add event=space_changed action="yabai -m config window_border off && yabai -m config window_border on"
 
-  services.skhd = {
-    package = pkgs.skhd;
-    enable = true;
-    skhdConfig = ''
-      # focus window
-      shift + cmd - left : yabai -m window --focus west || yabai -m display --focus prev
-      shift + cmd - down : yabai -m window --focus south
-      shift + cmd - up : yabai -m window --focus north
-      shift + cmd - right : yabai -m window --focus east || yabai -m display --focus next
+#       # rules
+#       yabai -m rule --add app='System Preferences' manage=off
+#     '';
+#   };
 
-      # move window
-      shift + cmd - h : yabai -m window --warp west || { yabai -m window --display prev && yabai -m display --focus prev }
-      shift + cmd - j : yabai -m window --warp south
-      shift + cmd - k : yabai -m window --warp north
-      shift + cmd - l : yabai -m window --warp east || { yabai -m window --display next && yabai -m display --focus next }
+#   services.skhd = {
+#     package = pkgs.skhd;
+#     enable = true;
+#     skhdConfig = ''
+#       # focus window
+#       shift + cmd - left : yabai -m window --focus west || yabai -m display --focus prev ; yabai -m config window_border off && yabai -m config window_border on
+#       shift + cmd - down : yabai -m window --focus south ; yabai -m config window_border off && yabai -m config window_border on
+#       shift + cmd - up : yabai -m window --focus north ; yabai -m config window_border off && yabai -m config window_border on
+#       shift + cmd - right : yabai -m window --focus east || yabai -m display --focus next ; yabai -m config window_border off && yabai -m config window_border on
 
-      # balance size of windows
-      shift + cmd - 0 : yabai -m space --balance
+#       # move window
+#       shift + cmd - h : yabai -m window --warp west || { yabai -m window --display prev && yabai -m display --focus prev }
+#       shift + cmd - j : yabai -m window --warp south
+#       shift + cmd - k : yabai -m window --warp north
+#       shift + cmd - l : yabai -m window --warp east || { yabai -m window --display next && yabai -m display --focus next }
 
-      # float / unfloat window and center on screen
-      shift + cmd - space : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+#       # balance size of windows
+#       shift + cmd - 0 : yabai -m space --balance
 
-      # toggle zoom fullscreen
-      shift + cmd - return : yabai -m window --toggle zoom-fullscreen
+#       # float / unfloat window and center on screen
+#       shift + cmd - space : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
 
-      # resize windows
-      shift + cmd - u : yabai -m window --resize right:-50:0 || { yabai -m window --resize left:50:0 }
-      shift + cmd - i : yabai -m window --resize bottom:0:-50 || { yabai -m window --resize top:0:50 }
-      shift + cmd - o : yabai -m window --resize bottom:0:50 || { yabai -m window --resize top:0:-50 }
-      shift + cmd - p : yabai -m window --resize right:50:0 || { yabai -m window --resize left:-50:0 }
-    '';
-  };
+#       # toggle zoom fullscreen
+#       shift + cmd - return : yabai -m window --toggle zoom-fullscreen
+
+#       # resize windows
+#       shift + cmd - u : yabai -m window --resize right:-50:0 || { yabai -m window --resize left:50:0 }
+#       shift + cmd - i : yabai -m window --resize bottom:0:-50 || { yabai -m window --resize top:0:50 }
+#       shift + cmd - o : yabai -m window --resize bottom:0:50 || { yabai -m window --resize top:0:-50 }
+#       shift + cmd - p : yabai -m window --resize right:50:0 || { yabai -m window --resize left:-50:0 }
+#     '';
+#   };
 }

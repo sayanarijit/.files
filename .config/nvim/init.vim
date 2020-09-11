@@ -74,6 +74,7 @@ set splitbelow  " Opens new hsplits below the current window
 set splitright  " Opens new vsplits right side of the current window
 set lazyredraw  " Prevent screen flickering when opening vim inside vim
 set expandtab  " Convert tabs to spaces (I don't write golang anymore)
+set nohlsearch  " Turn off search highlight
 set hidden
 set nobackup
 set nowritebackup
