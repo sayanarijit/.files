@@ -233,6 +233,11 @@ in
 
       bind-key C-b run -b ftwind  # ~/.bin/ftwind
 
+      bind-key h select-pane -L
+      bind-key j select-pane -D
+      bind-key k select-pane -U
+      bind-key l select-pane -R
+
       bind-key C-h select-pane -L
       bind-key C-j select-pane -D
       bind-key C-k select-pane -U
