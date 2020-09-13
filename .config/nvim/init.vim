@@ -40,7 +40,7 @@ Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
 Plug 'honza/vim-snippets'  " Snippets are separated from the engine
 Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
-Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
+" Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
@@ -48,13 +48,14 @@ Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
 Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
 Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R 
-Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
+" Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 " Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
 " Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
 " Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
+Plug 'norcalli/nvim-colorizer.lua'  "  The fastest Neovim colorizer.
 Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at the bottom)
 call plug#end()
 """</Plugins>"""
@@ -465,6 +466,11 @@ let g:which_key_map.x = {
 call which_key#register('<Space>', "g:which_key_map")
 """</Keybindings Helper>"""
 
+"""<Colorizer>"""
+set termguicolors
+lua require'colorizer'.setup()
+"""</Colorizer>"""
+
 """<Language server and auto completion>"""
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
 set completeopt=menuone,noinsert,noselect
@@ -560,7 +566,6 @@ nnoremap <silent> K     <cmd>Hover<CR>
 """</Language server and auto completion>"""
 
 """<Theme>"""
-set termguicolors
 set cursorline
 set cursorcolumn
 set background=dark
