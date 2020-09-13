@@ -1,5 +1,6 @@
 set shell=/bin/sh
 set rtp +=~/.vim
+syntax on
 
 
 """<Plugins>"""
@@ -507,6 +508,7 @@ require'nvim_lsp'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.vimls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.sumneko_lua.setup{}
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",     -- one of "all", "language", or a list of languages
