@@ -5,6 +5,7 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
@@ -471,6 +472,12 @@ call which_key#register('<Space>', "g:which_key_map")
 set termguicolors
 lua require'colorizer'.setup()
 """</Colorizer>"""
+
+"""<VimWiki>"""
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+"""</VimWiki>"""
+
 
 """<Language server and auto completion>"""
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
