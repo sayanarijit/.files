@@ -76,7 +76,6 @@ set scrolloff=5  " Keep some space while scrolling vertically
 set splitbelow  " Opens new hsplits below the current window
 set splitright  " Opens new vsplits right side of the current window
 set lazyredraw  " Prevent screen flickering when opening vim inside vim
-set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 set nohlsearch  " Turn off search highlight
 set hidden
 set nobackup
@@ -84,6 +83,10 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+filetype plugin indent on
+set tabstop=4  " show existing tab with 4 spaces width
+set shiftwidth=4 " when indenting with '>', use 4 spaces width
+set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
