@@ -5,6 +5,7 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
 Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
@@ -481,6 +482,9 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 """</VimWiki>"""
 
+"""<Smooth scrolling>"""
+let g:SimpleSmoothScrollDelay=3
+"""</Smooth scrolling"""
 
 """<Language server and auto completion>"""
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
