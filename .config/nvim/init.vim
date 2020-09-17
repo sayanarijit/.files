@@ -5,6 +5,9 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
 Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
@@ -201,7 +204,7 @@ let g:startify_lists = [
 
 let g:startify_commands = [
 	\ {'*': ['Git Modified Files', ':GitModified']},
-	\ {'f': ['Search Files', ':Files']},
+	\ {'f': ['Search Files', ':Files .']},
 	\ {'F': ['Search GitHub Files', ':GFiles']},
 	\ {'T': ['Open Terminal', ':terminal $SHELL']},
 	\ ]
@@ -262,6 +265,18 @@ command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 """</Snippets>"""
+
+"""<Telescope>"""
+command TelescopeGitFiles :lua require'telescope.builtin'.git_files{}
+command TelescopeFindFiles :lua require'telescope.builtin'.find_files{}
+command TelescopeGrepString :lua require'telescope.builtin'.grep_string{}
+command TelescopeLiveGrep :lua require'telescope.builtin'.live_grep{}
+command TelescopeReferences :lua require'telescope.builtin'.lsp_references{}
+command TelescopeDocumentSymbols :lua require'telescope.builtin'.lsp_document_symbols{}
+command TelescopeWorkspaceSymbols :lua require'telescope.builtin'.lsp_workspace_symbols{}
+command TelescopeTreeSitter :lua require'telescope.builtin'.treesitter{}
+command TelescopePlanets :lua require'telescope.builtin'.planets{}
+"""</Telescope>"""
 
 """<Keybindings Helper: WhichKey>"""
   
@@ -383,11 +398,14 @@ let g:which_key_map.s = {
       \ 'M' : [':Maps'         , 'normal maps'] ,
       \ 'p' : [':Helptags'     , 'help tags'] ,
       \ 'P' : [':Tags'         , 'project tags'],
+      \ 'r' : [':TelescopeReferences', 'lsp references'],
+      \ 's' : [':TelescopeDocumentSymbols'       , 'lsp document symbols'],
       \ 'S' : [':Colors'       , 'color schemes'],
       \ 't' : [':Rg'           , 'text Rg'],
       \ 'T' : [':BTags'        , 'buffer tags'],
       \ 'v' : [':Vista finder! ctags' , 'symbols'],
-      \ 'w' : [':Windows'      , 'search windows'],
+      \ 'w' : [':TelescopeWorkspaceSymbols'      , 'lsp workspace symbols'],
+      \ 'W' : [':Windows'      , 'search windows'],
       \ 'y' : [':Filetypes'    , 'file types'],
       \ 'z' : [':FZF'          , 'FZF'],
       \ }
@@ -427,9 +445,9 @@ let g:which_key_map.l = {
       \ 'l' : [':NextDiagnostic'                     , 'next diagnostic'],
       \ 'L' : [':PrevDiagnostic'                     , 'prev diagnostic'],
       \ 'I' : [':OpenDiagnostic'                     , 'diagnostics'],
-      \ 'r' : [':References'                         , 'references'],
-      \ 's' : [':DocumentSymbol'                     , 'document symbols'],
-      \ 'S' : [':WorkspaceSymbol'                    , 'workspace symbols'],
+      \ 'r' : [':TelescopeReferences'                , 'references'],
+      \ 's' : [':TelescopeDocumentSymbols'           , 'document symbols'],
+      \ 'S' : [':TelescopeWorkspaceSymbols'          , 'workspace symbols'],
       \ 't' : [':TypeDefinition'                     , 'type definition'],
       \ }
 
