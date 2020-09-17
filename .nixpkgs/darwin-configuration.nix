@@ -160,6 +160,8 @@ in
       fzf-tab-completion
       lua
       luarocks
+      act  # Run GitHUb actions locally
+      tmate  # Instant terminal sharing
     ];
   };
 
