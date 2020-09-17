@@ -208,6 +208,7 @@ in
 
       source ${fzf-tab-completion}/zsh/fzf-zsh-completion.sh
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/lib/directories.zsh
+      source ${pkgs.oh-my-zsh}/share/oh-my-zsh/lib/key-bindings.zsh
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/git/git.plugin.zsh
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/common-aliases/common-aliases.plugin.zsh
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
