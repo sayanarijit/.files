@@ -146,6 +146,7 @@ in
       tmuxPlugins.copycat
       alacritty
       gitAndTools.delta
+      gitAndTools.gh
       jpegoptim
       pstree
       ffmpeg
@@ -162,6 +163,7 @@ in
       luarocks
       act  # Run GitHUb actions locally
       tmate  # Instant terminal sharing
+      lazygit  # Git TUI
     ];
   };
 
