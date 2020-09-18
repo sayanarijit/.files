@@ -13,6 +13,7 @@ Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
+Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
