@@ -12,8 +12,8 @@ Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scro
 Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
-Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
+" Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
+" Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
@@ -92,6 +92,9 @@ filetype plugin indent on
 set tabstop=4  " show existing tab with 4 spaces width
 set shiftwidth=4 " when indenting with '>', use 4 spaces width
 set expandtab  " Convert tabs to spaces (I don't write golang anymore)
+
+" use 2 spaces for yaml
+autocmd FileType yaml,yml setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
@@ -275,7 +278,7 @@ command TelescopeLiveGrep :lua require'telescope.builtin'.live_grep{}
 command TelescopeReferences :lua require'telescope.builtin'.lsp_references{}
 command TelescopeDocumentSymbols :lua require'telescope.builtin'.lsp_document_symbols{}
 command TelescopeWorkspaceSymbols :lua require'telescope.builtin'.lsp_workspace_symbols{}
-command TelescopeTreeSitter :lua require'telescope.builtin'.treesitter{}
+" command TelescopeTreeSitter :lua require'telescope.builtin'.treesitter{}
 command TelescopePlanets :lua require'telescope.builtin'.planets{}
 """</Telescope>"""
 
@@ -543,6 +546,7 @@ require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.vimls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.sumneko_lua.setup{}
 
+--[[
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",     -- one of "all", "language", or a list of languages
   highlight = {
@@ -580,6 +584,7 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
+--]]
 EOF
 
 "" code folding
