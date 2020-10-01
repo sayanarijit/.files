@@ -165,6 +165,7 @@ in
       act  # Run GitHUb actions locally
       tmate  # Instant terminal sharing
       lazygit  # Git TUI
+      hyperfine  # A command-line benchmarking tool
     ];
   };
 
