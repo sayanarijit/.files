@@ -41,21 +41,3 @@ prompt_order = [
     # "time",
     "character",
 ]
-
-[elm]
-symbol = " "
-
-[git_status]
-conflicted = "🏳"
-ahead = "🏎💨"
-behind = "😰"
-diverged = "😵"
-untracked = "🤷‍"
-stashed = "📦"
-modified = "📝"
-staged.value = "++"
-staged.style = "green"
-staged_count.enabled = true
-staged_count.style = "green"
-renamed = "👅"
-deleted = "🗑"
