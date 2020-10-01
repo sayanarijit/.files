@@ -44,13 +44,14 @@ let
     ];
   };
 
-  # Make zsh's tab completion even better
-  fzf-tab-completion = pkgs.fetchFromGitHub { 
-     owner = "lincheney"; 
-     repo = "fzf-tab-completion"; 
-     rev= "a39091b6e903d34c53f5f259c6b66c40069c7986";
-     sha256= "0df77k339im84z8x49q56s26bircyyn9dasz0s1xxb7q29dxix7z";
-  };
+  ## Make zsh's tab completion even better
+  ## Use `source ${fzf-tab-completion}/zsh/fzf-zsh-completion.sh` in tmux config
+  # fzf-tab-completion = pkgs.fetchFromGitHub { 
+  #    owner = "lincheney"; 
+  #    repo = "fzf-tab-completion"; 
+  #    rev= "a39091b6e903d34c53f5f259c6b66c40069c7986";
+  #    sha256= "0df77k339im84z8x49q56s26bircyyn9dasz0s1xxb7q29dxix7z";
+  # };
 
 in
 {
@@ -158,7 +159,7 @@ in
       starship  # oh-my-zsh replacement for speed
       zsh-autosuggestions  # No need of fish shell with this around
       oh-my-zsh  # Only for some selected plugins
-      fzf-tab-completion
+      # fzf-tab-completion
       lua
       luarocks
       act  # Run GitHUb actions locally
@@ -210,8 +211,8 @@ in
     interactiveShellInit = ''
       autoload -Uz compinit && compinit -i
 
-      source ${fzf-tab-completion}/zsh/fzf-zsh-completion.sh
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/lib/directories.zsh
+      source ${pkgs.oh-my-zsh}/share/oh-my-zsh/lib/completion.zsh
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/lib/key-bindings.zsh
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/git/git.plugin.zsh
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/common-aliases/common-aliases.plugin.zsh
