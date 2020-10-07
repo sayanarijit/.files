@@ -12,7 +12,7 @@ Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scro
 Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-" Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
+Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
@@ -32,7 +32,6 @@ Plug 'craigemery/vim-autotag'  " Update tags
 Plug 'tpope/vim-fugitive'  " Git integration
 Plug 'janko-m/vim-test'  " Test runner
 " Plug 'benmills/vimux'  " Runs tests in new tmux window
-Plug 'easymotion/vim-easymotion'  " Quick movement
 Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 " Plug 'fatih/vim-go'  " Go development
 " Plug 'rust-lang/rust.vim'  " Rust development
@@ -214,12 +213,6 @@ let g:startify_commands = [
 	\ ]
 """</Start page>"""
 
-"""<Quick movements: easymotion>"""
-let g:EasyMotion_keys='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+[]{}|;:",./<>?'
-let g:EasyMotion_smartcase = 1
-"""</Quick movements>"""
-
-
 """<Expand Region: vim-expand-region>"""
 let g:expand_region_text_objects = {
       \ 'iw'  :0,
@@ -338,14 +331,6 @@ let g:which_key_map.a.s = {
 	\ 's' : ['gS', 'split line'],
 	\ 'j' : ['gJ', 'join lines'],
 	\ }
-
-" f for find word
-let g:which_key_map.f = {
-	\ 'name' : '+find',
-	\ '1' : ['<Plug>(easymotion-overwin-f)', 'find by 1 char'],
-	\ '2' : ['<Plug>(easymotion-overwin-f2)', 'find by 2 chars'],
-	\ }
-
 
 " w for window
 let g:which_key_map.w = {
@@ -544,25 +529,10 @@ require'nvim_lsp'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.vimls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.sumneko_lua.setup{}
+require'nvim_lsp'.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
 
---[[
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",     -- one of "all", "language", or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},               -- list of language that will be disabled
-  },
-  refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = false },
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = ",r",
-      },
-    },
-  },
   textobjects = {
     select = {
       enable = true,
@@ -584,7 +554,6 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
---]]
 EOF
 
 "" code folding

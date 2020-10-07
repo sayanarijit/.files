@@ -22,7 +22,7 @@ prompt_order = [
     # "ocaml",
     # "php",
     # "purescript",
-    # "python",
+    "python",
     # "ruby",
     # "rust",
     # "terraform",
