@@ -120,6 +120,8 @@ let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
 " Key mappings
 inoremap <silent> <c-a> <ESC>I
 inoremap <silent> <c-e> <ESC>A
+inoremap <silent> <a-left> <c-left>
+inoremap <silent> <a-right> <c-right>
 nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 nnoremap <silent> <a-s-right> :tabm +1<CR>
