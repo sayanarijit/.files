@@ -167,6 +167,8 @@ in
       lazygit  # Git TUI
       hyperfine  # A command-line benchmarking tool
       geckodriver
+      openjdk11
+      maven
     ];
   };
 

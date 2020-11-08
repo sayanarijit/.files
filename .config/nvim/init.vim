@@ -95,6 +95,9 @@ set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 " use 2 spaces for yaml
 autocmd FileType yaml,yml setlocal shiftwidth=2 softtabstop=2 expandtab
 
+" Enable spell checker for git commits and docs
+autocmd FileType gitcommit,md,rst setlocal spell
+
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
