@@ -339,6 +339,15 @@ let g:which_key_map.a.s = {
 	\ 'j' : ['gJ', 'join lines'],
 	\ }
 
+let g:which_key_map.f = {
+	\ 'name' : '+floaterm',
+	\ 'f' : ['FloatermNew', 'new'],
+	\ 't' : ['FloatermToggle', 'toggle'],
+	\ '>' : ['FloatermNext', 'next'],
+	\ '<' : ['FloatermPrev', 'prev'],
+	\ 'k' : ['FloatermKill', 'kill'],
+	\ }
+
 " w for window
 let g:which_key_map.w = {
 	\ 'name' : '+window',
@@ -585,7 +594,7 @@ nnoremap <silent> K     <cmd>Hover<CR>
 let g:floaterm_shell = 'zsh'
 autocmd User Startified setlocal buflisted
 function s:floatermSettings()
-    setlocal nonumber norelativenumber
+    setlocal number relativenumber
     " more settings
 endfunction
 
@@ -593,6 +602,8 @@ autocmd FileType floaterm call s:floatermSettings()
 let g:floaterm_height = 0.8
 let g:floaterm_width = 0.8
 let g:floaterm_winblend = 20
+let g:floaterm_autoinsert = v:false
+let g:floaterm_autohide = v:false
 """</Terminal>"""
 
 """<Theme>"""
