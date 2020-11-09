@@ -63,6 +63,7 @@ Plug 'joshdick/onedark.vim'  " Atom onedark theme
 " Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
 Plug 'norcalli/nvim-colorizer.lua'  "  The fastest Neovim colorizer.
 Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at the bottom)
+Plug 'voldikss/vim-floaterm'  "  🌟 Use nvim/vim's builtin terminal in the floating/popup window
 call plug#end()
 """</Plugins>"""
 
@@ -117,7 +118,7 @@ command DarwinConfig :tabnew ~/.nixpkgs/darwin-configuration.nix
 
 " tags
 set tags=.vim/tags  " Where to store tags file
-let g:autotagTagsFile=".vim/tags"  " ^^
+let g:autotagTagsFile = ".vim/tags"  " ^^
 let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
 
 " Key mappings
@@ -302,6 +303,7 @@ let g:which_key_map.a.o = {
 
 let g:which_key_map.a.t = {
 	\ 'name' : '+terminal',
+	\ 'f' : [':FloatermToggle', 'floating toggle'],
 	\ 't' : [':TerminalTab', 'new tab'],
 	\ 'h' : [':TerminalHSplit', 'horizontal split'],
 	\ 'v' : [':TerminalVSplit', 'vertical split'],
@@ -578,6 +580,20 @@ command Format :lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 nnoremap <silent> K     <cmd>Hover<CR>
 """</Language server and auto completion>"""
+
+"""<Terminal: floatterm>"""
+let g:floaterm_shell = 'zsh'
+autocmd User Startified setlocal buflisted
+function s:floatermSettings()
+    setlocal nonumber norelativenumber
+    " more settings
+endfunction
+
+autocmd FileType floaterm call s:floatermSettings()
+let g:floaterm_height = 0.8
+let g:floaterm_width = 0.8
+let g:floaterm_winblend = 20
+"""</Terminal>"""
 
 """<Theme>"""
 set cursorline
