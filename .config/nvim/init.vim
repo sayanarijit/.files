@@ -341,8 +341,8 @@ let g:which_key_map.a.s = {
 
 let g:which_key_map.f = {
 	\ 'name' : '+floaterm',
-	\ 'f' : ['FloatermNew', 'new'],
-	\ 't' : ['FloatermToggle', 'toggle'],
+	\ '+' : ['FloatermNew', 'new'],
+	\ 'f' : ['FloatermToggle', 'toggle'],
 	\ '>' : ['FloatermNext', 'next'],
 	\ '<' : ['FloatermPrev', 'prev'],
 	\ 'k' : ['FloatermKill', 'kill'],
@@ -603,7 +603,6 @@ let g:floaterm_height = 0.8
 let g:floaterm_width = 0.8
 let g:floaterm_winblend = 20
 let g:floaterm_autoinsert = v:false
-let g:floaterm_autohide = v:false
 """</Terminal>"""
 
 """<Theme>"""
