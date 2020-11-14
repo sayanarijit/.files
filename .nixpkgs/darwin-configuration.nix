@@ -1,6 +1,32 @@
 { config, pkgs, ... }:
 
 let
+
+  # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/networking/openapi-generator-cli/unstable.nix
+  openapi-generator-cli-unstable = pkgs.stdenv.mkDerivation rec {
+    version = "5.0.0-2020-11-04";
+    pname = "openapi-generator-cli";
+
+    jarfilename = "${pname}-${version}.jar";
+
+    nativeBuildInputs = [
+      pkgs.makeWrapper
+    ];
+
+    src = pkgs.fetchurl {
+      url = "https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/5.0.0-SNAPSHOT/openapi-generator-cli-5.0.0-20201108.212632-859.jar";
+      sha256 = "0gwk3535l65hpc7ch72226w11qsysjdbyy63x6m1nzhqbr5fn140";
+    };
+
+    phases = [ "installPhase" ];
+
+    installPhase = ''
+      install -D "$src" "$out/share/java/${jarfilename}"
+      makeWrapper ${pkgs.jre}/bin/java $out/bin/${pname} \
+        --add-flags "-jar $out/share/java/${jarfilename}"
+    '';
+  };
+
   # Let's use the nightly build for native LSP support.
   nvim-nightly = pkgs.stdenv.mkDerivation {
     name = "nvim-nightly";
@@ -169,6 +195,7 @@ in
       geckodriver
       openjdk11
       maven
+      openapi-generator-cli-unstable
     ];
   };
 
