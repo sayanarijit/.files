@@ -38,7 +38,7 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 " Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'LnL7/vim-nix'  " Nix support
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
 Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
