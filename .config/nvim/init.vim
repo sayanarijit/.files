@@ -535,18 +535,18 @@ let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF
-require'nvim_lsp'.pyls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.html.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.elmls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.dockerls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.cssls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.diagnosticls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.bashls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.vimls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.pyls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.html.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.elmls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.dockerls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.cssls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.diagnosticls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.bashls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.vimls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",     -- one of "all", "language", or a list of languages
