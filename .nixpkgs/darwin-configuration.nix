@@ -49,6 +49,7 @@ let
       black
       mypy
       flake8
+      jedi
     ]
   );
 

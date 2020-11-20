@@ -15,10 +15,11 @@ Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+" Plug 'nvim-treesitter/completion-treesitter'
 Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
-Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }  " 
+" Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
+Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -278,7 +279,7 @@ command TelescopeLiveGrep :lua require'telescope.builtin'.live_grep{}
 command TelescopeReferences :lua require'telescope.builtin'.lsp_references{}
 command TelescopeDocumentSymbols :lua require'telescope.builtin'.lsp_document_symbols{}
 command TelescopeWorkspaceSymbols :lua require'telescope.builtin'.lsp_workspace_symbols{}
-" command TelescopeTreeSitter :lua require'telescope.builtin'.treesitter{}
+command TelescopeTreeSitter :lua require'telescope.builtin'.treesitter{}
 command TelescopePlanets :lua require'telescope.builtin'.planets{}
 """</Telescope>"""
 
@@ -512,8 +513,10 @@ let g:SimpleSmoothScrollDelay=3
 
 """<Language server and auto completion>"""
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noinsert,noselect,preview
 
+"" deoplete-jedi
+let g:deoplete#sources#jedi#python_path = '/run/current-system/sw/bin/python3'
 
 "" diagnostic-nvim
 let g:diagnostic_enable_virtual_text = 0
