@@ -4,6 +4,5 @@ format = """\
  $git_commit\
  $git_state\
  $git_status\
- $python\
  $character\
 """
