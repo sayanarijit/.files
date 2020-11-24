@@ -517,7 +517,7 @@ let g:SimpleSmoothScrollDelay=3
 
 """<Language server and auto completion>"""
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
-set completeopt=menuone,noinsert,noselect,preview
+set completeopt=menuone,noinsert,noselect
 
 "" deoplete-jedi
 let g:deoplete#sources#jedi#python_path = '/run/current-system/sw/bin/python3'
