@@ -197,6 +197,7 @@ in
       openjdk11
       maven
       openapi-generator-cli-unstable
+      mpv
     ];
   };
 
