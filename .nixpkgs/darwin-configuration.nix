@@ -115,8 +115,7 @@ in
   system.keyboard.enableKeyMapping = true;
   # system.defaults.screencapture.disable-shadow = true;
   system.keyboard.remapCapsLockToEscape = true;
-  # Disables key repeat (training myself with vim)
-  system.defaults.NSGlobalDomain.InitialKeyRepeat = 0;
+  system.defaults.NSGlobalDomain.InitialKeyRepeat = 1;
 
   environment = {
     interactiveShellInit = builtins.readFile ./.profile;
