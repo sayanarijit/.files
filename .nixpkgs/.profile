@@ -7,7 +7,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export LANG=en_US
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export EDITOR=vim
+export EDITOR=nvim
 export NIX_PATH="darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels"
 
 # For compilers to find readline you may need to set:
