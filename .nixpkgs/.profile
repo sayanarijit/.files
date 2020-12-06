@@ -7,7 +7,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export LANG=en_US
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export EDITOR=nvim
+export EDITOR=vim
 export NIX_PATH="darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels"
 
 # For compilers to find readline you may need to set:
@@ -31,7 +31,7 @@ alias kai="cd ~/Documents/GitHub/kai-app"
 alias kaib="cd ~/Documents/GitHub/kai-app/backend"
 alias kaif="cd ~/Documents/GitHub/kai-app/frontend"
 
-alias vim="nvim"
+# alias vim="nvim"
 
 alias nixd="launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist && launchctl start org.nixos.nix-daemon"
 
@@ -46,6 +46,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export MANPAGER='nvim +Man!'
 # eval $(thefuck --alias)
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

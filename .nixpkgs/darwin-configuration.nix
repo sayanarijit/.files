@@ -31,14 +31,14 @@ let
   nvim-nightly = pkgs.stdenv.mkDerivation {
     name = "nvim-nightly";
     src = pkgs.fetchurl {
-      url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz";
-      sha256 = "1ckf02gbalb7hd62bx2rx387j0cdjff2cyfmgg1jqxn2mbjzxr7b";
+      url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.bz2";
+      sha256 = "1mc9fhvmhdlpn9jdwlz70n7fnmnp4rlm30yskvpnj41fniym13g8";
     };
     phases = ["installPhase" "patchPhase"];
     installPhase = ''
-      tar xzvf $src
+      tar -xjvf $src
       mkdir -p $out
-      mv nvim-osx64/* $out/
+      mv nvim/* $out/
     '';
   };
 
@@ -115,7 +115,7 @@ in
   system.keyboard.enableKeyMapping = true;
   # system.defaults.screencapture.disable-shadow = true;
   system.keyboard.remapCapsLockToEscape = true;
-  system.defaults.NSGlobalDomain.InitialKeyRepeat = 1;
+  system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
 
   environment = {
     interactiveShellInit = builtins.readFile ./.profile;
@@ -125,7 +125,8 @@ in
     systemPackages = with pkgs; [
       niv  #  Easy dependency management for Nix projects
       # neovim  # vscode replacement (I'll use the HEAD for now)
-      nvim-nightly
+      # nvim-nightly
+      neovim  # Had to fall back to stable because too many errors
       pyEnv  # Custom python env with language servers and tools
       yarnPkgs  # Global nodejs tools
       bat  # cat replacement
@@ -196,7 +197,7 @@ in
       openjdk11
       maven
       openapi-generator-cli-unstable
-      mpv
+      # mpv
     ];
   };
 

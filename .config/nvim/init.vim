@@ -3,19 +3,23 @@ set rtp +=~/.vim
 syntax on
 
 
+" I had to fall back to nvim 4.* from nvim-nightly because too many errors.
+" So many commented features can be revived once nvim 5.* is stable.
+
+
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
-Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
-Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
-Plug 'k0kubun/vim-open-github'  "  Quickly open your current buffer in GitHub.
+" Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
+" Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
+" Plug 'k0kubun/vim-open-github'  "  Quickly open your current buffer in GitHub.
 Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
-Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
-Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
+" Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
+" Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
+" Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 " Plug 'nvim-treesitter/completion-treesitter'
@@ -542,42 +546,42 @@ let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF
-require'lspconfig'.pyls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.html.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.elmls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.dockerls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.cssls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.diagnosticls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.bashls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.vimls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
-
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",     -- one of "all", "language", or a list of languages
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-
-        -- Or you can define your own textobjects like this
-        ["iF"] = {
-          python = "(function_definition) @function",
-          cpp = "(function_definition) @function",
-          c = "(function_definition) @function",
-          java = "(method_declaration) @function",
-        },
-      },
-    },
-  },
-}
+-- require'lspconfig'.pyls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.html.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.elmls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.dockerls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.cssls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.diagnosticls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.bashls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.vimls.setup{on_attach=require'diagnostic'.on_attach}
+-- require'lspconfig'.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
+-- 
+-- require'nvim-treesitter.configs'.setup {
+--   ensure_installed = "all",     -- one of "all", "language", or a list of languages
+--   textobjects = {
+--     select = {
+--       enable = true,
+--       keymaps = {
+--         -- You can use the capture groups defined in textobjects.scm
+--         ["af"] = "@function.outer",
+--         ["if"] = "@function.inner",
+--         ["ac"] = "@class.outer",
+--         ["ic"] = "@class.inner",
+-- 
+--         -- Or you can define your own textobjects like this
+--         ["iF"] = {
+--           python = "(function_definition) @function",
+--           cpp = "(function_definition) @function",
+--           c = "(function_definition) @function",
+--           java = "(method_declaration) @function",
+--         },
+--       },
+--     },
+--   },
+-- }
 EOF
 
 "" code folding
