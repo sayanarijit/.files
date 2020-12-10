@@ -124,9 +124,8 @@ in
     # $ nix-env -qaP | grep wget
     systemPackages = with pkgs; [
       niv  #  Easy dependency management for Nix projects
-      # neovim  # vscode replacement (I'll use the HEAD for now)
       # nvim-nightly
-      neovim  # Had to fall back to stable because too many errors
+      neovim
       pyEnv  # Custom python env with language servers and tools
       yarnPkgs  # Global nodejs tools
       bat  # cat replacement
@@ -198,6 +197,7 @@ in
       maven
       openapi-generator-cli-unstable
       # mpv
+      gcc
     ];
   };
 
