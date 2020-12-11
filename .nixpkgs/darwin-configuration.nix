@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
-
 let
-
   # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/networking/openapi-generator-cli/unstable.nix
   openapi-generator-cli-unstable = pkgs.stdenv.mkDerivation rec {
     version = "5.0.0-2020-11-04";
@@ -9,12 +7,11 @@ let
 
     jarfilename = "${pname}-${version}.jar";
 
-    nativeBuildInputs = [
-      pkgs.makeWrapper
-    ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
 
     src = pkgs.fetchurl {
-      url = "https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/5.0.0-SNAPSHOT/openapi-generator-cli-5.0.0-20201108.212632-859.jar";
+      url =
+        "https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/5.0.0-SNAPSHOT/openapi-generator-cli-5.0.0-20201108.212632-859.jar";
       sha256 = "0gwk3535l65hpc7ch72226w11qsysjdbyy63x6m1nzhqbr5fn140";
     };
 
@@ -31,10 +28,11 @@ let
   nvim-nightly = pkgs.stdenv.mkDerivation {
     name = "nvim-nightly";
     src = pkgs.fetchurl {
-      url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.bz2";
+      url =
+        "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.bz2";
       sha256 = "1mc9fhvmhdlpn9jdwlz70n7fnmnp4rlm30yskvpnj41fniym13g8";
     };
-    phases = ["installPhase" "patchPhase"];
+    phases = [ "installPhase" "patchPhase" ];
     installPhase = ''
       tar -xjvf $src
       mkdir -p $out
@@ -43,15 +41,8 @@ let
   };
 
   # Python LSP requires a dedicated py env.
-  pyEnv = pkgs.python38.withPackages (
-    ps: with ps; [
-      pynvim
-      black
-      mypy
-      flake8
-      jedi
-    ]
-  );
+  pyEnv =
+    pkgs.python38.withPackages (ps: with ps; [ pynvim black mypy flake8 jedi ]);
 
   # Some language servers and global nodejs tools.
   yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
@@ -105,7 +96,7 @@ in
   system.defaults.dock.autohide = true;
   system.defaults.dock.orientation = "right";
   system.defaults.dock.tilesize = 0;
-  system.defaults.dock.mru-spaces = false;  # yabai recommendation
+  system.defaults.dock.mru-spaces = false; # yabai recommendation
   system.defaults.finder._FXShowPosixPathInTitle = true;
   system.defaults.finder.AppleShowAllExtensions = true;
   system.defaults.loginwindow.GuestEnabled = true;
@@ -123,39 +114,39 @@ in
     # List packages installed in system profile. To search by name, run:
     # $ nix-env -qaP | grep wget
     systemPackages = with pkgs; [
-      niv  #  Easy dependency management for Nix projects
+      niv # Easy dependency management for Nix projects
       # nvim-nightly
       neovim
-      pyEnv  # Custom python env with language servers and tools
-      yarnPkgs  # Global nodejs tools
-      bat  # cat replacement
-      lsd  # ls replacement
+      pyEnv # Custom python env with language servers and tools
+      yarnPkgs # Global nodejs tools
+      bat # cat replacement
+      lsd # ls replacement
       sysctl
       xz
-      thefuck  # fuck: correct previous command
+      thefuck # fuck: correct previous command
       telnet
       sqlite
-      skim  # sk: fzf alternative in rust
-      scim  # spreadsheet
+      skim # sk: fzf alternative in rust
+      scim # spreadsheet
       readline
-      pgcli  # postgres cli
-      pandoc  # File converter
-      p11-kit  # Terminal colors
+      pgcli # postgres cli
+      pandoc # File converter
+      p11-kit # Terminal colors
       openssl
-      nnn  # Terminal file browser
+      nnn # Terminal file browser
       cachix
-      ncdu  # Disk utilization viewer
-      jq  # JSON viewer
-      httpie  # curl replacement
-      heroku  # Heroku CLI
+      ncdu # Disk utilization viewer
+      jq # JSON viewer
+      httpie # curl replacement
+      heroku # Heroku CLI
       git
-      findutils  # find replacement for mac
-      direnv  # ENV loader for projects
-      universal-ctags  # Tags creator for vim
-      coreutils  # GNU coreutils
-      circleci-cli  # CircleCI CLI
+      findutils # find replacement for mac
+      direnv # ENV loader for projects
+      universal-ctags # Tags creator for vim
+      coreutils # GNU coreutils
+      circleci-cli # CircleCI CLI
       bash-completion
-      asciinema  # Terminal session recorder
+      asciinema # Terminal session recorder
       ngrok
       gitAndTools.diff-so-fancy
       tldr
@@ -182,35 +173,30 @@ in
       elmPackages.elm-test
       elmPackages.elm-language-server
       elmPackages.elm-format
-      starship  # oh-my-zsh replacement for speed
-      zsh-autosuggestions  # No need of fish shell with this around
-      oh-my-zsh  # Only for some selected plugins
+      starship # oh-my-zsh replacement for speed
+      zsh-autosuggestions # No need of fish shell with this around
+      oh-my-zsh # Only for some selected plugins
       # fzf-tab-completion
       lua
       luarocks
-      act  # Run GitHUb actions locally
-      tmate  # Instant terminal sharing
-      lazygit  # Git TUI
-      hyperfine  # A command-line benchmarking tool
+      act # Run GitHUb actions locally
+      tmate # Instant terminal sharing
+      lazygit # Git TUI
+      hyperfine # A command-line benchmarking tool
       geckodriver
       openjdk11
       maven
       # openapi-generator-cli-unstable
       # mpv
       gcc
+      nixpkgs-fmt
     ];
   };
 
   # FiraCode font has everything a modern terminal needs.
   fonts = {
     enableFontDir = true;
-    fonts = with pkgs; [
-      (nerdfonts.override {
-        fonts = [ 
-          "FiraCode"
-        ];
-      })
-    ];
+    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
   };
 
   # Use a custom configuration.nix location.
@@ -255,7 +241,7 @@ in
       eval "$(starship init zsh)"
     '';
   };
-  
+
   # tmux + alacritty > iterm2
   programs.tmux = {
     enable = true;
@@ -294,80 +280,80 @@ in
     '';
   };
 
-#   services.yabai = {
-#     package = pkgs.yabai;
-#     enable = true;
-#     enableScriptingAddition = false;
-#     config = {
-#       focus_follows_mouse          = "autoraise";
-#       mouse_follows_focus          = "off";
-#       window_placement             = "second_child";
-#       window_opacity               = "off";
-#       window_opacity_duration      = "0.0";
-#       window_border                = "on";
-#       window_border_placement      = "inset";
-#       window_border_width          = 0;
-#       window_border_radius         = 0;
-#       active_window_border_topmost = "on";
-#       window_topmost               = "on";
-#       window_shadow                = "float";
-#       active_window_border_color   = "0xff5c7e81";
-#       normal_window_border_color   = "0xff505050";
-#       insert_window_border_color   = "0xffd75f5f";
-#       active_window_opacity        = "1.0";
-#       normal_window_opacity        = "1.0";
-#       split_ratio                  = "0.50";
-#       auto_balance                 = "on";
-#       mouse_modifier               = "fn";
-#       mouse_action1                = "move";
-#       mouse_action2                = "resize";
-#       layout                       = "bsp";
-#       top_padding                  = 0;
-#       bottom_padding               = 0;
-#       left_padding                 = 0;
-#       right_padding                = 0;
-#       window_gap                   = 5;
-#     };
+  #   services.yabai = {
+  #     package = pkgs.yabai;
+  #     enable = true;
+  #     enableScriptingAddition = false;
+  #     config = {
+  #       focus_follows_mouse          = "autoraise";
+  #       mouse_follows_focus          = "off";
+  #       window_placement             = "second_child";
+  #       window_opacity               = "off";
+  #       window_opacity_duration      = "0.0";
+  #       window_border                = "on";
+  #       window_border_placement      = "inset";
+  #       window_border_width          = 0;
+  #       window_border_radius         = 0;
+  #       active_window_border_topmost = "on";
+  #       window_topmost               = "on";
+  #       window_shadow                = "float";
+  #       active_window_border_color   = "0xff5c7e81";
+  #       normal_window_border_color   = "0xff505050";
+  #       insert_window_border_color   = "0xffd75f5f";
+  #       active_window_opacity        = "1.0";
+  #       normal_window_opacity        = "1.0";
+  #       split_ratio                  = "0.50";
+  #       auto_balance                 = "on";
+  #       mouse_modifier               = "fn";
+  #       mouse_action1                = "move";
+  #       mouse_action2                = "resize";
+  #       layout                       = "bsp";
+  #       top_padding                  = 0;
+  #       bottom_padding               = 0;
+  #       left_padding                 = 0;
+  #       right_padding                = 0;
+  #       window_gap                   = 5;
+  #     };
 
-#     extraConfig = ''
-#       # signals
-#       # yabai -m signal --add event=space_changed action="yabai -m config window_border off && yabai -m config window_border on"
+  #     extraConfig = ''
+  #       # signals
+  #       # yabai -m signal --add event=space_changed action="yabai -m config window_border off && yabai -m config window_border on"
 
-#       # rules
-#       yabai -m rule --add app='System Preferences' manage=off
-#     '';
-#   };
+  #       # rules
+  #       yabai -m rule --add app='System Preferences' manage=off
+  #     '';
+  #   };
 
-#   services.skhd = {
-#     package = pkgs.skhd;
-#     enable = true;
-#     skhdConfig = ''
-#       # focus window
-#       shift + cmd - left : yabai -m window --focus west || yabai -m display --focus prev ; yabai -m config window_border off && yabai -m config window_border on
-#       shift + cmd - down : yabai -m window --focus south ; yabai -m config window_border off && yabai -m config window_border on
-#       shift + cmd - up : yabai -m window --focus north ; yabai -m config window_border off && yabai -m config window_border on
-#       shift + cmd - right : yabai -m window --focus east || yabai -m display --focus next ; yabai -m config window_border off && yabai -m config window_border on
+  #   services.skhd = {
+  #     package = pkgs.skhd;
+  #     enable = true;
+  #     skhdConfig = ''
+  #       # focus window
+  #       shift + cmd - left : yabai -m window --focus west || yabai -m display --focus prev ; yabai -m config window_border off && yabai -m config window_border on
+  #       shift + cmd - down : yabai -m window --focus south ; yabai -m config window_border off && yabai -m config window_border on
+  #       shift + cmd - up : yabai -m window --focus north ; yabai -m config window_border off && yabai -m config window_border on
+  #       shift + cmd - right : yabai -m window --focus east || yabai -m display --focus next ; yabai -m config window_border off && yabai -m config window_border on
 
-#       # move window
-#       shift + cmd - h : yabai -m window --warp west || { yabai -m window --display prev && yabai -m display --focus prev }
-#       shift + cmd - j : yabai -m window --warp south
-#       shift + cmd - k : yabai -m window --warp north
-#       shift + cmd - l : yabai -m window --warp east || { yabai -m window --display next && yabai -m display --focus next }
+  #       # move window
+  #       shift + cmd - h : yabai -m window --warp west || { yabai -m window --display prev && yabai -m display --focus prev }
+  #       shift + cmd - j : yabai -m window --warp south
+  #       shift + cmd - k : yabai -m window --warp north
+  #       shift + cmd - l : yabai -m window --warp east || { yabai -m window --display next && yabai -m display --focus next }
 
-#       # balance size of windows
-#       shift + cmd - 0 : yabai -m space --balance
+  #       # balance size of windows
+  #       shift + cmd - 0 : yabai -m space --balance
 
-#       # float / unfloat window and center on screen
-#       shift + cmd - space : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+  #       # float / unfloat window and center on screen
+  #       shift + cmd - space : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
 
-#       # toggle zoom fullscreen
-#       shift + cmd - return : yabai -m window --toggle zoom-fullscreen
+  #       # toggle zoom fullscreen
+  #       shift + cmd - return : yabai -m window --toggle zoom-fullscreen
 
-#       # resize windows
-#       shift + cmd - u : yabai -m window --resize right:-50:0 || { yabai -m window --resize left:50:0 }
-#       shift + cmd - i : yabai -m window --resize bottom:0:-50 || { yabai -m window --resize top:0:50 }
-#       shift + cmd - o : yabai -m window --resize bottom:0:50 || { yabai -m window --resize top:0:-50 }
-#       shift + cmd - p : yabai -m window --resize right:50:0 || { yabai -m window --resize left:-50:0 }
-#     '';
-#   };
+  #       # resize windows
+  #       shift + cmd - u : yabai -m window --resize right:-50:0 || { yabai -m window --resize left:50:0 }
+  #       shift + cmd - i : yabai -m window --resize bottom:0:-50 || { yabai -m window --resize top:0:50 }
+  #       shift + cmd - o : yabai -m window --resize bottom:0:50 || { yabai -m window --resize top:0:-50 }
+  #       shift + cmd - p : yabai -m window --resize right:50:0 || { yabai -m window --resize left:-50:0 }
+  #     '';
+  #   };
 }
