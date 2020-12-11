@@ -13,4 +13,5 @@ jobs:
     - uses: cachix/install-nix-action@v12
     - name: Build
       run: |
+        sudo chown -R runner /nix
         cd && git clone https://github.com/sayanarijit/.files && cd .files && make
