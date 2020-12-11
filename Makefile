@@ -7,7 +7,7 @@ all:
 	cp .nix-channels ~/
 	export PATH=$$HOME/.nix-profile/bin/:$$PATH
 	export NIX_PATH=darwin-config=$$HOME/.nixpkgs/darwin-configuration.nix:$$HOME/.nix-defexpr/channels
-	nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
+	nix-channel --add https://nixos.org/channels/nixpkgs-20.09-darwin nixpkgs
 	nix-channel --update
 	nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 	./result/bin/darwin-installer
@@ -16,6 +16,7 @@ all:
 	source /etc/static/bashrc
 	nix-shell '<home-manager>' -A install
 	which dotsync
+	nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
 
 .PHONY: sync
 sync:
