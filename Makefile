@@ -2,9 +2,7 @@ SHELL := /bin/bash
 
 .PHONY: all
 all:
-	curl -L https://nixos.org/nix/install -o install.sh \
-		&& sh install.sh --darwin-use-unencrypted-nix-store-volume \
-		&& rm -f install.sh
+	sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
 	. ~/.nix-profile/etc/profile.d/nix.sh
 	cp .nix-channels ~/
 	export PATH=$$HOME/.nix-profile/bin/:$$PATH
@@ -13,6 +11,7 @@ all:
 	./result/bin/darwin-installer
 	rm -rf ./result
 	darwin-rebuild switch
+	source /etc/static/bashrc
 	nix-shell '<home-manager>' -A install
 	which dotsync
 

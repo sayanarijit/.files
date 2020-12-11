@@ -195,7 +195,7 @@ in
       geckodriver
       openjdk11
       maven
-      openapi-generator-cli-unstable
+      # openapi-generator-cli-unstable
       # mpv
       gcc
     ];
