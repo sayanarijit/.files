@@ -15,18 +15,17 @@ Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the
 Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
 " Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
 " Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
-" Plug 'k0kubun/vim-open-github'  "  Quickly open your current buffer in GitHub.
+Plug 'k0kubun/vim-open-github'  "  Quickly open your current buffer in GitHub.
 Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
-" Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-" Plug 'nvim-treesitter/nvim-treesitter'  "  Nvim Treesitter configurations and abstraction layer
+Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
-" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
-" Plug 'nvim-treesitter/completion-treesitter'
-Plug 'nvim-lua/diagnostic-nvim'  "  A wrapper for neovim built in LSP diagnosis config 
+Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+Plug 'nvim-treesitter/completion-treesitter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 " Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
+" Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -546,42 +545,19 @@ let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF
--- require'lspconfig'.pyls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.html.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.elmls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.dockerls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.cssls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.diagnosticls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.bashls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.rust_analyzer.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.vimls.setup{on_attach=require'diagnostic'.on_attach}
--- require'lspconfig'.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
--- 
--- require'nvim-treesitter.configs'.setup {
---   ensure_installed = "all",     -- one of "all", "language", or a list of languages
---   textobjects = {
---     select = {
---       enable = true,
---       keymaps = {
---         -- You can use the capture groups defined in textobjects.scm
---         ["af"] = "@function.outer",
---         ["if"] = "@function.inner",
---         ["ac"] = "@class.outer",
---         ["ic"] = "@class.inner",
--- 
---         -- Or you can define your own textobjects like this
---         ["iF"] = {
---           python = "(function_definition) @function",
---           cpp = "(function_definition) @function",
---           c = "(function_definition) @function",
---           java = "(method_declaration) @function",
---         },
---       },
---     },
---   },
--- }
+require'lspconfig'.pyls.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.elmls.setup{}
+require'lspconfig'.dockerls.setup{}
+require'lspconfig'.cssls.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.yamlls.setup{}
+require'lspconfig'.jsonls.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.sumneko_lua.setup{}
+
+require'nvim-treesitter.configs'.setup{}
 EOF
 
 "" code folding
@@ -598,6 +574,8 @@ command References :lua vim.lsp.buf.references()
 command DocumentSymbol :lua vim.lsp.buf.document_symbol()
 command WorkspaceSymbol :lua vim.lsp.buf.workspace_symbol()
 command Format :lua vim.lsp.buf.formatting_sync(nil, 1000)
+command PrevDiagnostic :lua vim.lsp.diagnostic.goto_prev()
+command NextDiagnostic :lua vim.lsp.diagnostic.goto_next()
 
 nnoremap <silent> K     <cmd>Hover<CR>
 """</Language server and auto completion>"""

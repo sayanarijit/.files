@@ -49,7 +49,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export MANPAGER='nvim +Man!'
 # eval $(thefuck --alias)
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 source $HOME/.poetry/env
 
 
