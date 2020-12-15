@@ -115,8 +115,8 @@ in
     # $ nix-env -qaP | grep wget
     systemPackages = with pkgs; [
       niv # Easy dependency management for Nix projects
-      nvim-nightly
-      # neovim
+      # nvim-nightly
+      # neovim  # Using homebrew for now
       pyEnv # Custom python env with language servers and tools
       yarnPkgs # Global nodejs tools
       bat # cat replacement
