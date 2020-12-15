@@ -1,7 +1,7 @@
 # Use custom format
 format = """
-[┌─ ](bold green)$directory$git_branch$git_commit$git_state$git_status$python$elm$rust$status
-[└$character](bold green)"""
+[┌─ ](bold blue)$directory$git_branch$git_commit$git_state$git_status$python$elm$rust$status
+[└](bold blue)$character"""
 
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
