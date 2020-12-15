@@ -277,18 +277,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 """</Snippets>"""
 
-"""<Telescope>"""
-command TelescopeGitFiles :lua require'telescope.builtin'.git_files{}
-command TelescopeFindFiles :lua require'telescope.builtin'.find_files{}
-command TelescopeGrepString :lua require'telescope.builtin'.grep_string{}
-command TelescopeLiveGrep :lua require'telescope.builtin'.live_grep{}
-command TelescopeReferences :lua require'telescope.builtin'.lsp_references{}
-command TelescopeDocumentSymbols :lua require'telescope.builtin'.lsp_document_symbols{}
-command TelescopeWorkspaceSymbols :lua require'telescope.builtin'.lsp_workspace_symbols{}
-command TelescopeTreeSitter :lua require'telescope.builtin'.treesitter{}
-command TelescopePlanets :lua require'telescope.builtin'.planets{}
-"""</Telescope>"""
-
 """<Keybindings Helper: WhichKey>"""
   
 " Map leader to which_key
@@ -395,32 +383,19 @@ let g:which_key_map.c = {
 " s is for search
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files .'      , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 'r' : [':TelescopeReferences', 'lsp references'],
-      \ 's' : [':TelescopeDocumentSymbols'       , 'lsp document symbols'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
+      \ 'c' : [':Telescope git_commits'      , 'commits'],
+      \ 'C' : [':Telescope git_bcommits'     , 'buffer commits'],
+      \ 'f' : [':Telescope find_files'      , 'files'],
+      \ 'g' : [':Telescope git_files'       , 'git files'],
+      \ 'G' : [':Telescope git_status'      , 'modified git files'],
+      \ 'm' : [':Telescope marks'        , 'marks'] ,
+      \ 'r' : [':Telescope lsp_references', 'lsp references'],
+      \ 's' : [':Telescope lsp_document_symbols'       , 'lsp document symbols'],
+      \ 'S' : [':Telescope colorscheme'       , 'color schemes'],
+      \ '"' : [':Telescope registers'           , 'registers'],
+      \ 't' : [':Telescope live_grep'           , 'grep text'],
       \ 'v' : [':Vista finder! ctags' , 'symbols'],
-      \ 'w' : [':TelescopeWorkspaceSymbols'      , 'lsp workspace symbols'],
-      \ 'W' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
+      \ 'w' : [':Telescope lsp_workspace_symbols'      , 'lsp workspace symbols'],
       \ }
 
 " g is for git
@@ -458,10 +433,9 @@ let g:which_key_map.l = {
       \ 'i' : [':Implementation'                     , 'implementation'],
       \ 'l' : [':NextDiagnostic'                     , 'next diagnostic'],
       \ 'L' : [':PrevDiagnostic'                     , 'prev diagnostic'],
-      \ 'I' : [':OpenDiagnostic'                     , 'diagnostics'],
-      \ 'r' : [':TelescopeReferences'                , 'references'],
-      \ 's' : [':TelescopeDocumentSymbols'           , 'document symbols'],
-      \ 'S' : [':TelescopeWorkspaceSymbols'          , 'workspace symbols'],
+      \ 'r' : [':Telescope lsp_references'                , 'references'],
+      \ 's' : [':Telescope lsp_document_symbols'           , 'document symbols'],
+      \ 'S' : [':Telescope lsp_workspace_symbols'          , 'workspace symbols'],
       \ 't' : [':TypeDefinition'                     , 'type definition'],
       \ }
 
