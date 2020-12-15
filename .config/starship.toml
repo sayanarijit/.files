@@ -1,8 +1,16 @@
-format = """\
- $directory\
- $git_branch\
- $git_commit\
- $git_state\
- $git_status\
- $character\
-"""
+# Use custom format
+format = """
+[┌](bold green)$directory$git_branch$git_commit$git_state$git_status$python$elm$rust$status
+[└$character](bold green)"""
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+[python]
+format = "[⚙️ $version($virtualenv)]($style) "
+
+[elm]
+format = "[⚙️ $version]($style) "
+
+[rust]
+format = "[⚙️ $version]($style) "
