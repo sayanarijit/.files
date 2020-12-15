@@ -45,8 +45,7 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 " Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'LnL7/vim-nix'  " Nix support
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
-Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
+" Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
 Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
 Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
@@ -127,7 +126,7 @@ command DarwinConfig :tabnew ~/.nixpkgs/darwin-configuration.nix
 " tags
 set tags=.vim/tags  " Where to store tags file
 let g:autotagTagsFile = ".vim/tags"  " ^^
-let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
+" let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
 
 " Key mappings
 inoremap <silent> <c-a> <ESC>I
@@ -259,7 +258,7 @@ let g:expand_region_text_objects = {
 """</Expand Region>"""
 
 """<Fuzzy search: fzf>"""
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 """</FUzzy search>"""
 
 """<File Manager: nnn>"""
@@ -394,7 +393,6 @@ let g:which_key_map.s = {
       \ 'S' : [':Telescope colorscheme'       , 'color schemes'],
       \ '"' : [':Telescope registers'           , 'registers'],
       \ 't' : [':Telescope live_grep'           , 'grep text'],
-      \ 'v' : [':Vista finder! ctags' , 'symbols'],
       \ 'w' : [':Telescope lsp_workspace_symbols'      , 'lsp workspace symbols'],
       \ }
 
