@@ -190,6 +190,7 @@ in
       # mpv
       gcc
       nixpkgs-fmt
+      rnix-lsp # Nix language server
     ];
   };
 

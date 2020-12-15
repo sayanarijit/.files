@@ -528,6 +528,7 @@ require'lspconfig'.yamlls.setup{}
 require'lspconfig'.jsonls.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.sumneko_lua.setup{}
+require'lspconfig'.rnix.setup{}
 
 require'nvim-treesitter.configs'.setup{}
 EOF
