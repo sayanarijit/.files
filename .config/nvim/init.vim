@@ -45,7 +45,8 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 " Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'LnL7/vim-nix'  " Nix support
-" Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
 Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
 Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
@@ -258,7 +259,7 @@ let g:expand_region_text_objects = {
 """</Expand Region>"""
 
 """<Fuzzy search: fzf>"""
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 """</FUzzy search>"""
 
 """<File Manager: nnn>"""
