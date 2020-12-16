@@ -11,10 +11,10 @@ scan_timeout = 10
 add_newline = false
 
 [python]
-format = "[⚙️ $version($virtualenv)]($style) "
+format = "[py:$version($virtualenv)]($style) "
 
 [elm]
-format = "[⚙️ $version]($style) "
+format = "[elm:$version]($style) "
 
 [rust]
-format = "[⚙️ $version]($style) "
+format = "[rs:$version]($style) "
