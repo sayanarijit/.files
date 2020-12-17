@@ -493,7 +493,7 @@ let g:SimpleSmoothScrollDelay=3
 
 """<Language server and auto completion>"""
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noinsert,noselect,preview
 
 "" deoplete-jedi
 let g:deoplete#sources#jedi#python_path = '/run/current-system/sw/bin/python3'
@@ -502,16 +502,16 @@ let g:deoplete#sources#jedi#python_path = '/run/current-system/sw/bin/python3'
 let g:diagnostic_enable_virtual_text = 0
 
 "" completion-nvim
-" let g:completion_enable_snippet = 'UltiSnips'
-" let g:completion_chain_complete_list = {
-"     \'default' : [
-"     \    {'complete_items': ['lsp', 'snippet', 'path']},
-"     \    {'mode': '<c-p>'},
-"     \    {'mode': '<c-n>'}
-"     \]
-"     \}
-" let g:completion_matching_ignore_case = 1
-" autocmd BufEnter * lua require'completion'.on_attach()
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_chain_complete_list = {
+    \'default' : [
+    \    {'complete_items': ['lsp', 'snippet', 'path']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+    \}
+let g:completion_matching_ignore_case = 1
+autocmd BufEnter * lua require'completion'.on_attach()
 
 "" deoplete-lsp
 let g:deoplete#enable_at_startup = 1

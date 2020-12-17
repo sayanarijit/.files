@@ -11,7 +11,7 @@ scan_timeout = 1
 add_newline = false
 
 [python]
-format = "[py:$version($virtualenv)]($style) "
+format = "[py($virtualenv):$version]($style) "
 
 [elm]
 format = "[elm:$version]($style) "
