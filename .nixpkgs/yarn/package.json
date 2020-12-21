@@ -5,6 +5,7 @@
     "bash-language-server": "^1.17.0",
     "diagnostic-languageserver": "^1.6.1",
     "dockerfile-language-server-nodejs": "^0.1.1",
+    "typescript-language-server": "^0.4.0",
     "vim-language-server": "^2.1.0",
     "vscode-css-languageserver-bin": "^1.4.0",
     "vscode-html-languageserver-bin": "^1.4.0",

@@ -59,6 +59,7 @@ let
       "vscode-html-languageserver-bin"
       "vscode-json-languageserver"
       "yaml-language-server"
+      "typescript-language-server"
     ];
   };
 

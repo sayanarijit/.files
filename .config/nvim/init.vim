@@ -445,14 +445,14 @@ let g:which_key_map.t = {
 
 let g:which_key_map.t.t = {
 	\ 'name' : '+nearest',
-	\ 't' : [':TestNearest', 'test normally'],
-	\ 'p' : [':TestNearest --pdb', 'test with pdb'],
+	\ 't' : [':TestNearest -vvv', 'test normally'],
+	\ 'p' : [':TestNearest -vvv --pdb', 'test with pdb'],
 	\ }
 
 let g:which_key_map.t.f = {
 	\ 'name' : '+file',
-	\ 't' : [':TestFile', 'test normally'],
-	\ 'p' : [':TestFile --pdb', 'test with pdb'],
+	\ 't' : [':TestFile -vvv', 'test normally'],
+	\ 'p' : [':TestFile -vvv --pdb', 'test with pdb'],
 	\ }
 
 " v for vista
@@ -521,6 +521,7 @@ let g:deoplete#enable_at_startup = 1
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.elmls.setup{}
+require'lspconfig'.elmls.setup{}
 require'lspconfig'.dockerls.setup{}
 require'lspconfig'.cssls.setup{}
 require'lspconfig'.bashls.setup{}
@@ -530,6 +531,7 @@ require'lspconfig'.jsonls.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.sumneko_lua.setup{}
 require'lspconfig'.rnix.setup{}
+require'lspconfig'.tsserver.setup{}
 
 require'nvim-treesitter.configs'.setup{}
 EOF
