@@ -11,7 +11,7 @@ syntax on
 call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
+" Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
 " Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
 " Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
@@ -127,7 +127,7 @@ command DarwinConfig :tabnew ~/.nixpkgs/darwin-configuration.nix
 " tags
 set tags=.vim/tags  " Where to store tags file
 let g:autotagTagsFile = ".vim/tags"  " ^^
-" let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
+let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
 
 " Key mappings
 inoremap <silent> <c-a> <ESC>I
@@ -381,21 +381,39 @@ let g:which_key_map.c = {
 	\ }
 
 " s is for search
+" let g:which_key_map.s = {
+"       \ 'name' : '+search' ,
+"       \ 'c' : [':Telescope git_commits'      , 'commits'],
+"       \ 'C' : [':Telescope git_bcommits'     , 'buffer commits'],
+"       \ 'f' : [':Telescope find_files'      , 'files'],
+"       \ 'g' : [':Telescope git_files'       , 'git files'],
+"       \ 'G' : [':Telescope git_status'      , 'modified git files'],
+"       \ 'm' : [':Telescope marks'        , 'marks'] ,
+"       \ 'r' : [':Telescope lsp_references', 'lsp references'],
+"       \ 's' : [':Telescope lsp_document_symbols'       , 'lsp document symbols'],
+"       \ 'S' : [':Telescope colorscheme'       , 'color schemes'],
+"       \ '"' : [':Telescope registers'           , 'registers'],
+"       \ 't' : [':Telescope live_grep'           , 'grep text'],
+"       \ 'w' : [':Telescope lsp_workspace_symbols'      , 'lsp workspace symbols'],
+"       \ }
+
+" s is for search
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
-      \ 'c' : [':Telescope git_commits'      , 'commits'],
-      \ 'C' : [':Telescope git_bcommits'     , 'buffer commits'],
-      \ 'f' : [':Telescope find_files'      , 'files'],
-      \ 'g' : [':Telescope git_files'       , 'git files'],
-      \ 'G' : [':Telescope git_status'      , 'modified git files'],
-      \ 'm' : [':Telescope marks'        , 'marks'] ,
+      \ 'c' : [':Commits'      , 'commits'],
+      \ 'C' : [':BCommits'     , 'buffer commits'],
+      \ 'f' : [':Files'      , 'files'],
+      \ 'g' : [':GFiles'       , 'git files'],
+      \ 'G' : [':GFiles?'      , 'git status'],
+      \ 'm' : [':Marks'        , 'marks'] ,
       \ 'r' : [':Telescope lsp_references', 'lsp references'],
       \ 's' : [':Telescope lsp_document_symbols'       , 'lsp document symbols'],
-      \ 'S' : [':Telescope colorscheme'       , 'color schemes'],
+      \ 'S' : [':Colors'       , 'color schemes'],
       \ '"' : [':Telescope registers'           , 'registers'],
-      \ 't' : [':Telescope live_grep'           , 'grep text'],
+      \ 't' : [':Rg'           , 'grep text'],
       \ 'w' : [':Telescope lsp_workspace_symbols'      , 'lsp workspace symbols'],
       \ }
+
 
 " g is for git
 let g:which_key_map.g = {
