@@ -131,6 +131,7 @@ in
       scim # spreadsheet
       readline
       pgcli # postgres cli
+      mycli # mysql cli
       pandoc # File converter
       p11-kit # Terminal colors
       openssl

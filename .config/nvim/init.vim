@@ -23,7 +23,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-treesitter/completion-treesitter'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 " Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
 " Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
@@ -511,7 +511,7 @@ let g:SimpleSmoothScrollDelay=3
 
 """<Language server and auto completion>"""
 let g:python3_host_prog = '/run/current-system/sw/bin/python3'
-set completeopt=menuone,noinsert,noselect,preview
+set completeopt=menuone,noinsert,noselect
 
 "" deoplete-jedi
 let g:deoplete#sources#jedi#python_path = '/run/current-system/sw/bin/python3'
@@ -532,7 +532,7 @@ let g:completion_matching_ignore_case = 1
 autocmd BufEnter * lua require'completion'.on_attach()
 
 "" deoplete-lsp
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF

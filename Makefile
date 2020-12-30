@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+qSHELL := /bin/bash
 
 .PHONY: all
 all:
