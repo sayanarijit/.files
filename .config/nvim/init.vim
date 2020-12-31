@@ -23,6 +23,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-treesitter/completion-treesitter'
+" Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 " Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
 " Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
@@ -71,6 +72,8 @@ Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'voldikss/vim-floaterm'  " 🌟 Use nvim/vim's builtin terminal in the floating/popup window
 " Plug 'kamykn/spelunker.vim'  " Improved vim spelling plugin (with camel case support)!
 Plug 'norcalli/nvim-colorizer.lua'  "  The fastest Neovim colorizer.
+Plug 'kyazdani42/nvim-web-devicons'  "  lua `fork` of vim-web-devicons for neovim 
+" Plug 'akinsho/nvim-bufferline.lua'  "  A snazzy bufferline for Neovim 
 Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at the bottom)
 call plug#end()
 """</Plugins>"""
@@ -499,6 +502,11 @@ call which_key#register('<Space>', "g:which_key_map")
 set termguicolors
 lua require'colorizer'.setup()
 """</Colorizer>"""
+
+"""<Bufferline>"""
+" lua require'bufferline'.setup()
+"""</Bufferline>"""
+
 
 """<VimWiki>"""
 let g:vimwiki_list = [{'path': '~/vimwiki/',
