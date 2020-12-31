@@ -21,11 +21,11 @@ Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
-Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-treesitter/completion-treesitter'
 " Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
-" Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
+Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
 " Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
@@ -537,10 +537,10 @@ let g:completion_chain_complete_list = {
     \]
     \}
 let g:completion_matching_ignore_case = 1
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
 
 "" deoplete-lsp
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF
