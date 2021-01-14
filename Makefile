@@ -1,7 +1,7 @@
 .PHONY: all
 all:
+	# Assuming nix is installed
 	$(MAKE) clone
-	$(MAKE) nix
 	$(MAKE) home-manager
 	$(MAKE) docker
 	$(MAKE) switch
