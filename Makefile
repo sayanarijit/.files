@@ -17,11 +17,11 @@ clone:
 .PHONY: nix
 nix:
 	curl -L https://nixos.org/nix/install | sh
+	ln -sf "$$PWD/.nix-channels" ~/
 
 .PHONY: home-manager
 home-manager:
-	. ./nixpkgs/files/zshrc && nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-	. ./nixpkgs/files/zshrc && nix-channel --update
+	. ./nixpkgs/files/zshrc && nix-channel --update -vvv
 	. ./nixpkgs/files/zshrc && nix-shell -vvv '<home-manager>' -A install
 
 .PHONY: switch
