@@ -36,3 +36,10 @@ docker:
 .PHONY: test
 test:
 	lua -e "print('passed')"
+
+.PHONY: sync
+sync:
+	@git pull --rebase --autostash
+	@git add . --all
+	@git commit -m "$(shell date)"
+	@git push
