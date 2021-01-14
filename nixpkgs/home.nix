@@ -135,6 +135,7 @@ in
     nixpkgs-fmt
     rnix-lsp # Nix language server
     docker-compose
+    zsh-syntax-highlighting
   ];
 
   programs = {
@@ -159,7 +160,7 @@ in
       userName = username;
       userEmail = name;
       signing = {
-       key = "A3585E2E7A6EE457";
+        key = "A3585E2E7A6EE457";
       };
       delta = {
         enable = true;
@@ -171,6 +172,9 @@ in
       enableCompletion = true;
       enableAutosuggestions = true;
       initExtra = builtins.readFile ./files/zshrc;
+      initExtraBeforeCompInit = ''
+        source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      '';
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
