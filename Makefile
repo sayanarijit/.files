@@ -17,13 +17,13 @@ nix:
 
 .PHONY: home-manager
 home-manager:
-	source ./nixpkgs/files/zshrc && nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-	source ./nixpkgs/files/zshrc && nix-channel --update
-	source ./nixpkgs/files/zshrc && nix-shell '<home-manager>' -A install
+	. ./nixpkgs/files/zshrc && nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+	. ./nixpkgs/files/zshrc && nix-channel --update
+	. ./nixpkgs/files/zshrc && nix-shell '<home-manager>' -A install
 
 .PHONY: switch
 switch:
-	source ./nixpkgs/files/zshrc && home-manager switch
+	. ./nixpkgs/files/zshrc && home-manager switch
 
 .PHONY: docker
 docker:
