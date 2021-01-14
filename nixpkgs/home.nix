@@ -136,7 +136,7 @@ in
     rnix-lsp # Nix language server
     docker-compose
     zsh-syntax-highlighting
-    zoom-us
+    # zoom-us
     xclip
     ripgrep
   ];
