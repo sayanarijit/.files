@@ -5,7 +5,6 @@ all:
 	# Assuming nix is installed
 	$(MAKE) clone
 	$(MAKE) home-manager
-	$(MAKE) docker
 	$(MAKE) switch
 	$(MAKE) test
 
@@ -21,16 +20,16 @@ nix:
 
 .PHONY: home-manager
 home-manager:
-	. ./nixpkgs/files/zshrc && nix-channel --update -vvv
-	. ./nixpkgs/files/zshrc && nix-shell -vvv '<home-manager>' -A install
+	nix-channel --update -vvv
+	nix-shell -vvv '<home-manager>' -A install
 
 .PHONY: switch
 switch:
-	. ./nixpkgs/files/zshrc && home-manager switch
+	home-manager switch
 
 .PHONY: docker
 docker:
-	pamac install docker
+	sudo pamac install docker
 	sudo usermod -aG docker $$USER
 
 .PHONY: test
