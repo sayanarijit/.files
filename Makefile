@@ -1,3 +1,5 @@
+SHELL := bash
+
 .PHONY: all
 all:
 	# Assuming nix is installed
@@ -5,6 +7,7 @@ all:
 	$(MAKE) home-manager
 	$(MAKE) docker
 	$(MAKE) switch
+	$(MAKE) test
 
 
 .PHONY: clone
@@ -29,3 +32,7 @@ switch:
 docker:
 	pamac install docker
 	sudo usermod -aG docker $$USER
+
+.PHONY: test
+test:
+	lua -e "print('passed')"

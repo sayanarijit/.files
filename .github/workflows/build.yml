@@ -16,4 +16,3 @@ jobs:
     - name: "Build & Test"
       run: |
         cd && git clone https://github.com/sayanarijit/.files && cd .files && make
-        nvim "+:PlugInstall" "+:q" "+:q"
