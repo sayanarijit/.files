@@ -7,9 +7,9 @@ let
   username = "sayanarijit";
   githubUsername = "sayanarijit";
   homedir = "/home/${username}";
-  maildir = "${homedir}/Mail";
 
   vimPlug = builtins.fetchurl https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim;
+
   # Python LSP requires a dedicated py env.
   pyEnv =
     pkgs.python38.withPackages (ps: with ps; [ pynvim black mypy flake8 jedi ]);
@@ -56,25 +56,6 @@ in
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "21.03";
-
-  accounts.email = {
-    maildirBasePath = "${maildir}";
-    accounts = {
-      gmail = {
-        address = "${email}";
-        userName = "${email}";
-        flavor = "gmail.com";
-        passwordCommand = "${pkgs.pass}/bin/pass gmail";
-        primary = true;
-        mbsync = {
-          enable = true;
-          expunge = "both";
-          patterns = [ "*" "![Gmail]*" "[Gmail]/Sent Mail" ];
-        };
-        realName = "Arijit Basu";
-      };
-    };
-  };
 
   home.file = {
     ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
@@ -157,7 +138,6 @@ in
   ];
 
   programs = {
-    mbsync = { enable = true; };
     direnv = { enable = true; };
 
     tmux = {
