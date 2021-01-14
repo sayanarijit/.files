@@ -25,8 +25,11 @@ nix:
 home-manager: ~/.nix-channels
 	nix-shell -vvv '<home-manager>' -A install
 
+~/.config/nixpkgs:
+	ln -sf nixpkgs ~/.config/
+
 .PHONY: switch
-switch:
+switch: ~/.config/nixpkgs
 	home-manager switch
 
 .PHONY: docker
