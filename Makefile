@@ -16,11 +16,13 @@ clone:
 .PHONY: nix
 nix:
 	curl -L https://nixos.org/nix/install | sh
+
+~/.nix-channels:
 	ln -sf "$$PWD/.nix-channels" ~/
+	nix-channel --update -vvv
 
 .PHONY: home-manager
-home-manager:
-	nix-channel --update -vvv
+home-manager: ~/.nix-channels
 	nix-shell -vvv '<home-manager>' -A install
 
 .PHONY: switch
