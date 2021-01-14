@@ -1,0 +1,36 @@
+export EDITOR="nvim"
+export NIX_PATH="$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH"
+
+
+alias venv="virtualenv .venv && activate"
+alias activate="source .venv/bin/activate"
+alias reactivate="deactivate && activate"
+alias github="cd ~/Documents/GitHub"
+alias ebn="cd ~/Documents/GitHub/ebn"
+alias minisites="cd ~/Documents/GitHub/minisites"
+alias kai="cd ~/Documents/GitHub/kai-app"
+alias kaib="cd ~/Documents/GitHub/kai-app/backend"
+alias kaif="cd ~/Documents/GitHub/kai-app/frontend"
+alias dotsync="(cd ~/.files && make sync)"
+
+# Getting rusty
+alias cat="bat"
+alias ls="lsd"
+alias m="mind"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export MANPAGER='nvim +Man!'
+# eval $(thefuck --alias)
+command -v pyenv && eval "$(pyenv init -)"
+
+
+function paste() {
+    local file=${1:-/dev/stdin}
+    curl --data-binary @${file} https://paste.rs
+}
+
+[[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+[[ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"

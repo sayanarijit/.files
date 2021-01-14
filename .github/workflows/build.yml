@@ -5,13 +5,15 @@ on: [push]
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
     - uses: actions/checkout@v2
     - uses: cachix/install-nix-action@v12
-    - name: Build
+      with:
+        nix-path: nixpkgs=channel:nixos-unstable
+    - name: "Build & Test"
       run: |
-        sudo chown -R runner /nix
         cd && git clone https://github.com/sayanarijit/.files && cd .files && make
+        nvim "+:PlugInstall" "+:q" "+:q"

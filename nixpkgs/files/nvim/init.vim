@@ -2,11 +2,6 @@ set shell=/bin/sh
 set rtp +=~/.vim
 syntax on
 
-
-" I had to fall back to nvim 4.* from nvim-nightly because too many errors.
-" So many commented features can be revived once nvim 5.* is stable.
-
-
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/popup.nvim'
@@ -26,7 +21,7 @@ Plug 'nvim-treesitter/completion-treesitter'
 " Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-" Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
+Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -122,10 +117,11 @@ set undofile
 set undodir=/tmp/vimundo/
 
 " NeoVim configuration
-command Config :tabnew ~/.config/nvim/init.vim
+command Config :tabnew ~/.config/nixpkgs/files/nvim/init.vim
 
 " Darwin configuration
 command DarwinConfig :tabnew ~/.nixpkgs/darwin-configuration.nix
+command HomeConfig :tabnew ~/.config/nixpkgs/home.nix
 
 " tags
 set tags=.vim/tags  " Where to store tags file
@@ -380,6 +376,7 @@ let g:which_key_map.w.g = {
 let g:which_key_map.c = {
 	\ 'name' : '+config' ,
 	\ 'c' : [':Config', 'neovim config'],
+	\ 'h' : [':HomeConfig', 'home config'],
 	\ 'd' : [':DarwinConfig', 'darwin config'],
 	\ }
 
@@ -518,11 +515,11 @@ let g:SimpleSmoothScrollDelay=3
 """</Smooth scrolling"""
 
 """<Language server and auto completion>"""
-let g:python3_host_prog = '/run/current-system/sw/bin/python3'
+let g:python3_host_prog = '/home/sayanarijit/.nix-profile/bin/python3'
 set completeopt=menuone,noinsert,noselect
 
 "" deoplete-jedi
-let g:deoplete#sources#jedi#python_path = '/run/current-system/sw/bin/python3'
+let g:deoplete#sources#jedi#python_path = '/home/sayanarijit/.nix-profile/bin/python3'
 
 "" diagnostic-nvim
 let g:diagnostic_enable_virtual_text = 0
