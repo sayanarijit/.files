@@ -541,7 +541,7 @@ let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF
-require'lspconfig'.pyls.setup{}
+-- require'lspconfig'.pyls.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.elmls.setup{}
 require'lspconfig'.elmls.setup{}

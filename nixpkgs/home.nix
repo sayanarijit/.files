@@ -138,6 +138,7 @@ in
     zsh-syntax-highlighting
     zoom-us
     xclip
+    ripgrep
   ];
 
   programs = {
