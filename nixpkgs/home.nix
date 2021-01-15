@@ -164,7 +164,8 @@ in
       userName = name;
       userEmail = email;
       signing = {
-        key = "A3585E2E7A6EE457";
+        signByDefault = true;
+        key = "7D7BF809E7378863";
       };
       delta = {
         enable = true;
