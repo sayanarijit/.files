@@ -534,7 +534,6 @@ mouse_bindings:
 
 key_bindings:
   - { key: N, mods: Command, action: SpawnNewInstance }
-  - { key: V, mods: Control, action: Paste }
 
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
