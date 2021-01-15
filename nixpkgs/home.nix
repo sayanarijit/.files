@@ -161,8 +161,8 @@ in
 
     git = {
       enable = true;
-      userName = username;
-      userEmail = name;
+      userName = name;
+      userEmail = email;
       signing = {
         key = "A3585E2E7A6EE457";
       };
