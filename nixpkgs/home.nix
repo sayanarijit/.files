@@ -73,6 +73,7 @@ in
     yarnPkgs
     niv # Easy dependency management for Nix projects
     # neovim  # Using nightly for now
+    vim  # neovim backup
     bat # cat replacement
     lsd # ls replacement
     sysctl
