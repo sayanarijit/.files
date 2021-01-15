@@ -42,14 +42,17 @@ root: ~/
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
 
+# Layout options:
+# - even-horizontal
+# - even-vertical
+# - main-horizontal
+# - main-vertical
+# - tiled
+
 windows:
-  - main:
-      layout: main-horizontal
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - "kaib && nvim"
-  - web: "kaib && while ! make db; do sleep 1; done && make run"
-  - worker: "kaib && while ! make worker; do sleep 1; done"
-  - docker: "kaib && while ! make up; do sleep 1; done"
+- services:
+    layout: tiled
+    panes:
+    - "kaib && while ! make db; do sleep 1; done && make run"
+    - "kaib && while ! make worker; do sleep 1; done"
+    - "kaib && while ! make up; do sleep 1; done"
