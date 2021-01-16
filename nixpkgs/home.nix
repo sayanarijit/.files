@@ -12,7 +12,17 @@ let
 
   # Python LSP requires a dedicated py env.
   pyEnv =
-    pkgs.python38.withPackages (ps: with ps; [ pynvim black mypy flake8 jedi ]);
+    pkgs.python38.withPackages (ps: with ps; [
+      pynvim
+      black
+      mypy
+      flake8
+      jedi
+      python-language-server
+      # pyls-mypy
+      pyls-isort
+      pyls-black
+    ]);
 
   yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
     name = "yarnPkgs";
@@ -140,6 +150,9 @@ in
     # zoom-us
     xclip
     ripgrep
+    rustup
+    rust-analyzer
+    python-language-server
   ];
 
   programs = {

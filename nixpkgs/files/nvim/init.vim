@@ -21,7 +21,7 @@ Plug 'nvim-treesitter/completion-treesitter'
 " Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
+" Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 " Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
@@ -541,7 +541,7 @@ let g:deoplete#enable_at_startup = 1
 
 "" language servers are installed with nix-darwin
 :lua << EOF
--- require'lspconfig'.pyls.setup{}
+require'lspconfig'.pyls_ms.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.elmls.setup{}
 require'lspconfig'.elmls.setup{}
@@ -552,7 +552,6 @@ require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.yamlls.setup{}
 require'lspconfig'.jsonls.setup{}
 require'lspconfig'.vimls.setup{}
-require'lspconfig'.sumneko_lua.setup{}
 require'lspconfig'.rnix.setup{}
 require'lspconfig'.tsserver.setup{}
 
