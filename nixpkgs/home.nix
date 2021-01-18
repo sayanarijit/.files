@@ -131,6 +131,7 @@ in
     elmPackages.elm-format
     # fzf-tab-completion
     lua
+    composer
     luarocks
     act # Run GitHUb actions locally
     tmate # Instant terminal sharing

@@ -31,6 +31,7 @@ Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 Plug 'tpope/vim-commentary'  "comment-out by gc
 " Plug 'kien/ctrlp.vim'  " fuzzy search files
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
+Plug 'cespare/vim-toml'  "  Vim syntax for TOML
 Plug 'craigemery/vim-autotag'  " Update tags
 Plug 'tpope/vim-fugitive'  " Git integration
 Plug 'janko-m/vim-test'  " Test runner
