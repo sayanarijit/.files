@@ -194,6 +194,7 @@ in
       gcc
       nixpkgs-fmt
       rnix-lsp # Nix language server
+      watch
     ];
   };
 

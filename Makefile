@@ -17,7 +17,7 @@ all:
 
 .PHONY: sync
 sync:
-	@git pull --rebase --autostash
+	@git pull --rebase --autostash origin $$(uname)
 	@git add . --all
 	@git commit -m "$(shell date)"
 	@git push
