@@ -7,7 +7,7 @@ It's all based on Makefile.
 ## Setup
 
 ```bash
-cd && git clone https://github.com/sayanarijit/.files && cd .files && make
+cd && git clone https://github.com/sayanarijit/.files && cd .files && git checkout $(uname) && make
 ```
 
 ## Sync
