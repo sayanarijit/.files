@@ -153,6 +153,7 @@ in
     rustup
     rust-analyzer
     python-language-server
+    neofetch
   ];
 
   programs = {
