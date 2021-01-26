@@ -103,6 +103,7 @@ in
     cachix
     ncdu # Disk utilization viewer
     jq # JSON viewer
+    yq # YAML viewer
     httpie # curl replacement
     heroku # Heroku CLI
     findutils # find replacement for mac
