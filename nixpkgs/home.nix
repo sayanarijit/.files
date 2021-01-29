@@ -117,7 +117,7 @@ in
     unrar
     curl
     yarn
-    nodejs
+    # nodejs
     fzf
     aria2
     alacritty

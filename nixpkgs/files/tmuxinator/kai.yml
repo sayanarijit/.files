@@ -53,6 +53,6 @@ windows:
 - services:
     layout: tiled
     panes:
-    - "kaib && while ! make db; do sleep 1; done && make run"
     - "kaib && while ! make worker; do sleep 1; done"
     - "kaib && while ! make up; do sleep 1; done"
+    - "kaib && while ! make db; do sleep 1; done && make run"

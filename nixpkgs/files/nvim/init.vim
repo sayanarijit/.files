@@ -111,7 +111,7 @@ autocmd FileType gitcommit,md,rst setlocal spell
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 " GUI features
-" set mouse=a  " By default mouse is activated
+set mouse=a  " Activate mouse support. Use + register for copy/paste.
 " set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
 
 " Persistant undo history
