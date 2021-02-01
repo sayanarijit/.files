@@ -69,7 +69,6 @@ in
 
   home.file = {
     ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
-    ".config/kwinrc".source = ./files/kwinrc;
     ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
     ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
     ".config/nvim/init.vim".source = ./files/nvim/init.vim;
