@@ -159,7 +159,10 @@ in
   ];
 
   programs = {
-    direnv = { enable = true; };
+    direnv = {
+      enable = true;
+      enableNixDirenvIntegration = true;
+    };
 
     tmux = {
       enable = true;
