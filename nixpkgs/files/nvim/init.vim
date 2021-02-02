@@ -546,7 +546,6 @@ let g:deoplete#enable_at_startup = 1
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.elmls.setup{}
-require'lspconfig'.elmls.setup{}
 require'lspconfig'.dockerls.setup{}
 require'lspconfig'.cssls.setup{}
 require'lspconfig'.bashls.setup{}
