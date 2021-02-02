@@ -4,14 +4,14 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'pedrohdz/vim-yaml-folds'  " YAML, RAML, EYAML & SaltStack SLS folding for Vim
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
-" Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
-" Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
-Plug 'k0kubun/vim-open-github'  "  Quickly open your current buffer in GitHub.
+Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
+Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
 Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
@@ -105,7 +105,7 @@ set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 autocmd FileType yaml,yml setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " Enable spell checker for git commits and docs
-autocmd FileType gitcommit,md,rst setlocal spell
+autocmd FileType gitcommit,md,rst,txt setlocal spell
 
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
@@ -408,12 +408,9 @@ let g:which_key_map.s = {
       \ 'g' : [':GFiles'       , 'git files'],
       \ 'G' : [':GFiles?'      , 'git status'],
       \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'r' : [':Telescope lsp_references', 'lsp references'],
-      \ 's' : [':Telescope lsp_document_symbols'       , 'lsp document symbols'],
       \ 'S' : [':Colors'       , 'color schemes'],
       \ '"' : [':Telescope registers'           , 'registers'],
       \ 't' : [':Rg'           , 'grep text'],
-      \ 'w' : [':Telescope lsp_workspace_symbols'      , 'lsp workspace symbols'],
       \ }
 
 
@@ -445,6 +442,7 @@ let g:which_key_map.g = {
 " l is for language server protocol
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
+      \ 'a' : [':Telescope lsp_code_actions'         , 'code action'],
       \ 'd' : [':Definition'                         , 'definition'],
       \ 'D' : [':Declaration'                        , 'declaration'],
       \ 'F' : [':Format'                             , 'format'],
@@ -452,9 +450,9 @@ let g:which_key_map.l = {
       \ 'i' : [':Implementation'                     , 'implementation'],
       \ 'l' : [':NextDiagnostic'                     , 'next diagnostic'],
       \ 'L' : [':PrevDiagnostic'                     , 'prev diagnostic'],
-      \ 'r' : [':Telescope lsp_references'                , 'references'],
-      \ 's' : [':Telescope lsp_document_symbols'           , 'document symbols'],
-      \ 'S' : [':Telescope lsp_workspace_symbols'          , 'workspace symbols'],
+      \ 'r' : [':Telescope lsp_references'           , 'references'],
+      \ 's' : [':Telescope lsp_document_symbols'     , 'document symbols'],
+      \ 'S' : [':Telescope lsp_workspace_symbols'    , 'workspace symbols'],
       \ 't' : [':TypeDefinition'                     , 'type definition'],
       \ }
 
@@ -541,6 +539,9 @@ let g:completion_matching_ignore_case = 1
 "" deoplete-lsp
 let g:deoplete#enable_at_startup = 1
 
+"" nvim-lightbulb
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+
 "" language servers are installed with nix-darwin
 :lua << EOF
 require'lspconfig'.pyls.setup{}
@@ -575,6 +576,7 @@ command WorkspaceSymbol :lua vim.lsp.buf.workspace_symbol()
 command Format :lua vim.lsp.buf.formatting_sync(nil, 1000)
 command PrevDiagnostic :lua vim.lsp.diagnostic.goto_prev()
 command NextDiagnostic :lua vim.lsp.diagnostic.goto_next()
+command CodeAction :lua vim.lsp.buf.code_action()
 
 nnoremap <silent> K     <cmd>Hover<CR>
 """</Language server and auto completion>"""
