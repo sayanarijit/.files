@@ -6,8 +6,8 @@ map <c-o> goBack
 map <c-i> goForward
 map } scrollPageDown
 map { scrollPageUp
+
+map <c-d> scrollFullPageDown
+map <c-u> scrollFullPageUp
 map <c-down> scrollFullPageDown
 map <c-up> scrollFullPageUp
-map ,t createTab
-map ,q removeTab
-map ,Q closeOtherTabs
