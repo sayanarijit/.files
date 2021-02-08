@@ -156,6 +156,8 @@ in
     rust-analyzer
     python-language-server
     neofetch
+    poetry
+    netcat
   ];
 
   programs = {
