@@ -158,6 +158,7 @@ in
     neofetch
     poetry
     netcat
+    tree
   ];
 
   programs = {
