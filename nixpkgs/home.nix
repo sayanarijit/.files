@@ -159,6 +159,7 @@ in
     poetry
     netcat
     tree
+    mpv
   ];
 
   programs = {
