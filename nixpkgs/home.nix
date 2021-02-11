@@ -175,6 +175,7 @@ in
     netcat
     tree
     mpv
+    amfora #  A fancy terminal browser for the Gemini protocol.
   ];
 
   programs = {
