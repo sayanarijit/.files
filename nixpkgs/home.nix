@@ -12,17 +12,19 @@ let
 
   # Python LSP requires a dedicated py env.
   pyEnv =
-    pkgs.python38.withPackages (ps: with ps; [
-      pynvim
-      black
-      mypy
-      flake8
-      jedi
-      python-language-server
-      # pyls-mypy
-      pyls-isort
-      pyls-black
-    ]);
+    pkgs.python38.withPackages (
+      ps: with ps; [
+        pynvim
+        black
+        mypy
+        flake8
+        jedi
+        python-language-server
+        # pyls-mypy
+        pyls-isort
+        pyls-black
+      ]
+    );
 
   yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
     name = "yarnPkgs";
@@ -45,8 +47,20 @@ let
 in
 {
 
-  nixpkgs.config = {
-    allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+
+    overlays = [
+      (
+        import (
+          builtins.fetchTarball {
+            url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+          }
+        )
+      )
+    ];
   };
 
   # Let Home Manager install and manage itself.
@@ -54,28 +68,30 @@ in
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = username;
-  home.homeDirectory = homedir;
+  home = {
+    username = username;
+    homeDirectory = homedir;
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "21.03";
+    # This value determines the Home Manager release that your
+    # configuration is compatible with. This helps avoid breakage
+    # when a new Home Manager release introduces backwards
+    # incompatible changes.
+    #
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    stateVersion = "21.03";
 
-  home.file = {
-    ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
-    ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
-    ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
-    ".config/nvim/init.vim".source = ./files/nvim/init.vim;
-    ".vim/autoload/plug.vim".source = vimPlug;
-    ".local/bin/ftwind" = {
-      source = ./files/bin/ftwind;
-      executable = true;
+    file = {
+      ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
+      ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
+      ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
+      ".config/nvim/init.vim".source = ./files/nvim/init.vim;
+      ".vim/autoload/plug.vim".source = vimPlug;
+      ".local/bin/ftwind" = {
+        source = ./files/bin/ftwind;
+        executable = true;
+      };
     };
   };
 
@@ -84,17 +100,17 @@ in
     yarnPkgs
     niv # Easy dependency management for Nix projects
     # neovim  # Using nightly for now
-    vim  # neovim backup
+    neovim-nightly
+    vim # neovim backup
     bat # cat replacement
     lsd # ls replacement
     sysctl
     xz
-    thefuck # fuck: correct previous command
+    # thefuck # fuck: correct previous command
     telnet
     sqlite
     skim # sk: fzf alternative in rust
     scim # spreadsheet
-    readline
     pgcli # postgres cli
     mycli # mysql cli
     pandoc # File converter
@@ -107,7 +123,6 @@ in
     yq # YAML viewer
     httpie # curl replacement
     heroku # Heroku CLI
-    findutils # find replacement for mac
     universal-ctags # Tags creator for vim
     coreutils # GNU coreutils
     circleci-cli # CircleCI CLI

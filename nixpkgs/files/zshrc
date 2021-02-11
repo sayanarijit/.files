@@ -1,3 +1,5 @@
+export LC_ALL="en_US.UTF-8"
+
 export EDITOR="nvim"
 export NIX_PATH="$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH"
 
