@@ -54,8 +54,8 @@ cpu_usage {
 }
 
 wireless wlan0 {
-	format_up = " WiFi (%quality at %essid) %ip "
-	format_down = " WiFi ☡ "
+	format_up = "  (%quality at %essid) %ip "
+	format_down = "  ☡ "
 }
 
 run_watch DHCP {
@@ -69,21 +69,20 @@ run_watch VPN {
 tztime local {
 #	format = " %h-%d %H:%M ☰ "
 	# termsyn font
-	format = " %h-%d %H:%M "
+	format = "  %h-%d %H:%M "
 }
 
 
 battery all {
        format = " %status %percentage (%remaining) "
-       format_down = "🔋☠"
-       status_chr = "🔋⚡"
-       status_bat = "🔋☺︎"
-       status_unk = "🔋?"
-       status_full = "🔋☻"
+       format_down = ""
+       status_chr = "⚡"
+       status_bat = ""
+       status_unk = ""
+       status_full = ""
        path = "/sys/class/power_supply/BAT%d/uevent"
        low_threshold = 10
 }
-
 
 memory {
        format = " RAM %used "
