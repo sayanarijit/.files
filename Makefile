@@ -51,7 +51,6 @@ diff:
 .PHONY: reset
 reset:
 	@git reset --hard
-	@git diff
 
 .PHONY: sync
 sync:
