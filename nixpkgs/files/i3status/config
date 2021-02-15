@@ -11,8 +11,8 @@
 general {
 	colors = true
 	color_good = "#BBBBBB"
-	color_bad = "#CC1616"
-	color_degraded = "#55858E"
+	color_bad = "#CCDD00"
+	color_degraded = "#FF0000"
 	interval = 2
 }
 
@@ -27,11 +27,11 @@ order += "cpu_usage"
 # order += "disk /"
 # order += "disk /media/media"
 # order += "ethernet eth0"
-order += "tztime local"
 #order += "ipv6"
 #order += "run_watch DHCP"
 #order += "run_watch VPN"
 order += "battery all"
+order += "tztime local"
 order += "wireless wlan0"
 
 volume master {
@@ -78,7 +78,7 @@ battery all {
        format_down = ""
        status_chr = "⚡"
        status_bat = ""
-       status_unk = ""
+       status_unk = "🔋"
        status_full = ""
        path = "/sys/class/power_supply/BAT%d/uevent"
        low_threshold = 10
