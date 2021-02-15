@@ -1,0 +1,93 @@
+# github.com/rafi i3status config
+
+# i3status configuration file
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+	colors = true
+	color_good = "#BBBBBB"
+	color_bad = "#CC1616"
+	color_degraded = "#55858E"
+	interval = 2
+}
+
+order += "volume master"
+order += "memory"
+order += "load"
+order += "cpu_usage"
+# order += "cpu_temperature 0"
+# order += "cpu_temperature 1"
+# order += "cpu_temperature 2"
+# order += "cpu_temperature 3"
+# order += "disk /"
+# order += "disk /media/media"
+# order += "ethernet eth0"
+order += "tztime local"
+#order += "ipv6"
+#order += "run_watch DHCP"
+#order += "run_watch VPN"
+order += "battery all"
+order += "wireless wlan0"
+
+volume master {
+	format = " ♪ %volume  " 
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+	# termsyn font
+	# format = "À %volume "
+}
+
+load {
+	format = " LOAD %1min "
+	# termsyn font
+	# format = " Î %1min"
+}
+
+cpu_usage {
+	format = "CPU %usage "
+}
+
+wireless wlan0 {
+	format_up = " WiFi (%quality at %essid) %ip "
+	format_down = " WiFi ☡ "
+}
+
+run_watch DHCP {
+	pidfile = "/var/run/dhclient*.pid"
+}
+
+run_watch VPN {
+	pidfile = "/var/run/vpnc/pid"
+}
+
+tztime local {
+#	format = " %h-%d %H:%M ☰ "
+	# termsyn font
+	format = " %h-%d %H:%M "
+}
+
+
+battery all {
+       format = " %status %percentage (%remaining) "
+       format_down = "🔋☠"
+       status_chr = "🔋⚡"
+       status_bat = "🔋☺︎"
+       status_unk = "🔋?"
+       status_full = "🔋☻"
+       path = "/sys/class/power_supply/BAT%d/uevent"
+       low_threshold = 10
+}
+
+
+memory {
+       format = " RAM %used "
+       threshold_degraded = "20%"
+       format_degraded = " RAM %used "
+}
+

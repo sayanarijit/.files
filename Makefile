@@ -46,6 +46,7 @@ diff:
 	@cp -vf ~/.config/alacritty/alacritty.yml nixpkgs/files/alacritty/alacritty.yml
 	@cp -vf ~/.config/kglobalshortcutsrc nixpkgs/files/kglobalshortcutsrc
 	@cp -vf ~/.config/nvim/init.vim nixpkgs/files/nvim/init.vim
+	@cp -vf ~/.xinitrc nixpkgs/files/xinitrc
 	@git diff
 
 .PHONY: reset

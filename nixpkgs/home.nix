@@ -83,6 +83,7 @@ in
     stateVersion = "21.03";
 
     file = {
+      ".config/i3status/config".source = ./files/i3status/config;
       ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
       ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
       ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
@@ -90,6 +91,10 @@ in
       ".vim/autoload/plug.vim".source = vimPlug;
       ".local/bin/ftwind" = {
         source = ./files/bin/ftwind;
+        executable = true;
+      };
+      ".xinitrc" = {
+        source = ./files/xinitrc;
         executable = true;
       };
     };

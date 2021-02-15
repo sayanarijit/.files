@@ -2,7 +2,8 @@ export LC_ALL="en_US.UTF-8"
 
 export EDITOR="nvim"
 export NIX_PATH="$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH"
-
+export XDG_CURRENT_DESKTOP="KDE"
+export KDE_SESSION_VERSION="5"
 
 alias venv="python -m venv .venv && activate"
 alias activate="source .venv/bin/activate"
