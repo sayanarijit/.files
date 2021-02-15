@@ -136,7 +136,6 @@ in
     # nodejs
     fzf
     aria2
-    alacritty
     gitAndTools.gh
     jpegoptim
     pstree
@@ -176,6 +175,7 @@ in
     tree
     mpv
     amfora #  A fancy terminal browser for the Gemini protocol.
+    dnsutils
   ];
 
   programs = {

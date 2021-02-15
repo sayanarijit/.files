@@ -9,7 +9,7 @@ _k_friendly_name=Keyboard Layout Switcher
 
 [alacritty.desktop]
 _k_friendly_name=Alacritty
-_launch=Ctrl+Alt+T,,
+_launch=Ctrl+Alt+T,,Alacritty
 
 [firefox.desktop]
 _k_friendly_name=Firefox
