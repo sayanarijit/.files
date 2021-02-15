@@ -41,6 +41,18 @@ docker:
 test:
 	lua -e "print('passed')"
 
+.PHONY: diff
+diff:
+	@cp -vf ~/.config/alacritty/alacritty.yml nixpkgs/files/alacritty/alacritty.yml
+	@cp -vf ~/.config/kglobalshortcutsrc nixpkgs/files/kglobalshortcutsrc
+	@cp -vf ~/.config/nvim/init.vim nixpkgs/files/nvim/init.vim
+	@git diff
+
+.PHONY: reset
+reset:
+	@git reset --hard
+	@git diff
+
 .PHONY: sync
 sync:
 	@git pull --rebase --autostash origin $$(uname)

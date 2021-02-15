@@ -13,6 +13,9 @@ alias minisites="cd ~/Documents/GitHub/minisites"
 alias kai="cd ~/Documents/GitHub/kai-app"
 alias kaib="cd ~/Documents/GitHub/kai-app/backend"
 alias kaif="cd ~/Documents/GitHub/kai-app/frontend"
+
+alias dotdiff="(cd ~/.files && make diff)"
+alias dotreset="(cd ~/.files && make reset)"
 alias dotsync="(cd ~/.files && make sync)"
 
 # Getting rusty
