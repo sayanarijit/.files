@@ -83,6 +83,7 @@ in
     stateVersion = "21.03";
 
     file = {
+      ".config/i3/config".source = ./files/i3/config;
       ".config/i3status/config".source = ./files/i3status/config;
       ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
       ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
