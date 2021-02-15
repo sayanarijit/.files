@@ -50,7 +50,7 @@ load {
 }
 
 cpu_usage {
-	format = "CPU %usage "
+	format = " CPU %usage "
 }
 
 wireless wlan0 {
