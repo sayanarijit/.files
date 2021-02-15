@@ -35,7 +35,8 @@ order += "tztime local"
 order += "wireless wlan0"
 
 volume master {
-	format = " ♪ %volume  " 
+	format = " ♪ %volume (%devicename) " 
+    format_muted = " ♪ %volume (%devicename) "
 	device = "default"
 	mixer = "Master"
 	mixer_idx = 0
