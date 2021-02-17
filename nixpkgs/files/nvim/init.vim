@@ -5,6 +5,8 @@ syntax on
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'  " Dependenc for ranger
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
@@ -45,7 +47,6 @@ Plug 'LnL7/vim-nix'  " Nix support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
-Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
 Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
 Plug 'honza/vim-snippets'  " Snippets are separated from the engine
 Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
@@ -263,14 +264,21 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 """</FUzzy search>"""
 
 """<File Manager: nnn>"""
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
-let g:nnn#action = {
-      \ '<c-t>': 'tab split',
-      \ '<c-x>': 'split',
-      \ '<c-v>': 'vsplit' }
-let g:nnn#command = 'nnn -d'
-command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
+" let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
+" let g:nnn#action = {
+"       \ '<c-t>': 'tab split',
+"       \ '<c-x>': 'split',
+"       \ '<c-v>': 'vsplit' }
+" let g:nnn#command = 'nnn -d'
+" command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
 """</File Manager>"""
+
+"""<File Manager: ranger>"""
+let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1
+
+command RangerProjectRoot :tabnew `git rev-parse --show-toplevel`
+"""</File Manager: ranger>"""
 
 """<Snippets: Ultisnips>"""
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -483,11 +491,9 @@ let g:which_key_map.v = {
 " x for explore
 let g:which_key_map.x = {
 	\ 'name' : '+explore',
-	\ 'p' : [':NnnPicker %:p:h', 'present directory'],
-	\ 'w' : [':NnnPicker', 'working directory'],
-	\ 'g' : [':NnnProjectRoot', 'git project root'],
-	\ 'h' : [':NnnPicker ~', 'home directory'],
-	\ '/' : [':NnnPicker /', 'fs root'],
+	\ 'p' : [':RangerCurrentDirectoryNewTab', 'present directory'],
+	\ 'w' : [':RangerWorkingDirectoryNewTab', 'working directory'],
+	\ 'g' : [':RangerProjectRoot', 'git project root'],
 	\ }
 
 " Register which key map
