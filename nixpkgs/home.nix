@@ -192,6 +192,7 @@ in
     amfora #  A fancy terminal browser for the Gemini protocol.
     dnsutils
     bpytop
+    pueue
   ];
 
   programs = {

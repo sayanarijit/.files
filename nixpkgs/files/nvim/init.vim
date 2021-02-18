@@ -277,7 +277,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let g:NERDTreeHijackNetrw = 0
 let g:ranger_replace_netrw = 1
 
-command RangerProjectRoot :tabnew `git rev-parse --show-toplevel`
+command RangerProjectRoot :e `git rev-parse --show-toplevel`
 """</File Manager: ranger>"""
 
 """<Snippets: Ultisnips>"""
@@ -491,8 +491,8 @@ let g:which_key_map.v = {
 " x for explore
 let g:which_key_map.x = {
 	\ 'name' : '+explore',
-	\ 'p' : [':RangerCurrentDirectoryNewTab', 'present directory'],
-	\ 'w' : [':RangerWorkingDirectoryNewTab', 'working directory'],
+	\ 'p' : [':RangerCurrentDirectory', 'present directory'],
+	\ 'w' : [':RangerWorkingDirectory', 'working directory'],
 	\ 'g' : [':RangerProjectRoot', 'git project root'],
 	\ }
 
