@@ -5,8 +5,6 @@ syntax on
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'  " Dependenc for ranger
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
@@ -273,11 +271,6 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 " command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
 """</File Manager>"""
 
-"""<File Manager: ranger>"""
-let g:NERDTreeHijackNetrw = 0
-let g:ranger_replace_netrw = 1
-"""</File Manager: ranger>"""
-
 """<Snippets: Ultisnips>"""
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -489,8 +482,8 @@ let g:which_key_map.v = {
 " x for explore
 let g:which_key_map.x = {
 	\ 'name' : '+explore',
-	\ 'p' : [':Ranger', 'present directory'],
-	\ 'w' : [':RangerWorkingDirectory', 'working directory'],
+	\ 'p' : [':FloatermNew ranger --cmd "cd %:p:h"', 'present directory'],
+	\ 'w' : [':FloatermNew ranger', 'working directory'],
 	\ }
 
 " Register which key map
@@ -592,10 +585,21 @@ function s:floatermSettings()
 endfunction
 
 autocmd FileType floaterm call s:floatermSettings()
-let g:floaterm_height = 0.8
-let g:floaterm_width = 0.8
+let g:floaterm_height = 0.9
+let g:floaterm_width = 0.9
 " let g:floaterm_winblend = 20
-let g:floaterm_autoinsert = v:false
+let g:floaterm_autoinsert = v:true
+
+au filetype floaterm call SetFloatermMappings()
+
+" https://github.com/voldikss/vim-floaterm/issues/63#issuecomment-602187396
+function! SetFloatermMappings()
+     tnoremap <buffer> <c-t> <cmd>let g:floaterm_open_command = 'tabedit' \| call feedkeys("l", "i")<cr>
+     tnoremap <buffer> <c-o> <cmd>let g:floaterm_open_command = 'edit'    \| call feedkeys("l", "i")<CR>
+     tnoremap <buffer> <c-v> <cmd>let g:floaterm_open_command = 'vsplit'  \| call feedkeys("l", "i")<CR>
+     tnoremap <buffer> <c-h> <cmd>let g:floaterm_open_command = 'split'  \| call feedkeys("l", "i")<CR>
+endfunction
+
 """</Terminal>"""
 
 
