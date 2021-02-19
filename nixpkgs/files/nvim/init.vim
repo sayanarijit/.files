@@ -1,3 +1,14 @@
+" A Few Notes
+" ===========
+
+" - I prefer a single file when it comes to configuration.
+" - Although, I may consider refactoring it into multiple files when I convert it to `init.lua` (for LSP support).
+" - I prefer not to learn external key mappings (e.g. plugins functionalities). I `WhichKey` them.
+" - I also `WhichKey` some built-in key mappings that I only use occasionally.
+" - I prefer arrow keys than hjkl because they work everywhere, not just terminal apps. Also, I have gaming experience with arrow keys.
+" - I hate prompts.
+" - I use small screen (13-14 inch) laptops, so I make heavy use of tabs and don't usually use splits.
+
 set shell=/bin/sh
 set rtp +=~/.vim
 syntax on
@@ -597,7 +608,7 @@ function! SetFloatermMappings()
      tnoremap <buffer> <c-t> <cmd>let g:floaterm_open_command = 'tabedit' \| call feedkeys("l", "i")<cr>
      tnoremap <buffer> <c-o> <cmd>let g:floaterm_open_command = 'edit'    \| call feedkeys("l", "i")<CR>
      tnoremap <buffer> <c-v> <cmd>let g:floaterm_open_command = 'vsplit'  \| call feedkeys("l", "i")<CR>
-     tnoremap <buffer> <c-h> <cmd>let g:floaterm_open_command = 'split'  \| call feedkeys("l", "i")<CR>
+     tnoremap <buffer> <c-s> <cmd>let g:floaterm_open_command = 'split'  \| call feedkeys("l", "i")<CR>
 endfunction
 
 """</Terminal>"""
