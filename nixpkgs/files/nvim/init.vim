@@ -460,7 +460,7 @@ let g:which_key_map.l = {
       \ 'i' : [':Implementation'                     , 'implementation'],
       \ 'l' : [':NextDiagnostic'                     , 'next diagnostic'],
       \ 'L' : [':PrevDiagnostic'                     , 'prev diagnostic'],
-      \ 'r' : [':Telescope lsp_references'           , 'references'],
+      \ 'r' : [':References'                         , 'references'],
       \ 's' : [':Telescope lsp_document_symbols'     , 'document symbols'],
       \ 'S' : [':Telescope lsp_workspace_symbols'    , 'workspace symbols'],
       \ 't' : [':TypeDefinition'                     , 'type definition'],
