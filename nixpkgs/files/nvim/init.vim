@@ -26,6 +26,7 @@ Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'  " Create your own textobjects using tree-sitter queries!
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-treesitter/completion-treesitter'
@@ -563,7 +564,22 @@ require'lspconfig'.vimls.setup{}
 require'lspconfig'.rnix.setup{}
 require'lspconfig'.tsserver.setup{}
 
-require'nvim-treesitter.configs'.setup{}
+require'nvim-treesitter.configs'.setup{
+  ensure_installed="all",
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
+      },
+    },
+  },
+}
 EOF
 
 "" code folding
