@@ -132,6 +132,11 @@ in
     p11-kit # Terminal colors
     openssl
     nnnWithIcons
+    tabbed
+    xterm
+    sxiv
+    zathura
+    xdotool
     feh
     ranger # A VIM-inspired filemanager for the console
     cachix
@@ -174,7 +179,6 @@ in
     openjdk11
     maven
     # openapi-generator-cli-unstable
-    # mpv
     gcc
     nixpkgs-fmt
     rnix-lsp # Nix language server

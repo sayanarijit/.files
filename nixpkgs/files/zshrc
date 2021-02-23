@@ -5,6 +5,11 @@ export NIX_PATH="$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH"
 export XDG_CURRENT_DESKTOP="KDE"
 export KDE_SESSION_VERSION="5"
 
+export NNN_PLUG="p:preview-tabbed"
+export NNN_FIFO="/tmp/nnn.fifo"
+export USE_VIDEOTHUMB="1"
+export TERMINAL="alacritty"
+
 alias venv="python -m venv .venv && activate"
 alias activate="source .venv/bin/activate"
 alias reactivate="deactivate && activate"
@@ -29,6 +34,7 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export MANPAGER='nvim +Man!'
+export PAGER="bat"
 # eval $(thefuck --alias)
 command -v pyenv && eval "$(pyenv init -)"
 
