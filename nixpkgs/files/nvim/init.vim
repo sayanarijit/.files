@@ -608,7 +608,12 @@ let g:floaterm_shell = 'zsh'
 autocmd User Startified setlocal buflisted
 function s:floatermSettings()
     setlocal number relativenumber
-    " more settings
+    " https://github.com/voldikss/vim-floaterm/issues/63#issuecomment-602187396
+    tnoremap <buffer> <c-t> <cmd>let g:floaterm_open_command = 'tabedit' \| call feedkeys("l", "i")<CR>
+    tnoremap <buffer> <c-o> <cmd>let g:floaterm_open_command = 'edit'    \| call feedkeys("l", "i")<CR>
+    tnoremap <buffer> <c-v> <cmd>let g:floaterm_open_command = 'vsplit'  \| call feedkeys("l", "i")<CR>
+    tnoremap <buffer> <c-s> <cmd>let g:floaterm_open_command = 'split'  \| call feedkeys("l", "i")<CR>
+    tnoremap <buffer> <esc> q
 endfunction
 
 autocmd FileType floaterm call s:floatermSettings()
@@ -616,16 +621,6 @@ let g:floaterm_height = 0.9
 let g:floaterm_width = 0.9
 " let g:floaterm_winblend = 20
 let g:floaterm_autoinsert = v:true
-
-au filetype floaterm call SetFloatermMappings()
-
-" https://github.com/voldikss/vim-floaterm/issues/63#issuecomment-602187396
-function! SetFloatermMappings()
-     tnoremap <buffer> <c-t> <cmd>let g:floaterm_open_command = 'tabedit' \| call feedkeys("l", "i")<cr>
-     tnoremap <buffer> <c-o> <cmd>let g:floaterm_open_command = 'edit'    \| call feedkeys("l", "i")<CR>
-     tnoremap <buffer> <c-v> <cmd>let g:floaterm_open_command = 'vsplit'  \| call feedkeys("l", "i")<CR>
-     tnoremap <buffer> <c-s> <cmd>let g:floaterm_open_command = 'split'  \| call feedkeys("l", "i")<CR>
-endfunction
 
 """</Terminal>"""
 
