@@ -15,6 +15,7 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -274,13 +275,13 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 """</FUzzy search>"""
 
 """<File Manager: nnn>"""
-" let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
-" let g:nnn#action = {
-"       \ '<c-t>': 'tab split',
-"       \ '<c-x>': 'split',
-"       \ '<c-v>': 'vsplit' }
-" let g:nnn#command = 'nnn -d'
-" command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
+let g:nnn#command = 'nnn -d'
+command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
 """</File Manager>"""
 
 """<Snippets: Ultisnips>"""
@@ -494,8 +495,11 @@ let g:which_key_map.v = {
 " x for explore
 let g:which_key_map.x = {
 	\ 'name' : '+explore',
-	\ 'p' : [':FloatermNew ranger --cmd "cd %:p:h"', 'present directory'],
-	\ 'w' : [':FloatermNew ranger', 'working directory'],
+	\ 'p' : [':NnnPicker %:p:h', 'present directory'],
+	\ 'w' : [':NnnPicker', 'working directory'],
+	\ 'g' : [':NnnProjectRoot', 'git project root'],
+	\ 'h' : [':NnnPicker ~', 'home directory'],
+	\ '/' : [':NnnPicker /', 'fs root'],
 	\ }
 
 " Register which key map
@@ -609,11 +613,11 @@ autocmd User Startified setlocal buflisted
 function s:floatermSettings()
     setlocal number relativenumber
     " https://github.com/voldikss/vim-floaterm/issues/63#issuecomment-602187396
-    tnoremap <buffer> <c-t> <cmd>let g:floaterm_open_command = 'tabedit' \| call feedkeys("l", "i")<CR>
-    tnoremap <buffer> <c-o> <cmd>let g:floaterm_open_command = 'edit'    \| call feedkeys("l", "i")<CR>
-    tnoremap <buffer> <c-v> <cmd>let g:floaterm_open_command = 'vsplit'  \| call feedkeys("l", "i")<CR>
-    tnoremap <buffer> <c-s> <cmd>let g:floaterm_open_command = 'split'  \| call feedkeys("l", "i")<CR>
-    tnoremap <buffer> <esc> q
+    " tnoremap <buffer> <c-t> <cmd>let g:floaterm_open_command = 'tabedit' \| call feedkeys("l", "i")<CR>
+    " tnoremap <buffer> <c-o> <cmd>let g:floaterm_open_command = 'edit'    \| call feedkeys("l", "i")<CR>
+    " tnoremap <buffer> <c-v> <cmd>let g:floaterm_open_command = 'vsplit'  \| call feedkeys("l", "i")<CR>
+    " tnoremap <buffer> <c-s> <cmd>let g:floaterm_open_command = 'split'  \| call feedkeys("l", "i")<CR>
+    " tnoremap <buffer> <esc> q
 endfunction
 
 autocmd FileType floaterm call s:floatermSettings()

@@ -44,6 +44,8 @@ let
     ];
   };
 
+  nnnWithIcons = pkgs.nnn.override {withNerdIcons = true;};
+
 in
 {
 
@@ -129,7 +131,7 @@ in
     pandoc # File converter
     p11-kit # Terminal colors
     openssl
-    nnn # Terminal file browser
+    nnnWithIcons
     feh
     ranger # A VIM-inspired filemanager for the console
     cachix
