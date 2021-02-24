@@ -23,7 +23,6 @@ Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the
 Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
 Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
-Plug 'vimwiki/vimwiki'  "  Personal Wiki for Vim 
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

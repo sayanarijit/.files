@@ -34,7 +34,7 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export MANPAGER='nvim +Man!'
-export PAGER="bat"
+export PAGER="less"
 # eval $(thefuck --alias)
 command -v pyenv && eval "$(pyenv init -)"
 
