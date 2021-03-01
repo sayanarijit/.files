@@ -41,6 +41,7 @@ let
       "vscode-json-languageserver"
       "yaml-language-server"
       "typescript-language-server"
+      "terminalizer"
     ];
   };
 
@@ -200,6 +201,7 @@ in
     bpytop
     pueue
     gnuplot # benchmark tests
+    peek
   ];
 
   programs = {
