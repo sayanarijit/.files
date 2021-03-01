@@ -199,6 +199,7 @@ in
     dnsutils
     bpytop
     pueue
+    gnuplot # benchmark tests
   ];
 
   programs = {

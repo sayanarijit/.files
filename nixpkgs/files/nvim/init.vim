@@ -41,7 +41,8 @@ Plug 'vim-airline/vim-airline'  " make statusline awesome
 " Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
 Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
-Plug 'tpope/vim-commentary'  "comment-out by gc
+" Plug 'tpope/vim-commentary'  "comment-out by gc
+Plug 'b3nj5m1n/kommentary' "  Neovim commenting plugin, written in lua. 
 " Plug 'kien/ctrlp.vim'  " fuzzy search files
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
 Plug 'cespare/vim-toml'  "  Vim syntax for TOML
@@ -555,6 +556,8 @@ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
 "" language servers are installed with nix-darwin
 :lua << EOF
+vim.lsp.set_log_level("debug")
+
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.elmls.setup{}
@@ -585,6 +588,8 @@ require'nvim-treesitter.configs'.setup{
     },
   },
 }
+
+require('kommentary.config').use_extended_mappings()
 EOF
 
 "" code folding
