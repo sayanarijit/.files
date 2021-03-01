@@ -20,7 +20,7 @@ Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
-Plug 'Kazark/vim-SimpleSmoothScroll'  "  A small, simple plugin to make the scroll action for C^D and C^U smoother
+Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world! 
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
 Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
@@ -523,7 +523,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 """</VimWiki>"""
 
 """<Smooth scrolling>"""
-let g:SimpleSmoothScrollDelay=3
+" let g:SimpleSmoothScrollDelay=3
 """</Smooth scrolling"""
 
 """<Language server and auto completion>"""
