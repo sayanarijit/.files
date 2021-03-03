@@ -15,7 +15,7 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
-Plug 'mcchrish/nnn.vim'  " The missing terminal file manager for X
+Plug 'sayanarijit/xplr.vim'  " Don't look yet
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -74,10 +74,10 @@ Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 " Plug 'lifepillar/vim-solarized8'  " Light and dark theme
-Plug 'joshdick/onedark.vim'  " Atom onedark theme
+" Plug 'joshdick/onedark.vim'  " Atom onedark theme
 " Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
 " Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
-" Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
+Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
 Plug 'voldikss/vim-floaterm'  " 🌟 Use nvim/vim's builtin terminal in the floating/popup window
 " Plug 'kamykn/spelunker.vim'  " Improved vim spelling plugin (with camel case support)!
 Plug 'norcalli/nvim-colorizer.lua'  "  The fastest Neovim colorizer.
@@ -275,13 +275,12 @@ let g:expand_region_text_objects = {
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 """</FUzzy search>"""
 
-"""<File Manager: nnn>"""
+"""<File Manager: xplr>"""
 let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
 let g:nnn#action = {
       \ '<c-t>': 'tab split',
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit' }
-let g:nnn#command = 'nnn -d'
 command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
 """</File Manager>"""
 
@@ -716,6 +715,6 @@ let g:floaterm_autoinsert = v:true
 set cursorline
 set cursorcolumn
 set background=dark
-colorscheme onedark
-let g:airline_theme='onedark'
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
 """</Theme>"""
