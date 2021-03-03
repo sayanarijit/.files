@@ -495,7 +495,7 @@ let g:which_key_map.v = {
 " x for explore
 let g:which_key_map.x = {
 	\ 'name' : '+explore',
-	\ 'p' : [':NnnPicker %:p:h', 'present directory'],
+	\ 'p' : [':NnnPicker %:p', 'present directory'],
 	\ 'w' : [':NnnPicker', 'working directory'],
 	\ 'g' : [':NnnProjectRoot', 'git project root'],
 	\ 'h' : [':NnnPicker ~', 'home directory'],
