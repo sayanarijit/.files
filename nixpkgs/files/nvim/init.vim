@@ -282,6 +282,7 @@ let g:nnn#action = {
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit' }
 command NnnProjectRoot :NnnPicker `git rev-parse --show-toplevel`
+let g:nnn#replace_netrw = 1
 """</File Manager>"""
 
 """<Snippets: Ultisnips>"""
