@@ -202,6 +202,8 @@ in
     pueue
     gnuplot # benchmark tests
     peek
+    progress
+    bandwhich
   ];
 
   programs = {
