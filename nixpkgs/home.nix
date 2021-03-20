@@ -45,7 +45,7 @@ let
     ];
   };
 
-  nnnWithIcons = pkgs.nnn.override {withNerdIcons = true;};
+  nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
 
 in
 {
@@ -87,10 +87,10 @@ in
 
     file = {
       ".config/ranger/plugins/ranger_devicons".source = pkgs.fetchFromGitHub {
-         owner = "alexanderjeurissen";
-         repo = "ranger_devicons";
-         rev = "d8f98ba64076b731e784f2d75b6bbad4c0e704ef";
-         sha256 = "14gxzk2zwsg3ram33w483zhgm5ds6gcfg23hn3imjqjd5k0piw2z";
+        owner = "alexanderjeurissen";
+        repo = "ranger_devicons";
+        rev = "d8f98ba64076b731e784f2d75b6bbad4c0e704ef";
+        sha256 = "14gxzk2zwsg3ram33w483zhgm5ds6gcfg23hn3imjqjd5k0piw2z";
       };
       ".config/ranger/rc.conf".source = ./files/ranger/rc.conf;
       ".config/i3/config".source = ./files/i3/config;
@@ -188,7 +188,6 @@ in
     # zoom-us
     xclip
     ripgrep
-    rustup
     rust-analyzer
     python-language-server
     neofetch
@@ -230,6 +229,11 @@ in
       enable = true;
       userName = name;
       userEmail = email;
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
+      };
       signing = {
         signByDefault = true;
         key = "7D7BF809E7378863";
