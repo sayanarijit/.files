@@ -527,7 +527,14 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 """</Smooth scrolling"""
 
 """<Language server and auto completion>"""
-let g:python3_host_prog = '/home/sayanarijit/.nix-profile/bin/python3'
+" let g:python3_host_prog = '/home/sayanarijit/.nix-profile/bin/python3'
+
+if exists("$VIRTUAL_ENV")
+    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+else
+    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+endif
+
 set completeopt=menuone,noinsert,noselect
 
 "" deoplete-jedi
