@@ -42,6 +42,7 @@ let
       "yaml-language-server"
       "typescript-language-server"
       "terminalizer"
+      "@dillonkearns/elm-graphql"
     ];
   };
 
@@ -198,11 +199,14 @@ in
     amfora #  A fancy terminal browser for the Gemini protocol.
     dnsutils
     bpytop
+    bottom
     pueue
     gnuplot # benchmark tests
     peek
     progress
     bandwhich
+    inotify-tools
+    gradle
   ];
 
   programs = {
