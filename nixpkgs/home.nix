@@ -41,7 +41,6 @@ let
       "vscode-json-languageserver"
       "yaml-language-server"
       "typescript-language-server"
-      "terminalizer"
       "@dillonkearns/elm-graphql"
     ];
   };
