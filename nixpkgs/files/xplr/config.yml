@@ -1,4 +1,4 @@
-version: v0.3.0
+version: v0.3.9
 general:
   show_hidden: false
   table:
@@ -141,7 +141,7 @@ filetypes:
   directory:
     icon: ð
     style:
-      fg: Blue
+      fg: Cyan
       bg: null
       add_modifier:
         bits: 1
@@ -169,122 +169,127 @@ filetypes:
   extension: {}
   special: {}
 modes:
-  search:
-    name: search
+  action:
+    name: action to
     help: null
     extra_help: null
     key_bindings:
       on_key:
-        backspace:
-          help: clear
+        '!':
+          help: shell
           messages:
-            - SetInputBuffer: ''
-            - ResetNodeFilters
+            - Call:
+                command: bash
+                args: []
             - Explore
+            - SwitchMode: default
+        c:
+          help: create
+          messages:
+            - SwitchMode: create
         ctrl-c:
-          help: cancel & quit
+          help: cancel & quit [q]
           messages:
             - Terminate
-        down:
-          help: down
+        e:
+          help: open in editor
           messages:
-            - FocusNext
-        enter:
-          help: focus
-          messages:
-            - ResetNodeFilters
-            - SwitchMode: default
-            - Explore
-        esc:
-          help: cancel
-          messages:
-            - ResetNodeFilters
-            - SwitchMode: default
-            - Explore
-        left:
-          help: back
-          messages:
-            - ResetNodeFilters
-            - Back
-            - SwitchMode: default
-            - Explore
-        right:
-          help: enter
-          messages:
-            - ResetNodeFilters
-            - Enter
-            - SwitchMode: default
-            - Explore
-        up:
-          help: up
-          messages:
-            - FocusPrevious
-      on_alphabet: null
-      on_number: null
-      on_special_character: null
-      default:
-        help: null
-        messages:
-          - BufferInputFromKey
-          - ResetNodeFilters
-          - AddNodeFilterFromInput:
-              filter: RelativePathDoesContain
-              case_sensitive: false
-          - Explore
-  create directory:
-    name: create directory
-    help: null
-    extra_help: null
-    key_bindings:
-      on_key:
-        backspace:
-          help: clear
-          messages:
-            - SetInputBuffer: ''
-        ctrl-c:
-          help: cancel & quit
-          messages:
-            - Terminate
-        enter:
-          help: create directory
-          messages:
-            - BashExec: "PTH=\"${XPLR_INPUT_BUFFER:?}\"\nif mkdir -p \"$PTH\"; then\n\
-                \  echo Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\n  echo \"LogSuccess:\
-                \ $PTH created\" >> \"${XPLR_PIPE_MSG_IN:?}\"\nelse\n  echo \"LogError:\
-                \ failed to create $PTH\" >> \"${XPLR_PIPE_MSG_IN:?}\"\nfi\n"
-            - SwitchMode: default
-        esc:
-          help: cancel
-          messages:
-            - SwitchMode: default
-      on_alphabet: null
-      on_number: null
-      on_special_character: null
-      default:
-        help: null
-        messages:
-          - BufferInputFromKey
-  go to:
-    name: go to
-    help: null
-    extra_help: null
-    key_bindings:
-      on_key:
-        ctrl-c:
-          help: cancel & quit
-          messages:
-            - Terminate
-        g:
-          help: top
-          messages:
-            - FocusFirst
-            - SwitchMode: default
-        x:
-          help: open in gui
-          messages:
-            - BashExec: 'xdg-open "${XPLR_FOCUS_PATH:?}" &> /dev/null
+            - BashExec: '${EDITOR:-vi} "${XPLR_FOCUS_PATH:?}"
 
                 '
+            - SwitchMode: default
+        l:
+          help: logs
+          messages:
+            - BashExec: 'cat "${XPLR_PIPE_LOGS_OUT}"
+
+                read -p "[enter to continue]"
+
+                '
+            - SwitchMode: default
+        q:
+          help: null
+          messages:
+            - Terminate
+        s:
+          help: selection operations
+          messages:
+            - SwitchMode: selection ops
+      on_alphabet: null
+      on_number:
+        help: go to index
+        messages:
+          - ResetInputBuffer
+          - SwitchMode: number
+          - BufferInputFromKey
+      on_special_character: null
+      default:
+        help: null
+        messages:
+          - SwitchMode: default
+  create file:
+    name: create file
+    help: null
+    extra_help: null
+    key_bindings:
+      on_key:
+        backspace:
+          help: clear
+          messages:
+            - SetInputBuffer: ''
+        ctrl-c:
+          help: cancel & quit
+          messages:
+            - Terminate
+        enter:
+          help: create file
+          messages:
+            - BashExec: "PTH=\"${XPLR_INPUT_BUFFER:?}\"\nif touch \"${PTH:?}\"; then\n\
+                \  echo \"LogSuccess: $PTH created\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n\
+                \  echo Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\nelse\n  echo \"LogError:\
+                \ failed to create $PTH\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n  echo Refresh\
+                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nfi\n"
+            - SwitchMode: default
+        esc:
+          help: cancel
+          messages:
+            - SwitchMode: default
+      on_alphabet: null
+      on_number: null
+      on_special_character: null
+      default:
+        help: null
+        messages:
+          - BufferInputFromKey
+  selection ops:
+    name: selection ops
+    help: null
+    extra_help: null
+    key_bindings:
+      on_key:
+        c:
+          help: copy here
+          messages:
+            - BashExec: "(while IFS= read -r line; do\n  if cp -v \"${line:?}\" ./;\
+                \ then\n    echo \"LogSuccess: $line copied to $PWD\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
+                \n  else\n    echo \"LogError: failed to copy $line to $PWD\" >> \"\
+                ${XPLR_PIPE_MSG_IN:?}\"\n  fi\ndone < \"${XPLR_PIPE_SELECTION_OUT:?}\"\
+                )\necho Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\necho ClearSelection\
+                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to continue]\"\n"
+            - SwitchMode: default
+        ctrl-c:
+          help: cancel & quit
+          messages:
+            - Terminate
+        m:
+          help: move here
+          messages:
+            - BashExec: "(while IFS= read -r line; do\n  if mv -v \"${line:?}\" ./;\
+                \ then\n    echo \"LogSuccess: $line moved to $PWD\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
+                \n  else\n    echo \"LogError: failed to move $line to $PWD\" >> \"\
+                ${XPLR_PIPE_MSG_IN:?}\"\n  fi\ndone < \"${XPLR_PIPE_SELECTION_OUT:?}\"\
+                )\necho Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to\
+                \ continue]\"\n"
             - SwitchMode: default
       on_alphabet: null
       on_number: null
@@ -293,6 +298,40 @@ modes:
         help: null
         messages:
           - SwitchMode: default
+  rename:
+    name: rename
+    help: null
+    extra_help: null
+    key_bindings:
+      on_key:
+        backspace:
+          help: clear
+          messages:
+            - SetInputBuffer: ''
+        ctrl-c:
+          help: cancel & quit
+          messages:
+            - Terminate
+        enter:
+          help: rename
+          messages:
+            - BashExec: "SRC=\"${XPLR_FOCUS_PATH:?}\"\nTARGET=\"${XPLR_INPUT_BUFFER:?}\"\
+                \nif mv -v \"${SRC:?}\" \"${TARGET:?}\"; then\n  echo \"LogSuccess:\
+                \ $SRC renamed to $TARGET\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n  echo Explore\
+                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nelse\n  echo \"LogError: failed to\
+                \ rename $SRC to $TARGET\" >> \"${XPLR_PIPE_MSG_IN:?}\"\nfi\n"
+            - SwitchMode: default
+        esc:
+          help: cancel
+          messages:
+            - SwitchMode: default
+      on_alphabet: null
+      on_number: null
+      on_special_character: null
+      default:
+        help: null
+        messages:
+          - BufferInputFromKey
   number:
     name: number
     help: null
@@ -342,83 +381,6 @@ modes:
         help: null
         messages:
           - SwitchMode: default
-  delete:
-    name: delete
-    help: null
-    extra_help: null
-    key_bindings:
-      on_key:
-        D:
-          help: force delete
-          messages:
-            - BashExec: "(while IFS= read -r line; do\n  if rm -rfv \"${line:?}\"\
-                ; then\n    echo \"LogSuccess: $line deleted\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
-                \n  else\n    echo \"LogError: failed to delete $line\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
-                \n  fi\ndone < \"${XPLR_PIPE_RESULT_OUT:?}\")\necho Explore >> \"\
-                ${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to continue]\"\n"
-            - SwitchMode: default
-            - Explore
-        ctrl-c:
-          help: cancel & quit
-          messages:
-            - Terminate
-        d:
-          help: delete
-          messages:
-            - BashExec: "(while IFS= read -r line; do\n  if [ -d \"$line\" ]; then\n\
-                \    if rmdir -v \"${line:?}\"; then\n      echo \"LogSuccess: $line\
-                \ deleted\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n    else\n      echo \"\
-                LogError: failed to delete $line\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n\
-                \    fi\n  else\n    if rm -v \"${line:?}\"; then\n      echo \"LogSuccess:\
-                \ $line deleted\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n    else\n      echo\
-                \ \"LogError: failed to delete $line\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
-                \n    fi\n  fi\ndone < \"${XPLR_PIPE_RESULT_OUT:?}\")\necho Explore\
-                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to continue]\"\n"
-            - SwitchMode: default
-      on_alphabet: null
-      on_number: null
-      on_special_character: null
-      default:
-        help: null
-        messages:
-          - SwitchMode: default
-  selection ops:
-    name: selection ops
-    help: null
-    extra_help: null
-    key_bindings:
-      on_key:
-        c:
-          help: copy here
-          messages:
-            - BashExec: "(while IFS= read -r line; do\n  if cp -v \"${line:?}\" ./;\
-                \ then\n    echo \"LogSuccess: $line copied to $PWD\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
-                \n  else\n    echo \"LogError: failed to copy $line to $PWD\" >> \"\
-                ${XPLR_PIPE_MSG_IN:?}\"\n  fi\ndone < \"${XPLR_PIPE_SELECTION_OUT:?}\"\
-                )\necho Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\necho ClearSelection\
-                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to continue]\"\n"
-            - SwitchMode: default
-        ctrl-c:
-          help: cancel & quit
-          messages:
-            - Terminate
-        m:
-          help: move here
-          messages:
-            - BashExec: "(while IFS= read -r line; do\n  if mv -v \"${line:?}\" ./;\
-                \ then\n    echo \"LogSuccess: $line moved to $PWD\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
-                \n  else\n    echo \"LogError: failed to move $line to $PWD\" >> \"\
-                ${XPLR_PIPE_MSG_IN:?}\"\n  fi\ndone < \"${XPLR_PIPE_SELECTION_OUT:?}\"\
-                )\necho Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to\
-                \ continue]\"\n"
-            - SwitchMode: default
-      on_alphabet: null
-      on_number: null
-      on_special_character: null
-      default:
-        help: null
-        messages:
-          - SwitchMode: default
   default:
     name: default
     help: null
@@ -440,7 +402,6 @@ modes:
         /:
           help: null
           messages:
-            - ResetNodeFilters
             - SwitchMode: search
             - SetInputBuffer: ''
             - Explore
@@ -451,11 +412,7 @@ modes:
         '?':
           help: global help menu
           messages:
-            - BashExec: 'cat "${XPLR_PIPE_GLOBAL_HELP_MENU_OUT}"
-
-                echo
-
-                read -p "[enter to continue]"
+            - BashExec: '${PAGER:-less} "${XPLR_PIPE_GLOBAL_HELP_MENU_OUT}"
 
                 '
         G:
@@ -469,7 +426,6 @@ modes:
         ctrl-f:
           help: search [/]
           messages:
-            - ResetNodeFilters
             - SwitchMode: search
             - SetInputBuffer: ''
             - Explore
@@ -485,14 +441,6 @@ modes:
           help: quit with result
           messages:
             - PrintResultAndQuit
-        esc:
-          help: null
-          messages:
-            - Terminate
-        f:
-          help: fzf mode
-          messages:
-            - SwitchMode: fzxplr
         g:
           help: go to
           messages:
@@ -559,8 +507,8 @@ modes:
         help: null
         messages:
           - SwitchMode: default
-  create file:
-    name: create file
+  search:
+    name: search
     help: null
     extra_help: null
     key_bindings:
@@ -568,116 +516,71 @@ modes:
         backspace:
           help: clear
           messages:
+            - RemoveNodeFilterFromInput:
+                filter: RelativePathDoesContain
+                case_sensitive: false
             - SetInputBuffer: ''
-        ctrl-c:
-          help: cancel & quit
-          messages:
-            - Terminate
-        enter:
-          help: create file
-          messages:
-            - BashExec: "PTH=\"${XPLR_INPUT_BUFFER:?}\"\nif touch \"${PTH:?}\"; then\n\
-                \  echo \"LogSuccess: $PTH created\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n\
-                \  echo Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\nelse\n  echo \"LogError:\
-                \ failed to create $PTH\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n  echo Refresh\
-                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nfi\n"
-            - SwitchMode: default
-        esc:
-          help: cancel
-          messages:
-            - SwitchMode: default
-      on_alphabet: null
-      on_number: null
-      on_special_character: null
-      default:
-        help: null
-        messages:
-          - BufferInputFromKey
-  rename:
-    name: rename
-    help: null
-    extra_help: null
-    key_bindings:
-      on_key:
-        backspace:
-          help: clear
-          messages:
-            - SetInputBuffer: ''
-        ctrl-c:
-          help: cancel & quit
-          messages:
-            - Terminate
-        enter:
-          help: rename
-          messages:
-            - BashExec: "SRC=\"${XPLR_FOCUS_PATH:?}\"\nTARGET=\"${XPLR_INPUT_BUFFER:?}\"\
-                \nif mv -v \"${SRC:?}\" \"${TARGET:?}\"; then\n  echo \"LogSuccess:\
-                \ $SRC renamed to $TARGET\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n  echo Explore\
-                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nelse\n  echo \"LogError: failed to\
-                \ rename $SRC to $TARGET\" >> \"${XPLR_PIPE_MSG_IN:?}\"\nfi\n"
-            - SwitchMode: default
-        esc:
-          help: cancel
-          messages:
-            - SwitchMode: default
-      on_alphabet: null
-      on_number: null
-      on_special_character: null
-      default:
-        help: null
-        messages:
-          - BufferInputFromKey
-  action:
-    name: action to
-    help: null
-    extra_help: null
-    key_bindings:
-      on_key:
-        '!':
-          help: shell
-          messages:
-            - Call:
-                command: bash
-                args: []
             - Explore
-            - SwitchMode: default
-        c:
-          help: create
-          messages:
-            - SwitchMode: create
         ctrl-c:
-          help: cancel & quit [q]
+          help: cancel & quit
           messages:
             - Terminate
-        l:
-          help: logs
+        down:
+          help: down
           messages:
-            - BashExec: 'cat "${XPLR_PIPE_LOGS_OUT}"
-
-                read -p "[enter to continue]"
-
-                '
+            - FocusNext
+        enter:
+          help: focus
+          messages:
+            - RemoveNodeFilterFromInput:
+                filter: RelativePathDoesContain
+                case_sensitive: false
             - SwitchMode: default
-        q:
-          help: null
+            - Explore
+        esc:
+          help: cancel
           messages:
-            - Terminate
-        s:
-          help: selection operations
+            - RemoveNodeFilterFromInput:
+                filter: RelativePathDoesContain
+                case_sensitive: false
+            - SwitchMode: default
+            - Explore
+        left:
+          help: back
           messages:
-            - SwitchMode: selection ops
+            - RemoveNodeFilterFromInput:
+                filter: RelativePathDoesContain
+                case_sensitive: false
+            - Back
+            - SetInputBuffer: ''
+            - Explore
+        right:
+          help: enter
+          messages:
+            - RemoveNodeFilterFromInput:
+                filter: RelativePathDoesContain
+                case_sensitive: false
+            - Enter
+            - SetInputBuffer: ''
+            - Explore
+        up:
+          help: up
+          messages:
+            - FocusPrevious
       on_alphabet: null
-      on_number:
-        help: go to index
-        messages:
-          - ResetInputBuffer
-          - SwitchMode: number
-          - BufferInputFromKey
+      on_number: null
       on_special_character: null
       default:
         help: null
         messages:
-          - SwitchMode: default
+          - RemoveNodeFilterFromInput:
+              filter: RelativePathDoesContain
+              case_sensitive: false
+          - BufferInputFromKey
+          - AddNodeFilterFromInput:
+              filter: RelativePathDoesContain
+              case_sensitive: false
+          - Explore
   create:
     name: create
     help: null
@@ -709,19 +612,102 @@ modes:
         help: null
         messages:
           - SwitchMode: default
-  fzxplr:
-    name: fzxplr
+  delete:
+    name: delete
     help: null
     extra_help: null
     key_bindings:
       on_key:
-        f:
-          help: search
+        D:
+          help: force delete
           messages:
-            - BashExec: "PTH=$(cat \"${XPLR_PIPE_DIRECTORY_NODES_OUT:?}\" | fzf)\n\
-                if [ -d \"$PTH\" ]; then\n    echo \"ChangeDirectory: ${PTH:?}\" >>\
-                \ \"${XPLR_PIPE_MSG_IN:?}\"\nelif [ -f \"$PTH\" ]; then\n    echo\
-                \ \"FocusPath: ${PTH:?}\" >> \"${XPLR_PIPE_MSG_IN:?}\"\nfi\n"
+            - BashExec: "(while IFS= read -r line; do\n  if rm -rfv \"${line:?}\"\
+                ; then\n    echo \"LogSuccess: $line deleted\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
+                \n  else\n    echo \"LogError: failed to delete $line\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
+                \n  fi\ndone < \"${XPLR_PIPE_RESULT_OUT:?}\")\necho Explore >> \"\
+                ${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to continue]\"\n"
+            - SwitchMode: default
+            - Explore
+        ctrl-c:
+          help: cancel & quit
+          messages:
+            - Terminate
+        d:
+          help: delete
+          messages:
+            - BashExec: "(while IFS= read -r line; do\n  if [ -d \"$line\" ]; then\n\
+                \    if rmdir -v \"${line:?}\"; then\n      echo \"LogSuccess: $line\
+                \ deleted\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n    else\n      echo \"\
+                LogError: failed to delete $line\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n\
+                \    fi\n  else\n    if rm -v \"${line:?}\"; then\n      echo \"LogSuccess:\
+                \ $line deleted\" >> \"${XPLR_PIPE_MSG_IN:?}\"\n    else\n      echo\
+                \ \"LogError: failed to delete $line\" >> \"${XPLR_PIPE_MSG_IN:?}\"\
+                \n    fi\n  fi\ndone < \"${XPLR_PIPE_RESULT_OUT:?}\")\necho Explore\
+                \ >> \"${XPLR_PIPE_MSG_IN:?}\"\nread -p \"[enter to continue]\"\n"
+            - SwitchMode: default
+      on_alphabet: null
+      on_number: null
+      on_special_character: null
+      default:
+        help: null
+        messages:
+          - SwitchMode: default
+  create directory:
+    name: create directory
+    help: null
+    extra_help: null
+    key_bindings:
+      on_key:
+        backspace:
+          help: clear
+          messages:
+            - SetInputBuffer: ''
+        ctrl-c:
+          help: cancel & quit
+          messages:
+            - Terminate
+        enter:
+          help: create directory
+          messages:
+            - BashExec: "PTH=\"${XPLR_INPUT_BUFFER:?}\"\nif mkdir -p \"$PTH\"; then\n\
+                \  echo Explore >> \"${XPLR_PIPE_MSG_IN:?}\"\n  echo \"LogSuccess:\
+                \ $PTH created\" >> \"${XPLR_PIPE_MSG_IN:?}\"\nelse\n  echo \"LogError:\
+                \ failed to create $PTH\" >> \"${XPLR_PIPE_MSG_IN:?}\"\nfi\n"
+            - SwitchMode: default
+        esc:
+          help: cancel
+          messages:
+            - SwitchMode: default
+      on_alphabet: null
+      on_number: null
+      on_special_character: null
+      default:
+        help: null
+        messages:
+          - BufferInputFromKey
+  go to:
+    name: go to
+    help: null
+    extra_help: null
+    key_bindings:
+      on_key:
+        ctrl-c:
+          help: cancel & quit
+          messages:
+            - Terminate
+        g:
+          help: top
+          messages:
+            - FocusFirst
+            - SwitchMode: default
+        x:
+          help: open in gui
+          messages:
+            - BashExec: 'OPENER="$(which xdg-open)"
+
+                ${OPENER:-open} "${XPLR_FOCUS_PATH:?}" &> /dev/null
+
+                '
             - SwitchMode: default
       on_alphabet: null
       on_number: null

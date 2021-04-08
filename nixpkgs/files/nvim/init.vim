@@ -28,7 +28,7 @@ Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. fro
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'  " Create your own textobjects using tree-sitter queries!
-Plug 'romgrk/nvim-treesitter-context'
+" Plug 'romgrk/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-treesitter/completion-treesitter'
@@ -513,6 +513,7 @@ let g:which_key_map.T = {
 	\ 's' : [':TableModeSort', 'sort'],
 	\ 'i' : [':Tableisize', 'tableisize'],
 	\ }
+
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
 """</Keybindings Helper>"""
