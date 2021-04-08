@@ -19,6 +19,7 @@ Plug 'sayanarijit/xplr.vim'  " Don't look yet
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world! 
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
@@ -504,6 +505,14 @@ let g:which_key_map.x = {
 	\ '/' : [':NnnPicker /', 'fs root'],
 	\ }
 
+" t is for test
+let g:which_key_map.T = {
+	\ 'name' : '+table mode',
+	\ 'T' : [':TableModeToggle', 'toggle'],
+	\ 'r' : [':TableModeRealign', 'realign'],
+	\ 's' : [':TableModeSort', 'sort'],
+	\ 'i' : [':Tableisize', 'tableisize'],
+	\ }
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
 """</Keybindings Helper>"""
