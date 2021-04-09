@@ -26,6 +26,9 @@ alias dotsync="(cd ~/.files && make sync)"
 alias cat="bat"
 alias ls="lsd"
 alias m="mind"
+alias x="xplr"
+alias f="fzf"
+alias cdd='cd "$(dirname $(xplr))"'
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
