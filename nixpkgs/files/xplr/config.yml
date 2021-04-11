@@ -1,31 +1,16 @@
-version: v0.4.0
+version: v0.4.1
 modes:
   builtin:
     default:
-      name: default
       key_bindings:
         on_key:
-          f:
-            help: fzf mode
-            messages:
-              - SwitchMode: fzxplr
-  custom:
-    fzxplr:
-      name: fzxplr
-      extra_help: null
-      key_bindings:
-        on_key:
-          f:
-            help: search
+          ctrl-f:
             messages:
               - BashExec: |
-                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | fzf)
+                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | fzf)
                   if [ -d "$PTH" ]; then
-                      echo "ChangeDirectory: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                      echo "ChangeDirectory: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
                   elif [ -f "$PTH" ]; then
-                      echo "FocusPath: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                      echo "FocusPath: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
               - SwitchMode: default
-        default:
-          messages:
-            - SwitchMode: default
