@@ -1,4 +1,33 @@
 version: v0.4.1
+node_types:
+  directory:
+    style:
+      fg: Cyan
+    meta:
+      icon: 
+  file:
+    meta:
+      icon: 
+  symlink:
+    meta:
+      icon: 
+  mime_essence:
+    text/plain:
+      meta:
+        icon: 
+    text/csv:
+      meta:
+        icon: 
+  extension:
+    md:
+      meta:
+        icon: 
+    lock:
+      meta:
+        icon: 
+    rs:
+      meta:
+        icon: 
 modes:
   builtin:
     default:
