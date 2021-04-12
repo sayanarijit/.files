@@ -1,4 +1,4 @@
-version: v0.4.1
+version: v0.4.2
 node_types:
   directory:
     style:
@@ -34,6 +34,7 @@ modes:
       key_bindings:
         on_key:
           ctrl-f:
+            help: search
             messages:
               - BashExec: |
                   PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | fzf)

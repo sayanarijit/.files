@@ -69,7 +69,7 @@ Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
-Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
+" Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
 Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
 Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R 
