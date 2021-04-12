@@ -80,7 +80,7 @@ Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
 Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
 Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
-Plug 'voldikss/vim-floaterm'  " 🌟 Use nvim/vim's builtin terminal in the floating/popup window
+Plug 'sayanarijit/vim-floaterm'  " 🌟 Use nvim/vim's builtin terminal in the floating/popup window
 " Plug 'kamykn/spelunker.vim'  " Improved vim spelling plugin (with camel case support)!
 Plug 'norcalli/nvim-colorizer.lua'  "  The fastest Neovim colorizer.
 Plug 'kyazdani42/nvim-web-devicons'  "  lua `fork` of vim-web-devicons for neovim 

@@ -208,7 +208,6 @@ in
     inotify-tools
     gradle
     vifm
-    navi
   ];
 
   programs = {
