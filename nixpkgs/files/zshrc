@@ -29,6 +29,7 @@ alias m="mind"
 alias x="xplr"
 alias f="fzf"
 alias cdd='cd "$(dirname $(xplr))"'
+# alias nvim='(neovide &)'
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"

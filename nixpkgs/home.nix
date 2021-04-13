@@ -139,6 +139,7 @@ in
     sxiv
     zathura
     xdotool
+    pass
     feh
     ranger # A VIM-inspired filemanager for the console
     cachix

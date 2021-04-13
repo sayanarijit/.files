@@ -731,6 +731,7 @@ let g:floaterm_autoinsert = v:true
 """</Spellcheck>"""
 
 """<Theme>"""
+set guifont=FiraCode\ Nerd\ Font:h19
 set cursorline
 set cursorcolumn
 set background=dark

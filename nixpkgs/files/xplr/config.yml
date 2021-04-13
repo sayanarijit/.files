@@ -10,7 +10,7 @@ node_types:
       icon: 
   symlink:
     meta:
-      icon: 
+      icon: 
   mime_essence:
     text/plain:
       meta:
