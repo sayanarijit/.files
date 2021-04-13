@@ -1,8 +1,6 @@
-version: v0.4.2
+version: v0.4.3
 node_types:
   directory:
-    style:
-      fg: Cyan
     meta:
       icon: 
   file:
