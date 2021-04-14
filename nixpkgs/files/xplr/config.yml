@@ -59,3 +59,8 @@ modes:
               - BashExec: |
                   PTH=$(cat "${XPLR_SESSION_PATH:?}/bookmarks" | fzf)
                   echo "FocusPath: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+          R:
+            help: batch rename
+            messages:
+              - BashExec: |
+                  mmv $(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")

@@ -209,6 +209,8 @@ in
     inotify-tools
     gradle
     vifm
+    pistol
+    mmv-go
   ];
 
   programs = {
