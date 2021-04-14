@@ -71,8 +71,9 @@ modes:
             help: serve $PWD
             messages:
               - BashExec: |
+                  ip addr
                   sfz --all --cors --no-ignore --bind 0.0.0.0 . &
-                  read -p "[enter when done]"
+                  read -p "[Enter when done]"
                   kill %1
 
           Q:
@@ -80,7 +81,7 @@ modes:
             messages:
               - BashExec: |
                   qrcp --keep-alive $(cat "${XPLR_PIPE_RESULT_OUT:?}") &
-                  read -p "[enter when done]"
+                  read -p "[Enter when done]"
                   kill %1
 
           y:
