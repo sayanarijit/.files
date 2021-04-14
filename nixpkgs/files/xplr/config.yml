@@ -42,3 +42,20 @@ modes:
                       echo "FocusPath: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
               - SwitchMode: default
+
+          m:
+            help: bookmark
+            messages:
+              - BashExecSilently: |
+                  PTH="${XPLR_FOCUS_PATH:?}"
+                  if echo "${PTH:?}" >> "${XPLR_SESSION_PATH:?}/bookmarks"; then
+                    echo "LogSuccess: Bookmarked ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  else
+                    echo "LogError: Failed to bookmark ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+          '`':
+            help: go to bookmark
+            messages:
+              - BashExec: |
+                  PTH=$(cat "${XPLR_SESSION_PATH:?}/bookmarks" | fzf)
+                  echo "FocusPath: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
