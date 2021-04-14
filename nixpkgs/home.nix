@@ -211,6 +211,10 @@ in
     vifm
     pistol
     mmv-go
+    fselect
+    navi
+    qrcp
+    broot
   ];
 
   programs = {

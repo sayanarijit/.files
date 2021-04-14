@@ -32,10 +32,10 @@ modes:
       key_bindings:
         on_key:
           ctrl-f:
-            help: search
+            help: search with preview
             messages:
               - BashExec: |
-                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | fzf)
+                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | fzf --preview "pistol {}")
                   if [ -d "$PTH" ]; then
                       echo "ChangeDirectory: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
                   elif [ -f "$PTH" ]; then
@@ -63,4 +63,28 @@ modes:
             help: batch rename
             messages:
               - BashExec: |
-                  mmv $(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")
+                  SELECTION=$(cat "${XPLR_PIPE_SELECTION_OUT:?}")
+                  NODES=${SELECTION:-$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")}
+                  mmv $NODES
+
+          S:
+            help: serve $PWD
+            messages:
+              - BashExec: |
+                  sfz --all --cors --no-ignore --bind 0.0.0.0 . &
+                  read -p "[enter when done]"
+                  kill %1
+
+          Q:
+            help: share via QR code
+            messages:
+              - BashExec: |
+                  qrcp --keep-alive $(cat "${XPLR_PIPE_RESULT_OUT:?}") &
+                  read -p "[enter when done]"
+                  kill %1
+
+          y:
+            help: copy files
+            messages:
+              - BashExecSilently:
+                  cat "${XPLR_PIPE_RESULT_OUT:?}" | xargs -l xclip -i -selection clipboard -t text/uri-list
