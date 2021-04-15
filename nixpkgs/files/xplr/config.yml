@@ -84,7 +84,7 @@ modes:
             help: disk usage
             messages:
               - BashExec:
-                  diskonaut
+                  dua i
               - ClearScreen
 
   custom:
