@@ -9,23 +9,6 @@ node_types:
   symlink:
     meta:
       icon: 
-  mime_essence:
-    text/plain:
-      meta:
-        icon: 
-    text/csv:
-      meta:
-        icon: 
-  extension:
-    md:
-      meta:
-        icon: 
-    lock:
-      meta:
-        icon: 
-    rs:
-      meta:
-        icon: 
 modes:
   builtin:
     default:
