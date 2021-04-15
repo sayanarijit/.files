@@ -218,6 +218,7 @@ in
     massren
     rdfind
     diskonaut
+    yank
   ];
 
   programs = {
