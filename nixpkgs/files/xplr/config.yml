@@ -65,7 +65,7 @@ modes:
               - BashExec: |
                   SELECTION=$(cat "${XPLR_PIPE_SELECTION_OUT:?}")
                   NODES=${SELECTION:-$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")}
-                  mmv $NODES
+                  massren $NODES
 
           S:
             help: serve $PWD
@@ -89,3 +89,11 @@ modes:
             messages:
               - BashExecSilently:
                   cat "${XPLR_PIPE_RESULT_OUT:?}" | xargs -l xclip -i -selection clipboard -t text/uri-list
+
+          D:
+            help: disk usage
+            messages:
+              - BashExec:
+                  dua i
+              - ClearScreen
+

@@ -215,6 +215,8 @@ in
     navi
     qrcp
     broot
+    massren
+    rdfind
   ];
 
   programs = {
