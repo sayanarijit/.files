@@ -85,10 +85,17 @@ modes:
                   kill %1
 
           y:
-            help: copy files
+            help: copy
             messages:
-              - BashExecSilently:
-                  cat "${XPLR_PIPE_RESULT_OUT:?}" | xargs -l xclip -i -selection clipboard -t text/uri-list
+              - SwitchMode: copy
+
+          p:
+            help: paste
+            messages:
+              - BashExecSilently: |
+                  FNAME=$(cat "${XPLR_SESSION_PATH:?}/clipboardfilename")
+                  echo "SwitchMode: paste" >> "${XPLR_PIPE_MSG_IN:?}"
+                  echo "BufferInput: $FNAME" >> "${XPLR_PIPE_MSG_IN:?}"
 
           D:
             help: disk usage
@@ -97,3 +104,47 @@ modes:
                   diskonaut
               - ClearScreen
 
+  custom:
+    copy:
+      key_bindings:
+        on_key:
+          y:
+            help: copy focused file
+            messages:
+              - BashExecSilently: |
+                  PTH="${XPLR_FOCUS_PATH:?}"
+                  echo "$(basename $PTH)" > "${XPLR_SESSION_PATH:?}/clipboardfilename"
+                  if xclip -sel clip < "${PTH:?}"; then
+                    echo "LogSuccess: copied to clipboard" >> "${XPLR_PIPE_MSG_IN:?}"
+                  else
+                    echo "LogError: failed to copy" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+              - SwitchMode: default
+
+    paste:
+      key_bindings:
+        on_key:
+          esc:
+            help: cancel
+            messages:
+              - SwitchMode: default
+
+          backspace:
+            help: clear
+            messages:
+              - BufferInput: ""
+
+          enter:
+            help: paste
+            messages:
+              - BashExecSilently: |
+                  if xclip -o -sel clip > "${XPLR_INPUT_BUFFER:?}"; then
+                    echo "LogSuccess: paste successful" >> "${XPLR_PIPE_MSG_IN:?}"
+                    echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
+                  else
+                    echo "LogError: failed to paste" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+              - SwitchMode: default
+        default:
+          messages:
+            - BufferInputFromKey
