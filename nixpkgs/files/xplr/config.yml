@@ -119,7 +119,6 @@ modes:
                   else
                     echo "LogError: failed to copy" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
-              - ClearScreen
               - SwitchMode: default
 
     paste:
