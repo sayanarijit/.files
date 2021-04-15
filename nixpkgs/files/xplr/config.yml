@@ -91,6 +91,10 @@ modes:
     copy:
       key_bindings:
         on_key:
+          esc:
+            help: cancel
+            messages:
+              - SwitchMode: default
           y:
             help: copy focused file
             messages:
