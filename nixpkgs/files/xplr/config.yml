@@ -1,4 +1,4 @@
-version: v0.4.3
+version: v0.4.4
 node_types:
   directory:
     meta:
@@ -94,6 +94,6 @@ modes:
             help: disk usage
             messages:
               - BashExec:
-                  dua i
+                  diskonaut
               - ClearScreen
 

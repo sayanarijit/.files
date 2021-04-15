@@ -217,6 +217,7 @@ in
     broot
     massren
     rdfind
+    diskonaut
   ];
 
   programs = {
