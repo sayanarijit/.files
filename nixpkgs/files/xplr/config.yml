@@ -113,12 +113,13 @@ modes:
             messages:
               - BashExecSilently: |
                   PTH="${XPLR_FOCUS_PATH:?}"
-                  echo "$(basename $PTH)" > "${XPLR_SESSION_PATH:?}/clipboardfilename"
-                  if xclip -sel clip < "${PTH:?}"; then
+                  if [ -f "${PTH:?}" ] && xclip -sel clip < "${PTH:?}"; then
+                    echo "$(basename ${PTH:?})" > "${XPLR_SESSION_PATH:?}/clipboardfilename"
                     echo "LogSuccess: copied to clipboard" >> "${XPLR_PIPE_MSG_IN:?}"
                   else
                     echo "LogError: failed to copy" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
+              - ClearScreen
               - SwitchMode: default
 
     paste:
@@ -128,12 +129,10 @@ modes:
             help: cancel
             messages:
               - SwitchMode: default
-
           backspace:
             help: clear
             messages:
               - BufferInput: ""
-
           enter:
             help: paste
             messages:
