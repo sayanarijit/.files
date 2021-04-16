@@ -10,83 +10,6 @@ node_types:
     meta:
       icon: 
 modes:
-  builtin:
-    default:
-      key_bindings:
-        on_key:
-          ctrl-f:
-            help: search with preview
-            messages:
-              - BashExec: |
-                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | sk --preview "pistol {}")
-                  if [ -d "$PTH" ]; then
-                      echo "ChangeDirectory: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
-                  elif [ -f "$PTH" ]; then
-                      echo "FocusPath: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
-                  fi
-              - SwitchMode: default
-
-          m:
-            help: bookmark
-            messages:
-              - BashExecSilently: |
-                  PTH="${XPLR_FOCUS_PATH:?}"
-                  if echo "${PTH:?}" >> "${XPLR_SESSION_PATH:?}/bookmarks"; then
-                    echo "LogSuccess: Bookmarked ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
-                  else
-                    echo "LogError: Failed to bookmark ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
-                  fi
-          '`':
-            help: go to bookmark
-            messages:
-              - BashExec: |
-                  PTH=$(cat "${XPLR_SESSION_PATH:?}/bookmarks" | fzf)
-                  echo "FocusPath: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
-          R:
-            help: batch rename
-            messages:
-              - BashExec: |
-                  SELECTION=$(cat "${XPLR_PIPE_SELECTION_OUT:?}")
-                  NODES=${SELECTION:-$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")}
-                  massren $NODES
-
-          S:
-            help: serve $PWD
-            messages:
-              - BashExec: |
-                  IP=$(ip addr | grep -w inet | cut -d/ -f1 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | fzf --prompt 'Select IP > ')
-                  echo "IP: ${IP:?}"
-                  read -p "Port (default 5000): " PORT
-                  echo
-                  sfz --all --cors --no-ignore --bind ${IP:?} --port ${PORT:-5000} . &
-                  read -p "[Enter when done]"
-                  kill %1
-
-          Q:
-            help: share via QR code
-            messages:
-              - BashExec: |
-                  qrcp --keep-alive $(cat "${XPLR_PIPE_RESULT_OUT:?}") &
-                  read -p "[Enter when done]"
-                  kill %1
-
-          y:
-            help: copy
-            messages:
-              - SwitchMode: copy
-          p:
-            help: paste
-            messages:
-              - BashExecSilently: |
-                  xclip-pastefile > /dev/null && echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
-
-          D:
-            help: disk usage
-            messages:
-              - BashExec:
-                  dua i
-              - ClearScreen
-
   custom:
     copy:
       key_bindings:
@@ -101,3 +24,87 @@ modes:
             help: cancel
             messages:
               - SwitchMode: default
+  builtin:
+    default:
+      key_bindings:
+        on_key:
+          ctrl-f:
+            help: search with preview
+            messages:
+              - BashExec: |
+                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | fzf --preview "pistol {}")
+                  if [ -d "$PTH" ]; then
+                      echo "ChangeDirectory: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  elif [ -f "$PTH" ]; then
+                      echo "FocusPath: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+              - SwitchMode: default
+          y:
+            help: copy
+            messages:
+              - SwitchMode: copy
+          p:
+            help: paste
+            messages:
+              - BashExecSilently: |
+                  xclip-pastefile > /dev/null && echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
+          m:
+            help: bookmark
+            messages:
+              - BashExecSilently: |
+                  PTH="${XPLR_FOCUS_PATH:?}"
+                  if echo "${PTH:?}" >> "${XPLR_SESSION_PATH:?}/bookmarks"; then
+                    echo "LogSuccess: ${PTH:?} added to bookmarks" >> "${XPLR_PIPE_MSG_IN:?}"
+                  else
+                    echo "LogError: Failed to bookmark ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+          '`':
+            help: go to bookmark
+            messages:
+              - BashExec: |
+                  PTH=$(cat "${XPLR_SESSION_PATH:?}/bookmarks" | fzf --no-sort)
+                  if [ "$PTH" ]; then
+                    echo "FocusPath: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+          ctrl-h:
+            help: history
+            messages:
+              - BashExec: |
+                  PTH=$(cat "${XPLR_PIPE_HISTORY_OUT:?}" | sort -u | fzf --no-sort)
+                  if [ "$PTH" ]; then
+                    echo "ChangeDirectory: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+          R:
+            help: batch rename
+            messages:
+              - BashExec: |
+                  SELECTION=$(cat "${XPLR_PIPE_SELECTION_OUT:?}")
+                  NODES=${SELECTION:-$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")}
+                  if [ "$NODES" ]; then
+                    mmv $NODES
+                    echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+          Q:
+            help: share via QR
+            messages:
+              - BashExec: |
+                  qrcp --keep-alive $(cat "${XPLR_PIPE_RESULT_OUT:?}") &
+                  read -p "[Enter when done]"
+                  kill %1
+          S:
+            help: serve $PWD
+            messages:
+              - BashExec: |
+                  IP=$(ip addr | grep -w inet | cut -d/ -f1 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | fzf --prompt 'Select IP > ')
+                  echo "IP: ${IP:?}"
+                  read -p "Port (default 5000): " PORT
+                  echo
+                  sfz --all --cors --no-ignore --bind ${IP:?} --port ${PORT:-5000} . &
+                  read -p "[Enter when done]"
+                  kill %1
+          D:
+            help: disk usage
+            messages:
+              - BashExec:
+                  dua i
+              - ClearScreen
