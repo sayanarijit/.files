@@ -18,7 +18,7 @@ modes:
             help: search with preview
             messages:
               - BashExec: |
-                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | fzf --preview "pistol {}")
+                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | sk --preview "pistol {}")
                   if [ -d "$PTH" ]; then
                       echo "ChangeDirectory: $PWD/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
                   elif [ -f "$PTH" ]; then
