@@ -11,6 +11,28 @@ node_types:
       icon: 
 modes:
   custom:
+    qrcp:
+      key_bindings:
+        on_key:
+          s:
+            help: send
+            messages:
+              - BashExec: |
+                  qrcp send --keep-alive $(cat "${XPLR_PIPE_RESULT_OUT:?}") &
+                  read -p "[enter when done]"
+                  kill %1
+              - SwitchMode: default
+          r:
+            help: receive
+            messages:
+              - BashExec: |
+                  qrcp receive --keep-alive &
+                  read -p "[enter when done]"
+                  kill %1
+              - SwitchMode: default
+        default:
+          messages:
+            - SwitchMode: default
     copy:
       key_bindings:
         on_key:
@@ -20,10 +42,9 @@ modes:
               - BashExecSilently: |
                   xclip-copyfile $(cat "${XPLR_PIPE_RESULT_OUT:?}")
               - SwitchMode: default
-          esc:
-            help: cancel
-            messages:
-              - SwitchMode: default
+        default:
+          messages:
+            - SwitchMode: default
   builtin:
     default:
       key_bindings:
@@ -85,12 +106,9 @@ modes:
                     echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
           Q:
-            help: share via QR
+            help: send/receive via QR
             messages:
-              - BashExec: |
-                  qrcp --keep-alive $(cat "${XPLR_PIPE_RESULT_OUT:?}") &
-                  read -p "[Enter when done]"
-                  kill %1
+              - SwitchMode: qrcp
           S:
             help: serve $PWD
             messages:
@@ -100,7 +118,7 @@ modes:
                   read -p "Port (default 5000): " PORT
                   echo
                   sfz --all --cors --no-ignore --bind ${IP:?} --port ${PORT:-5000} . &
-                  read -p "[Enter when done]"
+                  read -p "[enter when done]"
                   kill %1
           D:
             help: disk usage
