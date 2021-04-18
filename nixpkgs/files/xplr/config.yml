@@ -11,7 +11,57 @@ node_types:
       icon: 
 modes:
   custom:
+    paste.rs:
+      name: paste.rs
+      key_bindings:
+        on_key:
+          p:
+            help: paste
+            messages:
+              - BashExec: |
+                  PTH="$(basename ${XPLR_FOCUS_PATH:?})"
+                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                  curl --data-binary "@${PTH:?}" "https://paste.rs" | tee -a "${DEST:?}"
+                  echo
+                  read -p "[enter to continue]"
+              - SwitchMode: default
+          l:
+            help: list
+            messages:
+              - BashExec: |
+                  cat "${XPLR_FOCUS_PATH:?}/paste.rs.list"
+                  echo
+                  read -p "[enter to continue]"
+              - SwitchMode: default
+          o:
+            help: search and open
+            messages:
+              - BashExec: |
+                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                  URL=$(fzf --preview "curl -s {}" < "${DEST:?}")
+                  if [ "$URL" ]; then
+                    OPENER=$(which xdg-open)
+                    ${OPENER:-open} "${URL:?}"
+                  fi
+              - SwitchMode: default
+          d:
+            help: search and delete
+            messages:
+              - BashExec: |
+                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                  URL=$(fzf --preview "curl -s {}" < "${DEST:?}")
+                  if [ "$URL" ]; then
+                    curl -X DELETE "${URL:?}"
+                    sd "${URL:?}\n" "" "${DEST:?}"
+                    echo
+                    read -p "[enter to continue]"
+                  fi
+              - SwitchMode: default
+        default:
+          messages:
+            - SwitchMode: default
     qrcp:
+      name: qrcp
       key_bindings:
         on_key:
           s:
@@ -34,6 +84,7 @@ modes:
           messages:
             - SwitchMode: default
     copy:
+      name: copy
       key_bindings:
         on_key:
           y:
@@ -69,6 +120,10 @@ modes:
             messages:
               - BashExecSilently: |
                   xclip-pastefile > /dev/null && echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
+          P:
+            help: paste.rs
+            messages:
+              - SwitchMode: paste.rs
           m:
             help: bookmark
             messages:

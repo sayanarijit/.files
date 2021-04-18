@@ -121,6 +121,8 @@ in
     vim # neovim backup
     bat # cat replacement
     lsd # ls replacement
+    exa # ls replacement
+    sd # sed replacement
     sysctl
     xz
     # thefuck # fuck: correct previous command
