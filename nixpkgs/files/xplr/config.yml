@@ -29,7 +29,7 @@ modes:
             help: list
             messages:
               - BashExec: |
-                  cat "${XPLR_FOCUS_PATH:?}/paste.rs.list"
+                  cat "${XPLR_SESSION_PATH:?}/paste.rs.list"
                   echo
                   read -p "[enter to continue]"
               - SwitchMode: default
