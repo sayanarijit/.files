@@ -136,6 +136,7 @@ in
     p11-kit # Terminal colors
     openssl
     nnnWithIcons
+    imgp
     tabbed
     xterm
     sxiv
@@ -215,7 +216,6 @@ in
     mmv-go
     fselect
     navi
-    qrcp
     broot
     massren
     rdfind
