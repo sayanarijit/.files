@@ -1,4 +1,4 @@
-version: v0.5.2
+version: v0.5.4
 node_types:
   directory:
     meta:
@@ -11,6 +11,26 @@ node_types:
       icon: 
 modes:
   custom:
+    fzxplr:
+      name: fzxplr
+      key_bindings:
+        remaps:
+          /: F  # Remap "/" to "f"
+        on_key:
+          F:
+            help: search
+            messages:
+              - BashExec: |
+                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F/ '{print $NF}' | fzf)
+                  if [ -d "$PTH" ]; then
+                    echo "ChangeDirectory: ${PWD:?}/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  elif [ -f "$PTH" ]; then
+                    echo "FocusPath: ${PWD:?}/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+              - SwitchMode: default
+        default:
+          messages:
+            - SwitchMode: default
     paste.rs:
       name: paste.rs
       key_bindings:
@@ -96,6 +116,10 @@ modes:
     default:
       key_bindings:
         on_key:
+          F:
+            help: fzf mode
+            messages:
+              - SwitchMode: fzxplr
           y:
             help: copy
             messages:
