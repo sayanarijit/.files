@@ -220,6 +220,7 @@ in
     rdfind
     diskonaut
     yank
+    xplr
   ];
 
   programs = {
