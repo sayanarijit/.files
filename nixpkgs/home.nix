@@ -185,7 +185,6 @@ in
     openjdk11
     maven
     openapi-generator-cli-unstable
-    gcc
     nixpkgs-fmt
     rnix-lsp # Nix language server
     docker-compose
