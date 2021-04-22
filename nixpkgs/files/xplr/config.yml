@@ -188,3 +188,8 @@ modes:
               - BashExec:
                   dua i
               - ClearScreen
+          ctrl-n:
+            help: new session
+            messages:
+              - BashExecSilently: |
+                  alacritty --command bash -c "xplr" &
