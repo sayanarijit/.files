@@ -181,7 +181,9 @@ modes:
                   echo "IP: ${IP:?}"
                   read -p "Port (default 5000): " PORT
                   echo
-                  sfz --all --cors --no-ignore --bind ${IP:?} --port ${PORT:-5000} .
+                  sfz --all --cors --no-ignore --bind ${IP:?} --port ${PORT:-5000} . &
+                  sleep 1 && read -p '[press enter to continue]'
+                  kill -9 %1
           D:
             help: disk usage
             messages:
