@@ -536,6 +536,8 @@ key_bindings:
   - { key: N, mods: Command, action: SpawnNewInstance }
   - { key: V, mods: Control|Shift, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Up,    mods: Control|Shift,   action: ScrollPageUp }
+  - { key: Down,  mods: Control|Shift,   action: ScrollPageDown }
 
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
