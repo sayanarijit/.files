@@ -15,8 +15,6 @@ alias activate="source .venv/bin/activate"
 alias reactivate="deactivate && activate"
 alias github="cd ~/Documents/GitHub"
 alias open="xdg-open"
-alias sb="cd ~/Documents/GitHub/societified/backend"
-alias sf="cd ~/Documents/GitHub/societified/frontend"
 
 alias dotdiff="(cd ~/.files && make diff)"
 alias dotreset="(cd ~/.files && make reset)"
