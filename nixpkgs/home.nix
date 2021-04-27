@@ -130,8 +130,8 @@ in
     sqlite
     skim # sk: fzf alternative in rust
     scim # spreadsheet
-    pgcli # postgres cli
-    mycli # mysql cli
+    # pgcli # postgres cli
+    # mycli # mysql cli
     pandoc # File converter
     p11-kit # Terminal colors
     openssl
@@ -220,6 +220,8 @@ in
     rdfind
     diskonaut
     yank
+    xplr
+    spotify-tui
   ];
 
   programs = {
