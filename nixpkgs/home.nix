@@ -220,8 +220,8 @@ in
     rdfind
     diskonaut
     yank
-    xplr
     spotify-tui
+    # xplr
   ];
 
   programs = {
