@@ -194,6 +194,4 @@ modes:
             help: new session
             messages:
               - BashExecSilently: |
-                  PTH="${XPLR_FOCUS_PATH}"
-                  [ -d "$PTH" ] && PTH="$PWD"
-                  alacritty --command bash -c "xplr ${PTH:?}" &
+                  alacritty --command xplr &
