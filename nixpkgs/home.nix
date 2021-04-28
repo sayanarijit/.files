@@ -119,6 +119,7 @@ in
     # neovim  # Using nightly for now
     neovim-nightly
     vim # neovim backup
+    kakoune
     bat # cat replacement
     lsd # ls replacement
     exa # ls replacement

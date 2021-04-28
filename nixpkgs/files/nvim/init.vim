@@ -193,7 +193,7 @@ let g:tagbar_type_elm = {
           \ , 'ctagsbin':'~/.bin/elmtags.py'
           \ , 'ctagsargs': ''
           \ }
-autocmd BufNewFile,BufRead * :call tagbar#autoopen()
+" autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
 
 """<Tagbar: vista>"""

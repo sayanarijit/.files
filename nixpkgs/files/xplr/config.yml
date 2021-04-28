@@ -88,7 +88,7 @@ modes:
             help: send
             messages:
               - BashExec: |
-                  qrcp send --keep-alive $(cat "${XPLR_PIPE_RESULT_OUT:?}")
+                  qrcp send --keep-alive -- $(cat "${XPLR_PIPE_RESULT_OUT:?}")
               - SwitchMode: default
           r:
             help: receive
@@ -166,7 +166,7 @@ modes:
                   SELECTION=$(cat "${XPLR_PIPE_SELECTION_OUT:?}")
                   NODES=${SELECTION:-$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")}
                   if [ "$NODES" ]; then
-                    mmv $NODES
+                    mmv -- $NODES
                     echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
           Q:
