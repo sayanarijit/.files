@@ -223,6 +223,7 @@ in
     yank
     spotify-tui
     # xplr
+    redis
   ];
 
   programs = {
