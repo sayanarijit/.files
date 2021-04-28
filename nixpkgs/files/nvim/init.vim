@@ -37,8 +37,8 @@ Plug 'nvim-treesitter/completion-treesitter'
 " Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
 Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua 
 " Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
-" Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
-Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
+Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
+" Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 Plug 'vim-airline/vim-airline'  " make statusline awesome
 " Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
 Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
@@ -183,17 +183,17 @@ let g:elm_setup_keybindings = 0
 """</elm-vim>"""
 
 """<Tagbar: tagbar>"""
-" nnoremap <silent> \\ :TagbarToggle<CR>
-" let g:tagbar_type_elm = {
-"           \   'ctagstype':'elm'
-"           \ , 'kinds':['h:header', 'i:import', 't:type', 'f:function', 'e:exposing']
-"           \ , 'sro':'&&&'
-"           \ , 'kind2scope':{ 'h':'header', 'i':'import'}
-"           \ , 'sort':0
-"           \ , 'ctagsbin':'~/.bin/elmtags.py'
-"           \ , 'ctagsargs': ''
-"           \ }
-" autocmd BufNewFile,BufRead * :call tagbar#autoopen()
+nnoremap <silent> \\ :TagbarToggle<CR>
+let g:tagbar_type_elm = {
+          \   'ctagstype':'elm'
+          \ , 'kinds':['h:header', 'i:import', 't:type', 'f:function', 'e:exposing']
+          \ , 'sro':'&&&'
+          \ , 'kind2scope':{ 'h':'header', 'i':'import'}
+          \ , 'sort':0
+          \ , 'ctagsbin':'~/.bin/elmtags.py'
+          \ , 'ctagsargs': ''
+          \ }
+autocmd BufNewFile,BufRead * :call tagbar#autoopen()
 """</Tagbar>"""
 
 """<Tagbar: vista>"""
@@ -218,7 +218,7 @@ let g:vista#renderer#enable_icon = 1
 " Update the vista on |TextChanged| and |TextChangedI|.
 let g:vista_update_on_text_changed = 1
 
-nnoremap <silent> \\ :Vista!!<CR>
+" nnoremap <silent> \\ :Vista!!<CR>
 """</Tagbar>
 
 """<Tree view: nerdtree>"""
@@ -488,12 +488,12 @@ let g:which_key_map.t.f = {
 	\ }
 
 " v for vista
-let g:which_key_map.v = {
-	\ 'name' : '+vista',
-	\ 'v' : [':Vista!!', 'toggle window'],
-	\ 'f' : [':Vista finder', 'find symbol'],
-	\ 'F' : [':Vista finder! ctags', 'find symbol recursive'],
-	\ }
+" let g:which_key_map.v = {
+" 	\ 'name' : '+vista',
+" 	\ 'v' : [':Vista!!', 'toggle window'],
+" 	\ 'f' : [':Vista finder', 'find symbol'],
+" 	\ 'F' : [':Vista finder! ctags', 'find symbol recursive'],
+" 	\ }
 
 " x for explore
 let g:which_key_map.x = {
