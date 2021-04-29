@@ -24,7 +24,7 @@ alias dotsync="(cd ~/.files && make sync)"
 alias cat="bat"
 alias ls="lsd"
 alias m="mind"
-alias x='cd "$(xplr)/"'
+alias x='cd "$(xplr)"'
 alias f="fzf"
 # alias nvim='(neovide &)'
 
