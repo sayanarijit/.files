@@ -59,7 +59,7 @@ in
       (
         import (
           builtins.fetchTarball {
-            url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+            url = https://github.com/nix-community/neovim-nightly-overlay/archive/ce82a48e3ce2ae5fe11484c22775ad4060bc9c23.tar.gz;
           }
         )
       )

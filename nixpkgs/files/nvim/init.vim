@@ -30,7 +30,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'  " Create your own textobjects using tree-sitter queries!
 " Plug 'romgrk/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
-" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua
 Plug 'nvim-treesitter/completion-treesitter'
 " Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
@@ -738,7 +737,7 @@ set guifont=FiraCode\ Nerd\ Font:h19
 set cursorline
 set cursorcolumn
 set background=dark
-colorscheme onedark
-let g:airline_theme='onedark'
+colorscheme neodark
+let g:airline_theme='neodark'
 let g:gruvbox_contrast_dark='soft'
 """</Theme>"""
