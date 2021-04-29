@@ -116,6 +116,10 @@ modes:
     default:
       key_bindings:
         on_key:
+          '#':
+            help: debug
+            messages:
+              - Debug: /tmp/xplr.yml
           F:
             help: fzf mode
             messages:
