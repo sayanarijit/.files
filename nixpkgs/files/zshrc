@@ -24,9 +24,8 @@ alias dotsync="(cd ~/.files && make sync)"
 alias cat="bat"
 alias ls="lsd"
 alias m="mind"
-alias x="xplr"
+alias x='cd $(xplr)/'
 alias f="fzf"
-alias cdd='cd "$(dirname $(xplr))"'
 # alias nvim='(neovide &)'
 
 export PATH="$HOME/.cargo/bin:$PATH"

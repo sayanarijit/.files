@@ -38,7 +38,7 @@ Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide
 " Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 " Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
-Plug 'vim-airline/vim-airline'  " make statusline awesome
+" Plug 'vim-airline/vim-airline'  " make statusline awesome
 " Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
 Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
@@ -79,11 +79,12 @@ Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
 Plug 'KeitaNakamura/neodark.vim'  " A dark color scheme for vim
 Plug 'morhetz/gruvbox'  " Retro groove color scheme for Vim
-Plug 'sayanarijit/vim-floaterm'  " 🌟 Use nvim/vim's builtin terminal in the floating/popup window
+Plug 'marko-cerovac/material.nvim'  "   Material colorscheme for NeoVim
+" Plug 'sayanarijit/vim-floaterm'  " 🌟 Use nvim/vim's builtin terminal in the floating/popup window
 " Plug 'kamykn/spelunker.vim'  " Improved vim spelling plugin (with camel case support)!
+Plug 'hoob3rt/lualine.nvim' "  A blazing fast and easy to configure neovim statusline plugin written in pure lua.
 Plug 'norcalli/nvim-colorizer.lua'  "  The fastest Neovim colorizer.
 Plug 'kyazdani42/nvim-web-devicons'  "  lua `fork` of vim-web-devicons for neovim 
-" Plug 'akinsho/nvim-bufferline.lua'  "  A snazzy bufferline for Neovim 
 Plug 'ryanoasis/vim-devicons'  " Adds file type icons to Vim plugins (should be at the bottom)
 call plug#end()
 """</Plugins>"""
@@ -313,7 +314,6 @@ let g:which_key_map.a.o = {
 
 let g:which_key_map.a.t = {
 	\ 'name' : '+terminal',
-	\ 'f' : [':FloatermToggle', 'floating toggle'],
 	\ 't' : [':TerminalTab', 'new tab'],
 	\ 'h' : [':TerminalHSplit', 'horizontal split'],
 	\ 'v' : [':TerminalVSplit', 'vertical split'],
@@ -349,14 +349,14 @@ let g:which_key_map.a.s = {
 	\ 'j' : ['gJ', 'join lines'],
 	\ }
 
-let g:which_key_map.f = {
-	\ 'name' : '+floaterm',
-	\ '+' : ['FloatermNew', 'new'],
-	\ 'f' : ['FloatermToggle', 'toggle'],
-	\ '>' : ['FloatermNext', 'next'],
-	\ '<' : ['FloatermPrev', 'prev'],
-	\ 'k' : ['FloatermKill', 'kill'],
-	\ }
+" let g:which_key_map.f = {
+" 	\ 'name' : '+floaterm',
+" 	\ '+' : ['FloatermNew', 'new'],
+" 	\ 'f' : ['FloatermToggle', 'toggle'],
+" 	\ '>' : ['FloatermNext', 'next'],
+" 	\ '<' : ['FloatermPrev', 'prev'],
+" 	\ 'k' : ['FloatermKill', 'kill'],
+" 	\ }
 
 " w for window
 let g:which_key_map.w = {
@@ -610,6 +610,7 @@ require('kommentary.config').configure_language("default", {
     prefer_single_line_comments = true,
 })
 require('kommentary.config').use_extended_mappings()
+require('lualine').setup{theme = 'material-nvim'}
 EOF
 
 "" code folding
@@ -737,7 +738,8 @@ set guifont=FiraCode\ Nerd\ Font:h19
 set cursorline
 set cursorcolumn
 set background=dark
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+let g:airline_theme='material'
 let g:gruvbox_contrast_dark='soft'
+let g:material_style = "darker"
+colorscheme material
 """</Theme>"""
