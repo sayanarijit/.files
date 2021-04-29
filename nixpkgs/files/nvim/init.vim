@@ -738,7 +738,7 @@ set guifont=FiraCode\ Nerd\ Font:h19
 set cursorline
 set cursorcolumn
 set background=dark
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+colorscheme onedark
+let g:airline_theme='onedark'
 let g:gruvbox_contrast_dark='soft'
 """</Theme>"""
