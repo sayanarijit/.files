@@ -223,7 +223,8 @@ in
     yank
     spotify-tui
     # xplr
-    redis
+    websocat
+    websocketd
   ];
 
   programs = {
