@@ -59,7 +59,7 @@ in
       (
         import (
           builtins.fetchTarball {
-            url = https://github.com/nix-community/neovim-nightly-overlay/archive/412d2f01667d526b4f9f610fccf1e1d5abc8c459.tar.gz;
+            url = https://github.com/nix-community/neovim-nightly-overlay/archive/6dec5ea4631c6298aa529650257306c62a3ec184.tar.gz;
           }
         )
       )
@@ -225,6 +225,7 @@ in
     # xplr
     websocat
     websocketd
+    redis
   ];
 
   programs = {
