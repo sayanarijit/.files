@@ -9,6 +9,42 @@ node_types:
   symlink:
     meta:
       icon: 
+  extension:
+    rs:
+      meta:
+        icon: 🦀
+    elm:
+      meta:
+        icon: 
+    java:
+      meta:
+        icon: ☕
+    kt:
+      meta:
+        icon: 🅺
+    lua:
+      meta:
+        icon: 🌙
+    nix:
+      meta:
+        icon: ❄️
+    js:
+      meta:
+        icon: 
+    py:
+      meta:
+        icon: 🐍
+  special:
+    docker-compose.yml:
+      meta:
+        icon: 🐳
+    .git:
+      meta:
+        icon: 
+    node_modules:
+      meta:
+        icon: 
+
 modes:
   custom:
     fzxplr:

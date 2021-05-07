@@ -226,6 +226,7 @@ in
     websocat
     websocketd
     redis
+    # starship
   ];
 
   programs = {
