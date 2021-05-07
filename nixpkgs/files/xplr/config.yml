@@ -10,6 +10,15 @@ node_types:
     meta:
       icon: 
   extension:
+    lock:
+      meta:
+        icon: 🔒
+    md:
+      meta:
+        icon: 
+    toml:
+      meta:
+        icon: 
     rs:
       meta:
         icon: 🦀
@@ -18,7 +27,7 @@ node_types:
         icon: 
     java:
       meta:
-        icon: ☕
+        icon: ♨
     kt:
       meta:
         icon: 🅺
@@ -34,6 +43,24 @@ node_types:
     py:
       meta:
         icon: 🐍
+    txt:
+      meta:
+        icon: 
+    csv:
+      meta:
+        icon: 
+    xlsx:
+      meta:
+        icon: 
+    odf:
+      meta:
+        icon: 
+    yml:
+      meta:
+        icon: ⚙
+    yaml:
+      meta:
+        icon: ⚙
   special:
     docker-compose.yml:
       meta:
