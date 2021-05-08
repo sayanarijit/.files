@@ -1,4 +1,4 @@
-version: v0.6.0
+version: v0.7.0
 general:
   default_ui:
     prefix: ' '
@@ -24,6 +24,25 @@ general:
       format: " » "
       style:
         add_modifiers: [Bold, Reversed]
+  panel_ui:
+    default:
+      title:
+        style:
+          bg:
+            Rgb: [170, 150, 130]
+          fg:
+            Rgb: [40, 40, 40]
+          add_modifiers: [Bold]
+      style:
+        fg:
+          Rgb: [170, 150, 130]
+        bg:
+          Rgb: [33, 33, 33]
+      borders: []
+    table:
+      style:
+        bg:
+          Rgb: [26, 26, 26]
 
 layouts:
   custom: {}
@@ -36,20 +55,7 @@ layouts:
             - Min: 1
             - Length: 2
         splits:
-          - SortAndFilter:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
-
+          - SortAndFilter: ~
           - Horizontal:
               config:
                 constraints:
@@ -57,58 +63,10 @@ layouts:
                   - Percentage: 60
                   - Percentage: 20
               splits:
-                - Selection:
-                    title:
-                      style:
-                        bg:
-                          Rgb: [170, 150, 130]
-                        fg:
-                          Rgb: [40, 40, 40]
-                        add_modifiers: [Bold]
-                    style:
-                      fg:
-                        Rgb: [170, 150, 130]
-                      bg:
-                        Rgb: [33, 33, 33]
-                - Table:
-                    title:
-                      style:
-                        bg:
-                          Rgb: [170, 150, 130]
-                        fg:
-                          Rgb: [40, 40, 40]
-                        add_modifiers: [Bold]
-                    style:
-                      fg:
-                        Rgb: [170, 150, 130]
-                      bg:
-                        Rgb: [26, 26, 26]
-                - HelpMenu:
-                    title:
-                      style:
-                        bg:
-                          Rgb: [170, 150, 130]
-                        fg:
-                          Rgb: [40, 40, 40]
-                        add_modifiers: [Bold]
-                    style:
-                      fg:
-                        Rgb: [170, 150, 130]
-                      bg:
-                        Rgb: [33, 33, 33]
-          - InputAndLogs:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
+                - Selection: ~
+                - Table: ~
+                - HelpMenu: ~
+          - InputAndLogs: ~
     no_help:
       Vertical:
         config:
@@ -116,65 +74,16 @@ layouts:
             - Length: 2
             - Min: 1
         splits:
-          - SortAndFilter:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
-
+          - SortAndFilter: ~
           - Horizontal:
               config:
                 constraints:
                   - Percentage: 80
                   - Percentage: 20
               splits:
-                - Table:
-                    title:
-                      style:
-                        bg:
-                          Rgb: [170, 150, 130]
-                        fg:
-                          Rgb: [40, 40, 40]
-                        add_modifiers: [Bold]
-                    style:
-                      fg:
-                        Rgb: [170, 150, 130]
-                      bg:
-                        Rgb: [26, 26, 26]
-                - Selection:
-                    title:
-                      style:
-                        bg:
-                          Rgb: [170, 150, 130]
-                        fg:
-                          Rgb: [40, 40, 40]
-                        add_modifiers: [Bold]
-                    style:
-                      fg:
-                        Rgb: [170, 150, 130]
-                      bg:
-                        Rgb: [33, 33, 33]
-          - InputAndLogs:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
+                - Table: ~
+                - Selection: ~
+          - InputAndLogs: ~
 
     no_selection:
       Vertical:
@@ -184,65 +93,16 @@ layouts:
             - Min: 1
             - Length: 2
         splits:
-          - SortAndFilter:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
-
+          - SortAndFilter: ~
           - Horizontal:
               config:
                 constraints:
                   - Percentage: 80
                   - Percentage: 20
               splits:
-                - Table:
-                    title:
-                      style:
-                        bg:
-                          Rgb: [170, 150, 130]
-                        fg:
-                          Rgb: [40, 40, 40]
-                        add_modifiers: [Bold]
-                    style:
-                      fg:
-                        Rgb: [170, 150, 130]
-                      bg:
-                        Rgb: [26, 26, 26]
-                - HelpMenu:
-                    title:
-                      style:
-                        bg:
-                          Rgb: [170, 150, 130]
-                        fg:
-                          Rgb: [40, 40, 40]
-                        add_modifiers: [Bold]
-                    style:
-                      fg:
-                        Rgb: [170, 150, 130]
-                      bg:
-                        Rgb: [33, 33, 33]
-          - InputAndLogs:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
+                - Table: ~
+                - HelpMenu: ~
+          - InputAndLogs: ~
 
     no_help_no_selection:
       Vertical:
@@ -253,47 +113,9 @@ layouts:
             - Length: 2
         splits:
           - SortAndFilter:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
-
-          - Table:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [26, 26, 26]
-
-          - InputAndLogs:
-              title:
-                style:
-                  bg:
-                    Rgb: [170, 150, 130]
-                  fg:
-                    Rgb: [40, 40, 40]
-                  add_modifiers: [Bold]
-              style:
-                fg:
-                  Rgb: [170, 150, 130]
-                bg:
-                  Rgb: [33, 33, 33]
-
+              borders: [Top]
+          - Table: ~
+          - InputAndLogs: ~
 node_types:
   directory:
     meta:
