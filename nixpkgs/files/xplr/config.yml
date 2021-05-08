@@ -24,11 +24,6 @@ general:
       format: " » "
       style:
         add_modifiers: [Bold, Reversed]
-    sort_direction_identifiers:
-      forward:
-        format: "↓"
-      reverse:
-        format: "↑"
 
 layouts:
   custom: {}
