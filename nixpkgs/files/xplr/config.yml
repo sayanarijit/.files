@@ -289,6 +289,63 @@ modes:
         default:
           messages:
             - SwitchMode: default
+
+    organise:
+      key_bindings:
+        on_key:
+          u:
+            help: dry run undo
+            messages:
+              - BashExec: |
+                  f2 -u
+                  read -p '[press enter to continue]'
+
+          U:
+            help: undo
+            messages:
+              - BashExecSilently: |
+                  f2 -u -x
+              - Explore
+          b:
+            help: dry run org books
+            messages:
+              - BashExec: |
+                  f2 -F -r '{{xt.Title}} by {{xt.Creator}}{{ext}}'
+                  read -p '[press enter to continue]'
+          B:
+            help: org books
+            messages:
+              - BashExecSilently: |
+                  f2 -F -r '{{xt.Title}} by {{xt.Creator}}{{ext}}' -x
+              - Explore
+          m:
+            help: dry run org music
+            messages:
+              - BashExec: |
+                  f2 -F -f '(\d+).*' -r '{{id3.artist}}/{{id3.album}}/$1-{{id3.title}}{{ext}}'
+                  read -p '[press enter to continue]'
+          M:
+            help: org music
+            messages:
+              - BashExecSilently: |
+                  f2 -F -f '(\d+).*' -r '{{id3.artist}}/{{id3.album}}/$1-{{id3.title}}{{ext}}' -x
+              - Explore
+          i:
+            help: dry run org images
+            messages:
+              - BashExec: |
+                  f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}'
+                  read -p '[press enter to continue]'
+          I:
+            help: org images
+            messages:
+              - BashExecSilently: |
+                  f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}' -x
+              - Explore
+        default:
+          messages:
+            - SwitchModeBuiltin: default
+
   builtin:
     default:
       key_bindings:
@@ -376,3 +433,9 @@ modes:
             messages:
               - BashExecSilently: |
                   alacritty --command xplr &
+
+          O:
+            help: organise files
+            messages:
+              - SwitchModeCustom: organise
+

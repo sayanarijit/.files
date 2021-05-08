@@ -227,6 +227,7 @@ in
     websocketd
     redis
     # starship
+    exiftool
   ];
 
   programs = {
