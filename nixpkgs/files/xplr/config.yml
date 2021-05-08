@@ -22,8 +22,6 @@ general:
   sort_and_filter_ui:
     separator:
       format: " » "
-      style:
-        add_modifiers: [Bold, Reversed]
   panel_ui:
     default:
       title:
@@ -39,7 +37,7 @@ general:
         bg:
           Rgb: [33, 33, 33]
       borders: []
-    table:
+    help_menu:
       style:
         bg:
           Rgb: [26, 26, 26]
