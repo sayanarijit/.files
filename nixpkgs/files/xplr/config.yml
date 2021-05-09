@@ -1,4 +1,4 @@
-version: v0.7.0
+version: v0.7.2
 general:
   default_ui:
     prefix: ' '
