@@ -1,4 +1,4 @@
-version: v0.7.2
+version: v0.8.4
 general:
   default_ui:
     prefix: ' '
@@ -187,190 +187,38 @@ node_types:
         icon: 
 
 modes:
-  custom:
-    fzxplr:
-      name: fzxplr
-      key_bindings:
-        remaps:
-          /: F  # Remap "/" to "f"
-        on_key:
-          F:
-            help: search
-            messages:
-              - BashExec: |
-                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F/ '{print $NF}' | fzf --preview 'pistol {}')
-                  if [ -d "$PTH" ]; then
-                    echo "ChangeDirectory: ${PWD:?}/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
-                  elif [ -f "$PTH" ]; then
-                    echo "FocusPath: ${PWD:?}/${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
-                  fi
-              - SwitchMode: default
-        default:
-          messages:
-            - SwitchMode: default
-    paste.rs:
-      name: paste.rs
-      key_bindings:
-        on_key:
-          p:
-            help: paste
-            messages:
-              - BashExec: |
-                  PTH="$(basename ${XPLR_FOCUS_PATH:?})"
-                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  curl --data-binary "@${PTH:?}" "https://paste.rs" | tee -a "${DEST:?}"
-                  echo
-                  read -p "[enter to continue]"
-              - SwitchMode: default
-          l:
-            help: list
-            messages:
-              - BashExec: |
-                  cat "${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  echo
-                  read -p "[enter to continue]"
-              - SwitchMode: default
-          o:
-            help: search and open
-            messages:
-              - BashExec: |
-                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  URL=$(fzf --preview "curl -s {}" < "${DEST:?}")
-                  if [ "$URL" ]; then
-                    OPENER=$(which xdg-open)
-                    ${OPENER:-open} "${URL:?}"
-                  fi
-              - SwitchMode: default
-          d:
-            help: search and delete
-            messages:
-              - BashExec: |
-                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  URL=$(fzf --preview "curl -s {}" < "${DEST:?}")
-                  if [ "$URL" ]; then
-                    curl -X DELETE "${URL:?}"
-                    sd "${URL:?}\n" "" "${DEST:?}"
-                    echo
-                    read -p "[enter to continue]"
-                  fi
-              - SwitchMode: default
-        default:
-          messages:
-            - SwitchMode: default
-    qrcp:
-      name: qrcp
-      key_bindings:
-        on_key:
-          s:
-            help: send
-            messages:
-              - BashExec: |
-                  qrcp send --keep-alive -- $(cat "${XPLR_PIPE_RESULT_OUT:?}")
-              - SwitchMode: default
-          r:
-            help: receive
-            messages:
-              - BashExec: |
-                  qrcp receive --keep-alive
-              - SwitchMode: default
-        default:
-          messages:
-            - SwitchMode: default
-    copy:
-      name: copy
-      key_bindings:
-        on_key:
-          y:
-            help: copy focused file
-            messages:
-              - BashExecSilently: |
-                  xclip-copyfile $(cat "${XPLR_PIPE_RESULT_OUT:?}")
-              - SwitchMode: default
-        default:
-          messages:
-            - SwitchMode: default
-
-    organise:
-      key_bindings:
-        on_key:
-          u:
-            help: dry run undo
-            messages:
-              - BashExec: |
-                  f2 -u
-                  read -p '[press enter to continue]'
-
-          U:
-            help: undo
-            messages:
-              - BashExecSilently: |
-                  f2 -u -x
-              - Explore
-          b:
-            help: dry run org books
-            messages:
-              - BashExec: |
-                  f2 -F -r '{{xt.Title}} by {{xt.Creator}}{{ext}}'
-                  read -p '[press enter to continue]'
-          B:
-            help: org books
-            messages:
-              - BashExecSilently: |
-                  f2 -F -r '{{xt.Title}} by {{xt.Creator}}{{ext}}' -x
-              - Explore
-          m:
-            help: dry run org music
-            messages:
-              - BashExec: |
-                  f2 -F -f '(\d+).*' -r '{{id3.artist}}/{{id3.album}}/$1-{{id3.title}}{{ext}}'
-                  read -p '[press enter to continue]'
-          M:
-            help: org music
-            messages:
-              - BashExecSilently: |
-                  f2 -F -f '(\d+).*' -r '{{id3.artist}}/{{id3.album}}/$1-{{id3.title}}{{ext}}' -x
-              - Explore
-          i:
-            help: dry run org images
-            messages:
-              - BashExec: |
-                  f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}'
-                  read -p '[press enter to continue]'
-          I:
-            help: org images
-            messages:
-              - BashExecSilently: |
-                  f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}' -x
-              - Explore
-        default:
-          messages:
-            - SwitchModeBuiltin: default
-
   builtin:
     default:
       key_bindings:
         on_key:
-          '#':
-            help: debug
-            messages:
-              - Debug: /tmp/xplr.yml
-          F:
-            help: fzf mode
-            messages:
-              - SwitchMode: fzxplr
           y:
             help: copy
             messages:
-              - SwitchMode: copy
+              - SwitchModeCustom: copy
           p:
             help: paste
             messages:
               - BashExecSilently: |
-                  xclip-pastefile > /dev/null && echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
-          P:
-            help: paste.rs
+                  xclip-pastefile > /dev/null && echo ExplorePwdAsync >> "${XPLR_PIPE_MSG_IN:?}"
+
+          ctrl-n:
+            help: new session
             messages:
-              - SwitchMode: paste.rs
+              - BashExecSilently: |
+                  alacritty --command xplr &
+
+          F:
+            help: search with preview
+            messages:
+              - BashExec: |
+                  PTH=$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}" | awk -F / '{print $NF}' | fzf --preview "pistol '{}'")
+                  if [ -d "$PTH" ]; then
+                      echo ChangeDirectory: "'"$PWD/${PTH:?}"'" >> "${XPLR_PIPE_MSG_IN:?}"
+                  elif [ -f "$PTH" ]; then
+                      echo FocusPath: "'"$PWD/${PTH:?}"'" >> "${XPLR_PIPE_MSG_IN:?}"
+                  fi
+              - SwitchModeBuiltin: default
+
           m:
             help: bookmark
             messages:
@@ -387,16 +235,18 @@ modes:
               - BashExec: |
                   PTH=$(cat "${XPLR_SESSION_PATH:?}/bookmarks" | fzf --no-sort)
                   if [ "$PTH" ]; then
-                    echo "FocusPath: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                    echo FocusPath: "'"${PTH:?}"'" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
+
           ctrl-h:
             help: history
             messages:
               - BashExec: |
                   PTH=$(cat "${XPLR_PIPE_HISTORY_OUT:?}" | sort -u | fzf --no-sort)
                   if [ "$PTH" ]; then
-                    echo "ChangeDirectory: ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
+                    echo ChangeDirectory: "'"${PTH:?}"'" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
+
           R:
             help: batch rename
             messages:
@@ -404,13 +254,10 @@ modes:
                   SELECTION=$(cat "${XPLR_PIPE_SELECTION_OUT:?}")
                   NODES=${SELECTION:-$(cat "${XPLR_PIPE_DIRECTORY_NODES_OUT:?}")}
                   if [ "$NODES" ]; then
-                    mmv -- $NODES
-                    echo Explore >> "${XPLR_PIPE_MSG_IN:?}"
+                    echo -e "$NODES" | renamer
+                    echo ExplorePwdAsync >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
-          Q:
-            help: send/receive via QR
-            messages:
-              - SwitchMode: qrcp
+
           S:
             help: serve $PWD
             messages:
@@ -420,22 +267,173 @@ modes:
                   read -p "Port (default 5000): " PORT
                   echo
                   sfz --all --cors --no-ignore --bind ${IP:?} --port ${PORT:-5000} . &
-                  sleep 1 && read -p '[press enter to continue]'
+                  sleep 1 && read -p '[press enter to exit]'
                   kill -9 %1
+
           D:
             help: disk usage
             messages:
-              - BashExec:
+              - BashExec: |
                   dua i
               - ClearScreen
-          ctrl-n:
-            help: new session
+
+          P:
+            help: paste.rs
             messages:
-              - BashExecSilently: |
-                  alacritty --command xplr &
+              - SwitchModeCustom: paste.rs
 
           O:
-            help: organise files
+            help: organize files
             messages:
-              - SwitchModeCustom: organise
+              - SwitchModeCustom: f2
 
+          Q:
+            help: send/receive via QR
+            messages:
+              - SwitchModeCustom: qrcp
+
+  custom:
+    copy:
+      name: copy
+      key_bindings:
+        on_key:
+          y:
+            help: copy focused file
+            messages:
+              - BashExecSilently: |
+                  xclip-copyfile $(cat "${XPLR_PIPE_RESULT_OUT:?}")
+              - SwitchModeBuiltin: default
+
+
+        default:
+          messages:
+            - SwitchModeBuiltin: default
+
+    paste.rs:
+      name: paste.rs
+      key_bindings:
+        on_key:
+          p:
+            help: paste
+            messages:
+              - BashExec: |
+                  PTH=$(basename "${XPLR_FOCUS_PATH:?}")
+                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                  curl --data-binary "@${PTH:?}" "https://paste.rs" | tee -a "${DEST:?}"
+                  echo
+                  read -p "[enter to continue]"
+              - SwitchModeBuiltin: default
+          l:
+            help: list
+            messages:
+              - BashExec: |
+                  cat "${XPLR_SESSION_PATH:?}/paste.rs.list"
+                  echo
+                  read -p "[enter to continue]"
+              - SwitchModeBuiltin: default
+          o:
+            help: search and open
+            messages:
+              - BashExec: |
+                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                  URL=$(fzf --preview "curl -s '{}'" < "${DEST:?}")
+                  if [ "$URL" ]; then
+                    OPENER=$(which xdg-open)
+                    ${OPENER:-open} "${URL:?}"
+                  fi
+              - SwitchModeBuiltin: default
+          d:
+            help: search and delete
+            messages:
+              - BashExec: |
+                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                  URL=$(fzf --preview "curl -s '{}'" < "${DEST:?}")
+                  if [ "$URL" ]; then
+                    curl -X DELETE "${URL:?}"
+                    sd "${URL:?}\n" "" "${DEST:?}"
+                    echo
+                    read -p "[enter to continue]"
+                  fi
+              - SwitchModeBuiltin: default
+        default:
+          messages:
+            - SwitchModeBuiltin: default
+
+    qrcp:
+      name: qrcp
+      key_bindings:
+        on_key:
+          s:
+            help: send
+            messages:
+              - BashExec: |
+                  qrcp send --keep-alive -- $(cat "${XPLR_PIPE_RESULT_OUT:?}")
+              - SwitchModeBuiltin: default
+          r:
+            help: receive
+            messages:
+              - BashExec: |
+                  qrcp receive --keep-alive
+              - SwitchModeBuiltin: default
+        default:
+          messages:
+            - SwitchModeBuiltin: default
+
+    f2:
+      name: f2
+      key_bindings:
+        on_key:
+          u:
+            help: dry run undo
+            messages:
+              - BashExec: |
+                  f2 -u
+                  read -p '[press enter to continue]'
+          U:
+            help: undo
+            messages:
+              - BashExecSilently: |
+                  f2 -u -x
+              - ExplorePwdAsync
+          b:
+            help: dry run org books
+            messages:
+              - BashExec: |
+                  f2 -F -r '{{xt.Title}} by {{xt.Creator}}{{ext}}'
+                  read -p '[press enter to continue]'
+              - ExplorePwdAsync
+          B:
+            help: org books
+            messages:
+              - BashExecSilently: |
+                  f2 -F -r '{{xt.Title}} by {{xt.Creator}}{{ext}}' -x
+              - ExplorePwdAsync
+          m:
+            help: dry run org music
+            messages:
+              - BashExec: |
+                  f2 -F -f '(\d+).*' -r '{{id3.artist}}/{{id3.album}}/$1-{{id3.title}}{{ext}}'
+                  read -p '[press enter to continue]'
+              - ExplorePwdAsync
+          M:
+            help: org music
+            messages:
+              - BashExecSilently: |
+                  f2 -F -f '(\d+).*' -r '{{id3.artist}}/{{id3.album}}/$1-{{id3.title}}{{ext}}' -x
+              - ExplorePwdAsync
+          i:
+            help: dry run org images
+            messages:
+              - BashExec: |
+                  f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}'
+                  read -p '[press enter to continue]'
+          I:
+            help: org images
+            messages:
+              - BashExecSilently: |
+                  f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}' -x
+              - ExplorePwdAsync
+
+        default:
+          messages:
+            - SwitchModeBuiltin: default
