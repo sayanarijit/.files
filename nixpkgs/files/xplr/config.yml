@@ -303,11 +303,10 @@ modes:
               - BashExecSilently: |
                   xclip-copyfile $(cat "${XPLR_PIPE_RESULT_OUT:?}")
               - SwitchModeBuiltin: default
-
-
-        default:
-          messages:
-            - SwitchModeBuiltin: default
+          esc:
+            help: cancel
+            messages:
+              - SwitchModeBuiltin: default
 
     paste.rs:
       name: paste.rs
@@ -355,9 +354,10 @@ modes:
                     read -p "[enter to continue]"
                   fi
               - SwitchModeBuiltin: default
-        default:
-          messages:
-            - SwitchModeBuiltin: default
+          esc:
+            help: cancel
+            messages:
+              - SwitchModeBuiltin: default
 
     qrcp:
       name: qrcp
@@ -375,9 +375,10 @@ modes:
               - BashExec: |
                   qrcp receive --keep-alive
               - SwitchModeBuiltin: default
-        default:
-          messages:
-            - SwitchModeBuiltin: default
+          esc:
+            help: cancel
+            messages:
+              - SwitchModeBuiltin: default
 
     f2:
       name: f2
@@ -434,6 +435,7 @@ modes:
                   f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}' -x
               - ExplorePwdAsync
 
-        default:
-          messages:
-            - SwitchModeBuiltin: default
+          esc:
+            help: cancel
+            messages:
+              - SwitchModeBuiltin: default
