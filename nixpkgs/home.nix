@@ -228,6 +228,9 @@ in
     redis
     # starship
     exiftool
+    upx
+    youtube-dl
+    mc
   ];
 
   programs = {

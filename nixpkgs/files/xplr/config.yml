@@ -1,4 +1,4 @@
-version: v0.8.4
+version: v0.9.0
 general:
   default_ui:
     prefix: ' '
@@ -191,22 +191,6 @@ modes:
     default:
       key_bindings:
         on_key:
-          y:
-            help: copy
-            messages:
-              - SwitchModeCustom: copy
-          p:
-            help: paste
-            messages:
-              - BashExecSilently: |
-                  xclip-pastefile > /dev/null && echo ExplorePwdAsync >> "${XPLR_PIPE_MSG_IN:?}"
-
-          ctrl-n:
-            help: new session
-            messages:
-              - BashExecSilently: |
-                  alacritty --command xplr &
-
           F:
             help: search with preview
             messages:
@@ -217,8 +201,25 @@ modes:
                   elif [ -f "$PTH" ]; then
                       echo FocusPath: "'"$PWD/${PTH:?}"'" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
-              - SwitchModeBuiltin: default
-
+              - Refresh
+          ctrl-n:
+            help: new session
+            messages:
+              - BashExecSilently: |
+                  alacritty --command xplr &
+              - Refresh
+          y:
+            help: copy
+            messages:
+              - PopMode
+              - SwitchModeCustom: copy
+              - Refresh
+          p:
+            help: paste
+            messages:
+              - BashExecSilently: |
+                  xclip-pastefile > /dev/null && echo ExplorePwdAsync >> "${XPLR_PIPE_MSG_IN:?}"
+              - Refresh
           m:
             help: bookmark
             messages:
@@ -229,6 +230,7 @@ modes:
                   else
                     echo "LogError: Failed to bookmark ${PTH:?}" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
+              - Refresh
           '`':
             help: go to bookmark
             messages:
@@ -237,16 +239,7 @@ modes:
                   if [ "$PTH" ]; then
                     echo FocusPath: "'"${PTH:?}"'" >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
-
-          ctrl-h:
-            help: history
-            messages:
-              - BashExec: |
-                  PTH=$(cat "${XPLR_PIPE_HISTORY_OUT:?}" | sort -u | fzf --no-sort)
-                  if [ "$PTH" ]; then
-                    echo ChangeDirectory: "'"${PTH:?}"'" >> "${XPLR_PIPE_MSG_IN:?}"
-                  fi
-
+              - Refresh
           R:
             help: batch rename
             messages:
@@ -257,40 +250,25 @@ modes:
                     echo -e "$NODES" | renamer
                     echo ExplorePwdAsync >> "${XPLR_PIPE_MSG_IN:?}"
                   fi
-
-          S:
-            help: serve $PWD
+              - Refresh
+          Q:
+            help: send/receive via QR
             messages:
-              - BashExec: |
-                  IP=$(ip addr | grep -w inet | cut -d/ -f1 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | fzf --prompt 'Select IP > ')
-                  echo "IP: ${IP:?}"
-                  read -p "Port (default 5000): " PORT
-                  echo
-                  sfz --all --cors --no-ignore --bind ${IP:?} --port ${PORT:-5000} . &
-                  sleep 1 && read -p '[press enter to exit]'
-                  kill -9 %1
-
+              - SwitchModeCustom: qrcp
+              - Refresh
           D:
             help: disk usage
             messages:
               - BashExec: |
                   dua i
               - ClearScreen
-
-          P:
-            help: paste.rs
-            messages:
-              - SwitchModeCustom: paste.rs
-
+              - Refresh
           O:
             help: organize files
             messages:
+              - PopMode
               - SwitchModeCustom: f2
-
-          Q:
-            help: send/receive via QR
-            messages:
-              - SwitchModeCustom: qrcp
+              - Refresh
 
   custom:
     copy:
@@ -302,63 +280,13 @@ modes:
             messages:
               - BashExecSilently: |
                   xclip-copyfile $(cat "${XPLR_PIPE_RESULT_OUT:?}")
-              - SwitchModeBuiltin: default
+              - PopMode
+              - Refresh
           esc:
             help: cancel
             messages:
-              - SwitchModeBuiltin: default
-
-    paste.rs:
-      name: paste.rs
-      key_bindings:
-        on_key:
-          p:
-            help: paste
-            messages:
-              - BashExec: |
-                  PTH=$(basename "${XPLR_FOCUS_PATH:?}")
-                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  curl --data-binary "@${PTH:?}" "https://paste.rs" | tee -a "${DEST:?}"
-                  echo
-                  read -p "[enter to continue]"
-              - SwitchModeBuiltin: default
-          l:
-            help: list
-            messages:
-              - BashExec: |
-                  cat "${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  echo
-                  read -p "[enter to continue]"
-              - SwitchModeBuiltin: default
-          o:
-            help: search and open
-            messages:
-              - BashExec: |
-                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  URL=$(fzf --preview "curl -s '{}'" < "${DEST:?}")
-                  if [ "$URL" ]; then
-                    OPENER=$(which xdg-open)
-                    ${OPENER:-open} "${URL:?}"
-                  fi
-              - SwitchModeBuiltin: default
-          d:
-            help: search and delete
-            messages:
-              - BashExec: |
-                  DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
-                  URL=$(fzf --preview "curl -s '{}'" < "${DEST:?}")
-                  if [ "$URL" ]; then
-                    curl -X DELETE "${URL:?}"
-                    sd "${URL:?}\n" "" "${DEST:?}"
-                    echo
-                    read -p "[enter to continue]"
-                  fi
-              - SwitchModeBuiltin: default
-          esc:
-            help: cancel
-            messages:
-              - SwitchModeBuiltin: default
-
+              - PopMode
+              - Refresh
     qrcp:
       name: qrcp
       key_bindings:
@@ -368,18 +296,18 @@ modes:
             messages:
               - BashExec: |
                   qrcp send --keep-alive -- $(cat "${XPLR_PIPE_RESULT_OUT:?}")
-              - SwitchModeBuiltin: default
+              - Refresh
           r:
             help: receive
             messages:
               - BashExec: |
                   qrcp receive --keep-alive
-              - SwitchModeBuiltin: default
+              - Refresh
           esc:
             help: cancel
             messages:
-              - SwitchModeBuiltin: default
-
+              - PopMode
+              - Refresh
     f2:
       name: f2
       key_bindings:
@@ -402,7 +330,6 @@ modes:
               - BashExec: |
                   f2 -F -r '{{xt.Title}} by {{xt.Creator}}{{ext}}'
                   read -p '[press enter to continue]'
-              - ExplorePwdAsync
           B:
             help: org books
             messages:
@@ -415,7 +342,6 @@ modes:
               - BashExec: |
                   f2 -F -f '(\d+).*' -r '{{id3.artist}}/{{id3.album}}/$1-{{id3.title}}{{ext}}'
                   read -p '[press enter to continue]'
-              - ExplorePwdAsync
           M:
             help: org music
             messages:
@@ -434,8 +360,8 @@ modes:
               - BashExecSilently: |
                   f2 -F -r '{{x.dt.YYYY}}/{{x.dt.MMM}}-{{x.dt.DD}}-{{x.dt.YYYY}}_{{x.dt.H}}-{{x.dt.mm}}-{{x.dt.ss}}_{{x.make}}-{{x.model}}{{ext}}' -x
               - ExplorePwdAsync
-
           esc:
             help: cancel
             messages:
-              - SwitchModeBuiltin: default
+              - PopMode
+              - Refresh
