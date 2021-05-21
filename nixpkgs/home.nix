@@ -175,8 +175,8 @@ in
     elmPackages.elm-language-server
     elmPackages.elm-format
     # fzf-tab-completion
-    lua
-    luarocks
+    # lua
+    # luarocks
     act # Run GitHUb actions locally
     tmate # Instant terminal sharing
     lazygit # Git TUI
@@ -231,6 +231,7 @@ in
     upx
     youtube-dl
     mc
+    buku
   ];
 
   programs = {
