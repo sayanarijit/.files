@@ -116,8 +116,8 @@ set tabstop=4  " show existing tab with 4 spaces width
 set shiftwidth=4 " when indenting with '>', use 4 spaces width
 set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 
-" use 2 spaces for yaml
-autocmd FileType yaml,yml setlocal shiftwidth=2 softtabstop=2 expandtab
+" use 2 spaces for yaml & lua
+autocmd FileType yaml,yml,lua setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " Enable spell checker for git commits and docs
 autocmd FileType gitcommit,md,rst,txt setlocal spell

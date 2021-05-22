@@ -99,7 +99,7 @@ in
       ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
       ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
-      ".config/xplr/config.yml".source = ./files/xplr/config.yml;
+      ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".local/bin/ftwind" = {
         source = ./files/bin/ftwind;
