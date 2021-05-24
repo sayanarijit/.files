@@ -1,10 +1,15 @@
-version = "0.10.0"
+version = "0.11.0"
 
 xplr.config.general.default_ui.prefix = " "
 xplr.config.general.default_ui.suffix = ""
 
 xplr.config.general.focus_ui.prefix = "▸"
 xplr.config.general.focus_ui.suffix = ""
+
+xplr.config.general.selection_ui.prefix = " "
+xplr.config.general.selection_ui.suffix = ""
+
+xplr.config.general.selection_ui.style.add_modifiers = { "Dim", "CrossedOut" }
 
 xplr.config.general.focus_ui.style.add_modifiers = { "Bold" }
 xplr.config.general.focus_ui.style.bg = { Rgb = { 50, 50, 50 } }
