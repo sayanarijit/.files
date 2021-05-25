@@ -100,6 +100,7 @@ in
       ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
+      ".config/xplr/icons".source = ./files/xplr/icons;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".local/bin/ftwind" = {
         source = ./files/bin/ftwind;

@@ -72,7 +72,8 @@ Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
 " Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
 Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
-Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R 
+" Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R 
+Plug 'tversteeg/registers.nvim'
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
