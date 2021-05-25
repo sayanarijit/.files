@@ -1,4 +1,4 @@
-version = "0.11.0"
+version = "0.12.0"
 
 xplr.config.general.default_ui.prefix = " "
 xplr.config.general.default_ui.suffix = ""
@@ -41,17 +41,26 @@ xplr.config.node_types.symlink = {
   },
 }
 
-xplr.config.node_types.mime_essence["text/plain"] = {
-  meta = {
-    icon = "",
-  },
+xplr.config.node_types.mime_essence["video"] = {
+  ["*"] = {
+    meta = { icon = "📽" },
+  }
 }
 
-xplr.config.node_types.mime_essence["text/csv"] = {
-  meta = {
-    icon = "",
+xplr.config.node_types.mime_essence["text"] = {
+  ["*"] = {
+    meta = {
+      icon = "",
+    },
   },
+  csv = {
+    meta = {
+      icon = "",
+    },
+  },
+
 }
+
 
 xplr.config.node_types.extension["md"] = {
   meta = {
