@@ -1,4 +1,7 @@
 function setup()
+  xplr.config.node_types.directory.meta.icon = "📁"
+  xplr.config.node_types.file.meta.icon = "📜"
+  xplr.config.node_types.symlink.meta.icon = "🔗"
   xplr.config.node_types.mime_essence = {
     ["text"] = {
       ["plain"] = {
