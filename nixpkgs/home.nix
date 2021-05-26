@@ -98,8 +98,9 @@ in
       ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
       ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
       ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
-      ".config/nvim".source = ./files/nvim;
-      ".config/xplr".source = ./files/xplr;
+      ".config/nvim/init.vim".source = ./files/nvim/init.vim;
+      ".config/xplr/init.lua".source = ./files/xplr/init.lua;
+      ".config/xplr/icons/init.lua".source = ./files/xplr/icons/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".local/bin/ftwind" = {
         source = ./files/bin/ftwind;
