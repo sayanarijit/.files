@@ -457,6 +457,7 @@ let g:which_key_map.g = {
 " l is for language server protocol
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
+      \ 'R' : [':LspRestart'                         , 'restart'],
       \ 'a' : [':Telescope lsp_code_actions'         , 'code action'],
       \ 'd' : [':Definition'                         , 'definition'],
       \ 'D' : [':Declaration'                        , 'declaration'],
