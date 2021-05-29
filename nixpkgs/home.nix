@@ -101,6 +101,7 @@ in
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".config/xplr/icons/init.lua".source = ./files/xplr/icons/init.lua;
+      ".config/xplr/theme/init.lua".source = ./files/xplr/theme/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".local/bin/ftwind" = {
         source = ./files/bin/ftwind;
