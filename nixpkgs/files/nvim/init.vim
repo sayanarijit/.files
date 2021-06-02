@@ -817,6 +817,7 @@ let g:floaterm_autoinsert = v:true
 set guifont=FiraCode\ Nerd\ Font:h19
 set cursorline
 set cursorcolumn
+set colorcolumn=80
 set background=dark
 let g:airline_theme='material'
 let g:gruvbox_contrast_dark='soft'
