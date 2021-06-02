@@ -35,7 +35,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export MANPAGER='nvim +Man!'
 
 # eval $(thefuck --alias)
-# command -v pyenv && eval "$(pyenv init -)"
 # command -v starship && eval "$(starship init zsh)"
 
 
