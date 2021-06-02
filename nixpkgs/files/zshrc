@@ -44,6 +44,18 @@ function paste() {
     curl --data-binary @${file} https://paste.rs
 }
 
+function pomo() {
+    arg1=$1
+    shift
+    args="$*"
+
+    sec=${arg1:?Example: pomo 15 Take a break}
+    msg="${args:?Example: pomo 15 Take a break}"
+    while true; do
+        sleep "${sec:?}" && notify-send "${msg:?}"
+    done
+}
+
 [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 [[ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 [[ -e "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
