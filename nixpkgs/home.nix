@@ -102,6 +102,7 @@ in
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".config/xplr/icons/init.lua".source = ./files/xplr/icons/init.lua;
       ".config/xplr/theme/init.lua".source = ./files/xplr/theme/init.lua;
+      ".config/xplr/du/init.lua".source = ./files/xplr/du/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
       ".local/bin/ftwind" = {
