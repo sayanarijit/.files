@@ -15,6 +15,9 @@ local function setup()
     if m.is_dir then
       local size = DU_CACHE[m.absolute_path]
       if size == nil then
+
+        -- TODO: Use coroutine
+
         local p = io.popen("du -shx '" .. m.absolute_path .. "'")
         size = split(p:read("*a"), "\t")[1]
         p:close()
