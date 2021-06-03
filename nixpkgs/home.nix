@@ -234,6 +234,8 @@ in
     youtube-dl
     mc
     buku
+    hugo
+    jrnl
   ];
 
   programs = {
@@ -267,7 +269,7 @@ in
       };
       signing = {
         signByDefault = true;
-        key = "7D7BF809E7378863";
+        key = "0F8EF5258DC38077";
       };
       delta = {
         enable = true;
