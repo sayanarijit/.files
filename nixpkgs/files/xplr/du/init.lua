@@ -1,5 +1,3 @@
--------- Format size column
-
 DU_CACHE = {}
 
 local function split(s, delimiter)
