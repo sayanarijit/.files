@@ -7,4 +7,7 @@ require("theme").setup{}
 -- require("du").setup{}
 require("fzf").setup{}
 
+-- https://github.com/sayanarijit/xplr/pull/229
+require("nnn_preview_wrapper").setup(os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed", "/tmp/nnn.fifo")
+
 xplr.config.general.enable_mouse = true
