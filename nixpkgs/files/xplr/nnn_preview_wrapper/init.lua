@@ -43,7 +43,7 @@ local function setup(o)
   end
 
   xplr.config.modes.builtin[o.mode].key_bindings.on_key[o.key] = {
-    help = "search with preview",
+    help = "toggle preview",
     messages = {
       "PopMode",
       { CallLuaSilently = "custom.preview_toggle" },
