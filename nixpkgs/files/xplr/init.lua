@@ -11,6 +11,8 @@ require("fzf").setup{}
 require("nnn_preview_wrapper").setup{
   plugin_path = os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed",
   fifo_path = "/tmp/xplr.fifo",
+  mode = "action",
+  key = "p",
 }
 
 xplr.config.general.enable_mouse = true
