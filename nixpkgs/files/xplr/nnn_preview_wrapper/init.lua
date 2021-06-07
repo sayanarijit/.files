@@ -24,7 +24,7 @@ local function setup(o)
   end
 
   local enabled = false
-  local message = nil
+  local messages = {}
 
   os.execute('[ ! -p "' .. o.fifo_path ..'" ] && mkfifo "' .. o.fifo_path .. '"')
 
@@ -32,14 +32,17 @@ local function setup(o)
 
     if enabled then
       enabled = false
-      message = "StopFifo"
+      messages = { "StopFifo" }
     else
       os.execute('NNN_FIFO="' .. o.fifo_path .. '" "'.. o.plugin_path .. '" & ')
       enabled = true
-      message = { StartFifo = o.fifo_path }
+      messages = {
+        { StartFifo = o.fifo_path },
+        { BashExecSilently = 'echo $XPLR_FOCUS_PATH >> "' .. o.fifo_path .. '" &' },
+      }
     end
 
-    return { message }
+    return messages
   end
 
   xplr.config.modes.builtin[o.mode].key_bindings.on_key[o.key] = {
