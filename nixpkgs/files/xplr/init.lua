@@ -6,6 +6,7 @@ require("icons").setup{}
 require("theme").setup{}
 -- require("du").setup{}
 require("fzf").setup{}
+require("scroll").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 require("nnn_preview_wrapper").setup{
