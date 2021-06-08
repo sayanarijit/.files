@@ -22,3 +22,11 @@ require("nnn_preview_wrapper").setup{
 
 xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false
+
+xplr.config.modes.builtin.default.key_bindings.on_key.x = {
+    messages = {
+        {
+            FocusPath = "/home/sayanarijit/Documents/GitHub/xplr",
+        },
+    },
+}
