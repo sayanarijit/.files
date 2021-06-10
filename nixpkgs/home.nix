@@ -107,6 +107,7 @@ in
       ".config/xplr/nnn_preview_wrapper/init.lua".source = ./files/xplr/nnn_preview_wrapper/init.lua;
       ".config/xplr/scroll/init.lua".source = ./files/xplr/scroll/init.lua;
       ".config/xplr/visit_path/init.lua".source = ./files/xplr/visit_path/init.lua;
+      ".config/xplr/trash_cli/init.lua".source = ./files/xplr/trash_cli/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
       ".local/bin/ftwind" = {
@@ -242,6 +243,7 @@ in
     buku
     hugo
     jrnl
+    trash-cli
   ];
 
   programs = {

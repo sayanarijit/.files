@@ -11,6 +11,7 @@ require("theme").setup{}
 require("fzf").setup{}
 require("scroll").setup{}
 require("visit_path").setup{}
+require("trash_cli").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 require("nnn_preview_wrapper").setup{
@@ -22,11 +23,3 @@ require("nnn_preview_wrapper").setup{
 
 xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false
-
-xplr.config.modes.builtin.default.key_bindings.on_key.x = {
-    messages = {
-        {
-            FocusPath = "/home/sayanarijit/Documents/GitHub/xplr",
-        },
-    },
-}
