@@ -1,9 +1,12 @@
+setopt hist_ignore_space
+
 export LC_ALL="en_US.UTF-8"
 
 export EDITOR="nvim"
 export NIX_PATH="$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH"
 export XDG_CURRENT_DESKTOP="KDE"
 export KDE_SESSION_VERSION="5"
+export GTK_USE_PORTAL="1"
 
 export NNN_PLUG="p:preview-tabbed"
 export NNN_FIFO="/tmp/nnn.fifo"
@@ -26,6 +29,20 @@ alias ls="lsd"
 alias m="mind"
 alias x="xplr"
 alias f="fzf"
+
+xcd() {
+  pth="$(xplr)"
+  if [[ "$pth" != "$PWD" ]]; then
+    if [[ -d "$pth" ]]; then
+      cd "$pth"
+    elif [[ -f "$pth" ]]; then
+      cd "$(dirname "$pth")"
+    fi
+  fi
+}
+
+bindkey -s '^X' '^Q xcd\n'
+
 # alias nvim='(neovide &)'
 
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -36,7 +53,6 @@ export MANPAGER='nvim +Man!'
 
 # eval $(thefuck --alias)
 # command -v starship && eval "$(starship init zsh)"
-
 
 function paste() {
     local file=${1:-/dev/stdin}
