@@ -1,3 +1,5 @@
+-- WARNING: This is just for experiment. Do not use it.
+
 DU_CACHE = {}
 
 local function split(s, delimiter)
