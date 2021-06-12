@@ -12,6 +12,7 @@ require("fzf").setup{}
 require("scroll").setup{}
 require("visit_path").setup{}
 require("trash_cli").setup{}
+require("dua_cli").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 require("nnn_preview_wrapper").setup{
