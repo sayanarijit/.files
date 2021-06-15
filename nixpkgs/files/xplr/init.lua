@@ -5,6 +5,8 @@ package.path = os.getenv("HOME") .. '/.config/xplr/?/init.lua'
 
 require("experimental").setup{}
 
+require("double_colon").setup{}
+
 require("icons").setup{}
 require("theme").setup{}
 -- require("du").setup{}
