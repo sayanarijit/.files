@@ -240,7 +240,7 @@ in
     exiftool
     upx
     youtube-dl
-    mc
+    # mc
     buku
     hugo
     jrnl
