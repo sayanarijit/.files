@@ -7,7 +7,7 @@ local function setup()
         SELECTED=$(dua i)
         if [ "$SELECTED" ]; then
           while read -r line; do
-            echo SelectPath: '"'${line:?}'"' >> "${XPLR_PIPE_MSG_IN:?}"
+            echo SelectPath: '"'${PWD:?}/${line:?}'"' >> "${XPLR_PIPE_MSG_IN:?}"
           done <<< "$SELECTED"
         fi
         ]===]
