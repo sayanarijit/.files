@@ -1,7 +1,7 @@
 local function setup()
 
   xplr.config.general.table.col_widths = {
-    { Length = 7 },
+    { Length = 8 },
     { Percentage = 50 },
     { Percentage = 10 },
     { Percentage = 10 },
