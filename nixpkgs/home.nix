@@ -247,6 +247,7 @@ in
     jrnl
     trash-cli
     lf
+    mdbook
   ];
 
   programs = {

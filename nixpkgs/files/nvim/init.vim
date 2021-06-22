@@ -61,8 +61,8 @@ Plug 'LnL7/vim-nix'  " Nix support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
-Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
-Plug 'honza/vim-snippets'  " Snippets are separated from the engine
+" Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
+" Plug 'honza/vim-snippets'  " Snippets are separated from the engine
 Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 " Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
