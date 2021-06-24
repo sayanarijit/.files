@@ -1,5 +1,7 @@
 version = "0.14.2"
 
+-- https://arijitbasu.in/xplr/en/plugin.html
+
 package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
 
 require("icons").setup{}
@@ -22,7 +24,6 @@ require("dua-cli").setup{
   mode = "action",
   key = "D",
 }
-
 
 xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false
