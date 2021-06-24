@@ -6,7 +6,6 @@ package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
 
 require("icons").setup{}
 require("double-colon").setup{}
-require("fzf").setup{}
 require("scroll").setup{}
 require("trash-cli").setup{}
 
@@ -24,6 +23,14 @@ require("dua-cli").setup{
   mode = "action",
   key = "D",
 }
+
+
+require("fzf").setup{
+  mode = "default",
+  key = "F",
+  args = "--preview 'pistol {}'"
+}
+
 
 xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false

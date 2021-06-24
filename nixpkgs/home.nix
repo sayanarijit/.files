@@ -101,7 +101,6 @@ in
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".config/xplr/plugins/icons/src/init.lua".source = ./files/xplr/plugins/icons/src/init.lua;
-      ".config/xplr/plugins/fzf/src/init.lua".source = ./files/xplr/plugins/fzf/src/init.lua;
       ".config/xplr/plugins/nnn-preview-wrapper/src/init.lua".source = ./files/xplr/plugins/nnn-preview-wrapper/src/init.lua;
       ".config/xplr/plugins/scroll/src/init.lua".source = ./files/xplr/plugins/scroll/src/init.lua;
       ".config/xplr/plugins/trash-cli/src/init.lua".source = ./files/xplr/plugins/trash-cli/src/init.lua;
