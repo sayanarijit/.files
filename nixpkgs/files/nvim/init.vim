@@ -35,13 +35,14 @@ Plug 'nvim-treesitter/completion-treesitter'
 " Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 " Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua 
+" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua 
 " Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
 Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 " Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 " Plug 'vim-airline/vim-airline'  " make statusline awesome
 " Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
-Plug 'wsdjeg/FlyGrep.vim'  " awesome grep on the fly
+Plug 'hrsh7th/nvim-compe'  "  Auto completion plugin for nvim that written in Lua.
+Plug 'wsdjeg/FlyGrep.vim'  "  awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 " Plug 'tpope/vim-commentary'  "comment-out by gc
 Plug 'b3nj5m1n/kommentary' "  Neovim commenting plugin, written in lua. 
@@ -69,6 +70,7 @@ Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
+Plug 'christoomey/vim-titlecase'  "  Teach Vim about titlecase, with support for motions and text objects 
 " Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
 Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
@@ -322,11 +324,9 @@ let g:which_key_map.a.t = {
 	\ }
 
 let g:which_key_map.a.w = {
-	\ 'name' : '+write',
-	\ 'w' : [':w', 'current file'],
-	\ 'W' : [':w!', 'current file forced'],
-	\ 'a' : [':wall', 'all files'],
-	\ 'A' : [':wall!', 'all files forced'],
+	\ 'name' : '+writing',
+	\ 't' : ['<Plug>Titlecase', 'title case'],
+	\ 'T' : ['<Plug>TitlecaseLine', 'title case line'],
 	\ }
 
 let g:which_key_map.a.q = {
@@ -566,7 +566,7 @@ let g:completion_chain_complete_list = {
     \]
     \}
 let g:completion_matching_ignore_case = 1
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
 
 "" deoplete-lsp
 let g:deoplete#enable_at_startup = 1
@@ -691,6 +691,33 @@ require'diffview'.setup {
     }
   }
 }
+
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  resolve_timeout = 800;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+  };
+}
+
 EOF
 
 "" code folding
@@ -822,5 +849,6 @@ set background=dark
 let g:airline_theme='material'
 let g:gruvbox_contrast_dark='soft'
 let g:material_style = "darker"
+highlight link CompeDocumentation NormalFloat
 colorscheme material
 """</Theme>"""
