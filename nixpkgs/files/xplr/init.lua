@@ -1,6 +1,6 @@
 version = "0.14.0"
 
-package.path = os.getenv("HOME") .. '/.config/xplr/?/init.lua'
+package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/init.lua'
 
 
 require("experimental").setup{}
@@ -14,7 +14,7 @@ require("fzf").setup{}
 require("scroll").setup{}
 require("visit_path").setup{}
 require("trash_cli").setup{}
-require("dua_cli").setup{}
+require("dua-cli").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 require("nnn_preview_wrapper").setup{
