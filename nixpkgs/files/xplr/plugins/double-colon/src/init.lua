@@ -1,5 +1,7 @@
 local function setup()
 
+  local xplr = xplr
+
   xplr.config.modes.builtin.action.key_bindings.on_key[":"] = {
     help = "send xplr message",
     messages = {

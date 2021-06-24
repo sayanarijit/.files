@@ -1,5 +1,6 @@
 -- Mostly copied from https://github.com/RustemB/xplr
 local function setup()
+  local xplr = xplr
   xplr.config.node_types.directory.meta.icon = "📁"
   xplr.config.node_types.file.meta.icon = "📜"
   xplr.config.node_types.symlink.meta.icon = "🔗"

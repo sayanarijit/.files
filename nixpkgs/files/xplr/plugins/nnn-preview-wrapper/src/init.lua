@@ -11,6 +11,12 @@
 
 local function setup(o)
 
+  local xplr = xplr
+
+  if o == nil then
+    o = {}
+  end
+
   if o.fifo_path == nil then
     o.fifo_path = os.getenv("NNN_FIFO")
   end

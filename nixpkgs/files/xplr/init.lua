@@ -1,28 +1,28 @@
-version = "0.14.0"
+version = "0.14.2"
 
-package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/init.lua'
-
-
-require("experimental").setup{}
-
-require("double_colon").setup{}
+package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
 
 require("icons").setup{}
-require("theme").setup{}
--- require("du").setup{}
+require("double-colon").setup{}
 require("fzf").setup{}
 require("scroll").setup{}
-require("visit_path").setup{}
-require("trash_cli").setup{}
-require("dua-cli").setup{}
+require("trash-cli").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
-require("nnn_preview_wrapper").setup{
+require("nnn-preview-wrapper").setup{
   plugin_path = os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed",
   fifo_path = "/tmp/xplr.fifo",
   mode = "action",
   key = "p",
 }
+
+require("material-landscape2").setup()
+
+require("dua-cli").setup{
+  mode = "action",
+  key = "D",
+}
+
 
 xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false

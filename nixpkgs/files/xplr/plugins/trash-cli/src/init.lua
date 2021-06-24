@@ -1,5 +1,7 @@
 local function setup()
 
+  local xplr = xplr
+
   xplr.config.modes.builtin.delete.key_bindings.on_key.d = {
     help = "trash",
     messages = {

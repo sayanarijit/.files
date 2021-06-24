@@ -1,4 +1,6 @@
 local function setup()
+  local xplr = xplr
+
   xplr.config.modes.builtin.default.key_bindings.on_key["F"] = {
     help = "search with preview",
     messages = {
