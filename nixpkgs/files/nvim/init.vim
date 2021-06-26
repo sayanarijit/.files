@@ -78,6 +78,7 @@ Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline for
 Plug 'tversteeg/registers.nvim'
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
+Plug 'lewis6991/spellsitter.nvim'  " Treesitter powered spellchecker 
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
@@ -661,7 +662,7 @@ require('lualine').setup{theme = 'material-nvim'}
 
 local cb = require'diffview.config'.diffview_callback
 
-require'diffview'.setup {
+require('diffview').setup {
   diff_binaries = false,    -- Show diffs for binaries
   file_panel = {
     width = 35,
@@ -692,7 +693,7 @@ require'diffview'.setup {
   }
 }
 
-require'compe'.setup {
+require('compe').setup {
   enabled = true;
   autocomplete = true;
   debug = false;
@@ -717,6 +718,8 @@ require'compe'.setup {
     ultisnips = true;
   };
 }
+
+require('spellsitter').setup()
 
 EOF
 

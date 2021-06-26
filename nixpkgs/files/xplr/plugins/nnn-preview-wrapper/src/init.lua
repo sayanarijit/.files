@@ -44,7 +44,6 @@ local function setup(o)
       enabled = true
       messages = {
         { StartFifo = o.fifo_path },
-        { BashExecSilently = 'echo $XPLR_FOCUS_PATH >> "' .. o.fifo_path .. '" &' },
       }
     end
 
