@@ -34,3 +34,4 @@ require("fzf").setup{
 
 xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false
+xplr.config.general.show_hidden = true
