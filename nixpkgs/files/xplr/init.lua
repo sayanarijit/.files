@@ -7,6 +7,7 @@ package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
 require("icons").setup{}
 require("double-colon").setup{}
 require("scroll").setup{}
+
 require("trash-cli").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229

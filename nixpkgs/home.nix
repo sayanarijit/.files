@@ -20,7 +20,7 @@ let
         flake8
         jedi
         python-language-server
-        # pyls-mypy
+        pyls-mypy
         pyls-isort
         pyls-black
       ]
@@ -103,7 +103,6 @@ in
       ".config/xplr/plugins/icons/src/init.lua".source = ./files/xplr/plugins/icons/src/init.lua;
       ".config/xplr/plugins/nnn-preview-wrapper/src/init.lua".source = ./files/xplr/plugins/nnn-preview-wrapper/src/init.lua;
       ".config/xplr/plugins/scroll/src/init.lua".source = ./files/xplr/plugins/scroll/src/init.lua;
-      ".config/xplr/plugins/trash-cli/src/init.lua".source = ./files/xplr/plugins/trash-cli/src/init.lua;
       ".config/xplr/plugins/double-colon/src/init.lua".source = ./files/xplr/plugins/double-colon/src/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
