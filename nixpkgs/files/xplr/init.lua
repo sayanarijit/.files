@@ -40,6 +40,6 @@ xplr.config.general.show_hidden = true
 xplr.config.modes.builtin.action.key_bindings.on_key["C"] = {
   help = "edit config",
   messages = {
-    { BashExec = "nvim ~/.files/nixpkgs/files/xplr/init.lua" },
+    { BashExec = "$EDITOR ~/.files/nixpkgs/files/xplr/init.lua" },
   }
 }
