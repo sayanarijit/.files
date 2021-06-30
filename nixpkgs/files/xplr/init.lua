@@ -9,6 +9,7 @@ require("double-colon").setup{}
 require("scroll").setup{}
 
 require("trash-cli").setup{}
+require("zoxide").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 require("nnn-preview-wrapper").setup{
