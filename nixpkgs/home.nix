@@ -237,7 +237,7 @@ in
     upx
     youtube-dl
     # mc
-    buku
+    # buku  # Issue with Flask-Admin
     hugo
     jrnl
     trash-cli
@@ -256,7 +256,7 @@ in
 
     tmux = {
       enable = true;
-      tmuxp = { enable = true; };
+      # tmuxp = { enable = true; };
       tmuxinator = { enable = true; };
       plugins = with pkgs; [
         tmuxPlugins.fzf-tmux-url

@@ -20,6 +20,9 @@ require("nnn-preview-wrapper").setup{
   key = "p",
 }
 
+require("preview-tabbed").setup()
+
+
 require("material-landscape2").setup()
 
 require("dua-cli").setup()
