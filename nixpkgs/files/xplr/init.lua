@@ -22,15 +22,10 @@ require("nnn-preview-wrapper").setup{
 
 require("material-landscape2").setup()
 
-require("dua-cli").setup{
-  mode = "action",
-  key = "D",
-}
+require("dua-cli").setup()
 
 
 require("fzf").setup{
-  mode = "default",
-  key = "F",
   args = "--preview 'pistol {}'"
 }
 
