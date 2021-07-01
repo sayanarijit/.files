@@ -243,6 +243,7 @@ in
     trash-cli
     lf
     mdbook
+    dragon-drop
   ];
 
   programs = {

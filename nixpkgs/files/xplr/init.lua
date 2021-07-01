@@ -1,4 +1,4 @@
-version = "0.14.2"
+version = "0.14.0"
 
 -- https://arijitbasu.in/xplr/en/plugin.html
 
@@ -10,6 +10,7 @@ require("scroll").setup{}
 
 require("trash-cli").setup{}
 require("zoxide").setup{}
+require("dragon").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 require("nnn-preview-wrapper").setup{

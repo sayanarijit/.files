@@ -78,6 +78,7 @@ Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline for
 Plug 'tversteeg/registers.nvim'
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
+Plug 'sbdchd/neoformat'  "  A (Neo)vim plugin for formatting code.
 Plug 'lewis6991/spellsitter.nvim'  " Treesitter powered spellchecker 
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
