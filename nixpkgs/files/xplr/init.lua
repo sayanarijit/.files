@@ -13,12 +13,12 @@ require("zoxide").setup{}
 require("dragon").setup{}
 
 -- https://github.com/sayanarijit/xplr/pull/229
-require("nnn-preview-wrapper").setup{
-  plugin_path = os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed",
-  fifo_path = "/tmp/xplr.fifo",
-  mode = "action",
-  key = "p",
-}
+-- require("nnn-preview-wrapper").setup{
+--   plugin_path = os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed",
+--   fifo_path = "/tmp/xplr.fifo",
+--   mode = "action",
+--   key = "p",
+-- }
 
 require("preview-tabbed").setup()
 

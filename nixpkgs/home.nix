@@ -244,6 +244,9 @@ in
     lf
     mdbook
     dragon-drop
+    newsboat
+    irssi
+    bitwarden-cli
   ];
 
   programs = {
