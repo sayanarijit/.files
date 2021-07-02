@@ -21,7 +21,7 @@ Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
-Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
+" Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world! 
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
