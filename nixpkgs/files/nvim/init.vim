@@ -21,6 +21,7 @@ Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
+Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world! 
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
@@ -721,6 +722,22 @@ require('compe').setup {
 }
 
 require('spellsitter').setup()
+
+require('autosave').setup(
+    {
+        enabled = true,
+        execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+        events = {"InsertLeave"},
+        conditions = {
+            exists = true,
+            filetype_is_not = {},
+            modifiable = true
+        },
+        write_all_buffers = true,
+        on_off_commands = true,
+        clean_command_line_interval = 2500
+    }
+)
 
 EOF
 
