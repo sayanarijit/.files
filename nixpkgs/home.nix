@@ -246,6 +246,7 @@ in
     newsboat
     irssi
     bitwarden-cli
+    glow
   ];
 
   programs = {
