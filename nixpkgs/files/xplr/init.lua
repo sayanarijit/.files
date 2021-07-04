@@ -27,6 +27,14 @@ require("preview-tabbed").setup()
 require("material-landscape2").setup()
 
 require("dua-cli").setup()
+require("comex").setup{
+  compressors = {
+    Z = { extension = "zip", command = [[zip -d xplr_$(cat "${XPLR_PIPE_SELECTION_OUT:?}")]] },
+  },
+  extractors = {
+    Z = { extension = "zip", command = [[unzip -d "${XPLR_FOCUS_PATH:?}.d" "${XPLR_FOCUS_PATH:?}"]] },
+  },
+}
 
 
 require("fzf").setup{
