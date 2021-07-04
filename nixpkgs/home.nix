@@ -247,6 +247,7 @@ in
     irssi
     bitwarden-cli
     glow
+    amfora
   ];
 
   programs = {
