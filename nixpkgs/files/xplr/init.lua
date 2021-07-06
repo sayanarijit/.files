@@ -12,6 +12,9 @@ require("trash-cli").setup()
 require("zoxide").setup()
 require("dragon").setup()
 require("xclip").setup()
+require("xargs").setup{
+  key = "x",
+}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 -- require("nnn-preview-wrapper").setup{
