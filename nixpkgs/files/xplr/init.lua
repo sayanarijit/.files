@@ -15,6 +15,9 @@ require("xclip").setup()
 require("xargs").setup{
   key = "x",
 }
+require("paste-rs").setup{
+  db_path = "$HOME/paste.rs.list"
+}
 
 -- https://github.com/sayanarijit/xplr/pull/229
 -- require("nnn-preview-wrapper").setup{
