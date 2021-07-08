@@ -52,7 +52,7 @@ xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false
 xplr.config.general.show_hidden = true
 
-xplr.config.modes.builtin.action.key_bindings.on_key["1"] = {
+xplr.config.modes.builtin.action.key_bindings.on_key["C"] = {
   help = "edit config",
   messages = {
     { BashExec = "${EDITOR:-vi} ~/.files/nixpkgs/files/xplr/init.lua" },
