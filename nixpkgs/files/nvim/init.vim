@@ -20,6 +20,8 @@ Plug 'sayanarijit/xplr.vim'  " Don't look yet
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'puremourning/vimspector'  "  vimspector - A multi-language debugging system for Vim
+Plug 'windwp/nvim-ts-autotag'  "  Use treesitter to auto close and auto rename html tag
 Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
 " Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
@@ -640,6 +642,7 @@ require'lspconfig'.sumneko_lua.setup {
 
 require'nvim-treesitter.configs'.setup{
   ensure_installed="all",
+  autotag = { enable = true },
   textobjects = {
     select = {
       enable = true,
@@ -860,6 +863,10 @@ let g:floaterm_autoinsert = v:true
 " highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
 " highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 """</Spellcheck>"""
+
+"""<Debug: vimspector>"""
+let g:vimspector_enable_mappings = 'HUMAN'
+"""</Debug>"""
 
 """<Theme>"""
 set guifont=FiraCode\ Nerd\ Font:h19
