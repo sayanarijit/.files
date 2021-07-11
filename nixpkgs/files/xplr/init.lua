@@ -61,18 +61,17 @@ xplr.config.modes.builtin.action.key_bindings.on_key["C"] = {
 }
 
 
-xplr.config.modes.builtin.action.key_bindings.on_key.tab = {
-  help = "visit path",
+xplr.config.modes.builtin.go_to.key_bindings.on_key.p = {
+  help = "go to path",
   messages = {
     "PopMode",
-    { SwitchModeCustom = "visit_path" },
+    { SwitchModeCustom = "go_to_path" },
     { SetInputBuffer = "" },
   }
 }
 
-
-xplr.config.modes.custom.visit_path = {
-  name = "visit path",
+xplr.config.modes.custom.go_to_path = {
+  name = "go to path",
   key_bindings = {
     on_key = {
       enter = {
