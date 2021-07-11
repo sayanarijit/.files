@@ -18,6 +18,7 @@ require("xargs").setup{
 require("paste-rs").setup{
   db_path = "$HOME/paste.rs.list"
 }
+require("completion").setup()
 
 -- https://github.com/sayanarijit/xplr/pull/229
 -- require("nnn-preview-wrapper").setup{
@@ -57,4 +58,60 @@ xplr.config.modes.builtin.action.key_bindings.on_key["C"] = {
   messages = {
     { BashExec = "${EDITOR:-vi} ~/.files/nixpkgs/files/xplr/init.lua" },
   }
+}
+
+
+xplr.config.modes.builtin.action.key_bindings.on_key.tab = {
+  help = "visit path",
+  messages = {
+    "PopMode",
+    { SwitchModeCustom = "visit_path" },
+    { SetInputBuffer = "" },
+  }
+}
+
+
+xplr.config.modes.custom.visit_path = {
+  name = "visit path",
+  key_bindings = {
+    on_key = {
+      enter = {
+        messages = {
+          "FocusPathFromInput",
+          "PopMode",
+        },
+      },
+      esc = {
+        help = "cancel",
+        messages = { "PopMode" },
+      },
+      tab = {
+        help = "complete",
+        messages = {
+          { CallLuaSilently = "custom.completion.complete_path" },
+        },
+      },
+      ["ctrl-c"] = {
+        help = "terminate",
+        messages = { "Terminate" },
+      },
+      backspace = {
+        help = "remove last character",
+        messages = { "RemoveInputBufferLastCharacter" },
+      },
+      ["ctrl-u"] = {
+        help = "remove line",
+        messages = { { SetInputBuffer = "" } },
+      },
+      ["ctrl-w"] = {
+        help = "remove last word",
+        messages = { "RemoveInputBufferLastWord" },
+      },
+    },
+    default = {
+      messages = {
+        "BufferInputFromKey"
+      },
+    },
+  },
 }
