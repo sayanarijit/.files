@@ -162,6 +162,10 @@ nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 nnoremap <silent> <a-s-right> :tabm +1<CR>
 nnoremap <silent> <a-s-left> :tabm -1<CR>
+
+" The ultimate neovim key mappings I wish I came up with sooner.
+" This let's us use `Y` as an alternative to `y` that uses the
+" system clipboard instead of the regular registers.
 nnoremap <silent> Y "+y
 vnoremap <silent> Y "+y
 
