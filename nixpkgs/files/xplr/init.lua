@@ -4,6 +4,8 @@ version = "0.14.0"
 
 package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
 
+require("completion").setup()
+
 require("icons").setup{}
 require("double-colon").setup{}
 require("scroll").setup{}
@@ -18,7 +20,7 @@ require("xargs").setup{
 require("paste-rs").setup{
   db_path = "$HOME/paste.rs.list"
 }
-require("completion").setup()
+
 
 -- https://github.com/sayanarijit/xplr/pull/229
 -- require("nnn-preview-wrapper").setup{

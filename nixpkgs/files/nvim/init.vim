@@ -162,6 +162,7 @@ nnoremap <silent> <a-left> :tabprevious<CR>
 nnoremap <silent> <a-right> :tabnext<CR>
 nnoremap <silent> <a-s-right> :tabm +1<CR>
 nnoremap <silent> <a-s-left> :tabm -1<CR>
+nnoremap <silent> Y "+y
 
 " For terminal mode
 tnoremap <c-\><c-\> <c-\><c-n>
