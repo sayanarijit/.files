@@ -369,7 +369,18 @@ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 vim.lsp.set_log_level("debug")
 
 require'lspconfig'.pyls.setup{}
-require'lspconfig'.html.setup{}
+require'lspconfig'.html.setup{
+    cmd = { "html-languageserver", "--stdio" },
+    filttypes = { "html" },
+    init_options = {
+        configurationSection = { "html", "css", "javascript" },
+        embeddedLanguages = {
+            css = true,
+            javascript = true,
+        },
+    },
+    settings = {},
+}
 require'lspconfig'.elmls.setup{}
 require'lspconfig'.dockerls.setup{}
 require'lspconfig'.cssls.setup{}
