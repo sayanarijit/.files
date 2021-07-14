@@ -438,10 +438,22 @@ require'lspconfig'.sumneko_lua.setup {
 
 require'nvim-treesitter.configs'.setup{
   ensure_installed="all",
-  autotag = { enable = true },
+  autotag = {
+    enable = true,
+    disable = { "html" },
+  },
+  highlight = {
+    enable = true,
+    disable = { "html" },
+  },
+  incremental_selection = {
+    enable = true,
+    disable = { "html" },
+  },
   textobjects = {
     select = {
       enable = true,
+      disable = { "html" },
       keymaps = {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
