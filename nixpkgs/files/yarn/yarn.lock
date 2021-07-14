@@ -11,25 +11,25 @@
     glob "^7.1.6"
     graphql-request "^3.4.0"
 
-"@nodelib/fs.scandir@2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
-  integrity sha512-33g3pMJk3bg5nXbL/+CY6I2eJDzZAni49PfJnL5fghPTggPvBd/pFNSgJsdAgWptuFu7qq/ERvOYFlhvsLTCKA==
+"@nodelib/fs.scandir@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
+  integrity sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==
   dependencies:
-    "@nodelib/fs.stat" "2.0.4"
+    "@nodelib/fs.stat" "2.0.5"
     run-parallel "^1.1.9"
 
-"@nodelib/fs.stat@2.0.4", "@nodelib/fs.stat@^2.0.2":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-2.0.4.tgz#a3f2dd61bab43b8db8fa108a121cfffe4c676655"
-  integrity sha512-IYlHJA0clt2+Vg7bccq+TzRdJvv19c2INqBSsoOLp1je7xjtr7J26+WXR72MCdvU9q1qTzIWDfhMf+DRvQJK4Q==
+"@nodelib/fs.stat@2.0.5", "@nodelib/fs.stat@^2.0.2":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz#5bd262af94e9d25bd1e71b05deed44876a222e8b"
+  integrity sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A==
 
 "@nodelib/fs.walk@^1.2.3":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@nodelib/fs.walk/-/fs.walk-1.2.6.tgz#cce9396b30aa5afe9e3756608f5831adcb53d063"
-  integrity sha512-8Broas6vTtW4GIXTAHDoE32hnN2M5ykgCpWGbuXHQ15vEMqr23pB76e/GZcYsZCHALv50ktd24qhEyKr6wBtow==
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz#e95737e8bb6746ddedf69c556953494f196fe69a"
+  integrity sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==
   dependencies:
-    "@nodelib/fs.scandir" "2.1.4"
+    "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
 abab@^2.0.0:
@@ -135,9 +135,9 @@ aws4@^1.8.0:
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
 balanced-match@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
-  integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
+  integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
 bash-language-server@^1.17.0:
   version "1.17.0"
@@ -316,9 +316,9 @@ delayed-stream@~1.0.0:
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
 diagnostic-languageserver@^1.6.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/diagnostic-languageserver/-/diagnostic-languageserver-1.8.1.tgz#00ef36a92d6dcb61b72e67e1984f688e7a7d0742"
-  integrity sha512-W8lFslQXZ6HEjy9Ba7jLYDzqJZFkWVINWZjNDUZslozm2ZLMH7QWNIa74DKZXLA972ZgY8iJ0WIMxn0Y4+1POw==
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/diagnostic-languageserver/-/diagnostic-languageserver-1.11.0.tgz#c1a4d8e0b41a8211e0108b4700d4adecfb57cd2c"
+  integrity sha512-4kjsgc/rV+qtH3dTqEnR/ug36yKNjyo5z674ySkD6k08DwlLs10fsP/I+d8BAsbtjpL36bqZxLa9iNgTDqioXQ==
   dependencies:
     commander "^5.1.0"
     find-up "^4.1.0"
@@ -458,16 +458,15 @@ fast-deep-equal@^3.1.1:
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
 fast-glob@^3.1.1:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.5.tgz#7939af2a656de79a4f1901903ee8adcaa7cb9661"
-  integrity sha512-2DtFcgT68wiTTiwZ2hNdJfcHNke9XOfnwmBRWXhmeKM8rF0TGwmC/Qto3S7RoZKp5cilZbxzO5iTNTQsJ+EeDg==
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.7.tgz#fd6cb7a2d7e9aa7a7846111e85a196d6b2f766a1"
+  integrity sha512-rYGMRwip6lUMvYD3BTScMwT1HtAs2d71SMv66Vrxs0IekGZEjhM0pcMfjQPnknBt2zeCwQMEupiN02ZP4DiT1Q==
   dependencies:
     "@nodelib/fs.stat" "^2.0.2"
     "@nodelib/fs.walk" "^1.2.3"
-    glob-parent "^5.1.0"
+    glob-parent "^5.1.2"
     merge2 "^1.3.0"
-    micromatch "^4.0.2"
-    picomatch "^2.2.1"
+    micromatch "^4.0.4"
 
 fast-json-stable-stringify@^2.0.0:
   version "2.1.0"
@@ -480,9 +479,9 @@ fast-levenshtein@~2.0.6:
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
 fastq@^1.6.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.11.0.tgz#bb9fb955a07130a918eb63c1f5161cc32a5d0858"
-  integrity sha512-7Eczs8gIPDrVzT+EksYBcupqMyxSHXXrHOLRRxU2/DicV8789MRBRR8+Hc2uWzUupOs4YS4JzBmBxjjCVBxD/g==
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.11.1.tgz#5d8175aae17db61947f8b162cfc7f63264d22807"
+  integrity sha512-HOnr8Mc60eNYl1gzwp6r5RoUyAn5/glBolUzP/Ez6IFVPMPirxn/9phgL6zhOtaTy7ISwPvQ+wT+hfcRZh/bzw==
   dependencies:
     reusify "^1.0.4"
 
@@ -550,7 +549,7 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-glob-parent@^5.1.0:
+glob-parent@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
   integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
@@ -558,9 +557,9 @@ glob-parent@^5.1.0:
     is-glob "^4.0.1"
 
 glob@^7.1.3, glob@^7.1.6:
-  version "7.1.6"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
-  integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
+  version "7.1.7"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
+  integrity sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==
   dependencies:
     fs.realpath "^1.0.0"
     inflight "^1.0.4"
@@ -570,9 +569,9 @@ glob@^7.1.3, glob@^7.1.6:
     path-is-absolute "^1.0.0"
 
 globby@^11.0.1:
-  version "11.0.3"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-11.0.3.tgz#9b1f0cb523e171dd1ad8c7b2a9fb4b644b9593cb"
-  integrity sha512-ffdmosjA807y7+lA1NM0jELARVmYul/715xiILEjo3hBLPTcirgQNnXECn5g3mtR8TOLCVbkfua1Hpen25/Xcg==
+  version "11.0.4"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-11.0.4.tgz#2cbaff77c2f2a62e71e9b2813a67b97a3a3001a5"
+  integrity sha512-9O4MVG9ioZJ08ffbcyVYyLOJLk5JQ688pJ4eMGLpdWLHq/Wr1D9BlriLQyL0E+jbkuePVZXYFj47QM/v093wHg==
   dependencies:
     array-union "^2.1.0"
     dir-glob "^3.0.1"
@@ -847,25 +846,25 @@ merge2@^1.3.0:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-micromatch@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.2.tgz#4fcb0999bf9fbc2fcbdd212f6d629b9a56c39259"
-  integrity sha512-y7FpHSbMUMoyPbYUSzO6PaZ6FyRnQOpHuKwbo1G+Knck95XVU4QAiKdGEnj5wwoS7PlOgthX/09u5iFJ+aYf5Q==
+micromatch@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.4.tgz#896d519dfe9db25fce94ceb7a500919bf881ebf9"
+  integrity sha512-pRmzw/XUcwXGpD9aI9q/0XOwLNygjETJ8y0ao0wdqprrzDa4YnxLcz7fQRZr8voh8V10kGhABbNcHVk5wHgWwg==
   dependencies:
     braces "^3.0.1"
-    picomatch "^2.0.5"
+    picomatch "^2.2.3"
 
-mime-db@1.47.0:
-  version "1.47.0"
-  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.47.0.tgz#8cb313e59965d3c05cfbf898915a267af46a335c"
-  integrity sha512-QBmA/G2y+IfeS4oktet3qRZ+P5kPhCKRXxXnQEudYqUaEioAU1/Lq2us3D/t1Jfo4hE9REQPrbB7K5sOczJVIw==
+mime-db@1.48.0:
+  version "1.48.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.48.0.tgz#e35b31045dd7eada3aaad537ed88a33afbef2d1d"
+  integrity sha512-FM3QwxV+TnZYQ2aRqhlKBMHxk10lTbMt3bBkMAp54ddrNeVSfcQYOOKuGuy3Ddrm38I04If834fOUSq1yzslJQ==
 
 mime-types@^2.1.12, mime-types@~2.1.19:
-  version "2.1.30"
-  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.30.tgz#6e7be8b4c479825f85ed6326695db73f9305d62d"
-  integrity sha512-crmjA4bLtR8m9qLpHvgxSChT+XoSlZi8J4n/aIdn3z92e/U47Z0V/yl+Wh9W046GgFVAmoNR/fmdbZYcSSIUeg==
+  version "2.1.31"
+  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.31.tgz#a00d76b74317c61f9c2db2218b8e9f8e9c5c9e6b"
+  integrity sha512-XGZnNzm3QvgKxa8dpzyhFTHmpP3l5YNusmne07VUOXxou9CqUqYa/HBy124RqtVh/O2pECas/MOcsDgpilPOPg==
   dependencies:
-    mime-db "1.47.0"
+    mime-db "1.48.0"
 
 minimatch@^3.0.4:
   version "3.0.4"
@@ -974,10 +973,10 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-picomatch@^2.0.5, picomatch@^2.2.1:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
-  integrity sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg==
+picomatch@^2.2.3:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
+  integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
 
 pn@^1.1.0:
   version "1.1.0"
@@ -1323,9 +1322,9 @@ verror@1.10.0:
     extsprintf "^1.2.0"
 
 vim-language-server@^2.1.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/vim-language-server/-/vim-language-server-2.2.1.tgz#300c62220b81aad8c4506633a6c3f4a56677ffac"
-  integrity sha512-AJATzCMaiLr8I3qzjX5OH+G8vOijMWnN/AaS2D92+OM3SsdRHhlX6auNpzqaw8hcW4IbthV6EKtYM4lPqiHDdA==
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/vim-language-server/-/vim-language-server-2.2.3.tgz#f9e32b972e1984284082becb52123abaf7ad9a11"
+  integrity sha512-dUaWfvqNM0IVwinwYHv6prKYEw4o/ayZtvceFBKdMCf91uYzKt64MLqD8ZA597JLheul/oEV1XKgpzLLPcfVVw==
 
 vscode-css-languageserver-bin@^1.4.0:
   version "1.4.0"
@@ -1390,11 +1389,12 @@ vscode-json-languageservice@^3.6.0:
     vscode-uri "^2.1.2"
 
 vscode-json-languageservice@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/vscode-json-languageservice/-/vscode-json-languageservice-4.0.2.tgz#8f91dc3a33dac180063067f8277f4facdc0795b6"
-  integrity sha512-d8Ahw990Cq/G60CzN26rehXcbhbMgMGMmXeN6C/V/RYZUhfs16EELRK+EL7b/3Y8ZGshtKqboePSeDVa94qqFg==
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/vscode-json-languageservice/-/vscode-json-languageservice-4.1.5.tgz#e429987d9e4693d8cd88338fa3c96616772b6e8c"
+  integrity sha512-oRVPj2UY6BQ8PQ1LIz/FigUEZQVqsB9msNCFlxRBHE9sSEIJkCbYG6aCB2n7WR17VIisYQdO3MDheuoyI48G2w==
   dependencies:
     jsonc-parser "^3.0.0"
+    minimatch "^3.0.4"
     vscode-languageserver-textdocument "^1.0.1"
     vscode-languageserver-types "^3.16.0"
     vscode-nls "^5.0.0"
