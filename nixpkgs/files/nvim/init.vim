@@ -67,7 +67,8 @@ Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
 " Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
 " Plug 'honza/vim-snippets'  " Snippets are separated from the engine
-Plug 'liuchengxu/vim-which-key',  " Vim plugin that shows keybindings in popup
+" Plug 'liuchengxu/vim-which-key'  " Vim plugin that shows keybindings in popup
+Plug 'folke/which-key.nvim'  " vim-which-key but in Lua
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 " Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
@@ -168,6 +169,8 @@ nnoremap <silent> <a-s-left> :tabm -1<CR>
 " system clipboard instead of the regular registers.
 nnoremap <silent> Y "+y
 vnoremap <silent> Y "+y
+nnoremap <silent> P "+P
+vnoremap <silent> P "+P
 
 " For terminal mode
 tnoremap <c-\><c-\> <c-\><c-n>
@@ -306,230 +309,6 @@ let g:nnn#replace_netrw = 1
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 """</Snippets>"""
-
-"""<Keybindings Helper: WhichKey>"""
-  
-" Map leader to which_key
-nnoremap <silent> <space> :silent WhichKey '<Space>'<CR>
-vnoremap <silent> <space> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
-
-" Create map to add keys to
-let g:which_key_map =  {}
-
-" a is for actions (custom)
-let g:which_key_map.a = {
-	\ 'name' : '+actions',
-	\ }
-
-let g:which_key_map.a.o = {
-	\ 'name' : '+open',
-	\ 't' : [':tabnew', 'tab'],
-	\ 'G' : [':GitModified', 'git modified files'],
-	\ }
-
-let g:which_key_map.a.t = {
-	\ 'name' : '+terminal',
-	\ 't' : [':TerminalTab', 'new tab'],
-	\ 'h' : [':TerminalHSplit', 'horizontal split'],
-	\ 'v' : [':TerminalVSplit', 'vertical split'],
-	\ }
-
-let g:which_key_map.a.w = {
-	\ 'name' : '+writing',
-	\ 't' : ['<Plug>Titlecase', 'title case'],
-	\ 'T' : ['<Plug>TitlecaseLine', 'title case line'],
-	\ }
-
-let g:which_key_map.a.q = {
-	\ 'name' : '+quit',
-	\ 'q' : [':q', 'current file'],
-	\ 'Q' : [':q!', 'current file forced'],
-	\ 'a' : [':qall', 'all files'],
-	\ 'A' : [':qall!', 'all files forced'],
-	\ }
-
-let g:which_key_map.a.x = {
-	\ 'name' : '+write & quit',
-	\ 'x' : [':wq', 'current file'],
-	\ 'X' : [':wq!', 'current file forced'],
-	\ 'a' : [':wqall', 'all files'],
-	\ 'A' : [':wqall!', 'all files forced'],
-	\ }
-
-let g:which_key_map.a.s = {
-	\ 'name' : '+splitjoin',
-	\ 's' : ['gS', 'split line'],
-	\ 'j' : ['gJ', 'join lines'],
-	\ }
-
-" let g:which_key_map.f = {
-" 	\ 'name' : '+floaterm',
-" 	\ '+' : ['FloatermNew', 'new'],
-" 	\ 'f' : ['FloatermToggle', 'toggle'],
-" 	\ '>' : ['FloatermNext', 'next'],
-" 	\ '<' : ['FloatermPrev', 'prev'],
-" 	\ 'k' : ['FloatermKill', 'kill'],
-" 	\ }
-
-" w for window
-let g:which_key_map.w = {
-	\ 'name' : '+window',
-	\ 'f' : ['Windows', 'find'],
-	\ }
-
-let g:which_key_map.w.s = {
-	\ 'name' : '+split',
-	\ 'h' : ['<C-W>s', 'split horizontally'],
-	\ 'v' : ['<C-W>v', 'split vertically']
-	\ }
-
-let g:which_key_map.w.m = {
-	\ 'name' : '+manage',
-	\ 'h' : ['<c-w>_', 'max height'],
-	\ 'w' : ['<c-w>|', 'max width'],
-	\ 'o' : ['<c-w>o', 'close others'],
-	\ 't' : ['<c-w>T', 'move to new tab'],
-	\ 'r' : ['<c-w>=', 'reset'],
-	\ }
-
-let g:which_key_map.w.g = {
-	\ 'name' : '+goto',
-	\ 'h' : ['<c-w>h', 'left'],
-	\ 'j' : ['<c-w>j', 'down'],
-	\ 'k' : ['<c-w>k', 'up'],
-	\ 'l' : ['<c-w>l', 'right'],
-	\ }
-
-" c for config
-let g:which_key_map.c = {
-	\ 'name' : '+config' ,
-	\ 'c' : [':Config', 'neovim config'],
-	\ 'h' : [':HomeConfig', 'home config'],
-	\ 'd' : [':DarwinConfig', 'darwin config'],
-	\ }
-
-" s is for search
-" let g:which_key_map.s = {
-"       \ 'name' : '+search' ,
-"       \ 'c' : [':Telescope git_commits'      , 'commits'],
-"       \ 'C' : [':Telescope git_bcommits'     , 'buffer commits'],
-"       \ 'f' : [':Telescope find_files'      , 'files'],
-"       \ 'g' : [':Telescope git_files'       , 'git files'],
-"       \ 'G' : [':Telescope git_status'      , 'modified git files'],
-"       \ 'm' : [':Telescope marks'        , 'marks'] ,
-"       \ 'r' : [':Telescope lsp_references', 'lsp references'],
-"       \ 's' : [':Telescope lsp_document_symbols'       , 'lsp document symbols'],
-"       \ 'S' : [':Telescope colorscheme'       , 'color schemes'],
-"       \ '"' : [':Telescope registers'           , 'registers'],
-"       \ 't' : [':Telescope live_grep'           , 'grep text'],
-"       \ 'w' : [':Telescope lsp_workspace_symbols'      , 'lsp workspace symbols'],
-"       \ }
-
-" s is for search
-let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'      , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'git status'],
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ '"' : [':Telescope registers'           , 'registers'],
-      \ 't' : [':Rg'           , 'grep text'],
-      \ }
-
-
-" g is for git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'a' : [':Git add %'                        , 'add current'],
-      \ 'A' : [':Git add .'                        , 'add all'],
-      \ 'b' : [':Git blame'                        , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'c' : [':Git commit'                       , 'commit'],
-      \ 'd' : [':DiffviewOpen'                         , 'diff'],
-      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'G' : [':GitModified'                      , 'edit modified'],
-      \ 's' : [':Gstatus'                          , 'status'],
-      \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
-      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
-      \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
-      \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
-      \ 'm' : ['<Plug>(git-messenger)'             , 'show commit message'],
-      \ 'l' : [':Git log'                          , 'log'],
-      \ 'p' : [':Git push'                         , 'push'],
-      \ 'P' : [':Git pull'                         , 'pull'],
-      \ 'r' : [':GRemove'                          , 'remove'],
-      \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
-      \ 'o' : [':OpenGithubFile'                   , 'open github'],
-      \ }
-
-" l is for language server protocol
-let g:which_key_map.l = {
-      \ 'name' : '+lsp' ,
-      \ 'R' : [':LspRestart'                         , 'restart'],
-      \ 'a' : [':Telescope lsp_code_actions'         , 'code action'],
-      \ 'd' : [':Definition'                         , 'definition'],
-      \ 'D' : [':Declaration'                        , 'declaration'],
-      \ 'F' : [':Format'                             , 'format'],
-      \ 'h' : [':Hover'                              , 'hover'],
-      \ 'i' : [':Implementation'                     , 'implementation'],
-      \ 'l' : [':NextDiagnostic'                     , 'next diagnostic'],
-      \ 'L' : [':PrevDiagnostic'                     , 'prev diagnostic'],
-      \ 'r' : [':Telescope lsp_references'           , 'references'],
-      \ 's' : [':Telescope lsp_document_symbols'     , 'document symbols'],
-      \ 'S' : [':Telescope lsp_workspace_symbols'    , 'workspace symbols'],
-      \ 't' : [':TypeDefinition'                     , 'type definition'],
-      \ }
-
-" t is for test
-let g:which_key_map.t = {
-	\ 'name' : '+test',
-	\ }
-
-let g:which_key_map.t.t = {
-	\ 'name' : '+nearest',
-	\ 't' : [':TestNearest -vvv', 'test normally'],
-	\ 'p' : [':TestNearest -vvv --pdb', 'test with pdb'],
-	\ }
-
-let g:which_key_map.t.f = {
-	\ 'name' : '+file',
-	\ 't' : [':TestFile -vvv', 'test normally'],
-	\ 'p' : [':TestFile -vvv --pdb', 'test with pdb'],
-	\ }
-
-" v for vista
-" let g:which_key_map.v = {
-" 	\ 'name' : '+vista',
-" 	\ 'v' : [':Vista!!', 'toggle window'],
-" 	\ 'f' : [':Vista finder', 'find symbol'],
-" 	\ 'F' : [':Vista finder! ctags', 'find symbol recursive'],
-" 	\ }
-
-" x for explore
-let g:which_key_map.x = {
-	\ 'name' : '+explore',
-	\ 'p' : [':NnnPicker %:p', 'present directory'],
-	\ 'w' : [':NnnPicker', 'working directory'],
-	\ 'g' : [':NnnProjectRoot', 'git project root'],
-	\ 'h' : [':NnnPicker ~', 'home directory'],
-	\ '/' : [':NnnPicker /', 'fs root'],
-	\ }
-
-" t is for test
-let g:which_key_map.T = {
-	\ 'name' : '+table mode',
-	\ 'T' : [':TableModeToggle', 'toggle'],
-	\ 'r' : [':TableModeRealign', 'realign'],
-	\ 's' : [':TableModeSort', 'sort'],
-	\ 'i' : [':Tableisize', 'tableisize'],
-	\ }
-
-" Register which key map
-call which_key#register('<Space>', "g:which_key_map")
-"""</Keybindings Helper>"""
 
 """<Colorizer>"""
 set termguicolors
@@ -747,6 +526,104 @@ require('spellsitter').setup()
 --         clean_command_line_interval = 2500
 --     }
 -- )
+
+local wk = require("which-key")
+
+local wk_options = { prefix = "<space>" }
+local wk_mappings = {
+    a = {
+        name = "action",
+        o = {
+            name = "open",
+            t = { ":tabnew<CR>", "tab" },
+            G = { ":GitModified<CR>", "git modified files" },
+        },
+        t = {
+            name = "terminal",
+            t = { ":TerminalTab<CR>", "new tab" },
+            h = { ":TerminalHSplit<CR>", "horizontal split" },
+            v = { ":TerminalVSplit<CR>", "vertical split" },
+        },
+        w = {
+            name = "writing",
+            t = { "<Plug>Titlecase<CR>", "title case" },
+            T = { "<Plug>TitlecaseLine<CR>", "title case line" },
+        },
+    },
+
+    c = {
+        name = "config",
+        c = { ":Config<CR>", "neovim config" },
+        h = { ":HomeConfig<CR>", "home config" },
+    },
+
+    s = {
+        name = "search",
+        c = { ":Commits<CR>", "commits" },
+        C = { ":BCommits<CR>", "buffer commits" },
+        f = { ":Files<CR>", "files" },
+        g = { ":GFiles<CR>", "git files" },
+        G = { ":GFiles?<CR>", "git status" },
+        m = { ":Marks<CR>", "marks" },
+        S = { ":Colors<CR>", "color schemes" },
+        ['"'] = { ":Telescope registers<CR>", "registers" },
+        t = { ":Rg<CR>", "grep text" },
+    },
+
+    g = {
+        name = "git",
+        a = { ":Git add %<CR>", "add current" },
+        A = { ":Git add .<CR>", "add all" },
+        b = { ":Git blame<CR>", "blame" },
+        B = { ":GBrowse<CR>", "browse" },
+        c = { ":Git commit<CR>", "commit" },
+        d = { ":DiffviewOpen<CR>", "diff" },
+        D = { ":Gdiffsplit<CR>", "diff split" },
+        G = { ":GitModified<CR>", "" },
+        G = { ":GitModified<CR>"                      , "edit modified" },
+        s = { ":Gstatus<CR>"                          , "status" },
+        h = { ":GitGutterLineHighlightsToggle<CR>"    , "highlight hunks" },
+        H = { "<Plug>(GitGutterPreviewHunk)<CR>"      , "preview hunk" },
+        j = { "<Plug>(GitGutterNextHunk)<CR>"         , "next hunk" },
+        k = { "<Plug>(GitGutterPrevHunk)<CR>"         , "prev hunk" },
+        m = { "<Plug>(git-messenger)<CR>"             , "show commit message "},
+        l = { ":Git log<CR>"                          , "log "},
+        p = { ":Git push<CR>"                         , "push "},
+        P = { ":Git pull<CR>"                         , "pull "},
+        r = { ":GRemove<CR>"                          , "remove "},
+        u = { "<Plug>(GitGutterUndoHunk)<CR>"         , "undo hunk "},
+        o = { ":OpenGithubFile<CR>"                   , "open github "},
+    },
+
+    l = {
+        name = "lsp",
+        R = { ":LspRestart<CR>"                         , "restart" },
+        a = { ":Telescope lsp_code_actions<CR>"         , "code action" },
+        d = { ":Definition<CR>"                         , "definition" },
+        D = { ":Declaration<CR>"                        , "declaration" },
+        F = { ":Format<CR>"                             , "format" },
+        h = { ":Hover<CR>"                              , "hover" },
+        i = { ":Implementation<CR>"                     , "implementation" },
+        l = { ":NextDiagnostic<CR>"                     , "next diagnostic" },
+        L = { ":PrevDiagnostic<CR>"                     , "prev diagnostic" },
+        r = { ":Telescope lsp_references<CR>"           , "references" },
+        s = { ":Telescope lsp_document_symbols<CR>"     , "document symbols" },
+        S = { ":Telescope lsp_workspace_symbols<CR>"    , "workspace symbols" },
+        t = { ":TypeDefinition<CR>"                     , "type definition" },
+    },
+
+    x = {
+        name = "explore",
+        p = { ":NnnPicker %:p<CR>", "present directory" },
+        w = { ":NnnPicker<CR>", "working directory" },
+        g = { ":NnnProjectRoot<CR>", "git project root" },
+        h = { ":NnnPicker ~<CR>", "home directory" },
+        ["/"] = { ":NnnPicker /<CR>", "fs root" },
+    },
+}
+
+wk.register(wk_mappings, wk_options)
+vim.api.nvim_command("set timeoutlen=0")
 
 EOF
 
