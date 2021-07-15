@@ -593,6 +593,12 @@ local wk_mappings = {
         t = { ":Rg<CR>", "grep text" },
     },
 
+    S = {
+        name = "split join"
+        s = { ":SplitJoinSplit<CR>", "split" },
+        j = { ":SplitJoinJoin<CR>", "join" },
+    },
+
     g = {
         name = "git",
         a = { ":Git add %<CR>", "add current" },

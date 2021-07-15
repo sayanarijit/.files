@@ -14,6 +14,8 @@ require("trash-cli").setup()
 require("zoxide").setup()
 require("dragon").setup()
 require("xclip").setup()
+require("qrcp").setup()
+require("type-to-nav").setup()
 require("xargs").setup{
   key = "x",
 }
