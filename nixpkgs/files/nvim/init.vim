@@ -594,7 +594,7 @@ local wk_mappings = {
     },
 
     S = {
-        name = "split join"
+        name = "split join",
         s = { ":SplitJoinSplit<CR>", "split" },
         j = { ":SplitJoinJoin<CR>", "join" },
     },
