@@ -86,13 +86,6 @@ in
     stateVersion = "21.03";
 
     file = {
-      ".config/ranger/plugins/ranger_devicons".source = pkgs.fetchFromGitHub {
-        owner = "alexanderjeurissen";
-        repo = "ranger_devicons";
-        rev = "d8f98ba64076b731e784f2d75b6bbad4c0e704ef";
-        sha256 = "14gxzk2zwsg3ram33w483zhgm5ds6gcfg23hn3imjqjd5k0piw2z";
-      };
-      ".config/ranger/rc.conf".source = ./files/ranger/rc.conf;
       ".config/i3/config".source = ./files/i3/config;
       ".config/i3status/config".source = ./files/i3status/config;
       ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
@@ -100,7 +93,6 @@ in
       ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
-      ".config/xplr/plugins/icons/src/init.lua".source = ./files/xplr/plugins/icons/src/init.lua;
       ".config/xplr/plugins/scroll/src/init.lua".source = ./files/xplr/plugins/scroll/src/init.lua;
       ".config/xplr/plugins/double-colon/src/init.lua".source = ./files/xplr/plugins/double-colon/src/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
