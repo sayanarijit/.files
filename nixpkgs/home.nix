@@ -101,6 +101,10 @@ in
         source = ./files/bin/ftwind;
         executable = true;
       };
+      ".local/bin/elmtags.py" = {
+        source = ./files/bin/elmtags.py;
+        executable = true;
+      };
       ".xinitrc" = {
         source = ./files/xinitrc;
         executable = true;

@@ -208,7 +208,7 @@ let g:tagbar_type_elm = {
           \ , 'sro':'&&&'
           \ , 'kind2scope':{ 'h':'header', 'i':'import'}
           \ , 'sort':0
-          \ , 'ctagsbin':'~/.bin/elmtags.py'
+          \ , 'ctagsbin':'~/.local/bin/elmtags.py'
           \ , 'ctagsargs': ''
           \ }
 " autocmd BufNewFile,BufRead * :call tagbar#autoopen()
