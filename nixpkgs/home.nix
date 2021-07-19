@@ -55,15 +55,15 @@ in
       allowUnfree = true;
     };
 
-    overlays = [
-      (
-        import (
-          builtins.fetchTarball {
-            url = https://github.com/nix-community/neovim-nightly-overlay/archive/b8619f5196d6257b147722b394d3dadb3f5eaa9a.tar.gz;
-          }
-        )
-      )
-    ];
+    # overlays = [
+    #   (
+    #     import (
+    #       builtins.fetchTarball {
+    #         url = https://github.com/nix-community/neovim-nightly-overlay/archive/a0d85023ff5a1fc148e3a7784dcd8db52588b90f.tar.gz;
+    #       }
+    #     )
+    #   )
+    # ];
   };
 
   # Let Home Manager install and manage itself.
@@ -116,8 +116,9 @@ in
     pyEnv
     yarnPkgs
     niv # Easy dependency management for Nix projects
-    # neovim  # Using nightly for now
-    neovim-nightly
+    # neovim  # Using pacman for now
+    # neovim-nightly
+    tree-sitter
     vim # neovim backup
     kakoune
     bat # cat replacement
@@ -176,8 +177,8 @@ in
     elmPackages.elm-language-server
     elmPackages.elm-format
     # fzf-tab-completion
-    # lua
-    # luarocks
+    luajit
+    luarocks
     act # Run GitHUb actions locally
     tmate # Instant terminal sharing
     lazygit # Git TUI
