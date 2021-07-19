@@ -440,20 +440,20 @@ require'nvim-treesitter.configs'.setup{
   ensure_installed="all",
   autotag = {
     enable = true,
-    disable = { "html" },
+    -- disable = { "html" },
   },
   highlight = {
     enable = true,
-    disable = { "html" },
+    -- disable = { "html" },
   },
   incremental_selection = {
     enable = true,
-    disable = { "html" },
+    -- disable = { "html" },
   },
   textobjects = {
     select = {
       enable = true,
-      disable = { "html" },
+      -- disable = { "html" },
       keymaps = {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
