@@ -312,7 +312,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 """<Colorizer>"""
 set termguicolors
-lua require'colorizer'.setup()
+" lua require'colorizer'.setup()
 """</Colorizer>"""
 
 """<Bufferline>"""
@@ -440,15 +440,12 @@ require'nvim-treesitter.configs'.setup{
   ensure_installed="all",
   autotag = {
     enable = true,
-    -- disable = { "html" },
   },
   highlight = {
-    enable = true,
-    -- disable = { "html" },
+    enable = false, -- Makes nvim slow
   },
   incremental_selection = {
     enable = true,
-    -- disable = { "html" },
   },
   textobjects = {
     select = {
