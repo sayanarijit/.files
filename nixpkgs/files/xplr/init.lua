@@ -55,6 +55,8 @@ require("fzf").setup{
 }
 
 
+local xplr = xplr
+
 xplr.config.general.enable_mouse = true
 xplr.config.general.disable_recover_mode = false
 xplr.config.general.show_hidden = true
@@ -120,3 +122,23 @@ xplr.config.modes.custom.go_to_path = {
     },
   },
 }
+
+
+xplr.fn.custom.fmt_simple_column = function(m)
+  return m.prefix .. m.meta.icon .. " " .. m.relative_path .. m.suffix
+end
+
+xplr.config.general.table.header.cols = {
+  { format = "   path" }
+}
+
+xplr.config.general.table.row.cols = {
+  { format = "custom.fmt_simple_column" }
+}
+
+xplr.config.general.table.col_widths = {
+  { Percentage = 100 }
+}
+
+-- With this config, you should only see a single column displaying the
+-- relative paths.
