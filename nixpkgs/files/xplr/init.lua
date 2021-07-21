@@ -35,7 +35,9 @@ require("paste-rs").setup{
 require("preview-tabbed").setup()
 
 
-require("material-landscape2").setup()
+require("material-landscape2").setup{
+  keep_default_layout = true
+}
 
 require("dua-cli").setup()
 require("comex").setup{
