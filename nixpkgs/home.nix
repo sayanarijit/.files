@@ -89,7 +89,6 @@ in
       ".config/i3/config".source = ./files/i3/config;
       ".config/i3status/config".source = ./files/i3status/config;
       ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
-      ".config/kglobalshortcutsrc".source = ./files/kglobalshortcutsrc;
       ".config/tmuxinator/kai.yml".source = ./files/tmuxinator/kai.yml;
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
