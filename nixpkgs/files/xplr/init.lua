@@ -126,19 +126,21 @@ xplr.config.modes.custom.go_to_path = {
 
 xplr.fn.custom.fmt_index = function(m)
   if m.is_focused then
-    return tostring(m.index)
+    return m.prefix .. m.index
+  elseif m.is_before_focus then
+    return "-" .. m.relative_index
   else
-    return tostring(m.relative_index)
+    return "+" .. m.relative_index
   end
 end
 
 xplr.fn.custom.fmt_simple_column = function(m)
-  return m.prefix .. m.meta.icon .. " " .. m.relative_path .. m.suffix
+  return m.meta.icon .. " " .. m.relative_path .. m.suffix
 end
 
 xplr.config.general.table.header.cols = {
   { format = "" },
-  { format = "   path" },
+  { format = "  path" },
 }
 
 xplr.config.general.table.row.cols = {
@@ -147,7 +149,7 @@ xplr.config.general.table.row.cols = {
 }
 
 xplr.config.general.table.col_widths = {
-  { Length = 4 },
+  { Length = 7 },
   { Percentage = 100 },
 }
 
