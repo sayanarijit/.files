@@ -126,7 +126,7 @@ set shiftwidth=4 " when indenting with '>', use 4 spaces width
 set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 
 " use 2 spaces for yaml & lua
-autocmd FileType yaml,yml,lua,html,sql setlocal shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType yaml,yml,lua,html,sql,tsx setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " Enable spell checker for git commits and docs
 autocmd FileType gitcommit,md,rst,txt setlocal spell
@@ -135,7 +135,7 @@ autocmd FileType gitcommit,md,rst,txt setlocal spell
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 " GUI features
-set mouse=a  " Activate mouse support. Use + register for copy/paste.
+" set mouse=a  " Activate mouse support. Use + register for copy/paste.
 " set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
 
 " Persistant undo history
