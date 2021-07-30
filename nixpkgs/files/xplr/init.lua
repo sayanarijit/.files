@@ -124,20 +124,31 @@ xplr.config.modes.custom.go_to_path = {
 }
 
 
+xplr.fn.custom.fmt_index = function(m)
+  if m.is_focused then
+    return tostring(m.index)
+  else
+    return tostring(m.relative_index)
+  end
+end
+
 xplr.fn.custom.fmt_simple_column = function(m)
   return m.prefix .. m.meta.icon .. " " .. m.relative_path .. m.suffix
 end
 
 xplr.config.general.table.header.cols = {
-  { format = "   path" }
+  { format = "" },
+  { format = "   path" },
 }
 
 xplr.config.general.table.row.cols = {
-  { format = "custom.fmt_simple_column" }
+  { format = "custom.fmt_index" },
+  { format = "custom.fmt_simple_column" },
 }
 
 xplr.config.general.table.col_widths = {
-  { Percentage = 100 }
+  { Length = 4 },
+  { Percentage = 100 },
 }
 
 -- With this config, you should only see a single column displaying the
