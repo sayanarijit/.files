@@ -42,7 +42,6 @@ let
       "yaml-language-server"
       "typescript-language-server"
       "@dillonkearns/elm-graphql"
-      "hasura-cli"
     ];
   };
 
