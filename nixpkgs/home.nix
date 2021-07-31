@@ -43,6 +43,8 @@ let
       "typescript-language-server"
       "@dillonkearns/elm-graphql"
       "typescript"
+      "next"
+      "prettier"
     ];
   };
 

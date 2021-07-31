@@ -15,6 +15,7 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'mhartington/formatter.nvim'
 Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
 Plug 'sayanarijit/xplr.vim'  " Don't look yet
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
@@ -650,6 +651,52 @@ local wk_mappings = {
 wk.register(wk_mappings, wk_options)
 vim.api.nvim_command("set timeoutlen=0")
 
+
+require('formatter').setup({
+  logging = false,
+  filetype = {
+    javascript = {
+        -- prettier
+       function()
+          return {
+            exe = "prettier",
+            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+            stdin = true
+          }
+        end
+    },
+    typescriptreact = {
+        -- prettier
+       function()
+          return {
+            exe = "prettier",
+            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+            stdin = true
+          }
+        end
+    },
+    typescript = {
+        -- prettier
+       function()
+          return {
+            exe = "prettier",
+            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+            stdin = true
+          }
+        end
+    },
+    lua = {
+        -- stylua
+        function()
+          return {
+            exe = "stylua",
+            args = {"--indent-width", 2, "--indent-type", "Spaces", "--column-width", 80, "--quote-style", "AutoPreferDouble", "-"},
+            stdin = true
+          }
+        end
+    },
+  }
+})
 EOF
 
 "" code folding

@@ -2,13 +2,13 @@ version = "0.14.0"
 
 -- https://arijitbasu.in/xplr/en/plugin.html
 
-package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
+package.path = os.getenv("HOME") .. "/.config/xplr/plugins/?/src/init.lua"
 
 require("completion").setup()
 
-require("icons").setup{}
-require("double-colon").setup{}
-require("scroll").setup{}
+require("icons").setup({})
+require("double-colon").setup({})
+require("scroll").setup({})
 
 require("trash-cli").setup()
 require("zoxide").setup()
@@ -16,13 +16,12 @@ require("dragon").setup()
 require("xclip").setup()
 require("qrcp").setup()
 require("type-to-nav").setup()
-require("xargs").setup{
+require("xargs").setup({
   key = "x",
-}
-require("paste-rs").setup{
-  db_path = "$HOME/paste.rs.list"
-}
-
+})
+require("paste-rs").setup({
+  db_path = "$HOME/paste.rs.list",
+})
 
 -- https://github.com/sayanarijit/xplr/pull/229
 -- require("nnn-preview-wrapper").setup{
@@ -34,26 +33,29 @@ require("paste-rs").setup{
 
 require("preview-tabbed").setup()
 
-
-require("material-landscape2").setup{
-  keep_default_layout = true
-}
+require("material-landscape2").setup({
+  keep_default_layout = true,
+})
 
 require("dua-cli").setup()
-require("comex").setup{
+require("comex").setup({
   compressors = {
-    Z = { extension = "zip", command = [[zip -d xplr_$(cat "${XPLR_PIPE_SELECTION_OUT:?}")]] },
+    Z = {
+      extension = "zip",
+      command = [[zip -d xplr_$(cat "${XPLR_PIPE_SELECTION_OUT:?}")]],
+    },
   },
   extractors = {
-    Z = { extension = "zip", command = [[unzip -d "${XPLR_FOCUS_PATH:?}.d" "${XPLR_FOCUS_PATH:?}"]] },
+    Z = {
+      extension = "zip",
+      command = [[unzip -d "${XPLR_FOCUS_PATH:?}.d" "${XPLR_FOCUS_PATH:?}"]],
+    },
   },
-}
+})
 
-
-require("fzf").setup{
-  args = "--preview 'pistol {}'"
-}
-
+require("fzf").setup({
+  args = "--preview 'pistol {}'",
+})
 
 local xplr = xplr
 
@@ -65,9 +67,8 @@ xplr.config.modes.builtin.action.key_bindings.on_key["C"] = {
   help = "edit config",
   messages = {
     { BashExec = "${EDITOR:-vi} ~/.files/nixpkgs/files/xplr/init.lua" },
-  }
+  },
 }
-
 
 xplr.config.modes.builtin.go_to.key_bindings.on_key.p = {
   help = "go to path",
@@ -75,7 +76,7 @@ xplr.config.modes.builtin.go_to.key_bindings.on_key.p = {
     "PopMode",
     { SwitchModeCustom = "go_to_path" },
     { SetInputBuffer = "" },
-  }
+  },
 }
 
 xplr.config.modes.custom.go_to_path = {
@@ -117,12 +118,11 @@ xplr.config.modes.custom.go_to_path = {
     },
     default = {
       messages = {
-        "BufferInputFromKey"
+        "BufferInputFromKey",
       },
     },
   },
 }
-
 
 xplr.fn.custom.fmt_index = function(m)
   if m.is_focused then
