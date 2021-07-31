@@ -5,11 +5,11 @@ version = "0.14.0"
 package.path = os.getenv("HOME") .. "/.config/xplr/plugins/?/src/init.lua"
 
 require("completion").setup()
-
 require("icons").setup({})
 require("double-colon").setup({})
 require("scroll").setup({})
 
+require("zentable").setup()
 require("trash-cli").setup()
 require("zoxide").setup()
 require("dragon").setup()
@@ -123,35 +123,3 @@ xplr.config.modes.custom.go_to_path = {
     },
   },
 }
-
-xplr.fn.custom.fmt_index = function(m)
-  if m.is_focused then
-    return m.prefix .. m.index
-  elseif m.is_before_focus then
-    return "-" .. m.relative_index
-  else
-    return "+" .. m.relative_index
-  end
-end
-
-xplr.fn.custom.fmt_simple_column = function(m)
-  return m.meta.icon .. " " .. m.relative_path .. m.suffix
-end
-
-xplr.config.general.table.header.cols = {
-  { format = "" },
-  { format = "  path" },
-}
-
-xplr.config.general.table.row.cols = {
-  { format = "custom.fmt_index" },
-  { format = "custom.fmt_simple_column" },
-}
-
-xplr.config.general.table.col_widths = {
-  { Length = 7 },
-  { Percentage = 100 },
-}
-
--- With this config, you should only see a single column displaying the
--- relative paths.
