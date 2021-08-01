@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@dillonkearns/elm-graphql": "^4.2.1",
+    "@sanity/cli": "^2.13.1",
     "bash-language-server": "^1.17.0",
     "diagnostic-languageserver": "^1.6.1",
     "dockerfile-language-server-nodejs": "^0.1.1",
