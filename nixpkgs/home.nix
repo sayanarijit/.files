@@ -173,6 +173,7 @@ in
     pstree
     ffmpeg
     nix-direnv
+    elmPackages.elm
     elmPackages.elm-live
     elmPackages.elm-test
     elmPackages.elm-language-server
