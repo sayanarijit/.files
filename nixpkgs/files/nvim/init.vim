@@ -655,6 +655,16 @@ vim.api.nvim_command("set timeoutlen=0")
 require('formatter').setup({
   logging = false,
   filetype = {
+    elm = {
+      -- elm-format
+      function()
+        return {
+            exe = "elm-format",
+            args = {"--yes", "--stdin"},
+            stdin = true
+        }
+      end
+    },
     rust = {
       -- Rustfmt
       function()
