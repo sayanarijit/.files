@@ -45,6 +45,7 @@ let
       "typescript"
       "next"
       "prettier"
+      "terser"
     ];
   };
 
@@ -99,6 +100,7 @@ in
       ".config/xplr/plugins/double-colon/src/init.lua".source = ./files/xplr/plugins/double-colon/src/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
+      ".newsboat/urls".source = ./files/newsboat/urls;
       ".local/bin/ftwind" = {
         source = ./files/bin/ftwind;
         executable = true;
