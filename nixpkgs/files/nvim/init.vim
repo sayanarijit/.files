@@ -28,7 +28,8 @@ Plug 'windwp/nvim-ts-autotag'  "  Use treesitter to auto close and auto rename h
 Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
 " Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
-Plug 'karb94/neoscroll.nvim'  "  Smooth scrolling neovim plugin written in lua 
+ Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world!
+" Plug 'karb94/neoscroll.nvim'  "  Smooth scrolling neovim plugin written in lua 
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
 Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
@@ -371,7 +372,7 @@ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 :lua << EOF
 vim.lsp.set_log_level("debug")
 
-require'neoscroll'.setup()
+-- require'neoscroll'.setup()
 
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.html.setup{
