@@ -17,7 +17,9 @@ syntax on
 call plug#begin('~/.vim/plugged')
 Plug 'mhartington/formatter.nvim'
 Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
-Plug 'sayanarijit/xplr.vim'  " Don't look yet
+Plug 'sayanarijit/xplr.vim'  " Rabbit hole warning. Don't go there.
+Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
+Plug 'MunifTanjim/nui.nvim'  " Requirement for xplr.nvim
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -26,7 +28,7 @@ Plug 'windwp/nvim-ts-autotag'  "  Use treesitter to auto close and auto rename h
 Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
 " Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
-Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world! 
+Plug 'karb94/neoscroll.nvim'  "  Smooth scrolling neovim plugin written in lua 
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
 Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
@@ -369,7 +371,9 @@ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 :lua << EOF
 vim.lsp.set_log_level("debug")
 
-require'lspconfig'.pyls.setup{}
+require'neoscroll'.setup()
+
+require'lspconfig'.pylsp.setup{}
 require'lspconfig'.html.setup{
     cmd = { "html-languageserver", "--stdio" },
     filttypes = { "html" },
@@ -717,6 +721,69 @@ require('formatter').setup({
     },
   }
 })
+
+
+
+
+
+
+
+
+
+
+require("xplr").setup({
+  xplr = {
+    ui = {
+      border = {
+        style = "single",
+        highlight = "FloatBorder",
+      },
+      position = "30%",
+
+      size = {
+        width = "40%",
+        height = "60%",
+      },
+    },
+  },
+  previewer = {
+    split = true,
+    split_percent = 0.5,
+    ui = {
+      border = {
+        style = "single",
+        highlight = "FloatBorder",
+      },
+      position = { row = "1%", col = "99%" },
+      relative = "editor", -- editor only supported for now
+      size = {
+        width = "30%",
+        height = "99%",
+      },
+    },
+  },
+})
+
+local opts = { noremap = true, silent = true }
+local nvim_set_keymap = vim.api.nvim_set_keymap
+local mappings = require("xplr.mappings")
+local set_keymap = mappings.set_keymap
+local on_previewer_set_keymap = mappings.on_previewer_set_keymap
+
+
+
+nvim_set_keymap("n", "<leader>xx", '<Cmd>lua require"xplr".open()<CR>', opts) -- open/focus cycle
+set_keymap("t", "<leader>xx", '<Cmd>lua require"xplr".focus()<CR>', opts) -- open/focus cycle
+
+nvim_set_keymap("n", "<leader>xc", '<Cmd>lua require"xplr".close()<CR>', opts)
+set_keymap("t", "<leader>xc", '<Cmd>lua require"xplr".close()<CR>', opts)
+
+nvim_set_keymap("n", "<leader>xv", '<Cmd>lua require"xplr".toggle()<CR>', opts)
+set_keymap("t", "<leader>xv", '<Cmd>lua require"xplr".toggle()<CR>', opts)
+
+on_previewer_set_keymap("t", "<leader>xb", '<Cmd>lua require"xplr.actions".scroll_previewer_up()<CR>', opts)
+on_previewer_set_keymap("t", "<leader>xn", '<Cmd>lua require"xplr.actions".scroll_previewer_down()<CR>', opts)
+
 EOF
 
 "" code folding

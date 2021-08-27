@@ -46,6 +46,7 @@ let
       "next"
       "prettier"
       "terser"
+      "jest"
     ];
   };
 
@@ -182,7 +183,6 @@ in
     elmPackages.elm-format
     # fzf-tab-completion
     luajit
-    luarocks
     act # Run GitHUb actions locally
     tmate # Instant terminal sharing
     lazygit # Git TUI

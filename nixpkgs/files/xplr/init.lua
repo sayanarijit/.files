@@ -123,3 +123,18 @@ xplr.config.modes.custom.go_to_path = {
     },
   },
 }
+
+
+local nvim = require("nvim-xplr").setup{
+  open_selection = {
+    enabled = true,
+    mode = "action",
+    key = "o",
+  },
+  preview = {
+    enabled = true,
+    mode = "action",
+    key = "i",
+    fifo_path = "/tmp/nvim-xplr.fifo",
+  },
+}
