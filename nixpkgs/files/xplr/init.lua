@@ -5,16 +5,18 @@ version = "0.14.0"
 package.path = os.getenv("HOME") .. "/.config/xplr/plugins/?/src/init.lua"
 
 require("completion").setup()
-require("icons").setup({})
 require("double-colon").setup({})
 require("scroll").setup({})
 
+require("nvim-ctrl").setup()
+require("icons").setup()
 require("zentable").setup()
 require("trash-cli").setup()
 require("zoxide").setup()
 require("dragon").setup()
 require("xclip").setup()
 require("qrcp").setup()
+require("alacritty").setup()
 require("type-to-nav").setup()
 require("xargs").setup({
   key = "x",
@@ -121,20 +123,5 @@ xplr.config.modes.custom.go_to_path = {
         "BufferInputFromKey",
       },
     },
-  },
-}
-
-
-local nvim = require("nvim-xplr").setup{
-  open_selection = {
-    enabled = true,
-    mode = "action",
-    key = "o",
-  },
-  preview = {
-    enabled = true,
-    mode = "action",
-    key = "i",
-    fifo_path = "/tmp/nvim-xplr.fifo",
   },
 }

@@ -18,16 +18,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'mhartington/formatter.nvim'
 Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
 Plug 'sayanarijit/xplr.vim'  " Rabbit hole warning. Don't go there.
-Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
+Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'  " Requirement for xplr.nvim
+Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
+Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'puremourning/vimspector'  "  vimspector - A multi-language debugging system for Vim
 Plug 'windwp/nvim-ts-autotag'  "  Use treesitter to auto close and auto rename html tag
 Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
 " Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
-Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
  Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world!
 " Plug 'karb94/neoscroll.nvim'  "  Smooth scrolling neovim plugin written in lua 
 Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
@@ -725,15 +725,7 @@ require('formatter').setup({
 
 
 
-
-
-
-
-
-
-
 require("xplr").setup({
-  xplr = {
     ui = {
       border = {
         style = "single",
@@ -746,7 +738,6 @@ require("xplr").setup({
         height = "60%",
       },
     },
-  },
   previewer = {
     split = true,
     split_percent = 0.5,
@@ -763,7 +754,29 @@ require("xplr").setup({
       },
     },
   },
-})
+ xplr = {
+    open_selection = {
+      enabled = true,
+      mode = "action",
+      key = "o",
+    },
+    preview = {
+      enabled = true,
+      mode = "action",
+      key = "i",
+      fifo_path = "/tmp/nvim-xplr.fifo",
+    },
+    set_nvim_cwd = {
+      enabled = true,
+      mode = "action",
+      key = "j",
+    },
+    set_xplr_cwd = {
+      enabled = true,
+      mode = "action",
+      key = "h",
+    },
+}})
 
 local opts = { noremap = true, silent = true }
 local nvim_set_keymap = vim.api.nvim_set_keymap
@@ -773,17 +786,20 @@ local on_previewer_set_keymap = mappings.on_previewer_set_keymap
 
 
 
-nvim_set_keymap("n", "<leader>xx", '<Cmd>lua require"xplr".open()<CR>', opts) -- open/focus cycle
-set_keymap("t", "<leader>xx", '<Cmd>lua require"xplr".focus()<CR>', opts) -- open/focus cycle
+nvim_set_keymap("n", "<space>xx", '<Cmd>lua require"xplr".open()<CR>', opts) -- open/focus cycle
+set_keymap("t", "<space>xx", '<Cmd>lua require"xplr".focus()<CR>', opts) -- open/focus cycle
 
-nvim_set_keymap("n", "<leader>xc", '<Cmd>lua require"xplr".close()<CR>', opts)
-set_keymap("t", "<leader>xc", '<Cmd>lua require"xplr".close()<CR>', opts)
+nvim_set_keymap("n", "<space>xc", '<Cmd>lua require"xplr".close()<CR>', opts)
+set_keymap("t", "<space>xc", '<Cmd>lua require"xplr".close()<CR>', opts)
 
-nvim_set_keymap("n", "<leader>xv", '<Cmd>lua require"xplr".toggle()<CR>', opts)
-set_keymap("t", "<leader>xv", '<Cmd>lua require"xplr".toggle()<CR>', opts)
+nvim_set_keymap("n", "<space>xv", '<Cmd>lua require"xplr".toggle()<CR>', opts)
+set_keymap("t", "<space>xv", '<Cmd>lua require"xplr".toggle()<CR>', opts)
 
-on_previewer_set_keymap("t", "<leader>xb", '<Cmd>lua require"xplr.actions".scroll_previewer_up()<CR>', opts)
-on_previewer_set_keymap("t", "<leader>xn", '<Cmd>lua require"xplr.actions".scroll_previewer_down()<CR>', opts)
+on_previewer_set_keymap("t", "<space>xb", '<Cmd>lua require"xplr.actions".scroll_previewer_up()<CR>', opts)
+on_previewer_set_keymap("t", "<space>xn", '<Cmd>lua require"xplr.actions".scroll_previewer_down()<CR>', opts)
+
+
+
 
 EOF
 
