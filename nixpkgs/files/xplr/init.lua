@@ -9,6 +9,7 @@ require("double-colon").setup({})
 require("scroll").setup({})
 
 require("nvim-ctrl").setup()
+require("command-mode").setup()
 require("icons").setup()
 require("zentable").setup()
 require("trash-cli").setup()
@@ -125,3 +126,43 @@ xplr.config.modes.custom.go_to_path = {
     },
   },
 }
+
+local cmd = xplr.fn.custom.command_mode.cmd
+local silent_cmd = xplr.fn.custom.command_mode.silent_cmd
+local map = xplr.fn.custom.command_mode.map
+
+-- Type `:hello-lua` and press enter to know your location
+cmd("hello-lua", "Enter name and know location")(function(app)
+  print("What's your name?")
+
+  local name = io.read()
+  local greeting = "Hello " .. name .. "!"
+  local message = greeting .. " You are inside " .. app.pwd
+
+  return {
+    { LogSuccess = message },
+  }
+end)
+
+-- Type `:hello-bash` and press enter to know your location
+silent_cmd("hello-bash", "Enter name and know location")(function(_)
+  return {
+    {
+      BashExec = [===[
+        echo "What's your name?"
+
+        read name
+        greeting="Hello $name!"
+        message="$greeting You are inside $PWD"
+      
+        echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
+      ]===],
+    },
+  }
+end)
+
+-- map `h` to hello-lua
+map("default", "h", "hello-lua")
+
+-- map `H` to hello-bash
+map("default", "H", "hello-bash")
