@@ -370,7 +370,7 @@ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
 "" language servers are installed with nix-darwin
 :lua << EOF
-" vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
 
 -- require'neoscroll'.setup()
 
