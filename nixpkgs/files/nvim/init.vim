@@ -675,7 +675,7 @@ require('formatter').setup({
       function()
         return {
           exe = "rustfmt",
-          args = {"--emit=stdout --force"},
+          args = {"--emit=stdout"},
           stdin = true
         }
       end
