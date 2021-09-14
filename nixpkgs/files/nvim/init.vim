@@ -657,6 +657,16 @@ wk.register(wk_mappings, wk_options)
 vim.api.nvim_command("set timeoutlen=0")
 
 
+local prettierconfig = {
+   function()
+      return {
+        exe = "prettier",
+        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+        stdin = true
+      }
+    end
+}
+
 require('formatter').setup({
   logging = false,
   filetype = {
@@ -680,36 +690,6 @@ require('formatter').setup({
         }
       end
     },
-    javascript = {
-        -- prettier
-       function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
-            stdin = true
-          }
-        end
-    },
-    typescriptreact = {
-        -- prettier
-       function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
-            stdin = true
-          }
-        end
-    },
-    typescript = {
-        -- prettier
-       function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
-            stdin = true
-          }
-        end
-    },
     lua = {
         -- stylua
         function()
@@ -720,6 +700,17 @@ require('formatter').setup({
           }
         end
     },
+    javascript = prettierconfig,
+    typescriptreact = prettierconfig,
+    typescript = prettierconfig,
+    html = prettierconfig,
+    css = prettierconfig,
+    scss = prettierconfig,
+    less = prettierconfig,
+    json = prettierconfig,
+    graphql = prettierconfig,
+    markdown = prettierconfig,
+    yaml = prettierconfig,
   }
 })
 
