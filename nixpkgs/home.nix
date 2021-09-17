@@ -227,7 +227,7 @@ in
     rdfind
     diskonaut
     yank
-    spotify-tui
+    # spotify-tui
     # xplr
     websocat
     websocketd
