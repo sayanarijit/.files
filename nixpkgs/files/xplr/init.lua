@@ -1,6 +1,6 @@
-version = "0.14.0"
+version = "0.15.0"
 
--- https://arijitbasu.in/xplr/en/plugin.html
+-- https://xplr.dev/en/plugin.html
 
 package.path = os.getenv("HOME") .. "/.config/xplr/plugins/?/src/init.lua"
 
@@ -19,9 +19,9 @@ require("xclip").setup()
 require("qrcp").setup()
 require("alacritty").setup()
 require("type-to-nav").setup()
-require("xargs").setup({
-  key = "x",
-})
+require("xargs").setup({ key = "x" })
+
+require("map").setup({ key = "M" })
 require("paste-rs").setup({
   db_path = "$HOME/paste.rs.list",
 })
@@ -64,6 +64,8 @@ local xplr = xplr
 
 xplr.config.general.enable_mouse = true
 xplr.config.general.show_hidden = true
+
+xplr.config.general.enable_recover_mode = true
 
 xplr.config.modes.builtin.action.key_bindings.on_key["C"] = {
   help = "edit config",
