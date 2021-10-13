@@ -13,6 +13,9 @@ export NNN_FIFO="/tmp/nnn.fifo"
 export USE_VIDEOTHUMB="1"
 export TERMINAL="alacritty"
 
+export CHROME_EXECUTABLE="chromium"
+export FLUTTER_SDK="$HOME/snap/flutter/common/flutter/bin"
+
 alias venv="python -m venv .venv && activate"
 alias activate="source .venv/bin/activate"
 alias reactivate="deactivate && activate"
@@ -51,6 +54,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/Android/Sdk/tools/bin"
+
 export GOPATH="$HOME/go"
 export MANPAGER='nvim +Man!'
 

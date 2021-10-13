@@ -88,6 +88,7 @@ Plug 'tversteeg/registers.nvim'
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 Plug 'sbdchd/neoformat'  "  A (Neo)vim plugin for formatting code.
 Plug 'lewis6991/spellsitter.nvim'  " Treesitter powered spellchecker 
+Plug 'akinsho/flutter-tools.nvim'  " Tools to help create flutter apps in neovim using the native lsp
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
@@ -398,6 +399,7 @@ require'lspconfig'.jsonls.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.rnix.setup{}
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.dartls.setup{}
 
 local system_name
 if vim.fn.has("mac") == 1 then
@@ -474,6 +476,11 @@ require('kommentary.config').configure_language("default", {
 require('kommentary.config').use_extended_mappings()
 require('lualine').setup{theme = 'material-nvim'}
 
+require("flutter-tools").setup{
+  outline = {
+    auto_open = true,
+  },
+}
 
 local cb = require'diffview.config'.diffview_callback
 
