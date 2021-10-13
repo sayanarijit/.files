@@ -47,6 +47,7 @@ let
       "prettier"
       "terser"
       "jest"
+      "supabase"
     ];
   };
 
