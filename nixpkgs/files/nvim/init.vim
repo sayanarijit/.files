@@ -567,7 +567,6 @@ cmp.setup({
     { name = 'calc', keyword_length = 3 },
     { name = 'emoji' },
     { name = 'buffer', keyword_length = 3 },
-
   })
 })
 
