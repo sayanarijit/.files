@@ -53,7 +53,8 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'f3fora/cmp-spell'
+Plug 'hrsh7th/cmp-calc'
+Plug 'hrsh7th/cmp-emoji'
 Plug 'saecki/crates.nvim'
 Plug 'wsdjeg/FlyGrep.vim'  "  awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
@@ -564,11 +565,11 @@ cmp.setup({
     { name = 'buffer' },
     { name = "crates" },
     { name = 'spell' },
+    { name = 'calc' },
+    { name = 'emoji' },
+
   })
 })
-
-vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
 
 -- require('autosave').setup(
 --     {
