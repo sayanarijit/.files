@@ -562,10 +562,10 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = "nvim_lua" },
     { name = "path" },
-    { name = 'buffer' },
+    { name = 'buffer', keyword_length = 3 },
     { name = "crates" },
     { name = 'spell' },
-    { name = 'calc' },
+    { name = 'calc', keyword_length = 3 },
     { name = 'emoji' },
 
   })
