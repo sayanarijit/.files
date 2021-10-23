@@ -167,3 +167,5 @@ map("default", "h", "hello-lua")
 
 -- map `H` to hello-bash
 map("default", "H", "hello-bash")
+
+-- require("icons-view").setup()

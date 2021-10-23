@@ -15,11 +15,11 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'  " Requirement for xplr.nvim
 Plug 'mhartington/formatter.nvim'
 Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
 Plug 'sayanarijit/xplr.vim'  " Rabbit hole warning. Don't go there.
-Plug 'nvim-lua/plenary.nvim'
-Plug 'MunifTanjim/nui.nvim'  " Requirement for xplr.nvim
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
@@ -48,7 +48,12 @@ Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
 " Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
 " Plug 'vim-airline/vim-airline'  " make statusline awesome
 " Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
-Plug 'hrsh7th/nvim-compe'  "  Auto completion plugin for nvim that written in Lua.
+Plug 'hrsh7th/nvim-cmp'  "  Auto completion plugin for nvim that written in Lua.
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'saecki/crates.nvim'
 Plug 'wsdjeg/FlyGrep.vim'  "  awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 " Plug 'tpope/vim-commentary'  "comment-out by gc
@@ -343,7 +348,7 @@ else
     let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
 endif
 
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 
 "" deoplete-jedi
 let g:deoplete#sources#jedi#python_path = '/home/sayanarijit/.nix-profile/bin/python3'
@@ -515,31 +520,51 @@ require('diffview').setup {
   }
 }
 
-require('compe').setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+-- require('compe').setup {
+--   enabled = true;
+--   autocomplete = true;
+--   debug = false;
+--   min_length = 1;
+--   preselect = 'enable';
+--   throttle_time = 80;
+--   source_timeout = 200;
+--   resolve_timeout = 800;
+--   incomplete_delay = 400;
+--   max_abbr_width = 100;
+--   max_kind_width = 100;
+--   max_menu_width = 100;
+--   documentation = true;
+-- 
+--   source = {
+--     path = true;
+--     buffer = true;
+--     calc = true;
+--     nvim_lsp = true;
+--     nvim_lua = true;
+--     vsnip = true;
+--     ultisnips = true;
+--   };
+-- }
 
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    ultisnips = true;
-  };
-}
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = "nvim_lua" },
+    { name = "path" },
+    { name = 'buffer' },
+    { name = "crates" },
+  })
+})
 
 require('spellsitter').setup()
 
