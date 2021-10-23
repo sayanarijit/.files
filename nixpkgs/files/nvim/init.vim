@@ -349,7 +349,7 @@ else
     let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
 endif
 
-set completeopt=menu,menuone,noselect
+set completeopt=menu,menuone,noselect,noinsert
 
 "" deoplete-jedi
 let g:deoplete#sources#jedi#python_path = '/home/sayanarijit/.nix-profile/bin/python3'
