@@ -53,6 +53,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'f3fora/cmp-spell'
 Plug 'saecki/crates.nvim'
 Plug 'wsdjeg/FlyGrep.vim'  "  awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
@@ -92,7 +93,6 @@ Plug 'tversteeg/registers.nvim'
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 Plug 'sbdchd/neoformat'  "  A (Neo)vim plugin for formatting code.
-Plug 'lewis6991/spellsitter.nvim'  " Treesitter powered spellchecker 
 Plug 'akinsho/flutter-tools.nvim'  " Tools to help create flutter apps in neovim using the native lsp
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
@@ -563,10 +563,12 @@ cmp.setup({
     { name = "path" },
     { name = 'buffer' },
     { name = "crates" },
+    { name = 'spell' },
   })
 })
 
-require('spellsitter').setup()
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
 
 -- require('autosave').setup(
 --     {
