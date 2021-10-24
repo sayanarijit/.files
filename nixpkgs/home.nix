@@ -119,7 +119,7 @@ in
   };
 
   home.packages = with pkgs; [
-    pyEnv
+    # pyEnv  # Curretly it doesn't build
     yarnPkgs
     niv # Easy dependency management for Nix projects
     # neovim  # Using pacman for now
@@ -201,7 +201,6 @@ in
     xclip
     ripgrep
     rust-analyzer
-    python-language-server
     neofetch
     poetry
     netcat
