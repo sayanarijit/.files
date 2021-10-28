@@ -17,7 +17,7 @@ require("zoxide").setup()
 require("dragon").setup()
 require("xclip").setup()
 require("qrcp").setup()
-require("alacritty").setup()
+require("alacritty").setup({send_selection = false})
 require("type-to-nav").setup()
 require("xargs").setup({ key = "x" })
 

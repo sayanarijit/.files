@@ -24,7 +24,7 @@ Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the
 Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
-Plug 'puremourning/vimspector'  "  vimspector - A multi-language debugging system for Vim
+" Plug 'puremourning/vimspector'  "  vimspector - A multi-language debugging system for Vim
 Plug 'windwp/nvim-ts-autotag'  "  Use treesitter to auto close and auto rename html tag
 Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
 " Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
@@ -344,8 +344,8 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 
 if exists("$VIRTUAL_ENV")
     let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
-else
-    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+
+    lua require'lspconfig'.pylsp.setup{}
 endif
 
 set completeopt=menu,menuone,noselect,noinsert
@@ -380,7 +380,6 @@ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
 -- require'neoscroll'.setup()
 
-require'lspconfig'.pylsp.setup{}
 require'lspconfig'.html.setup{
     cmd = { "html-languageserver", "--stdio" },
     filttypes = { "html" },
