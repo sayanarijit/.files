@@ -20,6 +20,7 @@ Plug 'MunifTanjim/nui.nvim'  " Requirement for xplr.nvim
 Plug 'mhartington/formatter.nvim'
 Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
 Plug 'sayanarijit/xplr.vim'  " Rabbit hole warning. Don't go there.
+Plug 'sayanarijit/exec-cursorline-insert-stdout.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
 Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
@@ -197,6 +198,10 @@ command TerminalVSplit :vsplit term://$SHELL
 " Open all modified git files
 command GitModified :args `git diff --name-only origin/master; git ls-files --other --exclude-standard` | argdo tabe
 
+command ExecuteLine :lua require"exec-cursorline-insert-stdout".execute{prepare_for_next_command = true}
+
+nnoremap <silent> X :ExecuteLine<CR>
+
 " I forgot what it is
 autocmd QuickFixCmdPost *grep* cwindow
 """</Custom settings>"""
@@ -337,7 +342,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 
 """<Smooth scrolling>"""
 " let g:SimpleSmoothScrollDelay=3
-"""</Smooth scrolling"""
+"""</Smooth scrolling>"""
 
 """<Language server and auto completion>"""
 " let g:python3_host_prog = '/home/sayanarijit/.nix-profile/bin/python3'
