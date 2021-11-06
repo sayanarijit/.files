@@ -73,8 +73,8 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 " Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'LnL7/vim-nix'  " Nix support
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
 " Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
 " Plug 'honza/vim-snippets'  " Snippets are separated from the engine
@@ -163,7 +163,7 @@ command HomeConfig :tabnew ~/.config/nixpkgs/home.nix
 " tags
 set tags=.vim/tags  " Where to store tags file
 let g:autotagTagsFile = ".vim/tags"  " ^^
-let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
+" let g:fzf_tags_command = 'ctags -R -f .vim/tags --exclude=.vim/*'
 
 " Key mappings
 inoremap <silent> <c-a> <ESC>I
@@ -243,7 +243,7 @@ let g:vista_default_executive = 'ctags'
 " To enable fzf's preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
-let g:vista_fzf_preview = ['right:50%']
+" let g:vista_fzf_preview = ['right:50%']
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
@@ -307,7 +307,7 @@ let g:expand_region_text_objects = {
 """</Expand Region>"""
 
 """<Fuzzy search: fzf>"""
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 """</FUzzy search>"""
 
 """<File Manager: xplr>"""
@@ -621,15 +621,14 @@ local wk_mappings = {
 
     s = {
         name = "search",
-        c = { ":Commits<CR>", "commits" },
-        C = { ":BCommits<CR>", "buffer commits" },
-        f = { ":Files<CR>", "files" },
-        g = { ":GFiles --cached --others --exclude-standard<CR>", "git files" },
-        G = { ":GFiles?<CR>", "git files with status" },
-        m = { ":Marks<CR>", "marks" },
-        S = { ":Colors<CR>", "color schemes" },
+        c = { ":Telescope git_commits<CR>", "commits" },
+        C = { ":Telescope git_bcommits<CR>", "buffer commits" },
+        f = { ":Telescope files<CR>", "files" },
+        g = { ":Telescope git_files<CR>", "git files" },
+        m = { ":Telescope marks<CR>", "marks" },
         ['"'] = { ":Telescope registers<CR>", "registers" },
-        t = { ":Rg<CR>", "grep text" },
+        t = { ":Telescope live_grep<CR>", "grep text" },
+        s = { ":Telescope spell_suggest<CR>", "grep text" },
     },
 
     S = {
@@ -667,8 +666,7 @@ local wk_mappings = {
         name = "lsp",
         R = { ":LspRestart<CR>"                         , "restart" },
         a = { ":Telescope lsp_code_actions<CR>"         , "code action" },
-        d = { ":Definition<CR>"                         , "definition" },
-        D = { ":Declaration<CR>"                        , "declaration" },
+        d = { ":Telescope lsp_definitions<CR>"                         , "definition" },
         F = { ":Format<CR>"                             , "format" },
         h = { ":Hover<CR>"                              , "hover" },
         i = { ":Implementation<CR>"                     , "implementation" },
