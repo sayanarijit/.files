@@ -17,7 +17,7 @@ require("zoxide").setup()
 require("dragon").setup()
 require("xclip").setup()
 require("qrcp").setup()
-require("alacritty").setup({send_selection = false})
+require("alacritty").setup({ send_selection = false })
 require("type-to-nav").setup()
 require("xargs").setup({ key = "x" })
 
@@ -58,6 +58,11 @@ require("comex").setup({
 
 require("fzf").setup({
   args = "--preview 'pistol {}'",
+})
+
+require("ouch").setup({
+  mode = "action",
+  key = "o",
 })
 
 local xplr = xplr
