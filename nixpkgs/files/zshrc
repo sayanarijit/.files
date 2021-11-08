@@ -55,6 +55,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Android/Sdk/tools/bin"
+export PATH="$PATH:$HOME/.yarn/bin"
 
 export GOPATH="$HOME/go"
 export MANPAGER='nvim +Man!'
