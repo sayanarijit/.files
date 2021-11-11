@@ -139,9 +139,10 @@ filetype plugin indent on
 set tabstop=4  " show existing tab with 4 spaces width
 set shiftwidth=4 " when indenting with '>', use 4 spaces width
 set expandtab  " Convert tabs to spaces (I don't write golang anymore)
+set smartindent
 
 " use 2 spaces for yaml & lua
-autocmd FileType yaml,yml,lua,html,sql,js,jsx,ts,tsx setlocal shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType yaml,yml,lua,html,sql setlocal shiftwidth=2 tabstop=2 expandtab
 
 " Enable spell checker for git commits and docs
 autocmd FileType gitcommit,md,rst,txt setlocal spell
@@ -694,7 +695,7 @@ local prettierconfig = {
    function()
       return {
         exe = "prettier",
-        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+        args = {"--tab-width 4", "--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
         stdin = true
       }
     end
