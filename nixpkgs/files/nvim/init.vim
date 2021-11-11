@@ -59,7 +59,6 @@ Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'saecki/crates.nvim'
 Plug 'pelodelfuego/vim-swoop'
 Plug 'windwp/nvim-spectre' "  Find the enemy and replace them with dark power. 
-Plug 'Pocco81/AutoSave.nvim'  "  bone A NeoVim plugin for saving your work before the world collapses or you type :qa!
 " Plug 'wsdjeg/FlyGrep.vim'  "  awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 " Plug 'tpope/vim-commentary'  "comment-out by gc
@@ -588,22 +587,6 @@ cmp.setup({
   })
 })
 
--- require('autosave').setup(
---     {
---         enabled = true,
---         execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
---         events = {"InsertLeave"},
---         conditions = {
---             exists = true,
---             filetype_is_not = {},
---             modifiable = true
---         },
---         write_all_buffers = true,
---         on_off_commands = true,
---         clean_command_line_interval = 2500
---     }
--- )
-
 local wk = require("which-key")
 
 local wk_options = { prefix = "<space>" }
@@ -840,21 +823,21 @@ on_previewer_set_keymap("t", "<space>xb", '<Cmd>lua require"xplr.actions".scroll
 on_previewer_set_keymap("t", "<space>xn", '<Cmd>lua require"xplr.actions".scroll_previewer_down()<CR>', opts)
 
 
-require("autosave").setup{
-  enabled = true,
-  execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-  events = {"InsertLeave", "TextChanged"},
-  conditions = {
-    exists = true,
-    filename_is_not = {},
-    filetype_is_not = {},
-    modifiable = true
-  },
-  write_all_buffers = false,
-  on_off_commands = true,
-  clean_command_line_interval = 0,
-  debounce_delay = 135
-}
+-- require("autosave").setup{
+--   enabled = true,
+--   execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+--   events = {"InsertLeave", "TextChanged"},
+--   conditions = {
+--     exists = true,
+--     filename_is_not = {},
+--     filetype_is_not = {},
+--     modifiable = true
+--   },
+--   write_all_buffers = false,
+--   on_off_commands = true,
+--   clean_command_line_interval = 0,
+--   debounce_delay = 135
+-- }
 
 EOF
 
