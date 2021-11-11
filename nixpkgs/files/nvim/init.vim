@@ -55,6 +55,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-calc'
 Plug 'hrsh7th/cmp-emoji'
+Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'saecki/crates.nvim'
 Plug 'pelodelfuego/vim-swoop'
 Plug 'windwp/nvim-spectre' "  Find the enemy and replace them with dark power. 
@@ -82,6 +83,7 @@ Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions 
 " Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
 " Plug 'honza/vim-snippets'  " Snippets are separated from the engine
 " Plug 'liuchengxu/vim-which-key'  " Vim plugin that shows keybindings in popup
+Plug 'L3MON4D3/LuaSnip'  "  Snippet Engine for Neovim written in Lua.
 Plug 'folke/which-key.nvim'  " vim-which-key but in Lua
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 " Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
@@ -557,6 +559,14 @@ require('diffview').setup {
 local cmp = require'cmp'
 
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+    end,
+  },
   mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -572,6 +582,8 @@ cmp.setup({
     { name = 'spell' },
     { name = 'calc', keyword_length = 3 },
     { name = 'emoji' },
+    { name = 'luasnip' },
+    { name = 'cmp-tabnine' },
     { name = 'buffer', keyword_length = 3 },
   })
 })
