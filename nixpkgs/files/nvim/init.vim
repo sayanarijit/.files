@@ -761,13 +761,22 @@ local prettierconfig = {
 require('formatter').setup({
   logging = false,
   filetype = {
+    dart = {
+      -- dart
+      function()
+        return {
+          exe = "dart",
+          args = {"format", "-o", "show"},
+        }
+      end
+    },
     elm = {
       -- elm-format
       function()
         return {
-            exe = "elm-format",
-            args = {"--yes", "--stdin"},
-            stdin = true
+          exe = "elm-format",
+          args = {"--yes", "--stdin"},
+          stdin = true
         }
       end
     },
