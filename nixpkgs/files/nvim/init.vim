@@ -767,6 +767,7 @@ require('formatter').setup({
         return {
           exe = "dart",
           args = {"format", "-o", "show"},
+          stdin = true
         }
       end
     },
