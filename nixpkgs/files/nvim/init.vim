@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'  " Requirement for xplr.nvim
 Plug 'mhartington/formatter.nvim'
-Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
+" Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
 Plug 'sayanarijit/xplr.vim'  " Rabbit hole warning. Don't go there.
 Plug 'sayanarijit/exec-cursorline-insert-stdout.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
@@ -39,7 +39,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'  " Create your own textobjects using tree-sitter queries!
 " Plug 'romgrk/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
-Plug 'nvim-treesitter/completion-treesitter'
+" Plug 'nvim-treesitter/completion-treesitter'
 " Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 " Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
@@ -98,7 +98,7 @@ Plug 'tversteeg/registers.nvim'
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 Plug 'sbdchd/neoformat'  "  A (Neo)vim plugin for formatting code.
-Plug 'akinsho/flutter-tools.nvim'  " Tools to help create flutter apps in neovim using the native lsp
+" Plug 'akinsho/flutter-tools.nvim'  " Tools to help create flutter apps in neovim using the native lsp
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
@@ -142,7 +142,7 @@ set expandtab  " Convert tabs to spaces (I don't write golang anymore)
 set smartindent
 
 " use 2 spaces for yaml & lua
-autocmd FileType yaml,yml,lua,html,sql setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType yaml,yml,json,lua,html,sql,js,ts,jsx,tsx setlocal shiftwidth=2 tabstop=2 expandtab
 
 " Enable spell checker for git commits and docs
 autocmd FileType gitcommit,md,rst,txt setlocal spell
@@ -458,31 +458,34 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
-require'nvim-treesitter.configs'.setup{
-  ensure_installed="all",
-  autotag = {
-    enable = true,
-  },
-  highlight = {
-    enable = false, -- Makes nvim slow
-  },
-  incremental_selection = {
-    enable = true,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        ["al"] = "@loop.outer",
-        ["il"] = "@loop.inner",
-      },
-    },
-  },
-}
+-- require'nvim-treesitter.configs'.setup{
+--   ensure_installed="all",
+--   autotag = {
+--     enable = true,
+--   },
+--   highlight = {
+--     enable = false, -- Makes nvim slow
+--   },
+--   incremental_selection = {
+--     enable = true,
+--   },
+--   indent = {
+--     enable = false,
+--   },
+--   textobjects = {
+--     select = {
+--       enable = true,
+--       keymaps = {
+--         ["af"] = "@function.outer",
+--         ["if"] = "@function.inner",
+--         ["ac"] = "@class.outer",
+--         ["ic"] = "@class.inner",
+--         ["al"] = "@loop.outer",
+--         ["il"] = "@loop.inner",
+--       },
+--     },
+--   },
+-- }
 
 require('kommentary.config').configure_language("default", {
     prefer_single_line_comments = true,
@@ -490,44 +493,98 @@ require('kommentary.config').configure_language("default", {
 require('kommentary.config').use_extended_mappings()
 require('lualine').setup{theme = 'material-nvim'}
 
-require("flutter-tools").setup{
-  outline = {
-    auto_open = true,
-  },
-}
+-- require("flutter-tools").setup {}
 
-local cb = require'diffview.config'.diffview_callback
+-- require("flutter-tools").setup {
+--   ui = {
+--     -- the border type to use for all floating windows, the same options/formats
+--     -- used for ":h nvim_open_win" e.g. "single" | "shadow" | {<table-of-eight-chars>}
+--     border = "rounded",
+--   },
+--   decorations = {
+--     statusline = {
+--       -- set to true to be able use the 'flutter_tools_decorations.app_version' in your statusline
+--       -- this will show the current version of the flutter app from the pubspec.yaml file
+--       app_version = false,
+--       -- set to true to be able use the 'flutter_tools_decorations.device' in your statusline
+--       -- this will show the currently running device if an application was started with a specific
+--       -- device
+--       device = false,
+--     }
+--   },
+--   debugger = { -- integrate with nvim dap + install dart code debugger
+--     enabled = false,
+--   },
+--   -- flutter_path = "<full/path/if/needed>", -- <-- this takes priority over the lookup
+--   flutter_lookup_cmd = "dirname $(which flutter)", -- example "dirname $(which flutter)" or "asdf where flutter"
+--   -- fvm = false, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
+--   widget_guides = {
+--     enabled = false,
+--   },
+--   closing_tags = {
+--     highlight = "ErrorMsg", -- highlight for the closing tag
+--     prefix = ">", -- character to use for close tag e.g. > Widget
+--     enabled = true -- set to false to disable
+--   },
+--   dev_log = {
+--     open_cmd = "tabedit", -- command to use to open the log buffer
+--   },
+--   dev_tools = {
+--     autostart = true, -- autostart devtools server if not detected
+--     auto_open_browser = true, -- Automatically opens devtools in the browser
+--   },
+--   outline = {
+--     open_cmd = "30vnew", -- command to use to open the outline buffer
+--     auto_open = true -- if true this will open the outline automatically when it is first populated
+--   },
+--   --lsp = {
+--   --  on_attach = my_custom_on_attach,
+--   --  capabilities = my_custom_capabilities -- e.g. lsp_status capabilities
+--   --  --- OR you can specify a function to deactivate or change or control how the config is created
+--   --  capabilities = function(config)
+--   --    config.specificThingIDontWant = false
+--   --    return config
+--   --  end,
+--   --  settings = {
+--   --    showTodos = true,
+--   --    completeFunctionCalls = true,
+--   --    analysisExcludedFolders = {<path-to-flutter-sdk-packages>}
+--   --  }
+--   --}
+-- }
 
-require('diffview').setup {
-  diff_binaries = false,    -- Show diffs for binaries
-  file_panel = {
-    width = 35,
-    use_icons = true        -- Requires nvim-web-devicons
-  },
-  key_bindings = {
-    -- The `view` bindings are active in the diff buffers, only when the current
-    -- tabpage is a Diffview.
-    view = {
-      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
-      ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
-      ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
-      ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
-    },
-    file_panel = {
-      ["j"]         = cb("next_entry"),         -- Bring the cursor to the next file entry
-      ["<down>"]    = cb("next_entry"),
-      ["k"]         = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
-      ["<up>"]      = cb("prev_entry"),
-      ["<cr>"]      = cb("select_entry"),       -- Open the diff for the selected entry.
-      ["o"]         = cb("select_entry"),
-      ["R"]         = cb("refresh_files"),      -- Update stats and entries in the file list.
-      ["<tab>"]     = cb("select_next_entry"),
-      ["<s-tab>"]   = cb("select_prev_entry"),
-      ["<leader>e"] = cb("focus_files"),
-      ["<leader>b"] = cb("toggle_files"),
-    }
-  }
-}
+-- local cb = require'diffview.config'.diffview_callback
+
+-- require('diffview').setup {
+--   diff_binaries = false,    -- Show diffs for binaries
+--   file_panel = {
+--     width = 35,
+--     use_icons = true        -- Requires nvim-web-devicons
+--   },
+--   key_bindings = {
+--     -- The `view` bindings are active in the diff buffers, only when the current
+--     -- tabpage is a Diffview.
+--     view = {
+--       ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
+--       ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
+--       ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
+--       ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
+--     },
+--     file_panel = {
+--       ["j"]         = cb("next_entry"),         -- Bring the cursor to the next file entry
+--       ["<down>"]    = cb("next_entry"),
+--       ["k"]         = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
+--       ["<up>"]      = cb("prev_entry"),
+--       ["<cr>"]      = cb("select_entry"),       -- Open the diff for the selected entry.
+--       ["o"]         = cb("select_entry"),
+--       ["R"]         = cb("refresh_files"),      -- Update stats and entries in the file list.
+--       ["<tab>"]     = cb("select_next_entry"),
+--       ["<s-tab>"]   = cb("select_prev_entry"),
+--       ["<leader>e"] = cb("focus_files"),
+--       ["<leader>b"] = cb("toggle_files"),
+--     }
+--   }
+-- }
 
 -- require('compe').setup {
 --   enabled = true;
@@ -695,7 +752,7 @@ local prettierconfig = {
    function()
       return {
         exe = "prettier",
-        args = {"--tab-width 4", "--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+        args = {"--tab-width", "2", "--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
         stdin = true
       }
     end
