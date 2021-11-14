@@ -458,34 +458,34 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
--- require'nvim-treesitter.configs'.setup{
---   ensure_installed="all",
---   autotag = {
---     enable = true,
---   },
---   highlight = {
---     enable = false, -- Makes nvim slow
---   },
---   incremental_selection = {
---     enable = true,
---   },
---   indent = {
---     enable = false,
---   },
---   textobjects = {
---     select = {
---       enable = true,
---       keymaps = {
---         ["af"] = "@function.outer",
---         ["if"] = "@function.inner",
---         ["ac"] = "@class.outer",
---         ["ic"] = "@class.inner",
---         ["al"] = "@loop.outer",
---         ["il"] = "@loop.inner",
---       },
---     },
---   },
--- }
+require'nvim-treesitter.configs'.setup{
+  ensure_installed="all",
+  autotag = {
+    enable = true,
+  },
+  highlight = {
+    enable = false, -- Makes nvim slow
+  },
+  incremental_selection = {
+    enable = true,
+  },
+  indent = {
+    enable = false,
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
+      },
+    },
+  },
+}
 
 require('kommentary.config').configure_language("default", {
     prefer_single_line_comments = true,

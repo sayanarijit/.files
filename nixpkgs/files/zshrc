@@ -64,6 +64,9 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 
+export JAVA_HOME=$HOME/jdk-11
+export PATH=$JAVA_HOME/bin:$PATH
+
 export GOPATH="$HOME/go"
 export MANPAGER='nvim +Man!'
 

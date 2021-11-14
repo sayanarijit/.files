@@ -190,7 +190,7 @@ in
     hyperfine # A command-line benchmarking tool
     wrk #  Modern HTTP benchmarking tool
     geckodriver
-    openjdk11
+    # openjdk11
     maven
     openapi-generator-cli-unstable
     nixpkgs-fmt
