@@ -32,6 +32,7 @@ alias ls="lsd"
 alias m="mind"
 alias x="xplr"
 alias f="fzf"
+alias "cargo-examples"='for e in $(ls examples); do cargo run --example ${e%.*}; done'
 
 xcd() {
   pth="$(xplr)"
