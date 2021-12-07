@@ -645,7 +645,7 @@ cmp.setup({
     { name = "crates" },
     { name = 'spell' },
     { name = 'calc', keyword_length = 3 },
-    { name = 'emoji' },
+    { name = 'emoji', ignored_filetypes = { "yml", "yaml", "json" } },
     { name = 'luasnip' },
     { name = 'cmp-tabnine' },
     { name = 'buffer', keyword_length = 3 },

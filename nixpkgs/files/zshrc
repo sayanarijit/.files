@@ -25,6 +25,8 @@ alias open="xdg-open"
 alias dotdiff="(cd ~/.files && make diff)"
 alias dotreset="(cd ~/.files && make reset)"
 alias dotsync="(cd ~/.files && make sync)"
+alias ymlfdoctest="cargo run --bin yamlfun-doctest --"
+alias ymlf="cargo run --bin yamlfun --"
 
 # Getting rusty
 alias cat="bat"
