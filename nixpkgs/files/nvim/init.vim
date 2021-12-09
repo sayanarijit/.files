@@ -63,7 +63,7 @@ Plug 'windwp/nvim-spectre' "  Find the enemy and replace them with dark power.
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
 " Plug 'tpope/vim-commentary'  "comment-out by gc
 Plug 'b3nj5m1n/kommentary' "  Neovim commenting plugin, written in lua. 
-Plug 'ggandor/lightspeed.nvim'  " Next-generation motion plugin with incremental input processing, allowing for unparalleled speed with near-zero cognitive effort
+" Plug 'ggandor/lightspeed.nvim'  " Next-generation motion plugin with incremental input processing, allowing for unparalleled speed with near-zero cognitive effort
 " Plug 'kien/ctrlp.vim'  " fuzzy search files
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
 Plug 'cespare/vim-toml'  "  Vim syntax for TOML
@@ -915,24 +915,24 @@ on_previewer_set_keymap("t", "<space>xn", '<Cmd>lua require"xplr.actions".scroll
 -- }
 
 
-require'lightspeed'.setup {
-  jump_to_first_match = true,
-  jump_on_partial_input_safety_timeout = 400,
-  exit_after_idle_msecs = { labeled = 1500, unlabeled = 1000 },
-  highlight_unique_chars = true,
-  grey_out_search_area = true,
-  match_only_the_start_of_same_char_seqs = true,
-  limit_ft_matches = 4,
-  x_mode_prefix_key = '<c-x>',
-  substitute_chars = { ['\r'] = '¬' },
-  instant_repeat_fwd_key = nil,
-  instant_repeat_bwd_key = nil,
-  -- If no values are given, these will be set at runtime,
-  -- based on `jump_to_first_match`.
-  labels = nil,
-  cycle_group_fwd_key = nil,
-  cycle_group_bwd_key = nil,
-}
+-- require'lightspeed'.setup {
+--   jump_to_first_match = true,
+--   jump_on_partial_input_safety_timeout = 400,
+--   exit_after_idle_msecs = { labeled = 1500, unlabeled = 1000 },
+--   highlight_unique_chars = true,
+--   grey_out_search_area = true,
+--   match_only_the_start_of_same_char_seqs = true,
+--   limit_ft_matches = 4,
+--   x_mode_prefix_key = '<c-x>',
+--   substitute_chars = { ['\r'] = '¬' },
+--   instant_repeat_fwd_key = nil,
+--   instant_repeat_bwd_key = nil,
+--   -- If no values are given, these will be set at runtime,
+--   -- based on `jump_to_first_match`.
+--   labels = nil,
+--   cycle_group_fwd_key = nil,
+--   cycle_group_bwd_key = nil,
+-- }
 
 EOF
 
