@@ -78,6 +78,7 @@ Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
 Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
 " Plug 'wellle/context.vim'  " Context of current buffer
 Plug 'LnL7/vim-nix'  " Nix support
+Plug 'evanleck/vim-svelte'  " Svelte support
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
@@ -406,6 +407,7 @@ require'lspconfig'.html.setup{
     settings = {},
 }
 require'lspconfig'.elmls.setup{}
+require'lspconfig'.svelte.setup{}
 require'lspconfig'.dockerls.setup{}
 require'lspconfig'.cssls.setup{}
 require'lspconfig'.bashls.setup{}
@@ -811,6 +813,7 @@ require('formatter').setup({
     javascript = prettierconfig,
     typescriptreact = prettierconfig,
     typescript = prettierconfig,
+    svelte = prettierconfig,
     html = prettierconfig,
     css = prettierconfig,
     scss = prettierconfig,
