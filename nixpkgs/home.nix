@@ -40,13 +40,9 @@ let
       "yaml-language-server"
       "typescript-language-server"
       "svelte-language-server"
-      "@dillonkearns/elm-graphql"
       "typescript"
-      "next"
       "prettier"
       "terser"
-      "jest"
-      "supabase"
     ];
   };
 

@@ -146,10 +146,17 @@ set smartindent
 set inccommand=nosplit
 
 " use 2 spaces for yaml & lua
-autocmd FileType yaml,yml,json,lua,html,sql,js,ts,jsx,tsx,svelte setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType yaml,yml,json,lua,html,sql,js,ts,jsx,tsx,svelte,cjs setlocal shiftwidth=2 tabstop=2 expandtab
 
 " Enable spell checker for git commits and docs
 autocmd FileType gitcommit,md,rst,txt setlocal spell
+
+" Format on save
+
+augroup Format
+    autocmd!
+    autocmd BufWritePost * FormatWrite
+augroup END
 
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
@@ -810,10 +817,20 @@ require('formatter').setup({
           }
         end
     },
+    toml = {
+        -- toml-fmt
+        function()
+          return {
+            exe = "toml-fmt",
+            stdin = true
+          }
+        end
+    },
     javascript = prettierconfig,
     typescriptreact = prettierconfig,
     typescript = prettierconfig,
     svelte = prettierconfig,
+    cjs = prettierconfig,
     html = prettierconfig,
     css = prettierconfig,
     scss = prettierconfig,
