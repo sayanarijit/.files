@@ -13,7 +13,7 @@ export NNN_FIFO="/tmp/nnn.fifo"
 export USE_VIDEOTHUMB="1"
 export TERMINAL="alacritty"
 
-export CHROME_EXECUTABLE="chromium"
+export CHROME_EXECUTABLE="google-chrome-stable"
 export FLUTTER_SDK="$HOME/snap/flutter/common/flutter/bin"
 
 alias venv="python -m venv .venv && activate"
@@ -69,6 +69,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 
 export JAVA_HOME=$HOME/jdk-11
+# export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
 export PATH=$JAVA_HOME/bin:$PATH
 
 export GOPATH="$HOME/go"

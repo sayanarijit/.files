@@ -82,6 +82,7 @@ Plug 'evanleck/vim-svelte'  " Svelte support
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
 Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
+Plug 'rlane/pounce.nvim'  " Incremental fuzzy search motion plugin for Neovim
 " Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
 " Plug 'honza/vim-snippets'  " Snippets are separated from the engine
 " Plug 'liuchengxu/vim-which-key'  " Vim plugin that shows keybindings in popup
@@ -101,7 +102,7 @@ Plug 'tversteeg/registers.nvim'
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 Plug 'sbdchd/neoformat'  "  A (Neo)vim plugin for formatting code.
-" Plug 'akinsho/flutter-tools.nvim'  " Tools to help create flutter apps in neovim using the native lsp
+Plug 'akinsho/flutter-tools.nvim'  " Tools to help create flutter apps in neovim using the native lsp
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
@@ -509,7 +510,7 @@ require('kommentary.config').configure_language("default", {
 require('kommentary.config').use_extended_mappings()
 require('lualine').setup{theme = 'material-nvim'}
 
--- require("flutter-tools").setup {}
+require("flutter-tools").setup {}
 
 -- require("flutter-tools").setup {
 --   ui = {
