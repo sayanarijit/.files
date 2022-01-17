@@ -396,11 +396,21 @@ let g:deoplete#enable_at_startup = 1
 "" nvim-lightbulb
 autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
+"" pounce
+nmap s <cmd>Pounce<CR>
+vmap s <cmd>Pounce<CR>
+omap gs <cmd>Pounce<CR>  " 's' is used by vim-surround
+
 "" language servers are installed with nix-darwin
 :lua << EOF
 -- vim.lsp.set_log_level("debug")
 
 -- require'neoscroll'.setup()
+
+require'pounce'.setup{
+  accept_keys = "JFKDLSAHGNUVRBYTMICEOXWPQZ",
+  debug = false,
+}
 
 require'lspconfig'.html.setup{
     cmd = { "html-languageserver", "--stdio" },
