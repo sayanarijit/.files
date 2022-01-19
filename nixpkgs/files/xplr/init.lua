@@ -2,8 +2,14 @@ version = "0.17.0"
 
 -- https://xplr.dev/en/plugin.html
 
-package.path = os.getenv("HOME") .. "/.config/xplr/plugins/?/src/init.lua"
+local home = os.getenv("HOME")
+package.path = home
+  .. "/.config/xplr/plugins/?/src/init.lua;"
+  .. home
+  .. "/.config/xplr/plugins/?.lua;"
+  .. package.path
 
+require("plugin-template1").setup()
 require("completion").setup()
 require("double-colon").setup({})
 require("scroll").setup({})
@@ -16,7 +22,10 @@ require("trash-cli").setup()
 require("zoxide").setup()
 require("dragon").setup()
 require("xclip").setup()
-require("qrcp").setup({ send_options = "-i $(ip link show | awk '{print $2}' | grep ':$' | cut -d: -f1 | fzf)", receive_options = "-i $(ip link show | awk '{print $2}' | grep ':$' | cut -d: -f1 | fzf)" })
+require("qrcp").setup({
+  send_options = "-i $(ip link show | awk '{print $2}' | grep ':$' | cut -d: -f1 | fzf)",
+  receive_options = "-i $(ip link show | awk '{print $2}' | grep ':$' | cut -d: -f1 | fzf)",
+})
 require("alacritty").setup({ send_selection = true })
 require("type-to-nav").setup()
 require("xargs").setup({ key = "x" })
