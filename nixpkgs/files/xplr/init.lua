@@ -9,7 +9,6 @@ package.path = home
   .. "/.config/xplr/plugins/?.lua;"
   .. package.path
 
-require("plugin-template1").setup()
 require("completion").setup()
 require("double-colon").setup({})
 require("scroll").setup({})
