@@ -10,8 +10,7 @@ package.path = home
   .. package.path
 
 require("completion").setup()
-require("double-colon").setup({})
-require("scroll").setup({})
+require("scroll").setup()
 
 require("nvim-ctrl").setup()
 require("command-mode").setup()

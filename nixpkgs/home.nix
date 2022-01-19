@@ -92,8 +92,8 @@ in
       ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
-      ".config/xplr/plugins/scroll/src/init.lua".source = ./files/xplr/plugins/scroll/src/init.lua;
-      ".config/xplr/plugins/double-colon/src/init.lua".source = ./files/xplr/plugins/double-colon/src/init.lua;
+      ".config/xplr/plugins/scroll/init.lua".source = ./files/xplr/plugins/scroll/init.lua;
+      ".config/xplr/plugins/double-colon/init.lua".source = ./files/xplr/plugins/double-colon/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
       ".newsboat/urls".source = ./files/newsboat/urls;
