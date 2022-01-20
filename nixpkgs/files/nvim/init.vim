@@ -968,8 +968,8 @@ on_previewer_set_keymap("t", "<space>xn", '<Cmd>lua require"xplr.actions".scroll
 EOF
 
 "" code folding
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 command Declaration :lua vim.lsp.buf.declaration()
 command Definition :lua vim.lsp.buf.definition()
