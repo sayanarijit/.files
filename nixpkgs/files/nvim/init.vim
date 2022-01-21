@@ -103,6 +103,7 @@ Plug 'tversteeg/registers.nvim'
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 Plug 'sbdchd/neoformat'  "  A (Neo)vim plugin for formatting code.
 Plug 'akinsho/flutter-tools.nvim'  " Tools to help create flutter apps in neovim using the native lsp
+" Plug 'hankchiutw/flutter-reload.vim'  " Reload flutter automatically when saving a dart file
 Plug 'lifepillar/vim-solarized8'  " Light and dark theme
 Plug 'joshdick/onedark.vim'  " Atom onedark theme
 Plug 'rakr/vim-one'  " Adaptation of one-light and one-dark colorschemes for Vim
@@ -157,6 +158,7 @@ autocmd FileType gitcommit,md,rst,txt setlocal spell
 augroup Format
     autocmd!
     autocmd BufWritePost * FormatWrite
+    autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null'
 augroup END
 
 " Remap for rename current word
