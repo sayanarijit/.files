@@ -40,7 +40,6 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'  " Create your own textobject
 " Plug 'romgrk/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
 " Plug 'nvim-treesitter/completion-treesitter'
-" Plug 'aca/completion-tabnine', { 'do': './install.sh' }  "  A TabNine completion source for completion-nvim.
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
 " Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
 " Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua 
@@ -55,7 +54,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-calc'
 Plug 'hrsh7th/cmp-emoji'
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+" Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'saecki/crates.nvim'
 Plug 'pelodelfuego/vim-swoop'
 Plug 'windwp/nvim-spectre' "  Find the enemy and replace them with dark power. 
@@ -669,7 +668,7 @@ cmp.setup({
     { name = 'calc', keyword_length = 3 },
     { name = 'emoji', ignored_filetypes = { "yml", "yaml", "json" } },
     { name = 'luasnip' },
-    { name = 'cmp-tabnine' },
+    -- { name = 'cmp-tabnine' },
     { name = 'buffer', keyword_length = 3 },
   })
 })
@@ -843,6 +842,7 @@ require('formatter').setup({
     typescriptreact = prettierconfig,
     typescript = prettierconfig,
     svelte = prettierconfig,
+    js = prettierconfig,
     cjs = prettierconfig,
     html = prettierconfig,
     css = prettierconfig,
