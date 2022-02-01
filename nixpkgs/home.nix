@@ -8,23 +8,22 @@ let
   githubUsername = "sayanarijit";
   homedir = "/home/${username}";
 
-  vimPlug = builtins.fetchurl https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim;
+  vimPlug = builtins.fetchurl
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
 
   # Python LSP requires a dedicated py env.
-  pyEnv =
-    pkgs.python38.withPackages (
-      ps: with ps; [
-        pynvim
-        black
-        mypy
-        flake8
-        jedi
-        python-language-server
-        pyls-mypy
-        pyls-isort
-        pyls-black
-      ]
-    );
+  pyEnv = pkgs.python38.withPackages (ps:
+    with ps; [
+      pynvim
+      black
+      mypy
+      flake8
+      jedi
+      python-language-server
+      pyls-mypy
+      pyls-isort
+      pyls-black
+    ]);
 
   yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
     name = "yarnPkgs";
@@ -49,13 +48,10 @@ let
 
   nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
 
-in
-{
+in {
 
   nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
+    config = { allowUnfree = true; };
 
     # overlays = [
     #   (
@@ -90,11 +86,14 @@ in
     file = {
       ".config/i3/config".source = ./files/i3/config;
       ".config/i3status/config".source = ./files/i3status/config;
-      ".config/alacritty/alacritty.yml".source = ./files/alacritty/alacritty.yml;
+      ".config/alacritty/alacritty.yml".source =
+        ./files/alacritty/alacritty.yml;
       ".config/nvim/init.vim".source = ./files/nvim/init.vim;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
-      ".config/xplr/plugins/scroll/init.lua".source = ./files/xplr/plugins/scroll/init.lua;
-      ".config/xplr/plugins/double-colon/init.lua".source = ./files/xplr/plugins/double-colon/init.lua;
+      ".config/xplr/plugins/scroll/init.lua".source =
+        ./files/xplr/plugins/scroll/init.lua;
+      ".config/xplr/plugins/double-colon/init.lua".source =
+        ./files/xplr/plugins/double-colon/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
       ".newsboat/urls".source = ./files/newsboat/urls;
@@ -183,7 +182,7 @@ in
     tmate # Instant terminal sharing
     lazygit # Git TUI
     hyperfine # A command-line benchmarking tool
-    wrk #  Modern HTTP benchmarking tool
+    wrk # Modern HTTP benchmarking tool
     geckodriver
     # openjdk11
     maven
@@ -201,7 +200,7 @@ in
     netcat
     tree
     mpv
-    amfora #  A fancy terminal browser for the Gemini protocol.
+    amfora # A fancy terminal browser for the Gemini protocol.
     dnsutils
     bpytop
     bottom
@@ -250,9 +249,7 @@ in
   programs = {
     direnv = {
       enable = true;
-      nix-direnv = {
-        enable = true;
-      };
+      nix-direnv = { enable = true; };
     };
 
     tmux = {
@@ -273,18 +270,12 @@ in
       enable = true;
       userName = name;
       userEmail = email;
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
-        };
-      };
+      extraConfig = { init = { defaultBranch = "main"; }; };
       signing = {
         signByDefault = true;
         key = "0F8EF5258DC38077";
       };
-      delta = {
-        enable = true;
-      };
+      delta = { enable = true; };
     };
 
     zsh = {
@@ -298,10 +289,7 @@ in
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
-        plugins = [
-          "git"
-          "python"
-        ];
+        plugins = [ "git" "python" ];
       };
     };
   };
