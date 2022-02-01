@@ -43,6 +43,7 @@ let
       "typescript"
       "prettier"
       "terser"
+      "sql-formatter"
     ];
   };
 
@@ -243,6 +244,7 @@ in
     bitwarden-cli
     glow
     amfora
+    nixfmt
   ];
 
   programs = {

@@ -789,6 +789,26 @@ local prettierconfig = {
 require('formatter').setup({
   logging = false,
   filetype = {
+    nix = {
+      -- nix
+      function()
+        return {
+          exe = "nixfmt",
+          args = {},
+          stdin = true
+        }
+      end
+    },
+    sql = {
+      -- sql
+      function()
+        return {
+          exe = "sql-formatter",
+          args = {"-u"},
+          stdin = true
+        }
+      end
+    },
     dart = {
       -- dart
       function()
