@@ -29,8 +29,8 @@ require("type-to-nav").setup()
 require("xargs").setup({ key = "x" })
 require("context-switch").setup()
 require("dual-pane").setup()
-
-require("map").setup({ key = "M" })
+require("find").setup()
+require("map").setup()
 require("paste-rs").setup({
   db_path = "$HOME/paste.rs.list",
 })

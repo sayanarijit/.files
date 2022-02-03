@@ -35,7 +35,7 @@ Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your mo
 Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
 " Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
 Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'  " Create your own textobjects using tree-sitter queries!
 " Plug 'romgrk/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
@@ -487,7 +487,8 @@ require'lspconfig'.sumneko_lua.setup {
 }
 
 require'nvim-treesitter.configs'.setup{
-  ensure_installed="all",
+  ensure_installed="maintained",
+  ignore_install = { "php" },
   autotag = {
     enable = true,
   },
