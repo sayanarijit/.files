@@ -5,7 +5,7 @@ local bg_light = "#212121"
 local fg_dark = "#434343"
 local fg_light = "#E5E5E5"
 
-local colours = {
+local colors = {
   tab_bar = {
     active_tab = {
       bg_color = bg_light,
@@ -26,7 +26,7 @@ local colours = {
 
 return {
   font = wezterm.font("Hack", { font_size = 0.8 }),
-  colors = colours,
+  colors = colors,
   color_scheme = "MaterialDark",
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
