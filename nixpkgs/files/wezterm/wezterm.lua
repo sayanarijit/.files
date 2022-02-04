@@ -1,8 +1,4 @@
 local wezterm = require("wezterm")
-local launchMenu = {
-  { label = "htop", args = { "htop" } },
-  { label = "xplr", args = { "xplr" } },
-}
 
 local bg_dark = "#111111"
 local bg_light = "#212121"
@@ -29,7 +25,6 @@ local colours = {
 }
 
 return {
-  lauch_menu = launchMenu,
   font = wezterm.font("Hack", { font_size = 0.8 }),
   colors = colours,
   color_scheme = "MaterialDark",
