@@ -7,7 +7,7 @@ local launchMenu = {
 local bg_dark = "#111111"
 local bg_light = "#212121"
 local fg_dark = "#434343"
-local fg_light = "#879196"
+local fg_light = "#E5E5E5"
 
 local colours = {
   tab_bar = {
