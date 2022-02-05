@@ -25,7 +25,7 @@ local colors = {
 }
 
 return {
-  font = wezterm.font("Hack", { font_size = 0.8 }),
+  font = wezterm.font("Hack", { font_size = 1.0 }),
   colors = colors,
   color_scheme = "MaterialDark",
   use_fancy_tab_bar = false,
