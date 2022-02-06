@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-local bg_dark = "#111111"
+local bg_dark = "#151515"
 local bg_light = "#212121"
 local fg_dark = "#434343"
 local fg_light = "#E5E5E5"
