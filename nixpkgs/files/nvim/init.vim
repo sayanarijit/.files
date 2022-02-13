@@ -708,7 +708,7 @@ local wk_mappings = {
         name = "search",
         c = { ":Telescope git_commits<CR>", "commits" },
         C = { ":Telescope git_bcommits<CR>", "buffer commits" },
-        f = { ":Telescope files<CR>", "files" },
+        f = { ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", "files" },
         g = { ":Telescope git_files<CR>", "git files" },
         m = { ":Telescope marks<CR>", "marks" },
         ['"'] = { ":Telescope registers<CR>", "registers" },
