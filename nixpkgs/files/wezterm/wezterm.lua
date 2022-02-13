@@ -32,4 +32,32 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   scrollback_lines = 3500,
   exit_behavior = "Close",
+  hyperlink_rules = {
+    -- Linkify things that look like URLs
+    -- This is actually the default if you don't specify any hyperlink_rules
+    {
+      regex = "\\b\\w+://\\S*\\b",
+      format = "$0",
+    },
+
+    -- linkify email addresses
+    {
+      regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b",
+      format = "mailto:$0",
+    },
+
+    -- file:// URI
+    {
+      regex = "\\bfile://\\S*\\b",
+      format = "$0",
+    },
+
+    -- Make task numbers clickable
+    --[[
+    {
+      regex = "\\b[tT](\\d+)\\b"
+      format = "https://example.com/tasks/?t=$1"
+    }
+    ]]
+  },
 }
