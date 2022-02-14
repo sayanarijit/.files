@@ -54,6 +54,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-calc'
 Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/cmp-cmdline'
 " Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'saecki/crates.nvim'
 Plug 'pelodelfuego/vim-swoop'
@@ -672,6 +673,18 @@ cmp.setup({
     -- { name = 'cmp-tabnine' },
     { name = 'buffer', keyword_length = 3 },
   })
+})
+
+cmp.setup.cmdline(':', {
+    sources = {
+        { name = "cmdline" },
+    }
+})
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' },
+  }
 })
 
 local wk = require("which-key")

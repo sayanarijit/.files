@@ -1,0 +1,4 @@
+#!/bin/bash
+paragraphs=${1:-1}
+sentences=${2:-1}
+curl http://metaphorpsum.com/paragraphs/$paragraphs/$sentences

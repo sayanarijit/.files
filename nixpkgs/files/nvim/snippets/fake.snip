@@ -1,0 +1,91 @@
+# Global snippet
+
+snippet fakeint
+abbr    fake#int()
+options word
+    `fake#int()`
+
+snippet fakeint0-100
+abbr    fake#int(0,100)
+options word
+    `fake#int(0,100)`
+
+snippet fakefloat
+abbr    fake#float()
+options word
+    `printf('%0.4f', fake#float())`
+
+snippet fakepassword8
+abbr    fake#chars(8)
+options word
+    `fake#chars(8)`
+
+snippet fakenumbers4
+abbr    fake#chars(4, '\d')
+options word
+    `fake#chars(4, '\d')`
+
+snippet fakeage
+abbr    fake#geb('age')
+options word
+    `fake#gen('age')`
+
+snippet fakemale
+abbr    fake#gen('male_name')
+options word
+    `fake#gen('male_name')`
+
+snippet fakefemale
+abbr    fake#gen('female_name')
+options word
+    `fake#gen('female_name')`
+
+snippet fakesurname
+abbr    fake#gen('surname')
+options word
+    `fake#gen('surname')`
+
+snippet fakename
+abbr    fake#gen('name')
+options word
+    `fake#gen('name')`
+
+snippet fakefullname
+abbr    fake#gen('fullname')
+options word
+    `fake#gen('fullname')`
+
+snippet fakeuser
+abbr    tolower(fake#gen('name'))
+options word
+    `tolower(fake#gen('name'))`
+
+snippet fakeemail
+abbr    fake#gen('email')
+options word
+    `fake#gen('email')`
+
+snippet fakeparagraph
+abbr    fake#gen('paragraph')
+options word
+    `substitute(fake#gen('paragraph'), '\v(.{70}\S*)\s+', "\\1\n", 'g')`
+
+snippet fakesentense
+abbr    fake#gen('sentense')
+options word
+    `fake#gen('sentense')`
+
+snippet fakecountry
+abbr    fake#gen('country')
+options word
+    `fake#gen('country')`
+
+snippet fakeword
+abbr    fake#gen('word')
+options word
+    `fake#gen('word')`
+
+snippet fakejob
+abbr    fake#gen('job')
+options word
+    `fake#gen('job')`
