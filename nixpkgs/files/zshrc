@@ -96,7 +96,7 @@ qrcode () {
 qrsvg () {
   local input="$*"
   [ -z "$input" ] && local input="@/dev/stdin"
-  curl -d "${input}" https://qrcode.show -H "Accept: image/svg+xml"
+  curl -d "$input" https://qrcode.show -H "Accept: image/svg+xml"
 }
 
 qrserve () {
@@ -105,6 +105,12 @@ qrserve () {
   local ip="$(ifconfig | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | fzf --prompt IP:)" \
     && echo http://$ip:$port | qrcode \
     && python -m http.server $port -b $ip -d $dir
+}
+
+lipsum () {
+    local paragraphs=${1:-1}
+    local sentences=${1:-1}
+    curl http://metaphorpsum.com/paragraphs/$paragraphs/$sentences
 }
 
 
