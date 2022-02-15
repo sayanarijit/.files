@@ -646,6 +646,9 @@ require("flutter-tools").setup {}
 local cmp = require'cmp'
 
 cmp.setup({
+  completion = {
+    completeopt = "menu,menuone,noselect,noinsert",
+  },
   snippet = {
     expand = function(args)
       -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
@@ -681,11 +684,11 @@ cmp.setup.cmdline(':', {
     }
 })
 
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' },
-  }
-})
+-- cmp.setup.cmdline('/', {
+--   sources = {
+--     { name = 'buffer' },
+--   }
+-- })
 
 local wk = require("which-key")
 
