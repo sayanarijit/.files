@@ -157,6 +157,7 @@ in {
     jq # JSON viewer
     yq # YAML viewer
     httpie # curl replacement
+    http-prompt
     heroku # Heroku CLI
     universal-ctags # Tags creator for vim
     coreutils # GNU coreutils
