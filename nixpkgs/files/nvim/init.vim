@@ -165,7 +165,7 @@ augroup END
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 
 " GUI features
-" set mouse=a  " Activate mouse support. Use + register for copy/paste.
+set mouse=a  " Activate mouse support. Use + register for copy/paste.
 " set clipboard+=unnamedplus  " Use clipboard for yanking and pasting
 
 " Persistant undo history
