@@ -14,7 +14,7 @@ cd ~/.files && make sync
 
 ## Manual
 
-OS & Desktop: KDE Plasme + KWin + Wayland
+OS & Desktop: KDE Plasma + KWin + Wayland
 
 Theme: Aritim-Dark (layout) + ChromeOS-Dark
 
