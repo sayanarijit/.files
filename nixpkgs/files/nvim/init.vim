@@ -779,6 +779,10 @@ local wk_mappings = {
         t = { ":TypeDefinition<CR>"                     , "type definition" },
     },
 
+    q = { ":q<CR>", "quit" },
+
+    w = { ":w<CR>", "write" },
+
     x = {
         name = "explore",
         p = { ":NnnPicker %:p<CR>", "present directory" },
