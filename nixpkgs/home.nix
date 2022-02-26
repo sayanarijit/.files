@@ -250,6 +250,7 @@ in {
     glow
     amfora
     nixfmt
+    helix
   ];
 
   programs = {
