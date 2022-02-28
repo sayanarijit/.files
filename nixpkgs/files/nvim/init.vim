@@ -61,6 +61,7 @@ Plug 'pelodelfuego/vim-swoop'
 Plug 'windwp/nvim-spectre' "  Find the enemy and replace them with dark power. 
 " Plug 'wsdjeg/FlyGrep.vim'  "  awesome grep on the fly
 Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
+Plug 'dstein64/nvim-scrollview'  " A Neovim plugin that displays interactive vertical scrollbars.
 " Plug 'tpope/vim-commentary'  "comment-out by gc
 Plug 'b3nj5m1n/kommentary' "  Neovim commenting plugin, written in lua. 
 " Plug 'ggandor/lightspeed.nvim'  " Next-generation motion plugin with incremental input processing, allowing for unparalleled speed with near-zero cognitive effort
@@ -163,6 +164,7 @@ augroup END
 
 " Remap for rename current word
 vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
+vnoremap <leader>R "hy:bufdo %s/<C-r>h/<C-r>h/gce<left><left><left><left>
 
 " GUI features
 set mouse=a  " Activate mouse support. Use + register for copy/paste.
@@ -443,6 +445,7 @@ require'lspconfig'.vimls.setup{}
 require'lspconfig'.rnix.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.dartls.setup{}
+require'lspconfig'.prismals.setup{}
 
 local system_name
 if vim.fn.has("mac") == 1 then

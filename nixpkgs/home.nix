@@ -43,6 +43,7 @@ let
       "prettier"
       "terser"
       "sql-formatter"
+      "@prisma/language-server"
     ];
   };
 
