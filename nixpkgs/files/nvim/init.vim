@@ -824,6 +824,16 @@ require('formatter').setup({
         }
       end
     },
+    prisma = {
+      -- prisma
+      function()
+        return {
+          exe = "yarn run prisma format",
+          args = {},
+          stdin = false
+        }
+      end
+    },
     sql = {
       -- sql
       function()
