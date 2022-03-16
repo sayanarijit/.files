@@ -101,6 +101,7 @@ Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motio
 Plug 'AndrewRadev/splitjoin.vim'  " Switch between single-line and multiline forms of code
 " Plug 'junegunn/vim-peekaboo'  " / @ / CTRL-R 
 Plug 'tversteeg/registers.nvim'
+Plug 'lark-parser/vim-lark-syntax'  " Vim files needed to have syntax highlighting in python lark-parser files 
 " Plug 'ap/vim-css-color'  "  Preview colours in source code while editing
 " Plug 'scrooloose/nerdtree'  " Tree view for vim
 Plug 'sbdchd/neoformat'  "  A (Neo)vim plugin for formatting code.
