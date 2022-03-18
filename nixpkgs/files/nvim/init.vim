@@ -91,6 +91,7 @@ Plug 'L3MON4D3/LuaSnip'  "  Snippet Engine for Neovim written in Lua.
 Plug 'folke/which-key.nvim'  " vim-which-key but in Lua
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'pantharshit00/vim-prisma'  "  Prisma 2 support for vim 
+Plug 'jparise/vim-graphql'  "  A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation.
 " Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
