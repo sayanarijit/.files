@@ -95,7 +95,6 @@ Plug 'pantharshit00/vim-prisma'  "  Prisma 2 support for vim
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
-Plug 'jwoudenberg/elm-pair', { 'rtp': 'neovim-plugin' }
 Plug 'christoomey/vim-titlecase'  "  Teach Vim about titlecase, with support for motions and text objects 
 " Plug 'Einenlum/yaml-revealer'  " A vim plugin to handle Yaml files
 Plug 'jeetsukumaran/vim-indentwise'  " A Vim plugin for indent-level based motion.
