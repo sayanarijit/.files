@@ -448,6 +448,7 @@ require'lspconfig'.rnix.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.dartls.setup{}
 require'lspconfig'.prismals.setup{}
+require'lspconfig'.graphql.setup{}
 
 local system_name
 if vim.fn.has("mac") == 1 then
