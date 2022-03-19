@@ -152,10 +152,12 @@ set smartindent
 set inccommand=nosplit
 
 " use 2 spaces for yaml & lua
-autocmd FileType yaml,yml,json,lua,html,sql,js,ts,jsx,tsx,svelte,cjs,prisma setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType yaml,yml,json,lua,html,sql,js,ts,jsx,tsx,svelte,cjs,prisma,gql,graphql setlocal shiftwidth=2 tabstop=2 expandtab
 
 " Enable spell checker for git commits and docs
 autocmd FileType gitcommit,md,rst,txt setlocal spell
+
+autocmd BufNewFile,BufRead *.graphql,*.gql setfiletype graphql
 
 " Format on save
 
