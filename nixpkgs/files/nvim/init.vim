@@ -533,6 +533,7 @@ require('kommentary.config').use_extended_mappings()
 require('lualine').setup{theme = 'material-nvim'}
 
 require("flutter-tools").setup {}
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- require("flutter-tools").setup {
 --   ui = {

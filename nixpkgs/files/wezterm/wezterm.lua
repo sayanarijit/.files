@@ -34,6 +34,7 @@ return {
   scrollback_lines = 3500,
   exit_behavior = "Close",
   adjust_window_size_when_changing_font_size = false,
+  check_for_updates = false,
   hyperlink_rules = {
     -- Linkify things that look like URLs
     -- This is actually the default if you don't specify any hyperlink_rules
