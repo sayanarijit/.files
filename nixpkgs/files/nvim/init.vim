@@ -22,6 +22,7 @@ Plug 'mhartington/formatter.nvim'
 Plug 'sayanarijit/xplr.vim'  " Rabbit hole warning. Don't go there.
 Plug 'sayanarijit/exec-cursorline-insert-stdout.nvim'
 Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
+Plug 'nvim-telescope/telescope-media-files.nvim'  "  Telescope extension to preview media files using Ueberzug.
 Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
 Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
 Plug 'nvim-lua/popup.nvim'
@@ -93,6 +94,7 @@ Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'pantharshit00/vim-prisma'  "  Prisma 2 support for vim 
 Plug 'jparise/vim-graphql'  "  A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation.
 " Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim
+Plug 'mickael-menu/zk-nvim'
 Plug 'vim-scripts/haproxy'  " syntax for haproxy
 " Plug 'jeetsukumaran/vim-pythonsense'  " Motions for Python classes, methods, functions, and doc strings.
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }  " Syntax highlighting for elm
@@ -416,6 +418,10 @@ omap gs <cmd>Pounce<CR>  " 's' is used by vim-surround
 
 -- require'neoscroll'.setup()
 
+require('telescope').load_extension('media_files')
+
+require("zk").setup()
+
 require'pounce'.setup{
   accept_keys = "JFKDLSAHGNUVRBYTMICEOXWPQZ",
   debug = false,
@@ -737,6 +743,7 @@ local wk_mappings = {
         f = { ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", "files" },
         g = { ":Telescope git_files<CR>", "git files" },
         m = { ":Telescope marks<CR>", "marks" },
+        M = { ":lua require('telescope').extensions.media_files.media_files()<CR>", "media" },
         ['"'] = { ":Telescope registers<CR>", "registers" },
         t = { ":Telescope live_grep<CR>", "grep text" },
         s = { ":Telescope spell_suggest<CR>", "grep text" },
@@ -899,11 +906,14 @@ require('formatter').setup({
           }
         end
     },
+    nunjucks = prettierconfig,
+    njk = prettierconfig,
     javascript = prettierconfig,
     typescriptreact = prettierconfig,
     typescript = prettierconfig,
     svelte = prettierconfig,
     js = prettierconfig,
+    graphql = prettierconfig,
     cjs = prettierconfig,
     html = prettierconfig,
     css = prettierconfig,

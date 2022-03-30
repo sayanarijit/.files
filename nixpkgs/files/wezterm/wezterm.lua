@@ -32,6 +32,7 @@ return {
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   scrollback_lines = 3500,
+  enable_scroll_bar = true,
   exit_behavior = "Close",
   adjust_window_size_when_changing_font_size = false,
   check_for_updates = false,
