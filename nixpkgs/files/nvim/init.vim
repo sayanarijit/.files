@@ -815,9 +815,9 @@ local wk_mappings = {
     Z = {
         name = "zk",
         Z = { ":ZkCd<CR>", "cd" },
-        n = { ":ZkNotes<CR>" "notes" },
-        b = { ":ZkBacklinks<CR>" "backlinks" },
-        l = { ":ZkLinks<CR>" "links" },
+        n = { ":ZkNotes<CR>", "notes" },
+        b = { ":ZkBacklinks<CR>", "backlinks" },
+        l = { ":ZkLinks<CR>", "links" },
     },
     
 }
