@@ -419,8 +419,11 @@ omap gs <cmd>Pounce<CR>  " 's' is used by vim-surround
 -- require'neoscroll'.setup()
 
 require('telescope').load_extension('media_files')
+require("telescope").load_extension("zk")
 
-require("zk").setup()
+require("zk").setup({
+    picker = "telescope",
+})
 
 require'pounce'.setup{
   accept_keys = "JFKDLSAHGNUVRBYTMICEOXWPQZ",
@@ -808,6 +811,15 @@ local wk_mappings = {
         h = { ":NnnPicker ~<CR>", "home directory" },
         ["/"] = { ":NnnPicker /<CR>", "fs root" },
     },
+    
+    Z = {
+        name = "zk",
+        Z = { ":ZkCd<CR>", "cd" },
+        n = { ":ZkNotes<CR>" "notes" },
+        b = { ":ZkBacklinks<CR>" "backlinks" },
+        l = { ":ZkLinks<CR>" "links" },
+    },
+    
 }
 
 wk.register(wk_mappings, wk_options)
