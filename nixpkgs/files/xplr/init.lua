@@ -9,6 +9,15 @@ package.path = home
   .. "/.config/xplr/plugins/?.lua;"
   .. package.path
 
+local fennel = require("fennel")
+
+fennel.path = fennel.path
+  .. ";"
+  .. home
+  .. "/.config/xplr/plugins/?/init.fnl;"
+  .. home
+  .. "/.config/xplr/plugins/?.fnl;"
+
 require("completion").setup()
 require("scroll").setup()
 

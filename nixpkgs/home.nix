@@ -135,10 +135,10 @@ in {
     sysctl
     xz
     # thefuck # fuck: correct previous command
-    telnet
+    inetutils
     sqlite
     skim # sk: fzf alternative in rust
-    scim # spreadsheet
+    sc-im # spreadsheet
     pgcli # postgres cli
     # mycli # mysql cli
     pandoc # File converter
