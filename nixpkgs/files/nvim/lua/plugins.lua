@@ -174,6 +174,7 @@ return require("packer").startup(function()
       "hrsh7th/cmp-cmdline",
       "saecki/crates.nvim",
       "L3MON4D3/LuaSnip",
+      'lukas-reineke/lsp-format.nvim'
     },
     config = function()
       local util = require("util")
@@ -220,8 +221,11 @@ return require("packer").startup(function()
         pylsp = {},
       }
 
+      local on_attach = require"lsp-format".on_attach
+
       local options = {
         capabilities = capabilities,
+        on_attach = on_attach,
       }
 
       util.setup(servers, options)
@@ -443,7 +447,7 @@ return require("packer").startup(function()
 
         c = {
           name = "config",
-          c = { ":tabnew ~/.config/nixpkgs/files/nvim/init.vim<CR>", "neovim config" },
+          c = { ":tabnew ~/.config/nixpkgs/files/nvim/init.lua<CR>", "neovim config" },
           h = { ":tabnew ~/.config/nixpkgs/home.nix<CR>", "home config" },
         },
 
@@ -559,8 +563,6 @@ return require("packer").startup(function()
     vim.cmd[[autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null']]
   end})
 
-
-
   -- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
   use({"hoob3rt/lualine.nvim"})
 
@@ -575,7 +577,7 @@ return require("packer").startup(function()
 
   -- Material colorscheme for NeoVim
   use({ "marko-cerovac/material.nvim", config = function ()
-    vim.cmd[[
+  vim.cmd[[
       set guifont=FiraCode\ Nerd\ Font:h19
       set cursorline
       set cursorcolumn
