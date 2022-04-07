@@ -91,7 +91,10 @@ in {
       ".config/alacritty/alacritty.yml".source =
         ./files/alacritty/alacritty.yml;
       ".config/wezterm/wezterm.lua".source = ./files/wezterm/wezterm.lua;
-      ".config/nvim/init.vim".source = ./files/nvim/init.vim;
+      ".config/nvim/init.lua".source = ./files/nvim/init.lua;
+      ".config/nvim/lua/plugins.lua".source = ./files/nvim/lua/plugins.lua;
+      ".config/nvim/lua/options.lua".source = ./files/nvim/lua/options.lua;
+      ".config/nvim/lua/util.lua".source = ./files/nvim/lua/util.lua;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".config/xplr/plugins/scroll/init.lua".source =
         ./files/xplr/plugins/scroll/init.lua;

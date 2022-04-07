@@ -70,6 +70,9 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export GOPATH="$HOME/go"
 export MANPAGER='nvim +Man!'
 
+export LUA_PATH=$LUA_PATH";/usr/local/share/lua/5.1/?.lua;./?.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;/usr/lib/lua/5.1/?.lua;/usr/lib/lua/5.1/?/init.lua;/home/f1/.luarocks/share/lua/5.1/?.lua;/home/f1/.luarocks/share/lua/5.1/?/init.lua;/usr/local/share/lua/5.1/?/init.lua"
+export LUA_CPATH=$LUA_CPATH';./?.so;/usr/lib/lua/5.1/?.so;/usr/lib/lua/5.1/loadall.so;/home/f1/.luarocks/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/?.so'
+
 # eval $(thefuck --alias)
 # command -v starship && eval "$(starship init zsh)"
 

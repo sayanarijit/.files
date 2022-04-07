@@ -15,80 +15,6 @@ syntax on
 
 """<Plugins>"""
 call plug#begin('~/.vim/plugged')
-Plug 'nvim-lua/plenary.nvim'
-Plug 'MunifTanjim/nui.nvim'  " Requirement for xplr.nvim
-Plug 'mhartington/formatter.nvim'
-" Plug 'sindrets/diffview.nvim'  "  Single tabpage interface to easily cycle through diffs for all modified files for any git rev.
-Plug 'sayanarijit/xplr.vim'  " Rabbit hole warning. Don't go there.
-Plug 'sayanarijit/exec-cursorline-insert-stdout.nvim'
-Plug 'nvim-lua/telescope.nvim'  "  Find, Filter, Preview, Pick. All lua, all the time.
-Plug 'nvim-telescope/telescope-media-files.nvim'  "  Telescope extension to preview media files using Ueberzug.
-Plug 'fhill2/xplr.nvim'  "  WIP - neovim plugin - xplr in floating window with msgpack communication
-Plug 'kosayoda/nvim-lightbulb'  "  VSCode bulb for neovim's built-in LSP
-Plug 'nvim-lua/popup.nvim'
-" Plug 'puremourning/vimspector'  "  vimspector - A multi-language debugging system for Vim
-Plug 'windwp/nvim-ts-autotag'  "  Use treesitter to auto close and auto rename html tag
-Plug 'dhruvasagar/vim-table-mode'  "  VIM Table Mode for instant table creation. 
-" Plug 'Pocco81/AutoSave.nvim' " A NeoVim plugin for saving your work before the world collapses or you type :qa!
- Plug 'yuttie/comfortable-motion.vim'  "  Brings physics-based smooth scrolling to the Vim world!
-" Plug 'karb94/neoscroll.nvim'  "  Smooth scrolling neovim plugin written in lua 
-Plug 'tyru/open-browser.vim'  " Open URI with your favorite browser from your most favorite editor
-Plug 'tyru/open-browser-github.vim'  " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
-" Plug 'ThePrimeagen/vim-be-good'  " A vim game :VimBeGood
-Plug 'neovim/nvim-lsp'  "  Nvim LSP client configurations
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'  " Create your own textobjects using tree-sitter queries!
-" Plug 'romgrk/nvim-treesitter-context'
-" Plug 'nvim-treesitter/nvim-treesitter-refactor'  "  Refactor module for nvim-treesitter
-" Plug 'nvim-treesitter/completion-treesitter'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8 
-" Plug 'Shougo/deoplete-lsp'  "  LSP Completion source for deoplete 
-" Plug 'nvim-lua/completion-nvim'  "  A async completion framework aims to provide completion to neovim's built in LSP written in Lua 
-" Plug 'deoplete-plugins/deoplete-jedi'  "  deoplete.nvim source for Python
-Plug 'majutsushi/tagbar'  " show tags in a bar (functions etc) for easy browsing
-" Plug 'liuchengxu/vista.vim'  "  Viewer & Finder for LSP symbols and tags 
-" Plug 'vim-airline/vim-airline'  " make statusline awesome
-" Plug 'hardcoreplayers/spaceline.vim'  " vim statusline like spacemacs
-Plug 'hrsh7th/nvim-cmp'  "  Auto completion plugin for nvim that written in Lua.
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-calc'
-Plug 'hrsh7th/cmp-emoji'
-Plug 'hrsh7th/cmp-cmdline'
-" Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-Plug 'saecki/crates.nvim'
-Plug 'pelodelfuego/vim-swoop'
-Plug 'windwp/nvim-spectre' "  Find the enemy and replace them with dark power. 
-" Plug 'wsdjeg/FlyGrep.vim'  "  awesome grep on the fly
-Plug 'airblade/vim-gitgutter'  " show git changes to files in gutter
-Plug 'dstein64/nvim-scrollview'  " A Neovim plugin that displays interactive vertical scrollbars.
-" Plug 'tpope/vim-commentary'  "comment-out by gc
-Plug 'b3nj5m1n/kommentary' "  Neovim commenting plugin, written in lua. 
-" Plug 'ggandor/lightspeed.nvim'  " Next-generation motion plugin with incremental input processing, allowing for unparalleled speed with near-zero cognitive effort
-" Plug 'kien/ctrlp.vim'  " fuzzy search files
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}  " Intellisense and auto completion
-Plug 'cespare/vim-toml'  "  Vim syntax for TOML
-Plug 'craigemery/vim-autotag'  " Update tags
-Plug 'tpope/vim-fugitive'  " Git integration
-Plug 'janko-m/vim-test'  " Test runner
-Plug 'uarun/vim-protobuf' "  Vim syntax highlighting for Google's Protocol Buffers 
-" Plug 'benmills/vimux'  " Runs tests in new tmux window
-Plug 'tpope/vim-surround'  " quoting/parenthesizing made simple
-" Plug 'fatih/vim-go'  " Go development
-" Plug 'rust-lang/rust.vim'  " Rust development
-Plug 'rhysd/git-messenger.vim'  " Git commit message viewer
-" Plug 'wellle/context.vim'  " Context of current buffer
-Plug 'LnL7/vim-nix'  " Nix support
-Plug 'evanleck/vim-svelte'  " Svelte support
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'  " Fuzzy finder vim support
-Plug 'terryma/vim-expand-region'  " visually select increasingly larger regions of text
-Plug 'rlane/pounce.nvim'  " Incremental fuzzy search motion plugin for Neovim
-" Plug 'SirVer/ultisnips'  " The ultimate snippet solution for Vim
-" Plug 'honza/vim-snippets'  " Snippets are separated from the engine
-" Plug 'liuchengxu/vim-which-key'  " Vim plugin that shows keybindings in popup
-Plug 'L3MON4D3/LuaSnip'  "  Snippet Engine for Neovim written in Lua.
 Plug 'folke/which-key.nvim'  " vim-which-key but in Lua
 Plug 'mhinz/vim-startify'  " The fancy start screen for Vim.
 Plug 'pantharshit00/vim-prisma'  "  Prisma 2 support for vim 
@@ -128,30 +54,8 @@ call plug#end()
 
 """<Custom settings>"""
 " Basic config
-let mapleader = ","  " Keep it at the top
 
-set noautochdir  " Don't change directory when opening a file
-set nu relativenumber  " No need to count lines from current position
-set autoread  " Auto reload when file changes
-set notagrelative  " Use full file path when generating tags
-set showtabline=2  " Show tabname even if only one file is open
-set scrolloff=5  " Keep some space while scrolling vertically
-set splitbelow  " Opens new hsplits below the current window
-set splitright  " Opens new vsplits right side of the current window
-set lazyredraw  " Prevent screen flickering when opening vim inside vim
-set nohlsearch  " Turn off search highlight
-set hidden
-set nobackup
-set nowritebackup
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
 filetype plugin indent on
-set tabstop=4  " show existing tab with 4 spaces width
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
-set expandtab  " Convert tabs to spaces (I don't write golang anymore)
-set smartindent
-set inccommand=nosplit
 
 " use 2 spaces for yaml & lua
 autocmd FileType yaml,yml,json,lua,html,sql,js,ts,jsx,tsx,svelte,cjs,prisma,gql,graphql,dart setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab smarttab
@@ -233,11 +137,6 @@ nnoremap <silent> X :ExecuteLine<CR>
 " I forgot what it is
 " autocmd QuickFixCmdPost *grep* cwindow
 """</Custom settings>"""
-
-"""<Testing: vim-test>"""
-let test#strategy = "neovim"
-let test#python#runner = 'pytest'
-"""</Testing>
 
 """<elm-vim>"""
 let g:elm_setup_keybindings = 0
@@ -474,8 +373,6 @@ else
 end
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = '/home/sayanarijit/Documents/GitHub/lua-language-server'
-local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 require'lspconfig'.sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
