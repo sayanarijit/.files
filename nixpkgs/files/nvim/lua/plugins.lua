@@ -217,6 +217,7 @@ return require("packer").startup(function()
         prismals = {},
         graphql = {},
         sumneko_lua = {},
+        pylsp = {},
       }
 
       local options = {
@@ -437,25 +438,13 @@ return require("packer").startup(function()
           o = {
             name = "open",
             t = { ":tabnew<CR>", "tab" },
-            G = { ":GitModified<CR>", "git modified files" },
-          },
-          t = {
-            name = "terminal",
-            t = { ":TerminalTab<CR>", "new tab" },
-            h = { ":TerminalHSplit<CR>", "horizontal split" },
-            v = { ":TerminalVSplit<CR>", "vertical split" },
-          },
-          w = {
-            name = "writing",
-            t = { "<Plug>Titlecase<CR>", "title case" },
-            T = { "<Plug>TitlecaseLine<CR>", "title case line" },
           },
         },
 
         c = {
           name = "config",
-          c = { ":Config<CR>", "neovim config" },
-          h = { ":HomeConfig<CR>", "home config" },
+          c = { ":tabnew ~/.config/nixpkgs/files/nvim/init.vim<CR>", "neovim config" },
+          h = { ":tabnew ~/.config/nixpkgs/home.nix<CR>", "home config" },
         },
 
         s = {
@@ -492,8 +481,6 @@ return require("packer").startup(function()
           c = { ":Git commit<CR>", "commit" },
           d = { ":DiffviewOpen<CR>", "diff" },
           D = { ":Gdiffsplit<CR>", "diff split" },
-          G = { ":GitModified<CR>", "" },
-          G = { ":GitModified<CR>", "edit modified" },
           s = { ":Gstatus<CR>", "status" },
           h = { ":GitGutterLineHighlightsToggle<CR>", "highlight hunks" },
           H = { "<Plug>(GitGutterPreviewHunk)<CR>", "preview hunk" },
@@ -516,15 +503,11 @@ return require("packer").startup(function()
             ":Telescope lsp_definitions<CR>",
             "definition",
           },
-          F = { ":Format<CR>", "format" },
-          h = { ":Hover<CR>", "hover" },
-          i = { ":Implementation<CR>", "implementation" },
-          l = { ":NextDiagnostic<CR>", "next diagnostic" },
-          L = { ":PrevDiagnostic<CR>", "prev diagnostic" },
+          h = { ":lua vim.lsp.buf.hover()<CR>", "hover" },
+          i = { ":Telescope lsp_implementations()<CR>", "implementation" },
           r = { ":Telescope lsp_references<CR>", "references" },
           s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },
           S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" },
-          t = { ":TypeDefinition<CR>", "type definition" },
         },
 
         q = { ":q<CR>", "quit" },
@@ -552,4 +535,57 @@ return require("packer").startup(function()
       vim.api.nvim_command("set timeoutlen=0")
     end,
   })
+
+  --  Prisma 2 support for vim 
+  use({ "pantharshit00/vim-prisma" })
+
+  --  A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation. 
+  use({ "jparise/vim-graphql" })
+
+  --  Neovim extension for zk 
+  use({ "mickael-menu/zk-nvim", cinfig = function ()
+    require("zk").setup({
+      -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+      -- it's recommended to use "telescope" or "fzf"
+      picker = "telescope",
+
+    })
+  end})
+
+  use({ 'tversteeg/registers.nvim' })
+
+  -- Tools to help create flutter apps in neovim using the native lsp
+  use({ "akinsho/flutter-tools.nvim" , config = function ()
+    vim.cmd[[autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null']]
+  end})
+
+
+
+  -- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
+  use({"hoob3rt/lualine.nvim"})
+
+  -- lua `fork` of vim-web-devicons for neovim
+  use({ 'kyazdani42/nvim-web-devicons' })
+
+  -- Adds file type icons to Vim plugins (should be at the bottom)
+  use({ "ryanoasis/vim-devicons" })
+
+  -- The fastest Neovim colorizer.
+  use({ 'norcalli/nvim-colorizer.lua' })
+
+  -- Material colorscheme for NeoVim
+  use({ "marko-cerovac/material.nvim", config = function ()
+    vim.cmd[[
+      set guifont=FiraCode\ Nerd\ Font:h19
+      set cursorline
+      set cursorcolumn
+      set colorcolumn=80
+      set background=dark
+      let g:airline_theme='material'
+      let g:gruvbox_contrast_dark='soft'
+      let g:material_style = "darker"
+      highlight link CompeDocumentation NormalFloat
+      colorscheme material
+    ]]
+  end } )
 end)

@@ -1,3 +1,4 @@
+local vim = vim
 local cmd = vim.cmd
 local indent = 2
 
@@ -51,6 +52,8 @@ vim.opt.showtabline = 2 -- Show tabname even if only one file is open
 vim.opt.lazyredraw = true -- Prevent screen flickering when opening vim inside vim
 vim.opt.backup = false -- Do not old backup
 vim.opt.writebackup = false -- Do not create backup
+vim.opt.colorcolumn = 80 -- 80 chars column length
+vim.opt.background = "dark" -- Dark theme
 
 -- vim.o.shortmess = "IToOlxfitn"
 -- don't load the plugins below
@@ -64,6 +67,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_matchparen = 1
+vim.g.material_style = "darker"
 
 -- Use proper syntax highlighting in code blocks
 local fences = {

@@ -95,6 +95,7 @@ in {
       ".config/nvim/lua/plugins.lua".source = ./files/nvim/lua/plugins.lua;
       ".config/nvim/lua/options.lua".source = ./files/nvim/lua/options.lua;
       ".config/nvim/lua/util.lua".source = ./files/nvim/lua/util.lua;
+      ".config/nvim/lua/keys.lua".source = ./files/nvim/lua/keys.lua;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".config/xplr/plugins/scroll/init.lua".source =
         ./files/xplr/plugins/scroll/init.lua;
