@@ -70,7 +70,6 @@ require("packer").startup(function()
           nls.builtins.formatting.nixpkgs_fmt,
           nls.builtins.formatting.dart_format,
           nls.builtins.formatting.elm_format,
-          nls.builtins.formatting.elm_format,
           nls.builtins.formatting.prettierd.with({
             "--tab-width",
             "2",
