@@ -50,7 +50,8 @@ let
 
   nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
 
-in {
+in
+{
 
   nixpkgs = {
     config = { allowUnfree = true; };
