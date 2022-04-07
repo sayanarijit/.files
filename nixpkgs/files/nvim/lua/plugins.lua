@@ -1,32 +1,35 @@
+_G.vim = vim
+_G.cmd = vim.cmd
+
 local use = require("packer").use
 
-return require("packer").startup(function()
+require("packer").startup(function()
+  -- Packer can manage itself
+  use({
+    "wbthomason/packer.nvim",
+    opt = true,
+    setup = function()
+      cmd([[
+        augroup packer_user_config
+          autocmd!
+          autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+        augroup end
+      ]])
+    end,
+  })
+
   --  Don't go there. It's a rabbithole.
   --  cmd: Xp
   use({
     "sayanarijit/xplr.vim",
     config = function()
-      vim.cmd([[
+      cmd([[
         let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
         let g:nnn#action = {
               \ '<c-t>': 'tab split',
               \ '<c-x>': 'split',
               \ '<c-v>': 'vsplit' }
         let g:nnn#replace_netrw = 1
-      ]])
-    end,
-  })
-
-  -- Packer can manage itself
-  use({
-    "wbthomason/packer.nvim",
-    opt = true,
-    setup = function()
-      vim.cmd([[
-        augroup packer_user_config
-          autocmd!
-          autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-        augroup end
       ]])
     end,
   })
@@ -42,18 +45,62 @@ return require("packer").startup(function()
     end,
   })
 
-  -- VSCode bulb for neovim's built-in LSP.
+  -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
   use({
-    "kosayoda/nvim-lightbulb",
+    "jose-elias-alvarez/null-ls.nvim",
     config = function()
-      vim.cmd([[
-        autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
-      ]])
+      local nls = require("null-ls")
+      nls.setup({
+        debiunce = 150,
+        save_after_format = false,
+        sources = {
+          nls.builtins.formatting.stylua.with({
+            extra_args = {
+              "--indent-width",
+              "2",
+              "--indent-type",
+              "Spaces",
+              "--column-width",
+              "80",
+              "--quote-style",
+              "AutoPreferDouble",
+            },
+          }),
+          nls.builtins.formatting.rustfmt,
+          nls.builtins.formatting.nixpkgs_fmt,
+          nls.builtins.formatting.dart_format,
+          nls.builtins.formatting.elm_format,
+          nls.builtins.formatting.elm_format,
+          nls.builtins.formatting.prettierd.with({
+            "--tab-width",
+            "2",
+            "--double-quote",
+          }),
+          nls.builtins.formatting.black,
+        },
+
+        on_attach = function(client)
+          if client.resolved_capabilities.document_formatting then
+            vim.cmd([[
+              augroup LspFormatting
+                  autocmd! * <buffer>
+                  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+              augroup END
+            ]])
+          end
+        end,
+
+        root_dir = require("null-ls.utils").root_pattern(
+          ".null-ls-root",
+          ".nvim.settings.json",
+          ".git"
+        ),
+      })
     end,
+    requires = { "nvim-lua/plenary.nvim" },
   })
 
   --  Nvim Treesitter configurations and abstraction layer
-
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -174,7 +221,9 @@ return require("packer").startup(function()
       "hrsh7th/cmp-cmdline",
       "saecki/crates.nvim",
       "L3MON4D3/LuaSnip",
-      'lukas-reineke/lsp-format.nvim'
+      -- "lukas-reineke/lsp-format.nvim",
+      "kosayoda/nvim-lightbulb",
+      "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
       local util = require("util")
@@ -182,8 +231,6 @@ return require("packer").startup(function()
       -- Add additional capabilities supported by nvim-cmp
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
-      local lspconfig = require("lspconfig")
 
       -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
       local servers = {
@@ -221,7 +268,11 @@ return require("packer").startup(function()
         pylsp = {},
       }
 
-      local on_attach = require"lsp-format".on_attach
+      local on_attach = function(client)
+        -- Formatting is doce by null-ls
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+      end
 
       local options = {
         capabilities = capabilities,
@@ -318,6 +369,10 @@ return require("packer").startup(function()
           { name = "cmdline" },
         },
       })
+
+      cmd([[
+        autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+      ]])
     end,
   })
 
@@ -325,7 +380,7 @@ return require("packer").startup(function()
   use({
     "preservim/tagbar",
     config = function()
-      vim.cmd([[
+      cmd([[
         nnoremap <silent> \\ :TagbarToggle<CR>
         let g:tagbar_type_elm = {
                   \   'ctagstype':'elm'
@@ -365,7 +420,7 @@ return require("packer").startup(function()
   use({
     "vim-test/vim-test",
     config = function()
-      vim.cmd([[
+      cmd([[
         let test#strategy = 'neovim'
         let test#python#runner = 'pytest'
       ]])
@@ -394,7 +449,7 @@ return require("packer").startup(function()
   use({
     "terryma/vim-expand-region",
     config = function()
-      vim.cmd([[
+      cmd([[
         let g:expand_region_text_objects = {
           \ 'iw'  :0,
           \ 'aw'  :0,
@@ -430,6 +485,7 @@ return require("packer").startup(function()
   --  link The fancy start screen for Vim.
   use({ "mhinz/vim-startify" })
 
+  -- boom Create key bindings that stick. WhichKey is a lua plugin for Neovim 0.5 that displays a popup with possible keybindings of the command you started typing.
   use({
     "folke/which-key.nvim",
     config = function()
@@ -447,7 +503,10 @@ return require("packer").startup(function()
 
         c = {
           name = "config",
-          c = { ":tabnew ~/.config/nixpkgs/files/nvim/init.lua<CR>", "neovim config" },
+          c = {
+            ":tabnew ~/.config/nixpkgs/files/nvim/init.lua<CR>",
+            "neovim config",
+          },
           h = { ":tabnew ~/.config/nixpkgs/home.nix<CR>", "home config" },
         },
 
@@ -522,7 +581,6 @@ return require("packer").startup(function()
           name = "explore",
           p = { ":Xp %:p<CR>", "present directory" },
           w = { ":Xp<CR>", "working directory" },
-          h = { ":Xp ~<CR>", "home directory" },
           ["/"] = { ":Xp /<CR>", "fs root" },
         },
 
@@ -540,57 +598,59 @@ return require("packer").startup(function()
     end,
   })
 
-  --  Prisma 2 support for vim 
+  --  Prisma 2 support for vim
   use({ "pantharshit00/vim-prisma" })
 
   --  A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation.
   use({ "jparise/vim-graphql" })
 
-  --  Neovim extension for zk 
-  use({ "mickael-menu/zk-nvim", cinfig = function ()
-    require("zk").setup({
-      -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-      -- it's recommended to use "telescope" or "fzf"
-      picker = "telescope",
+  --  Neovim extension for zk
+  use({
+    "mickael-menu/zk-nvim",
+    cinfig = function()
+      require("zk").setup({
+        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+        -- it's recommended to use "telescope" or "fzf"
+        picker = "telescope",
+      })
+    end,
+  })
 
-    })
-  end})
-
-  use({ 'tversteeg/registers.nvim' })
+  use({ "tversteeg/registers.nvim" })
 
   -- Tools to help create flutter apps in neovim using the native lsp
-  use({ "akinsho/flutter-tools.nvim" , config = function ()
-    vim.cmd[[autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null']]
-  end})
+  use({
+    "akinsho/flutter-tools.nvim",
+    config = function()
+      cmd(
+        [[autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null']]
+      )
+    end,
+  })
 
   -- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
   use({
     "hoob3rt/lualine.nvim",
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function ()
-      require('lualine').setup()
-    end
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    config = function()
+      require("lualine").setup()
+    end,
   })
 
-  -- Adds file type icons to Vim plugins (should be at the bottom)
-  use({ "ryanoasis/vim-devicons" })
-
   -- The fastest Neovim colorizer.
-  use({ 'norcalli/nvim-colorizer.lua' })
+  use({ "norcalli/nvim-colorizer.lua" })
 
   -- Material colorscheme for NeoVim
-  use({ "marko-cerovac/material.nvim", config = function ()
-    vim.cmd[[
+  use({
+    "marko-cerovac/material.nvim",
+    config = function()
+      cmd([[
       set guifont=FiraCode\ Nerd\ Font:h19
-      set cursorline
-      set cursorcolumn
-      set colorcolumn=80
       set background=dark
-      let g:airline_theme='material'
-      let g:gruvbox_contrast_dark='soft'
       let g:material_style = "darker"
       highlight link CompeDocumentation NormalFloat
       colorscheme material
-    ]]
-  end})
+    ]])
+    end,
+  })
 end)
