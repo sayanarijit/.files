@@ -543,7 +543,7 @@ return require("packer").startup(function()
   --  Prisma 2 support for vim 
   use({ "pantharshit00/vim-prisma" })
 
-  --  A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation. 
+  --  A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation.
   use({ "jparise/vim-graphql" })
 
   --  Neovim extension for zk 
@@ -564,7 +564,13 @@ return require("packer").startup(function()
   end})
 
   -- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
-  use({"hoob3rt/lualine.nvim"})
+  use({
+    "hoob3rt/lualine.nvim",
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function ()
+      require('lualine').setup()
+    end
+  })
 
   -- lua `fork` of vim-web-devicons for neovim
   use({ 'kyazdani42/nvim-web-devicons' })
@@ -577,7 +583,7 @@ return require("packer").startup(function()
 
   -- Material colorscheme for NeoVim
   use({ "marko-cerovac/material.nvim", config = function ()
-  vim.cmd[[
+    vim.cmd[[
       set guifont=FiraCode\ Nerd\ Font:h19
       set cursorline
       set cursorcolumn
@@ -589,5 +595,5 @@ return require("packer").startup(function()
       highlight link CompeDocumentation NormalFloat
       colorscheme material
     ]]
-  end } )
+  end})
 end)
