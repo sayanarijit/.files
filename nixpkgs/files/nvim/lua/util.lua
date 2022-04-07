@@ -196,13 +196,23 @@ function M.colors(filter)
       if hl.link then
         def.link = hl.link
       end
-      for key, def_key in pairs({ foreground = "fg", background = "bg", special = "sp" }) do
+      for key, def_key in pairs({
+        foreground = "fg",
+        background = "bg",
+        special = "sp",
+      }) do
         if type(hl[key]) == "number" then
           local hex = string.format("#%06x", hl[key])
           def[def_key] = hex
         end
       end
-      for _, style in pairs({ "bold", "italic", "underline", "undercurl", "reverse" }) do
+      for _, style in pairs({
+        "bold",
+        "italic",
+        "underline",
+        "undercurl",
+        "reverse",
+      }) do
         if hl[style] then
           def.style = (def.style and (def.style .. ",") or "") .. style
         end

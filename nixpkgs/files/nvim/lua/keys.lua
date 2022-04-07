@@ -1,6 +1,6 @@
 local cmd = vim.cmd
 
-cmd[[
+cmd([[
   inoremap <silent> <c-a> <ESC>I
   inoremap <silent> <c-e> <ESC>A
   inoremap <silent> <a-left> <c-left>
@@ -16,4 +16,4 @@ cmd[[
   vnoremap <silent> P "+P
 
   tnoremap <c-\><c-\> <c-\><c-n>
-]]
+]])
