@@ -98,6 +98,7 @@ in
       ".config/nvim/lua/util.lua".source = ./files/nvim/lua/util.lua;
       ".config/nvim/lua/keys.lua".source = ./files/nvim/lua/keys.lua;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
+      ".config/xplr/plugins/fennel.lua".source = ./files/xplr/plugins/fennel.lua;
       ".config/xplr/plugins/scroll/init.lua".source =
         ./files/xplr/plugins/scroll/init.lua;
       ".config/xplr/plugins/double-colon/init.lua".source =
