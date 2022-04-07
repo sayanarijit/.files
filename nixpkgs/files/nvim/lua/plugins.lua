@@ -572,9 +572,6 @@ return require("packer").startup(function()
     end
   })
 
-  -- lua `fork` of vim-web-devicons for neovim
-  use({ 'kyazdani42/nvim-web-devicons' })
-
   -- Adds file type icons to Vim plugins (should be at the bottom)
   use({ "ryanoasis/vim-devicons" })
 
