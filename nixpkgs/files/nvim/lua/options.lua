@@ -115,3 +115,9 @@ cmd(
   [[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]]
 )
 cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
+
+cmd([[
+  " Remap for rename current word
+  vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
+  vnoremap <leader>R "hy:bufdo %s/<C-r>h/<C-r>h/gce<left><left><left><left>
+]])

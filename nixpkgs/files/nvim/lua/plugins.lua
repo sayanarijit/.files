@@ -34,6 +34,9 @@ require("packer").startup(function()
     end,
   })
 
+  --  Switch between single-line and multiline forms of code
+  use({ "AndrewRadev/splitjoin.vim" })
+
   -- Find, Filter, Preview, Pick. All lua, all the time.
   use({
     "nvim-telescope/telescope.nvim",
@@ -67,6 +70,7 @@ require("packer").startup(function()
             },
           }),
           nls.builtins.formatting.rustfmt,
+          nls.builtins.formatting.markdownlint,
           nls.builtins.formatting.nixpkgs_fmt,
           nls.builtins.formatting.dart_format,
           nls.builtins.formatting.elm_format,
@@ -561,6 +565,7 @@ require("packer").startup(function()
           name = "lsp",
           R = { ":LspRestart<CR>", "restart" },
           a = { ":Telescope lsp_code_actions<CR>", "code action" },
+          c = { ":lua vim.lsp.buf.rename()<CR>", "rename" },
           d = {
             ":Telescope lsp_definitions<CR>",
             "definition",
