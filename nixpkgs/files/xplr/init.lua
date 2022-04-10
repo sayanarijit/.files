@@ -155,3 +155,22 @@ require("xpm").setup({
 xplr.config.general.enable_mouse = true
 xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
+
+-- Fennel Support
+
+package.path = home
+  .. "/.config/xplr/plugins/?/init.lua;"
+  .. home
+  .. "/.config/xplr/plugins/?.lua;"
+  .. package.path
+
+local fennel = require("fennel")
+
+fennel.path = fennel.path
+  .. ";"
+  .. home
+  .. "/.config/xplr/plugins/?/init.fnl;"
+  .. home
+  .. "/.config/xplr/plugins/?.fnl;"
+
+table.insert(package.loaders or package.searchers, fennel.searcher)
