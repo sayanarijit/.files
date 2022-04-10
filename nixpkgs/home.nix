@@ -99,10 +99,6 @@ in
       ".config/nvim/lua/keys.lua".source = ./files/nvim/lua/keys.lua;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".config/xplr/plugins/fennel.lua".source = ./files/xplr/plugins/fennel.lua;
-      ".config/xplr/plugins/scroll/init.lua".source =
-        ./files/xplr/plugins/scroll/init.lua;
-      ".config/xplr/plugins/double-colon/init.lua".source =
-        ./files/xplr/plugins/double-colon/init.lua;
       ".vim/autoload/plug.vim".source = vimPlug;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
       ".newsboat/urls".source = ./files/newsboat/urls;
