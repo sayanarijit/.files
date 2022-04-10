@@ -157,7 +157,6 @@ xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
 
 -- Fennel Support
-
 package.path = home
   .. "/.config/xplr/plugins/?/init.lua;"
   .. home
