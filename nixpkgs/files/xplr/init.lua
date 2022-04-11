@@ -27,94 +27,11 @@ os.execute(
 )
 
 -- Plugins
-<<<<<<< Updated upstream
-require("xpm").setup({
-  -- Implements support for dual-pane navigation into xplr
-  "sayanarijit/dual-pane.xplr",
-
-  -- Previewer implementation for xplr using suckless tabbed and nnn preview-tabbed
-  "sayanarijit/preview-tabbed.xplr",
-
-  -- Send files to running Neovim sessions using nvim-ctrl
-  "sayanarijit/nvim-ctrl.xplr",
-
-  -- The missing command mode for xplr
-  "sayanarijit/command-mode.xplr",
-
-  -- xplr icon theme
-  "prncss-xyz/icons.xplr",
-
-  -- A clean, distraction free xplr table UI
-  "sayanarijit/zentable.xplr",
-
-  -- trach-cli integration for xplr
-  "sayanarijit/trash-cli.xplr",
-
-  -- zoxide integration for xplr
-  "sayanarijit/zoxide.xplr",
-
-  -- dragon integration for xplr
-  "sayanarijit/dragon.xplr",
-
-  -- xclip based copy-paste integration for xplr
-  "sayanarijit/xclip.xplr",
-
-  -- type-to-nav port for xplr
-  "prncss-xyz/type-to-nav.xplr",
-
-  -- xplr + xargs = POWER!
-  "sayanarijit/xargs.xplr",
-
-  -- Context switch for xplr
-  "igorepst/context-switch.xplr",
-
-  -- An interactive finder plugin to complement map.xplr
-  "sayanarijit/find.xplr",
-
-  -- Visually inspect and interactively execute batch commands using xplr
-  "sayanarijit/map.xplr",
-
-  -- dua-cli integration for xplr
-  "sayanarijit/dua-cli.xplr",
-
-  -- xplr wrapper for https://github.com/ouch-org/ouch
-  "dtomvan/ouch.xplr",
-
-  -- fzf integration for xplr
-  {
-    name = "sayanarijit/fzf.xplr",
-    setup = function()
-      require("fzf").setup({
-        args = "--preview 'pistol {}'",
-      })
-    end,
-  },
-
-  -- Use this plugin to paste your files to paste.rs, and open/delete them later in fzf.
-  {
-    name = "dtomvan/paste-rs.xplr",
-    setup = function()
-      require("paste-rs").setup({
-        db_path = home .. "paste.rs.list",
-      })
-    end,
-  },
-
-  -- xplr theme - Material Landscape 2
-  {
-    name = "sayanarijit/material-landscape2.xplr",
-    setup = function()
-      require("material-landscape2").setup({
-        keep_default_layout = true,
-      })
-    end,
-=======
 xplr.config.modes.builtin.default.key_bindings.on_key.x = {
   help = "xpm",
   messages = {
     "PopMode",
     { SwitchModeCustom = "xpm" },
->>>>>>> Stashed changes
   },
 }
 
