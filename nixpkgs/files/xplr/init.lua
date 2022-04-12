@@ -52,7 +52,7 @@ require("xpm").setup({
     "sayanarijit/command-mode.xplr",
 
     -- xplr icon theme
-    "prncss-xyz/icons.xplr",
+    "sayanarijit/icons.xplr",
 
     -- A clean, distraction free xplr table UI
     "sayanarijit/zentable.xplr",
