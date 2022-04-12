@@ -135,29 +135,25 @@ require("xpm").setup({
     {
       name = "igorepst/term.xplr",
       setup = function()
-        require("term").setup({
-          -- Spawn new window
-          {
-            mode = "default",
-            key = "ctrl-n",
-            send_focus = true,
-            send_selection = true,
-            exe = "wezterm",
-            extra_term_args = "cli spawn --new-window --",
-            extra_xplr_args = "",
-          },
+        local term = require("term")
 
-          -- Spawn new tab
-          {
-            mode = "default",
-            key = "ctrl-t",
-            send_focus = true,
-            send_selection = true,
-            exe = "wezterm",
-            extra_term_args = "cli spawn --",
-            extra_xplr_args = "",
-          },
-        })
+        local window = term.profile_wezterm_window()
+        window.send_selection = true
+        window.key = "ctrl-n"
+
+        local tab = term.profile_wezterm_tab()
+        tab.send_selection = true
+        tab.key = "ctrl-t"
+
+        local vsplit = term.profile_wezterm_vsplit()
+        vsplit.send_selection = true
+        vsplit.key = "ctrl-v"
+
+        local hsplit = term.profile_wezterm_hsplit()
+        hsplit.send_selection = true
+        hsplit.key = "ctrl-h"
+
+        term.setup({ window, tab, vsplit, hsplit })
       end,
     },
   },
