@@ -137,7 +137,7 @@ require("xpm").setup({
       setup = function()
         local term = require("term")
 
-        local window = term.profile_wezterm_window()
+        local window = term.profile_wezterm()
         window.send_selection = true
         window.key = "ctrl-n"
 
