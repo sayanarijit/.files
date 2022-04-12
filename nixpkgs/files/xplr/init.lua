@@ -70,7 +70,7 @@ require("xpm").setup({
     "sayanarijit/xclip.xplr",
 
     -- type-to-nav port for xplr
-    "prncss-xyz/type-to-nav.xplr",
+    "sayanarijit/type-to-nav.xplr",
 
     -- xplr + xargs = POWER!
     "sayanarijit/xargs.xplr",
