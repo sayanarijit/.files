@@ -96,7 +96,7 @@ require("xpm").setup({
     -- fzf integration for xplr
     {
       name = "sayanarijit/fzf.xplr",
-      config = function()
+      setup = function()
         require("fzf").setup({
           args = "--preview 'pistol {}'",
         })
@@ -106,7 +106,7 @@ require("xpm").setup({
     -- Use this plugin to paste your files to paste.rs, and open/delete them later in fzf.
     {
       name = "dtomvan/paste-rs.xplr",
-      config = function()
+      setup = function()
         require("paste-rs").setup({
           db_path = home .. "paste.rs.list",
         })
