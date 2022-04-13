@@ -7,7 +7,7 @@ local xplr = xplr
 
 -- Plugin Manager
 local home = os.getenv("HOME")
-local xpm_path = home .. "/.config/xplr/plugins/xpm.xplr"
+local xpm_path = home .. "/.local/share/xplr/dtomvan/xpm.xplr"
 local xpm_url = "https://github.com/dtomvan/xpm.xplr"
 
 package.path = package.path
@@ -39,6 +39,9 @@ require("xpm").setup({
   auto_install = true,
   auto_cleanup = true,
   plugins = {
+    -- Let xpm manage itself
+    "dtomvan/xpm.xplr",
+
     -- Implements support for dual-pane navigation into xplr
     "sayanarijit/dual-pane.xplr",
 
@@ -85,7 +88,7 @@ require("xpm").setup({
     "sayanarijit/map.xplr",
 
     -- dua-cli integration for xplr
-    "sayanarijit/dua-cli.xplr",
+    -- "sayanarijit/dua-cli.xplr",
 
     -- xplr wrapper for https://github.com/ouch-org/ouch
     "dtomvan/ouch.xplr",
@@ -133,9 +136,10 @@ require("xpm").setup({
 
     -- Terminal integration for xplr
     {
-      name = "igorepst/term.xplr",
+      name = "sayanarijit/alacritty.xplr",
+      rev = "term",
       setup = function()
-        local term = require("term")
+        local term = require("alacritty")
 
         local window = term.profile_wezterm()
         window.send_selection = true
