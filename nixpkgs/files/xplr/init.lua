@@ -5,8 +5,20 @@ version = "0.17.0"
 local xplr = xplr
 ---@diagnostic enable
 
--- Plugin Manager
 local home = os.getenv("HOME")
+
+-- Lua search path
+package.path = home
+  .. "/.config/xplr/plugins/?/init.lua;"
+  .. home
+  .. "/.config/xplr/plugins/?.lua;"
+  .. package.path
+  .. ";"
+  .. os.getenv("LUA_PATH")
+  .. ";"
+  .. os.getenv("LUA_CPATH")
+
+-- Plugin Manager
 local xpm_path = home .. "/.local/share/xplr/dtomvan/xpm.xplr"
 local xpm_url = "https://github.com/dtomvan/xpm.xplr"
 
@@ -169,12 +181,6 @@ xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
 
 -- Fennel Support
-package.path = home
-  .. "/.config/xplr/plugins/?/init.lua;"
-  .. home
-  .. "/.config/xplr/plugins/?.lua;"
-  .. package.path
-
 local fennel = require("fennel")
 
 fennel.path = fennel.path
