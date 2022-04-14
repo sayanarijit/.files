@@ -80,6 +80,7 @@ require("packer").startup(function()
             "--double-quote",
           }),
           nls.builtins.formatting.black,
+          nls.builtins.formatting.taplo,
         },
 
         on_attach = function(client)
