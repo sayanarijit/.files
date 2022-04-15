@@ -13,10 +13,12 @@ package.path = home
   .. home
   .. "/.config/xplr/plugins/?.lua;"
   .. package.path
-  .. ";"
-  .. os.getenv("LUA_PATH")
-  .. ";"
-  .. os.getenv("LUA_CPATH")
+
+-- luarocks
+-- Add `eval "$(luarocks path --lua-version 5.1)"` to your `.bashrc` or `.zshrc`.
+-- Install packages with `luarocks install $name --local --lua-version 5.1`
+package.path = os.getenv("LUA_PATH") .. ";" .. package.path
+package.cpath = os.getenv("LUA_CPATH") .. ";" .. package.cpath
 
 -- Plugin Manager
 local xpm_path = home .. "/.local/share/xplr/dtomvan/xpm.xplr"
