@@ -166,6 +166,12 @@ require("packer").startup(function()
     end,
   })
 
+  --  vimspector - A multi-language debugging system for Vim
+  use({
+    "puremourning/vimspector",
+    run = "python3 install_gadget.py --all",
+  })
+
   -- -- A fast and lightweight Neovim lua plugin to keep an eye on where your cursor has jumped.
   -- use({
   --   "edluffy/specs.nvim",
