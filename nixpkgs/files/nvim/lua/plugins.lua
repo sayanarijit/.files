@@ -123,8 +123,9 @@ require("packer").startup(function()
       vim.g.autotagTagsFile = ".vim/tags"
 
       require("nvim-treesitter.configs").setup({
-        ensure_installed = "maintained",
-        ignore_install = { "php" },
+        ensure_installed = "all",
+        sync_install = false,
+        ignore_install = { "php", "phpdoc" },
         autotag = {
           enable = true,
         },
@@ -307,20 +308,14 @@ require("packer").startup(function()
 
       require("luasnip/loaders/from_vscode").load()
 
-      --- <tab> to jump to next snippet's placeholder
-      local function on_tab()
-        return luasnip.jump(1) and "" or util.t("<Tab>")
+      local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0
+          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+              :sub(col, col)
+              :match("%s")
+            == nil
       end
-
-      --- <s-tab> to jump to next snippet's placeholder
-      local function on_s_tab()
-        return luasnip.jump(-1) and "" or util.t("<S-Tab>")
-      end
-
-      util.imap("<Tab>", on_tab, { expr = true })
-      util.smap("<Tab>", on_tab, { expr = true })
-      util.imap("<S-Tab>", on_s_tab, { expr = true })
-      util.smap("<S-Tab>", on_s_tab, { expr = true })
 
       -- nvim-cmp setup
       local cmp = require("cmp")
@@ -341,16 +336,20 @@ require("packer").startup(function()
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
-          ["<Tab>"] = function(fallback)
+
+          ["<down>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
+            elseif has_words_before() then
+              cmp.complete()
             else
               fallback()
             end
-          end,
-          ["<S-Tab>"] = function(fallback)
+          end, { "i", "s" }),
+
+          ["<up>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -358,7 +357,7 @@ require("packer").startup(function()
             else
               fallback()
             end
-          end,
+          end, { "i", "s" }),
         },
         sources = {
           { name = "nvim_lsp" },
@@ -632,7 +631,13 @@ require("packer").startup(function()
   -- Tools to help create flutter apps in neovim using the native lsp
   use({
     "akinsho/flutter-tools.nvim",
+    requires = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+    },
     config = function()
+      require("flutter-tools").setup()
+      require("telescope").load_extension("flutter")
       cmd(
         [[autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null']]
       )
