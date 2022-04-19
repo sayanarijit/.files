@@ -578,7 +578,7 @@ require("packer").startup(function()
           },
           h = { ":lua vim.lsp.buf.hover()<CR>", "hover" },
           i = { ":Telescope lsp_implementations()<CR>", "implementation" },
-          r = { ":Telescope lsp_references<CR>", "references" },
+          r = { ":lua vim.lsp.buf.references()<CR>", "references" },
           s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },
           S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" },
         },
