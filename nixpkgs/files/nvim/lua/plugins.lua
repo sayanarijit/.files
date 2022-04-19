@@ -391,6 +391,7 @@ require("packer").startup(function()
     config = function()
       cmd([[
         nnoremap <silent> \\ :TagbarToggle<CR>
+        let g:tagbar_type_dart = { 'ctagsbin': '~/.pub-cache/bin/dart_ctags' }
         let g:tagbar_type_elm = {
                   \   'ctagstype':'elm'
                   \ , 'kinds':['h:header', 'i:import', 't:type', 'f:function', 'e:exposing']

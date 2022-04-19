@@ -52,6 +52,7 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Android/Sdk/tools/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:/var/lib/snapd/snap/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
