@@ -24,6 +24,16 @@ local colors = {
   },
 }
 
+local keys = {}
+for i = 1, 8 do
+  -- ALT + number to activate that tab
+  table.insert(keys, {
+    key = tostring(i),
+    mods = "ALT",
+    action = wezterm.action({ ActivateTab = i - 1 }),
+  })
+end
+
 return {
   font = wezterm.font("Hack"),
   font_size = 12.0,
@@ -36,6 +46,7 @@ return {
   exit_behavior = "Close",
   adjust_window_size_when_changing_font_size = false,
   check_for_updates = false,
+  keys = keys,
   hyperlink_rules = {
     -- Linkify things that look like URLs
     -- This is actually the default if you don't specify any hyperlink_rules
