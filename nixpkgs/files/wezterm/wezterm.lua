@@ -47,6 +47,7 @@ return {
   adjust_window_size_when_changing_font_size = false,
   check_for_updates = false,
   keys = keys,
+  audible_bell = "Disabled",
   hyperlink_rules = {
     -- Linkify things that look like URLs
     -- This is actually the default if you don't specify any hyperlink_rules
