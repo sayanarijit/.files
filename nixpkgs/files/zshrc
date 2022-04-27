@@ -71,7 +71,6 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export GOPATH="$HOME/go"
 export MANPAGER='nvim +Man!'
 
-eval "$(luarocks path --lua-version 5.1)"
 eval "$(pyenv init -)"
 
 # eval $(thefuck --alias)
@@ -123,6 +122,6 @@ qrserve () {
 # }
 
 
-[[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-[[ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-[[ -e "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+[[ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+[[ -e "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
