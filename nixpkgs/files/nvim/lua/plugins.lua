@@ -224,6 +224,7 @@ require("packer").startup(function()
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -306,7 +307,7 @@ require("packer").startup(function()
         updateevents = "TextChanged,TextChangedI",
       })
 
-      require("luasnip/loaders/from_vscode").load()
+      require("luasnip.loaders.from_vscode").lazy_load()
 
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -358,7 +359,24 @@ require("packer").startup(function()
               fallback()
             end
           end, { "i", "s" }),
+
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
         },
+
         sources = {
           { name = "nvim_lsp" },
           { name = "nvim_lua" },

@@ -119,7 +119,6 @@ qrserve () {
 #     curl http://metaphorpsum.com/paragraphs/$paragraphs/$sentences
 # }
 
-
 [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 [[ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 [[ -e "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
