@@ -22,7 +22,7 @@ alias venv="python -m venv .venv && activate"
 alias activate="source .venv/bin/activate"
 alias reactivate="deactivate && activate"
 alias github="cd ~/Documents/GitHub"
-alias open="xdg-open"
+# alias open="xdg-open"  # Use https://github.com/Byron/open-rs
 
 alias dotdiff="(cd ~/.files && make diff)"
 alias dotreset="(cd ~/.files && make reset)"
