@@ -71,7 +71,7 @@ require("xpm").setup({
     "sayanarijit/icons.xplr",
 
     -- A clean, distraction free xplr table UI
-    "sayanarijit/zentable.xplr",
+    -- "sayanarijit/zentable.xplr",
 
     -- trach-cli integration for xplr
     "sayanarijit/trash-cli.xplr",
@@ -127,14 +127,14 @@ require("xpm").setup({
     },
 
     -- xplr theme - Material Landscape 2
-    {
-      name = "sayanarijit/material-landscape2.xplr",
-      setup = function()
-        require("material-landscape2").setup({
-          keep_default_layout = true,
-        })
-      end,
-    },
+    -- {
+    --   name = "sayanarijit/material-landscape2.xplr",
+    --   setup = function()
+    --     require("material-landscape2").setup({
+    --       keep_default_layout = true,
+    --     })
+    --   end,
+    -- },
 
     -- qrcp integration for xplr
     {
