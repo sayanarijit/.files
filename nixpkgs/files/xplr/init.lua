@@ -71,7 +71,7 @@ require("xpm").setup({
     "sayanarijit/icons.xplr",
 
     -- A clean, distraction free xplr table UI
-    -- "sayanarijit/zentable.xplr",
+    "sayanarijit/zentable.xplr",
 
     -- trach-cli integration for xplr
     "sayanarijit/trash-cli.xplr",
