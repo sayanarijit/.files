@@ -121,7 +121,7 @@ require("xpm").setup({
       name = "dtomvan/paste-rs.xplr",
       setup = function()
         require("paste-rs").setup({
-          db_path = home .. "paste.rs.list",
+          db_path = home .. "/" .. "paste.rs.list",
         })
       end,
     },
