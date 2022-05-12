@@ -59,6 +59,8 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+
 export JAVA_HOME=$HOME/jdk-11
 # export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
 export PATH=$JAVA_HOME/bin:$PATH
