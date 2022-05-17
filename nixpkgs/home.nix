@@ -250,7 +250,7 @@ in
     trash-cli
     lf
     mdbook
-    dragon-drop
+    xdragon
     newsboat
     irssi
     bitwarden-cli
