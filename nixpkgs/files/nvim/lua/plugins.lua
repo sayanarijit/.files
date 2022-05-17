@@ -277,7 +277,7 @@ require("packer").startup(function()
         prismals = {},
         graphql = {},
         sumneko_lua = {},
-        pylsp = {},
+        pyright = {},
       }
 
       local on_attach = function(client)
