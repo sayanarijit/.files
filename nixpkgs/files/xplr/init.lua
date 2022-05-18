@@ -65,7 +65,30 @@ require("xpm").setup({
     "sayanarijit/nvim-ctrl.xplr",
 
     -- The missing command mode for xplr
-    "sayanarijit/command-mode.xplr",
+    {
+      name = "sayanarijit/command-mode.xplr",
+      setup = function()
+        require("command-mode").setup()
+
+        local cmd = xplr.fn.custom.command_mode.cmd
+        local silent_cmd = xplr.fn.custom.command_mode.silent_cmd
+        local map = xplr.fn.custom.command_mode.map
+
+        silent_cmd("help", "show global help menu")(function(_)
+          return {
+            { BashExec = [[glow --pager $XPLR_PIPE_GLOBAL_HELP_MENU_OUT]] },
+          }
+        end)
+
+        silent_cmd("doc", "show docs")(function(_)
+          return {
+            { BashExec = [[glow /usr/share/doc/xplr]] },
+          }
+        end)
+
+        map("default", "?", "help")
+      end,
+    },
 
     -- xplr icon theme
     "prncss-xyz/icons.xplr",
