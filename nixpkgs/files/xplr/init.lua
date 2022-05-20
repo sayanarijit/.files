@@ -1,7 +1,7 @@
 -- https://xplr.dev/en/configuration
 
 ---@diagnostic disable
-version = "0.17.0"
+version = "0.18.0"
 local xplr = xplr
 ---@diagnostic enable
 
@@ -203,6 +203,8 @@ require("xpm").setup({
 xplr.config.general.enable_mouse = true
 xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
+
+require("registers").setup()
 
 -- Fennel Support
 local fennel = require("fennel")
