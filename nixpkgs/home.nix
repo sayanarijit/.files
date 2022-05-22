@@ -248,7 +248,6 @@ in
     hugo
     jrnl
     trash-cli
-    lf
     mdbook
     xdragon
     newsboat

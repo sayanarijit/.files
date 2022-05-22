@@ -129,6 +129,16 @@ require("xpm").setup({
     -- xplr wrapper for https://github.com/ouch-org/ouch
     "dtomvan/ouch.xplr",
 
+    -- Adds (dev)icons to xplr.
+    {
+      "dtomvan/extra-icons.xplr",
+      after = function()
+        xplr.config.general.table.row.cols[1] = {
+          format = "custom.icons_dtomvan_col_1",
+        }
+      end,
+    },
+
     -- fzf integration for xplr
     {
       name = "sayanarijit/fzf.xplr",
