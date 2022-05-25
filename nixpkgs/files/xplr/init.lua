@@ -215,6 +215,7 @@ xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
 
 require("registers").setup()
+require("offline-docs").setup()
 
 -- Fennel Support
 local fennel = require("fennel")
