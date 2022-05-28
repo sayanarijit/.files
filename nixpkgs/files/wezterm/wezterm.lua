@@ -37,8 +37,8 @@ end
 return {
   font = wezterm.font("Hack"),
   font_size = 12.0,
-  -- colors = colors,
-  -- color_scheme = "MaterialDark",
+  colors = colors,
+  color_scheme = "MaterialDark",
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   scrollback_lines = 3500,
