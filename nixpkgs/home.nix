@@ -118,9 +118,6 @@ in
         source = ./files/xinitrc;
         executable = true;
       };
-      ".zprofile" = {
-        source = ./files/zprofile;
-      };
     };
   };
 
