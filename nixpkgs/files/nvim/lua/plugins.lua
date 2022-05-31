@@ -434,14 +434,6 @@ require("packer").startup(function()
     end,
   })
 
-  use({
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup()
-    end,
-  })
-
   --  A tree like view for symbols in Neovim using the Language Server Protocol. Supports all your favourite languages.
   -- use({ "simrat39/symbols-outline.nvim" })
 
@@ -609,21 +601,18 @@ require("packer").startup(function()
           name = "lsp",
           R = { ":LspRestart<CR>", "restart" },
           a = { ":Telescope lsp_code_actions<CR>", "code action" },
-          c = { ":lua vim.lsp.buf.rename()<CR>", "rename" },
+          c = { vim.lsp.buf.rename, "rename" },
           d = {
             ":Telescope lsp_definitions<CR>",
             "definition",
           },
-          h = { ":lua vim.lsp.buf.hover()<CR>", "hover" },
+          h = { vim.lsp.buf.hover, "hover" },
           i = { ":Telescope lsp_implementations()<CR>", "implementation" },
+          l = { vim.lsp.diagnostic.goto_next, "next diagnostic" },
+          L = { vim.lsp.diagnostic.goto_prev, "prev diagnostic" },
           r = { ":lua vim.lsp.buf.references()<CR>", "references" },
           s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },
           S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" },
-          t = {
-            name = "trouble",
-            t = { ":TroubleToggle<CR>", "toggle" },
-            r = { ":TroubleRefresh<CR>", "refresh" },
-          },
         },
 
         q = { ":q<CR>", "quit" },
