@@ -106,7 +106,7 @@ require("xpm").setup({
     "sayanarijit/dragon.xplr",
 
     -- -- xclip based copy-paste integration for xplr
-    -- "sayanarijit/xclip.xplr",
+    "sayanarijit/xclip.xplr",
 
     -- type-to-nav port for xplr
     "sayanarijit/type-to-nav.xplr",
@@ -214,7 +214,6 @@ xplr.config.general.enable_mouse = true
 xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
 
-require("wl-clipboard").setup()
 require("registers").setup()
 require("offline-docs").setup()
 
