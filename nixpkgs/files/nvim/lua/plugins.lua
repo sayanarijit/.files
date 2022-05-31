@@ -1,9 +1,7 @@
 _G.vim = vim
 _G.cmd = vim.cmd
 
-local use = require("packer").use
-
-require("packer").startup(function()
+require("packer").startup(function(use)
   -- Packer can manage itself
   use({
     "wbthomason/packer.nvim",
@@ -216,6 +214,12 @@ require("packer").startup(function()
     },
   })
 
+  use({
+    "tzachar/cmp-tabnine",
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  })
+
   -- Quickstart configurations for the Nvim LSP client
   use({
     "neovim/nvim-lspconfig",
@@ -231,7 +235,6 @@ require("packer").startup(function()
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-cmdline",
-      "saecki/crates.nvim",
       "L3MON4D3/LuaSnip",
       -- "lukas-reineke/lsp-format.nvim",
       "kosayoda/nvim-lightbulb",
@@ -392,7 +395,7 @@ require("packer").startup(function()
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "path" },
-          { name = "crates" },
+          { name = "cmp_tabnine" },
           { name = "spell" },
           { name = "calc", keyword_length = 3 },
           { name = "emoji", ignored_filetypes = { "yml", "yaml", "json" } },
