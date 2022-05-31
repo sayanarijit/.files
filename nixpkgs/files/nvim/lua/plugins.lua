@@ -286,9 +286,20 @@ require("packer").startup(function()
         client.resolved_capabilities.document_range_formatting = false
       end
 
+      local handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(
+          vim.lsp.diagnostic.on_publish_diagnostics,
+          {
+            -- Disable virtual_text
+            virtual_text = false,
+          }
+        ),
+      }
+
       local options = {
         capabilities = capabilities,
         on_attach = on_attach,
+        handlers = handlers,
       }
 
       util.setup(servers, options)
@@ -420,6 +431,14 @@ require("packer").startup(function()
                   \ , 'ctagsargs': ''
                 \ }
       ]])
+    end,
+  })
+
+  use({
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup()
     end,
   })
 
@@ -600,6 +619,11 @@ require("packer").startup(function()
           r = { ":lua vim.lsp.buf.references()<CR>", "references" },
           s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },
           S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" },
+          t = {
+            name = "trouble",
+            t = { ":TroubleToggle<CR>", "toggle" },
+            r = { ":TroubleRefresh<CR>", "refresh" },
+          },
         },
 
         q = { ":q<CR>", "quit" },
