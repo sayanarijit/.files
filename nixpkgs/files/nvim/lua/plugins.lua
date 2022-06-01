@@ -214,11 +214,11 @@ require("packer").startup(function(use)
     },
   })
 
-  use({
-    "tzachar/cmp-tabnine",
-    run = "./install.sh",
-    requires = "hrsh7th/nvim-cmp",
-  })
+  -- use({
+  --   "tzachar/cmp-tabnine",
+  --   run = "./install.sh",
+  --   requires = "hrsh7th/nvim-cmp",
+  -- })
 
   -- Quickstart configurations for the Nvim LSP client
   use({
@@ -395,12 +395,11 @@ require("packer").startup(function(use)
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "path" },
-          { name = "cmp_tabnine" },
+          -- { name = "cmp_tabnine" },
           { name = "spell" },
           { name = "calc", keyword_length = 3 },
           { name = "emoji", ignored_filetypes = { "yml", "yaml", "json" } },
           { name = "luasnip" },
-          -- { name = 'cmp-tabnine' },
           { name = "buffer", keyword_length = 3 },
         },
       })
