@@ -62,7 +62,7 @@ require("packer").startup(function(use)
               "--indent-type",
               "Spaces",
               "--column-width",
-              "80",
+              "89",
               "--quote-style",
               "AutoPreferDouble",
             },

@@ -23,20 +23,10 @@ package.cpath = os.getenv("LUA_CPATH") .. ";" .. package.cpath
 local xpm_path = home .. "/.local/share/xplr/dtomvan/xpm.xplr"
 local xpm_url = "https://github.com/dtomvan/xpm.xplr"
 
-package.path = package.path
-  .. ";"
-  .. xpm_path
-  .. "/?.lua;"
-  .. xpm_path
-  .. "/?/init.lua"
+package.path = package.path .. ";" .. xpm_path .. "/?.lua;" .. xpm_path .. "/?/init.lua"
 
 os.execute(
-  string.format(
-    "[ -e '%s' ] || git clone '%s' '%s'",
-    xpm_path,
-    xpm_url,
-    xpm_path
-  )
+  string.format("[ -e '%s' ] || git clone '%s' '%s'", xpm_path, xpm_url, xpm_path)
 )
 
 -- Plugins
@@ -140,14 +130,14 @@ require("xpm").setup({
     },
 
     -- fzf integration for xplr
-    {
-      name = "sayanarijit/fzf.xplr",
-      setup = function()
-        require("fzf").setup({
-          args = "--preview 'pistol {}'",
-        })
-      end,
-    },
+    -- {
+    --   name = "sayanarijit/fzf.xplr",
+    --   setup = function()
+    --     require("fzf").setup({
+    --       args = "--preview 'pistol {}'",
+    --     })
+    --   end,
+    -- },
 
     -- Use this plugin to paste your files to paste.rs, and open/delete them later in fzf.
     {
@@ -216,6 +206,20 @@ xplr.config.general.enable_recover_mode = true
 
 require("registers").setup()
 require("offline-docs").setup()
+
+xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
+  help = "fzf",
+  messages = {
+    "PopMode",
+    {
+      BashExec = [===[
+        fzf -m --preview 'pistol {}' | while read -r line; do
+          echo FocusPath: "'"$line"'" >> "${XPLR_PIPE_MSG_IN:?}"
+        done
+      ]===],
+    },
+  },
+}
 
 -- Fennel Support
 local fennel = require("fennel")

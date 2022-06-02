@@ -52,7 +52,7 @@ vim.opt.showtabline = 2 -- Show tabname even if only one file is open
 vim.opt.lazyredraw = true -- Prevent screen flickering when opening vim inside vim
 vim.opt.backup = false -- Do not old backup
 vim.opt.writebackup = false -- Do not create backup
-vim.opt.colorcolumn = "80" -- 80 chars column length
+vim.opt.colorcolumn = "89" -- 89 chars column length
 vim.opt.background = "dark" -- Dark theme
 
 -- vim.o.shortmess = "IToOlxfitn"
