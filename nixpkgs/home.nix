@@ -41,6 +41,7 @@ let
       "svelte-language-server"
       "typescript"
       "prettier"
+      "@fsouza/prettierd"
       "terser"
       "sql-formatter"
       "@prisma/language-server"

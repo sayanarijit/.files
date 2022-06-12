@@ -8,8 +8,8 @@ vim.opt.autowrite = true -- enable auto write
 vim.opt.conceallevel = 2 -- Hide * markup for bold and italic
 vim.opt.concealcursor = "n" -- Hide * markup for bold and italic
 vim.opt.confirm = true -- confirm to save changes before exiting modified buffer
-vim.opt.cursorline = true -- Enable highlighting of the current line
-vim.opt.cursorcolumn = true -- Enable highlighting of the current column
+vim.opt.cursorline = false -- Disable highlighting of the current line
+vim.opt.cursorcolumn = false -- Disable highlighting of the current column
 vim.opt.expandtab = true -- Use spaces instead of tabs
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- TreeSitter folding
 -- vim.opt.foldlevel = 6
@@ -52,7 +52,7 @@ vim.opt.showtabline = 2 -- Show tabname even if only one file is open
 vim.opt.lazyredraw = true -- Prevent screen flickering when opening vim inside vim
 vim.opt.backup = false -- Do not old backup
 vim.opt.writebackup = false -- Do not create backup
-vim.opt.colorcolumn = "89" -- 89 chars column length
+vim.opt.colorcolumn = "80,89" -- 80, 89 chars column length
 vim.opt.background = "dark" -- Dark theme
 
 -- vim.o.shortmess = "IToOlxfitn"
@@ -97,10 +97,10 @@ vim.g.vim_markdown_strikethrough = 1
 cmd("au FocusGained * :checktime")
 
 -- show cursor line only in active window
-cmd([[
-  autocmd InsertLeave,WinEnter * set cursorline cursorcolumn
-  autocmd InsertEnter,WinLeave * set nocursorline nocursorcolumn
-]])
+-- cmd([[
+--   autocmd InsertLeave,WinEnter * set cursorline cursorcolumn
+--   autocmd InsertEnter,WinLeave * set nocursorline nocursorcolumn
+-- ]])
 
 -- go to last loc when opening a buffer
 cmd([[
