@@ -678,14 +678,14 @@ require("packer").startup(function(use)
     end,
   })
 
-  -- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
-  use({
-    "hoob3rt/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    config = function()
-      require("lualine").setup()
-    end,
-  })
+  -- -- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
+  -- use({
+  --   "hoob3rt/lualine.nvim",
+  --   requires = { "kyazdani42/nvim-web-devicons", opt = true },
+  --   config = function()
+  --     require("lualine").setup()
+  --   end,
+  -- })
 
   -- The fastest Neovim colorizer.
   use({ "norcalli/nvim-colorizer.lua" })
