@@ -58,25 +58,23 @@ require("xpm").setup({
     {
       name = "sayanarijit/command-mode.xplr",
       setup = function()
-        require("command-mode").setup()
+        local m = require("command-mode")
 
-        local cmd = xplr.fn.custom.command_mode.cmd
-        local silent_cmd = xplr.fn.custom.command_mode.silent_cmd
-        local map = xplr.fn.custom.command_mode.map
+        m.setup()
 
-        silent_cmd("help", "show global help menu")(function(_)
+        m.silent_cmd("help", "show global help menu")(function(_)
           return {
             { BashExec = [[glow --pager $XPLR_PIPE_GLOBAL_HELP_MENU_OUT]] },
           }
         end)
 
-        silent_cmd("doc", "show docs")(function(_)
+        m.silent_cmd("doc", "show docs")(function(_)
           return {
             { BashExec = [[glow /usr/share/doc/xplr]] },
           }
         end)
 
-        map("default", "?", "help")
+        m.map("default", "?", "help")
       end,
     },
 
