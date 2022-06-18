@@ -62,17 +62,11 @@ require("xpm").setup({
 
         m.setup()
 
-        m.silent_cmd("help", "show global help menu")(function(_)
-          return {
-            { BashExec = [[glow --pager $XPLR_PIPE_GLOBAL_HELP_MENU_OUT]] },
-          }
-        end)
+        m.silent_cmd("help", "show global help menu")(
+          m.BashExec([[glow --pager $XPLR_PIPE_GLOBAL_HELP_MENU_OUT]])
+        )
 
-        m.silent_cmd("doc", "show docs")(function(_)
-          return {
-            { BashExec = [[glow /usr/share/doc/xplr]] },
-          }
-        end)
+        m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
 
         m.map("default", "?", "help")
       end,
