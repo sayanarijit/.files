@@ -85,14 +85,14 @@ require("xpm").setup({
         -- Type `:hello-bash` and press enter to know your location
         local hello_bash = m.silent_cmd("hello-bash", "Enter name and know location")(
           m.BashExec([===[
-          echo "What's your name?"
+            echo "What's your name?"
 
-          read name
-          greeting="Hello $name!"
-          message="$greeting You are inside $PWD"
+            read name
+            greeting="Hello $name!"
+            message="$greeting You are inside $PWD"
 
-          echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
-        ]===])
+            echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
+          ]===])
         )
 
         -- map `?` to command `help`
