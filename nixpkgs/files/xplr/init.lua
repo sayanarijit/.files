@@ -62,28 +62,29 @@ require("xpm").setup({
 
         m.setup()
 
-        m.silent_cmd("help", "show global help menu")(
+        local help = m.silent_cmd("help", "show global help menu")(
           m.BashExec([[glow --pager $XPLR_PIPE_GLOBAL_HELP_MENU_OUT]])
         )
 
         m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
 
-        m.map("default", "?", "help")
+        local hello_lua = m.cmd("hello-lua", "Enter name and know location")(
+          function(app)
+            print("What's your name?")
 
-        m.cmd("hello-lua", "Enter name and know location")(function(app)
-          print("What's your name?")
+            local name = io.read()
+            local greeting = "Hello " .. name .. "!"
+            local message = greeting .. " You are inside " .. app.pwd
 
-          local name = io.read()
-          local greeting = "Hello " .. name .. "!"
-          local message = greeting .. " You are inside " .. app.pwd
-
-          return {
-            { LogSuccess = message },
-          }
-        end)
+            return {
+              { LogSuccess = message },
+            }
+          end
+        )
 
         -- Type `:hello-bash` and press enter to know your location
-        m.silent_cmd("hello-bash", "Enter name and know location")(m.BashExec([===[
+        local hello_bash = m.silent_cmd("hello-bash", "Enter name and know location")(
+          m.BashExec([===[
           echo "What's your name?"
 
           read name
@@ -91,7 +92,17 @@ require("xpm").setup({
           message="$greeting You are inside $PWD"
 
           echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
-        ]===]))
+        ]===])
+        )
+
+        -- map `?` to command `help`
+        xplr.config.modes.builtin.default.key_bindings.on_key["?"] = help.action
+
+        -- map `h` to command `hello-lua`
+        xplr.config.modes.builtin.default.key_bindings.on_key.h = hello_lua.action
+
+        -- map `H` to command `hello-bash`
+        xplr.config.modes.builtin.default.key_bindings.on_key.H = hello_bash.action
       end,
     },
 
