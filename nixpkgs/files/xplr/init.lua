@@ -82,10 +82,10 @@ require("xpm").setup({
         )
 
         -- map `?` to command `help`
-        xplr.config.modes.builtin.default.key_bindings.on_key["?"] = help.action
+        help.bind("default", "?")
 
         -- map `H` to command `hello-bash`
-        xplr.config.modes.builtin.default.key_bindings.on_key.H = hello_bash.action
+        hello_bash.bind(xplr.config.modes.builtin.default, "H")
       end,
     },
 
