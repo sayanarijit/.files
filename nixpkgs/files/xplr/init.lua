@@ -69,6 +69,29 @@ require("xpm").setup({
         m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
 
         m.map("default", "?", "help")
+
+        m.cmd("hello-lua", "Enter name and know location")(function(app)
+          print("What's your name?")
+
+          local name = io.read()
+          local greeting = "Hello " .. name .. "!"
+          local message = greeting .. " You are inside " .. app.pwd
+
+          return {
+            { LogSuccess = message },
+          }
+        end)
+
+        -- Type `:hello-bash` and press enter to know your location
+        m.silent_cmd("hello-bash", "Enter name and know location")(m.BashExec([===[
+          echo "What's your name?"
+
+          read name
+          greeting="Hello $name!"
+          message="$greeting You are inside $PWD"
+
+          echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
+        ]===]))
       end,
     },
 
