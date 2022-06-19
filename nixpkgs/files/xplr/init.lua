@@ -68,20 +68,6 @@ require("xpm").setup({
 
         m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
 
-        local hello_lua = m.cmd("hello-lua", "Enter name and know location")(
-          function(app)
-            print("What's your name?")
-
-            local name = io.read()
-            local greeting = "Hello " .. name .. "!"
-            local message = greeting .. " You are inside " .. app.pwd
-
-            return {
-              { LogSuccess = message },
-            }
-          end
-        )
-
         -- Type `:hello-bash` and press enter to know your location
         local hello_bash = m.silent_cmd("hello-bash", "Enter name and know location")(
           m.BashExec([===[
@@ -97,9 +83,6 @@ require("xpm").setup({
 
         -- map `?` to command `help`
         xplr.config.modes.builtin.default.key_bindings.on_key["?"] = help.action
-
-        -- map `h` to command `hello-lua`
-        xplr.config.modes.builtin.default.key_bindings.on_key.h = hello_lua.action
 
         -- map `H` to command `hello-bash`
         xplr.config.modes.builtin.default.key_bindings.on_key.H = hello_bash.action
