@@ -212,6 +212,14 @@ require("xpm").setup({
 xplr.config.general.enable_mouse = true
 xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
+xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
+  { Call = { command = "zsh", args = { "-i" } } },
+  "ExplorePwdAsync",
+  "PopMode",
+}
+
+xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] =
+  xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 
 require("registers").setup()
 require("offline-docs").setup()
