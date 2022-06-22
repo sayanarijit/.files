@@ -231,6 +231,7 @@ require("packer").startup(function(use)
       "rafamadriz/friendly-snippets",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-copilot",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-emoji",
@@ -396,6 +397,7 @@ require("packer").startup(function(use)
           { name = "nvim_lua" },
           { name = "path" },
           -- { name = "cmp_tabnine" },
+          { name = "copilot" },
           { name = "spell" },
           { name = "calc", keyword_length = 3 },
           { name = "emoji", ignored_filetypes = { "yml", "yaml", "json" } },
@@ -441,6 +443,9 @@ require("packer").startup(function(use)
 
   --  A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
   use({ "airblade/vim-gitgutter" })
+
+  -- Neovim plugin for GitHub Copilot
+  use({ "github/copilot.vim" })
 
   --  brain muscle // Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more
   use({

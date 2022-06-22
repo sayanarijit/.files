@@ -174,7 +174,7 @@ in
     unrar
     curl
     yarn
-    # nodejs
+    nodejs-16_x
     fzf
     aria2
     gitAndTools.gh
