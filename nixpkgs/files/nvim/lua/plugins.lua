@@ -171,6 +171,9 @@ require("packer").startup(function(use)
     run = "python3 install_gadget.py --all",
   })
 
+  --  Improved nginx vim plugin (incl. syntax highlighting)
+  use({ "chr4/nginx.vim" })
+
   -- -- A fast and lightweight Neovim lua plugin to keep an eye on where your cursor has jumped.
   -- use({
   --   "edluffy/specs.nvim",
@@ -350,7 +353,7 @@ require("packer").startup(function(use)
           ["<C-e>"] = cmp.mapping.close(),
           ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+            select = false,
           }),
 
           ["<down>"] = cmp.mapping(function(fallback)
