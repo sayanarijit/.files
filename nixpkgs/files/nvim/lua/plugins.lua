@@ -385,7 +385,7 @@ require("packer").startup(function(use)
           --     fallback()
           --   end
           -- end, { "i", "s" }),
-          ["<Tab>"] = { i = cmp.config.disable, c = cmp.config.disable },
+          ["<Tab>"] = {},
 
           -- ["<S-Tab>"] = cmp.mapping(function(fallback)
           --   if luasnip.jumpable(-1) then
@@ -394,6 +394,7 @@ require("packer").startup(function(use)
           --     fallback()
           --   end
           -- end, { "i", "s" }),
+          ["<S-Tab>"] = {},
         },
 
         sources = {
