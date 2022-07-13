@@ -40,9 +40,11 @@ require("packer").startup(function(use)
     "nvim-telescope/telescope.nvim",
     requires = {
       { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
-      require("telescope").setup()
+      local telescope = require("telescope")
+      telescope.load_extension("ui-select")
     end,
   })
 
@@ -612,19 +614,16 @@ require("packer").startup(function(use)
         l = {
           name = "lsp",
           R = { ":LspRestart<CR>", "restart" },
-          a = { ":Telescope lsp_code_actions<CR>", "code action" },
+          a = { vim.lsp.buf.code_action, "code action" },
           c = { vim.lsp.buf.rename, "rename" },
-          d = {
-            ":Telescope lsp_definitions<CR>",
-            "definition",
-          },
+          d = { vim.lsp.buf.definitions, "definition" },
           h = { vim.lsp.buf.hover, "hover" },
-          i = { ":Telescope lsp_implementations()<CR>", "implementation" },
+          i = { vim.lsp.buf.implementation, "implementation" },
           l = { vim.lsp.diagnostic.goto_next, "next diagnostic" },
           L = { vim.lsp.diagnostic.goto_prev, "prev diagnostic" },
-          r = { ":lua vim.lsp.buf.references()<CR>", "references" },
-          s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },
-          S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" },
+          r = { vim.lsp.buf.references, "references" },
+          s = { vim.lsp.buf.document_symbols, "document symbols" },
+          S = { vim.lsp.buf.workspace_symbols, "workspace symbols" },
         },
 
         q = { ":q<CR>", "quit" },
