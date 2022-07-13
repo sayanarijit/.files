@@ -616,7 +616,7 @@ require("packer").startup(function(use)
           R = { ":LspRestart<CR>", "restart" },
           a = { vim.lsp.buf.code_action, "code action" },
           c = { vim.lsp.buf.rename, "rename" },
-          d = { vim.lsp.buf.definitions, "definition" },
+          d = { vim.lsp.buf.definition, "definition" },
           h = { vim.lsp.buf.hover, "hover" },
           i = { vim.lsp.buf.implementation, "implementation" },
           l = { vim.lsp.diagnostic.goto_next, "next diagnostic" },
