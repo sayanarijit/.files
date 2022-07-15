@@ -167,6 +167,16 @@ require("packer").startup(function(use)
     end,
   })
 
+  use({
+    "sayanarijit/exec-cursorline-insert-stdout.nvim",
+    config = function()
+      vim.cmd([[
+        command ExecuteLine :lua require"exec-cursorline-insert-stdout".execute{prepare_for_next_command = true}
+        nnoremap <silent> X :ExecuteLine<CR>
+      ]])
+    end,
+  })
+
   --  vimspector - A multi-language debugging system for Vim
   use({
     "puremourning/vimspector",
