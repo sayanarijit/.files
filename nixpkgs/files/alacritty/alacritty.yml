@@ -252,8 +252,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x212121'
-    foreground: '0xabb2bf'
+    background: "0x212121"
+    foreground: "0xabb2bf"
 
 # Visual Bell
 #

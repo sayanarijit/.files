@@ -223,6 +223,7 @@ xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] =
 
 require("registers").setup()
 require("offline-docs").setup()
+require("scp").setup()
 
 xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
   help = "fzf",
