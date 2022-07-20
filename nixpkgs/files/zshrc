@@ -40,7 +40,7 @@ alias "cargo-examples"='for e in $(ls examples); do cargo run --example ${e%.*};
 alias xcd='cd "$(xplr --print-pwd-as-result)"'
 
 bindkey -s '^X' 'xcd\n'
-bindkey -s '^D' 'exit\n'
+# bindkey -s '^D' 'exit\n'
 
 # alias nvim='(neovide &)'
 
