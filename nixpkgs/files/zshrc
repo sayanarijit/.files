@@ -11,7 +11,7 @@ export GTK_USE_PORTAL="1"
 export NNN_PLUG="p:preview-tabbed"
 export NNN_FIFO="/tmp/nnn.fifo"
 export USE_VIDEOTHUMB="1"
-# export TERMINAL="wezterm"
+export TERMINAL="wezterm"
 
 export CHROME_EXECUTABLE="google-chrome-stable"
 export FLUTTER_SDK="$HOME/snap/flutter/common/flutter/bin"
