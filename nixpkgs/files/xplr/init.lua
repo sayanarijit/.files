@@ -45,6 +45,19 @@ require("xpm").setup({
     -- Let xpm manage itself
     "dtomvan/xpm.xplr",
 
+    {
+      name = "Junker/nuke.xplr",
+      setup = function()
+        require("nuke").setup({})
+
+        local key = xplr.config.modes.builtin.default.key_bindings.on_key
+        key.v = {
+          help = "nuke",
+          messages = { "PopMode", { SwitchModeCustom = "nuke" } },
+        }
+      end,
+    },
+
     -- Implements support for dual-pane navigation into xplr
     "sayanarijit/dual-pane.xplr",
 
