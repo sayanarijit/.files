@@ -252,6 +252,28 @@ xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
   },
 }
 
+xplr.config.modes.builtin.action.key_bindings.on_key.P = {
+  help = "previuwu",
+  messages = {
+    "PopMode",
+    {
+      BashExecSilently = [===[
+        fifo="/tmp/xplr.fifo"
+        if [ -e "$fifo" ]; then
+          echo StopFifo >> "${XPLR_PIPE_MSG_IN:?}"
+          rm -f -- "$fifo"
+        else
+          win="$(xdotool getactivewindow)"
+          mkfifo "$fifo"
+          previuwu --pipe "$fifo" &
+          echo "StartFifo: '$fifo'" >> "${XPLR_PIPE_MSG_IN:?}"
+          echo "BashExecSilently: 'sleep 0.2 && xdotool windowactivate "$win"'" >> "${XPLR_PIPE_MSG_IN:?}"
+        fi
+      ]===],
+    },
+  },
+}
+
 -- Fennel Support
 local fennel = require("fennel")
 
