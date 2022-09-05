@@ -287,7 +287,7 @@ require("packer").startup(function(use)
         graphql = {},
         sumneko_lua = {},
         pyright = {},
-        vls = {},
+        vuels = {},
       }
 
       local on_attach = function(client)
