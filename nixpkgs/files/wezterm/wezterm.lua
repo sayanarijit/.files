@@ -111,7 +111,7 @@ return {
   colors = colors,
   color_scheme = "MaterialDark",
   use_fancy_tab_bar = false,
-  hide_tab_bar_if_only_one_tab = true,
+  hide_tab_bar_if_only_one_tab = false,
   scrollback_lines = 3500,
   enable_scroll_bar = true,
   exit_behavior = "Close",
