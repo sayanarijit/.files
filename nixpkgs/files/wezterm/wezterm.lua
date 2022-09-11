@@ -24,7 +24,78 @@ local colors = {
   },
 }
 
-local keys = {}
+local hyperlink_rules = {
+  -- Linkify things that look like URLs
+  -- This is actually the default if you don't specify any hyperlink_rules
+  {
+    regex = "\\b\\w+://\\S*\\b",
+    format = "$0",
+  },
+
+  -- linkify email addresses
+  {
+    regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b",
+    format = "mailto:$0",
+  },
+
+  -- file:// URI
+  {
+    regex = "\\bfile://\\S*\\b",
+    format = "$0",
+  },
+
+  -- Make task numbers clickable
+  --[[
+    {
+      regex = "\\b[tT](\\d+)\\b"
+      format = "https://example.com/tasks/?t=$1"
+    }
+    ]]
+}
+
+local url_patterns = {}
+for _, l in ipairs(hyperlink_rules) do
+  table.insert(url_patterns, l.regex)
+end
+
+local keys = {
+  {
+    key = "u",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.QuickSelectArgs({
+      label = "open url",
+      patterns = url_patterns,
+      action = wezterm.action_callback(function(window, pane)
+        local url = window:get_selection_text_for_pane(pane)
+        wezterm.log_info("opening: " .. url)
+        wezterm.open_with(url)
+      end),
+    }),
+  },
+
+  {
+    key = "e",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action_callback(function(window, pane)
+      local lines = pane:get_lines_as_text()
+      local tmpfile = os.tmpname() .. ".txt"
+      local f = assert(io.open(tmpfile, "w"))
+      f:write(lines)
+      f:flush()
+
+      window:perform_action(
+        wezterm.action.SpawnCommandInNewTab({
+          args = { "nvim", tmpfile },
+        }),
+        pane
+      )
+
+      wezterm.sleep_ms(1000)
+      os.remove(tmpfile)
+    end),
+  },
+}
+
 for i = 1, 8 do
   -- ALT + number to activate that tab
   table.insert(keys, {
@@ -48,32 +119,5 @@ return {
   check_for_updates = false,
   keys = keys,
   audible_bell = "Disabled",
-  hyperlink_rules = {
-    -- Linkify things that look like URLs
-    -- This is actually the default if you don't specify any hyperlink_rules
-    {
-      regex = "\\b\\w+://\\S*\\b",
-      format = "$0",
-    },
-
-    -- linkify email addresses
-    {
-      regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b",
-      format = "mailto:$0",
-    },
-
-    -- file:// URI
-    {
-      regex = "\\bfile://\\S*\\b",
-      format = "$0",
-    },
-
-    -- Make task numbers clickable
-    --[[
-    {
-      regex = "\\b[tT](\\d+)\\b"
-      format = "https://example.com/tasks/?t=$1"
-    }
-    ]]
-  },
+  hyperlink_rules = hyperlink_rules,
 }
