@@ -705,6 +705,8 @@ require("packer").startup(function(use)
     "marko-cerovac/material.nvim",
     config = function()
       cmd([[
+      au ColorScheme * hi Normal ctermbg=none guibg=none
+      au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
       set guifont=FiraCode\ Nerd\ Font:h19
       set background=dark
       let g:material_style = "darker"
