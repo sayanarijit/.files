@@ -125,5 +125,5 @@ return {
   keys = keys,
   audible_bell = "Disabled",
   hyperlink_rules = hyperlink_rules,
-  window_background_opacity = 0.9,
+  window_background_opacity = 0.95,
 }
