@@ -357,3 +357,5 @@ fennel.path = fennel.path
   .. "/.config/xplr/plugins/?.fnl;"
 
 table.insert(package.loaders or package.searchers, fennel.searcher)
+
+-- require("regex-search").setup()
