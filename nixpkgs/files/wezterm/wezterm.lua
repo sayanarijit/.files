@@ -90,7 +90,7 @@ local keys = {
 
       window:perform_action(
         wezterm.action.SpawnCommandInNewTab({
-          args = { "nvim", tmpfile },
+          args = { "nvim", "+", tmpfile },
         }),
         pane
       )
