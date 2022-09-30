@@ -69,7 +69,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_matchparen = 1
 vim.g.material_style = "darker"
-vim.g.switchbuf = "usetab,newtab"
+vim.g.switchbuf = "newtab"
 
 -- Use proper syntax highlighting in code blocks
 local fences = {
