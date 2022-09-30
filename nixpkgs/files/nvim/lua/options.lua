@@ -69,6 +69,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_matchparen = 1
 vim.g.material_style = "darker"
+vim.g.switchbuf = "usetab,newtab"
 
 -- Use proper syntax highlighting in code blocks
 local fences = {
@@ -117,6 +118,7 @@ cmd(
 )
 cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
 
+-- Rename
 cmd([[
   " Remap for rename current word
   vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
