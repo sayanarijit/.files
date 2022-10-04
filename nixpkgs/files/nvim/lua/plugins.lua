@@ -35,6 +35,8 @@ require("packer").startup(function(use)
   --  Switch between single-line and multiline forms of code
   use({ "AndrewRadev/splitjoin.vim" })
 
+  use({ "sayanarijit/exec-cursorline-insert-stdout.nvim" })
+
   -- Find, Filter, Preview, Pick. All lua, all the time.
   use({
     "nvim-telescope/telescope.nvim",
@@ -637,6 +639,8 @@ require("packer").startup(function(use)
           w = { ":Xp<CR>", "working directory" },
           ["/"] = { ":Xp /<CR>", "fs root" },
         },
+
+        X = { require("exec-cursorline-insert-stdout").execute, "execute line" },
 
         Z = {
           name = "zk",
