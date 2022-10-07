@@ -43,10 +43,12 @@ require("packer").startup(function(use)
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-ui-select.nvim" },
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     },
     config = function()
       local telescope = require("telescope")
       telescope.load_extension("ui-select")
+      telescope.load_extension("fzf")
     end,
   })
 
