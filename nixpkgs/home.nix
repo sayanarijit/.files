@@ -15,6 +15,7 @@ let
   pyEnv = pkgs.python38.withPackages (ps:
     with ps; [
       pynvim
+      isort
       black
       mypy
       flake8
