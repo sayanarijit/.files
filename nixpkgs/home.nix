@@ -157,7 +157,7 @@ in
     pass
     feh
     ranger # A VIM-inspired filemanager for the console
-    cachix
+    # cachix
     ncdu # Disk utilization viewer
     jq # JSON viewer
     yq # YAML viewer

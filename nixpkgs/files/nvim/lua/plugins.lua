@@ -83,6 +83,9 @@ require("packer").startup(function(use)
             "2",
             "--double-quote",
           }),
+          nls.builtins.formatting.isort.with({
+            extra_args = { "--profile", "black", "--filter-files" },
+          }),
           nls.builtins.formatting.black,
           nls.builtins.formatting.taplo,
         },
