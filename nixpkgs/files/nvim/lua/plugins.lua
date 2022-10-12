@@ -96,7 +96,7 @@ require("packer").startup(function(use)
         },
 
         on_attach = function(client)
-          if client.resolved_capabilities.document_formatting then
+          if client.server_capabilities.document_formatting then
             vim.cmd([[
               augroup LspFormatting
                   autocmd! * <buffer>
@@ -318,8 +318,8 @@ require("packer").startup(function(use)
 
       local on_attach = function(client)
         -- Formatting is doce by null-ls
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
       end
 
       local handlers = {
@@ -646,8 +646,8 @@ require("packer").startup(function(use)
           d = { vim.lsp.buf.definition, "definition" },
           h = { vim.lsp.buf.hover, "hover" },
           i = { vim.lsp.buf.implementation, "implementation" },
-          l = { vim.lsp.diagnostic.goto_next, "next diagnostic" },
-          L = { vim.lsp.diagnostic.goto_prev, "prev diagnostic" },
+          l = { vim.diagnostic.goto_next, "next diagnostic" },
+          L = { vim.diagnostic.goto_prev, "prev diagnostic" },
           r = { vim.lsp.buf.references, "references" },
           s = { vim.lsp.buf.document_symbols, "document symbols" },
           S = { vim.lsp.buf.workspace_symbols, "workspace symbols" },

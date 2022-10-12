@@ -9,10 +9,10 @@ local home = os.getenv("HOME")
 
 -- Lua search path
 package.path = home
-  .. "/.config/xplr/plugins/?/init.lua;"
-  .. home
-  .. "/.config/xplr/plugins/?.lua;"
-  .. package.path
+    .. "/.config/xplr/plugins/?/init.lua;"
+    .. home
+    .. "/.config/xplr/plugins/?.lua;"
+    .. package.path
 
 -- Add `eval "$(luarocks path --lua-version 5.1)"` in your `.bashrc` or `.zshrc`.
 -- Install packages with `luarocks install $name --local --lua-version 5.1`.
@@ -231,8 +231,7 @@ xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
   "PopMode",
 }
 
-xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] =
-  xplr.config.modes.builtin.action.key_bindings.on_key["!"]
+xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 
 require("registers").setup()
 require("offline-docs").setup()
@@ -350,11 +349,11 @@ xplr.config.modes.builtin.switch_layout.key_bindings.on_key.p = {
 local fennel = require("fennel")
 
 fennel.path = fennel.path
-  .. ";"
-  .. home
-  .. "/.config/xplr/plugins/?/init.fnl;"
-  .. home
-  .. "/.config/xplr/plugins/?.fnl;"
+    .. ";"
+    .. home
+    .. "/.config/xplr/plugins/?/init.fnl;"
+    .. home
+    .. "/.config/xplr/plugins/?.fnl;"
 
 table.insert(package.loaders or package.searchers, fennel.searcher)
 
