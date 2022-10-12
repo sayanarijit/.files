@@ -100,7 +100,7 @@ require("packer").startup(function(use)
             vim.cmd([[
               augroup LspFormatting
                   autocmd! * <buffer>
-                  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+                  autocmd BufWritePre <buffer> lua vim.lsp.buf.null_ls_format_if_enabled()
               augroup END
             ]])
           end
@@ -113,8 +113,16 @@ require("packer").startup(function(use)
         ),
       })
 
+      nls.enabled = true
       local toggle_formatters = function()
+        nls.enabled = not nls.enabled
         nls.toggle({ methods = nls.methods.FORMATTING })
+      end
+
+      vim.lsp.buf.null_ls_format_if_enabled = function()
+        if nls.enabled then
+          vim.lsp.buf.formatting_seq_sync()
+        end
       end
 
       vim.api.nvim_create_user_command("NullLsToggle", toggle_formatters, {})
