@@ -112,6 +112,12 @@ require("packer").startup(function(use)
           ".git"
         ),
       })
+
+      local toggle_formatters = function()
+        nls.toggle({ methods = nls.methods.FORMATTING })
+      end
+
+      vim.api.nvim_create_user_command("NullLsToggle", toggle_formatters, {})
     end,
     requires = { "nvim-lua/plenary.nvim" },
   })
@@ -345,9 +351,9 @@ require("packer").startup(function(use)
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
-          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
-              :sub(col, col)
-              :match("%s")
+            and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+            :sub(col, col)
+            :match("%s")
             == nil
       end
 
@@ -726,7 +732,7 @@ require("packer").startup(function(use)
       let g:material_style = "darker"
       highlight link CompeDocumentation NormalFloat
       colorscheme material
-    ]])
+    ]] )
     end,
   })
 end)
