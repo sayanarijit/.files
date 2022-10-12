@@ -95,15 +95,13 @@ require("packer").startup(function(use)
           nls.builtins.formatting.taplo,
         },
 
-        on_attach = function(client)
-          if client.server_capabilities.document_formatting then
-            vim.cmd([[
-              augroup LspFormatting
-                  autocmd! * <buffer>
-                  autocmd BufWritePre <buffer> lua vim.lsp.buf.null_ls_format_if_enabled()
-              augroup END
-            ]])
-          end
+        on_attach = function(_)
+          vim.cmd([[
+            augroup LspFormatting
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.null_ls_format_if_enabled()
+            augroup END
+          ]])
         end,
 
         root_dir = require("null-ls.utils").root_pattern(
@@ -356,14 +354,14 @@ require("packer").startup(function(use)
 
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-            and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
-            :sub(col, col)
-            :match("%s")
-            == nil
-      end
+      -- local has_words_before = function()
+      --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      --   return col ~= 0
+      --       and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+      --       :sub(col, col)
+      --       :match("%s")
+      --       == nil
+      -- end
 
       -- nvim-cmp setup
       local cmp = require("cmp")
