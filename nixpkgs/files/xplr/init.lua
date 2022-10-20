@@ -358,3 +358,5 @@ fennel.path = fennel.path
 table.insert(package.loaders or package.searchers, fennel.searcher)
 
 -- require("regex-search").setup()
+
+require("tri-pane").setup({ as_default_layout = false })
