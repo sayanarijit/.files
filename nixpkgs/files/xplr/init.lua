@@ -233,7 +233,7 @@ xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
       BashExec0 = [===[
         fzf -m --preview 'pistol {}' --print0 | while IFS= read -r -d '' line; do
           "$XPLR" -m 'FocusPath: %q' "$PWD/$line"
-          "$XPLR" -m 'SelectPath: %q' "$PWD/$line"
+          "$XPLR" -m Select
         done
       ]===],
     },
