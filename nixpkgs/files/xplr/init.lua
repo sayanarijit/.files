@@ -1,7 +1,7 @@
 -- https://xplr.dev/en/configuration
 
 ---@diagnostic disable
-version = "0.19.0"
+version = "0.20.0-beta.0"
 local xplr = xplr
 ---@diagnostic enable
 
@@ -79,26 +79,15 @@ require("xpm").setup({
           m.BashExec([[glow --pager $XPLR_PIPE_GLOBAL_HELP_MENU_OUT]])
         )
 
-        m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
-
-        -- Type `:hello-bash` and press enter to know your location
-        local hello_bash = m.silent_cmd("hello-bash", "Enter name and know location")(
-          m.BashExec([===[
-            echo "What's your name?"
-
-            read name
-            greeting="Hello $name!"
-            message="$greeting You are inside $PWD"
-
-            echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
-          ]===])
+        local doc = m.silent_cmd("doc", "show docs")(
+          m.BashExec([[glow /usr/share/doc/xplr]])
         )
 
         -- map `?` to command `help`
         help.bind("default", "?")
 
-        -- map `H` to command `hello-bash`
-        hello_bash.bind(xplr.config.modes.builtin.default, "H")
+        -- map `ctrl-?` to command `help`
+        doc.bind("default", "ctrl-?")
       end,
     },
 
@@ -226,9 +215,8 @@ xplr.config.general.enable_mouse = true
 xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
 xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
-  { Call = { command = "zsh", args = { "-i" } } },
-  "ExplorePwdAsync",
-  "PopMode",
+  { Call0 = { command = "zsh", args = { "-i" } } },
+  "PopModeKeepingInputBuffer",
 }
 
 xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
@@ -242,9 +230,10 @@ xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
   messages = {
     "PopMode",
     {
-      BashExec = [===[
-        fzf -m --preview 'pistol {}' | while read -r line; do
-          echo FocusPath: "'"$line"'" >> "${XPLR_PIPE_MSG_IN:?}"
+      BashExec0 = [===[
+        fzf -m --preview 'pistol {}' --print0 | while IFS= read -r -d '' line; do
+          "$XPLR" -m 'FocusPath: %q' "$PWD/$line"
+          "$XPLR" -m 'SelectPath: %q' "$PWD/$line"
         done
       ]===],
     },
@@ -256,17 +245,17 @@ xplr.config.modes.builtin.action.key_bindings.on_key.P = {
   messages = {
     "PopMode",
     {
-      BashExecSilently = [===[
+      BashExecSilently0 = [===[
         fifo="/tmp/xplr.fifo"
         if [ -e "$fifo" ]; then
-          echo StopFifo >> "${XPLR_PIPE_MSG_IN:?}"
+          "$XPLR" -m StopFifo
           rm -f -- "$fifo"
         else
           win="$(xdotool getactivewindow)"
           mkfifo "$fifo"
           previuwu --pipe "$fifo" &
-          echo "StartFifo: '$fifo'" >> "${XPLR_PIPE_MSG_IN:?}"
-          echo "BashExecSilently: 'sleep 0.2 && xdotool windowactivate "$win"'" >> "${XPLR_PIPE_MSG_IN:?}"
+          "$XPLR" -m 'StartFifo: %q' "$fifo"
+          "$XPLR" -m 'BashExecSilently: %q' "sleep 0.2 && xdotool windowactivate $win"
         fi
       ]===],
     },
