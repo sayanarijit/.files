@@ -1,7 +1,7 @@
 -- https://xplr.dev/en/configuration
 
 ---@diagnostic disable
-version = "0.20.0-beta.0"
+version = "0.20.0"
 local xplr = xplr
 ---@diagnostic enable
 
@@ -215,8 +215,9 @@ xplr.config.general.enable_mouse = true
 xplr.config.general.show_hidden = true
 xplr.config.general.enable_recover_mode = true
 xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
+  "PopMode",
   { Call0 = { command = "zsh", args = { "-i" } } },
-  "PopModeKeepingInputBuffer",
+  "ExplorePwdAsync",
 }
 
 xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
