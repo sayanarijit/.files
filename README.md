@@ -14,10 +14,6 @@ cd ~/.files && make sync
 
 ## Manual
 
-OS & Desktop: KDE Plasma + KWin + Wayland
-
-Theme: Aritim-Dark (layout) + ChromeOS-Dark
-
-Window Decorators: One-Dark
+OS & Desktop: KDE Plasma + KWin + krohnkite
 
 Keyboard: Delay: 200ms, Repeat: 50 r/s

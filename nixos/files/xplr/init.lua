@@ -61,6 +61,15 @@ require("xpm").setup({
     -- Implements support for dual-pane navigation into xplr
     "sayanarijit/dual-pane.xplr",
 
+    "sayanarijit/registers.xplr",
+    "sayanarijit/offline-docs.xplr",
+    "sayanarijit/scp.xplr",
+    {
+      name = "sayanarijit/tri-pane.xplr", setup = function()
+        require("tri-pane").setup({ as_default-layout = false })
+      end
+    },
+
     -- Previewer implementation for xplr using suckless tabbed and nnn preview-tabbed
     "sayanarijit/preview-tabbed.xplr",
 
@@ -222,9 +231,6 @@ xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
 
 xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 
-require("registers").setup()
-require("offline-docs").setup()
-require("scp").setup()
 
 xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
   help = "fzf",
@@ -346,7 +352,3 @@ fennel.path = fennel.path
     .. "/.config/xplr/plugins/?.fnl;"
 
 table.insert(package.loaders or package.searchers, fennel.searcher)
-
--- require("regex-search").setup()
-
-require("tri-pane").setup({ as_default_layout = false })
