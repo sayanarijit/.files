@@ -126,7 +126,7 @@ in
       nnnWithIcons
       imgp
       luarocks
-      zig
+      unstable.zig
       tabbed
       xterm
       sxiv

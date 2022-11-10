@@ -142,7 +142,7 @@ require("packer").startup(function(use)
       require("nvim-treesitter.configs").setup({
         ensure_installed = "all",
         sync_install = false,
-        ignore_install = { "php", "phpdoc" },
+        ignore_install = { "php", "phpdoc", "zig" },
         autotag = {
           enable = true,
         },
@@ -575,10 +575,10 @@ require("packer").startup(function(use)
         c = {
           name = "config",
           c = {
-            ":tabnew ~/.config/nixpkgs/files/nvim/init.lua<CR>",
-            "neovim config",
+            ":tabnew ~/.files/nixos/configuration.nix<CR>",
+            "nixos config",
           },
-          h = { ":tabnew ~/.config/nixpkgs/home.nix<CR>", "home config" },
+          h = { ":tabnew ~/.files/nixos/home.nix<CR>", "home config" },
         },
 
         s = {

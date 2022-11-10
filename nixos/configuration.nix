@@ -52,14 +52,20 @@
     layout = "us";
     xkbVariant = "";
     desktopManager.plasma5.enable = true;
-    displayManager = {
-      sddm.enable = true;
-
-      # Key repeat
-      sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 200 50
-      '';
+    displayManager.sddm = {
+      enable = true;
+      settings = {
+        Autologin = {
+          User = "sayanarijit";
+          Session = "plasma.desktop";
+        };
+      };
     };
+
+    # Key repeat
+    displayManager.sessionCommands = ''
+      ${pkgs.xorg.xset}/bin/xset r rate 200 50
+    '';
   };
 
   # Enable CUPS to print documents.
@@ -90,7 +96,7 @@
     isNormalUser = true;
     description = "Arijit Basu";
     extraGroups = [ "networkmanager" "wheel" ];
-    # shell = pkgs.zsh;
+    shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
     # ];
