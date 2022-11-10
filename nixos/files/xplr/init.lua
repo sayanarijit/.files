@@ -66,7 +66,7 @@ require("xpm").setup({
     "sayanarijit/scp.xplr",
     {
       name = "sayanarijit/tri-pane.xplr", setup = function()
-        require("tri-pane").setup({ as_default-layout = false })
+        require("tri-pane").setup({ as_default_layout = false })
       end
     },
 
