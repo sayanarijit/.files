@@ -7,6 +7,7 @@ export NIX_PATH="$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH"
 export XDG_CURRENT_DESKTOP="KDE"
 export KDE_SESSION_VERSION="5"
 export GTK_USE_PORTAL="1"
+export GPG_TTY="$(tty)"
 
 export NNN_PLUG="p:preview-tabbed"
 export NNN_FIFO="/tmp/nnn.fifo"
