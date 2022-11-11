@@ -37,6 +37,7 @@ let
 
 
   pythonWithPkgs = pkgs.python310.withPackages (p: with p; [
+    pip
     pynvim
     isort
     black
