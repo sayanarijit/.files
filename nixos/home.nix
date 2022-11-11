@@ -36,11 +36,21 @@ let
   };
 
 
+  pythonWithPkgs = pkgs.python310.withPackages (p: with p; [
+    pynvim
+    isort
+    black
+    mypy
+    flake8
+  ]);
+
 in
 {
 
   nixpkgs = {
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
   };
 
 
@@ -96,147 +106,142 @@ in
     };
 
     packages = with pkgs; [
-      firefox
-      vim
-      wget
-      curl
-      gnumake
-      unstable.xplr
-      # pyEnv  # Curretly it doesn't build
-      yarnPkgs
-      niv # Easy dependency management for Nix projects
-      tree-sitter
-      kakoune
-      bat # cat replacement
-      lsd # ls replacement
-      exa # ls replacement
-      sd # sed replacement
-      sysctl
-      xz
-      # thefuck # fuck: correct previous command
-      inetutils
-      sqlite
-      skim # sk: fzf alternative in rust
-      sc-im # spreadsheet
-      pgcli # postgres cli
-      # mycli # mysql cli
-      pandoc # File converter
-      p11-kit # Terminal colors
-      openssl
-      nnnWithIcons
-      imgp
-      luarocks
-      unstable.zig
-      tabbed
-      xterm
-      sxiv
-      zathura
-      xdotool
-      pass
-      feh
-      ranger # A VIM-inspired filemanager for the console
-      # cachix
-      ncdu # Disk utilization viewer
-      jq # JSON viewer
-      yq # YAML viewer
-      httpie # curl replacement
-      http-prompt
-      heroku # Heroku CLI
-      universal-ctags # Tags creator for vim
-      coreutils # GNU coreutils
-      circleci-cli # CircleCI CLI
-      bash-completion
-      asciinema # Terminal session recorder
-      ngrok
-      tldr
-      unrar
-      yarn
-      nodejs-16_x
-      fzf
+      act # Run GitHUb actions locally
+      amfora
+      amfora # A fancy terminal browser for the Gemini protocol.
       aria2
-      gitAndTools.gh
-      jpegoptim
-      pstree
-      ffmpeg
-      nix-direnv
+      asciinema # Terminal session recorder
+      bandwhich
+      bash-completion
+      bat # cat replacement
+      bitwarden-cli
+      bottom
+      bpytop
+      broot
+      cachix
+      circleci-cli # CircleCI CLI
+      coreutils # GNU coreutils
+      curl
+      discord
+      diskonaut
+      dnsutils
+      docker-compose
       elmPackages.elm
+      elmPackages.elm-format
+      elmPackages.elm-language-server
       elmPackages.elm-live
       elmPackages.elm-test
-      elmPackages.elm-language-server
-      elmPackages.elm-format
-      # fzf-tab-completion
-      luajit
-      act # Run GitHUb actions locally
-      tmate # Instant terminal sharing
-      lazygit # Git TUI
-      hyperfine # A command-line benchmarking tool
-      wrk # Modern HTTP benchmarking tool
-      geckodriver
-      # openjdk11
-      maven
-      openapi-generator-cli-unstable
-      nixpkgs-fmt
-      rnix-lsp # Nix language server
-      docker-compose
-      zsh-syntax-highlighting
-      # zoom-us
-      xclip
-      ripgrep
-      rust-analyzer
-      neofetch
-      poetry
-      netcat
-      tree
-      mpv
-      amfora # A fancy terminal browser for the Gemini protocol.
-      dnsutils
-      bpytop
-      bottom
-      pueue
-      gnuplot # benchmark tests
-      peek
-      progress
-      bandwhich
-      inotify-tools
-      gradle
-      vifm
-      pistol
-      mmv-go
+      exa # ls replacement
+      exiftool
+      feh
+      ffmpeg
+      firefox
       fselect
-      navi
-      broot
+      fzf
+      gcc
+      geckodriver
+      gitAndTools.gh
+      glow
+      gnumake
+      gnuplot # benchmark tests
+      gradle
+      helix
+      heroku # Heroku CLI
+      http-prompt
+      httpie # curl replacement
+      hugo
+      hyperfine # A command-line benchmarking tool
+      imgp
+      inetutils
+      inotify-tools
+      irssi
+      jpegoptim
+      jq # JSON viewer
+      jrnl
+      kakoune
+      killall
+      lazygit # Git TUI
+      lsd # ls replacement
+      luajit
+      luarocks
       massren
+      maven
+      mdbook
+      mmv-go
+      mpv
+      navi
+      ncdu # Disk utilization viewer
+      neofetch
+      netcat
+      newsboat
+      ngrok
+      niv # Easy dependency management for Nix projects
+      nix-direnv
+      nixfmt
+      nixpkgs-fmt
+      nnnWithIcons
+      nodejs-16_x
+      openapi-generator-cli-unstable
+      openssl
+      p11-kit # Terminal colors
+      pandoc # File converter
+      pass
+      peek
+      pgcli # postgres cli
+      pistol
+      pistol
+      poetry
+      progress
+      pstree
+      pueue
+      pythonWithPkgs
+      ranger # A VIM-inspired filemanager for the console
       rdfind
-      diskonaut
-      yank
-      # spotify-tui
-      # xplr
+      redis
+      ripgrep
+      rnix-lsp # Nix language server
+      rust-analyzer
+      sc-im # spreadsheet
+      sd # sed replacement
+      skim # sk: fzf alternative in rust
+      slack
+      sqlite
+      sxiv
+      sysctl
+      tabbed
+      tldr
+      tmate # Instant terminal sharing
+      trash-cli
+      tree
+      tree-sitter
+      universal-ctags # Tags creator for vim
+      unrar
+      unstable.cargo
+      unstable.rustc
+      unstable.vhs
+      unstable.wezterm
+      unstable.xplr
+      unstable.zig
+      upx
+      vifm
+      vim
       websocat
       websocketd
-      redis
-      # starship
-      exiftool
-      upx
-      youtube-dl
-      # mc
-      # buku  # Issue with Flask-Admin
-      hugo
-      jrnl
-      trash-cli
-      mdbook
+      wget
+      wrk # Modern HTTP benchmarking tool
+      xclip
+      xdotool
       xdragon
-      pistol
-      newsboat
-      irssi
-      bitwarden-cli
-      glow
-      amfora
-      nixfmt
-      helix
-      slack
-      discord
-      killall
-      unstable.wezterm
+      xterm
+      xz
+      yank
+      yarn
+      yarnPkgs
+      youtube-dl
+      yq # YAML viewer
+      zathura
+      zoom-us
+      zsh-syntax-highlighting
     ];
   };
 
