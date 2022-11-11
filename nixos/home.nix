@@ -233,6 +233,9 @@ in
       amfora
       nixfmt
       helix
+      slack
+      discord
+      killall
       unstable.wezterm
     ];
   };
