@@ -100,10 +100,6 @@ in
         source = ./files/bin/elmtags.py;
         executable = true;
       };
-      ".xinitrc" = {
-        source = ./files/xinitrc;
-        executable = true;
-      };
     };
 
     packages = with pkgs; [
