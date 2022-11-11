@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
 
       # Home manager https://nix-community.github.io/home-manager
       <home-manager/nixos>
@@ -26,8 +26,8 @@
     "/crypto_keyfile.bin" = null;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "katana"; # Define your hostname.
+  # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

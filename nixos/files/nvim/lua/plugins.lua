@@ -43,12 +43,12 @@ require("packer").startup(function(use)
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-ui-select.nvim" },
-      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      -- { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     },
     config = function()
       local telescope = require("telescope")
       telescope.load_extension("ui-select")
-      telescope.load_extension("fzf")
+      -- telescope.load_extension("fzf")
     end,
   })
 
@@ -142,7 +142,7 @@ require("packer").startup(function(use)
       require("nvim-treesitter.configs").setup({
         ensure_installed = "all",
         sync_install = false,
-        ignore_install = { "php", "phpdoc", "zig" },
+        ignore_install = { "php", "phpdoc", "norg" },
         autotag = {
           enable = true,
         },
@@ -267,8 +267,7 @@ require("packer").startup(function(use)
       local util = require("util")
 
       -- Add additional capabilities supported by nvim-cmp
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+      capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
       local servers = {
