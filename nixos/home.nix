@@ -156,6 +156,7 @@ in
       inetutils
       inotify-tools
       irssi
+      jitsi-meet
       jpegoptim
       jq # JSON viewer
       jrnl
@@ -192,8 +193,10 @@ in
       pistol
       pistol
       poetry
-      progress
       pstree
+      unstable.mprocs
+      podman-compose
+      gpp
       pueue
       pythonWithPkgs
       ranger # A VIM-inspired filemanager for the console
@@ -218,6 +221,7 @@ in
       universal-ctags # Tags creator for vim
       unrar
       unstable.cargo
+      unstable.progress
       unstable.rustc
       unstable.vhs
       unstable.wezterm
@@ -249,7 +253,7 @@ in
   programs = {
     direnv = {
       enable = true;
-      nix-direnv = { enable = true; };
+      nix-direnv.enable = true;
     };
 
     neovim = {
