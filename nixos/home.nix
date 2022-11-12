@@ -103,6 +103,8 @@ in
     };
 
     packages = with pkgs; [
+      # jitsi-meet
+      # zoom-us
       act # Run GitHUb actions locally
       amfora
       amfora # A fancy terminal browser for the Gemini protocol.
@@ -141,6 +143,8 @@ in
       glow
       gnumake
       gnuplot # benchmark tests
+      google-chrome
+      gpp
       gradle
       helix
       heroku # Heroku CLI
@@ -152,7 +156,6 @@ in
       inetutils
       inotify-tools
       irssi
-      jitsi-meet
       jpegoptim
       jq # JSON viewer
       jrnl
@@ -188,11 +191,9 @@ in
       pgcli # postgres cli
       pistol
       pistol
+      podman-compose
       poetry
       pstree
-      unstable.mprocs
-      podman-compose
-      gpp
       pueue
       pythonWithPkgs
       ranger # A VIM-inspired filemanager for the console
@@ -209,6 +210,7 @@ in
       sxiv
       sysctl
       tabbed
+      tdesktop
       tldr
       tmate # Instant terminal sharing
       trash-cli
@@ -217,8 +219,10 @@ in
       universal-ctags # Tags creator for vim
       unrar
       unstable.cargo
+      unstable.mprocs
       unstable.progress
       unstable.rustc
+      unstable.clippy
       unstable.vhs
       unstable.wezterm
       unstable.xplr
@@ -241,7 +245,6 @@ in
       youtube-dl
       yq # YAML viewer
       zathura
-      zoom-us
       zsh-syntax-highlighting
     ];
   };
