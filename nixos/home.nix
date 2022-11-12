@@ -260,10 +260,10 @@ in
       plugins = with pkgs.vimPlugins; [ packer-nvim ];
       extraConfig = ''
         packadd! packer.nvim
+        luafile ${./files/nvim/lua/util.lua}
         luafile ${./files/nvim/lua/plugins.lua}
         luafile ${./files/nvim/lua/options.lua}
         luafile ${./files/nvim/lua/keys.lua}
-        luafile ${./files/nvim/lua/util.lua}
       '';
     };
 
