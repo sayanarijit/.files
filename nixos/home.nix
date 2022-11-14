@@ -106,7 +106,6 @@ in
       # jitsi-meet
       # zoom-us
       act # Run GitHUb actions locally
-      amfora
       amfora # A fancy terminal browser for the Gemini protocol.
       aria2
       asciinema # Terminal session recorder
@@ -125,6 +124,7 @@ in
       diskonaut
       dnsutils
       docker-compose
+      easyeffects
       elmPackages.elm
       elmPackages.elm-format
       elmPackages.elm-language-server
@@ -218,13 +218,13 @@ in
       universal-ctags # Tags creator for vim
       unrar
       unstable.cargo
-      unstable.rustfmt
       unstable.clippy
-      unstable.rust-analyzer
+      unstable.clippy
       unstable.mprocs
       unstable.progress
+      unstable.rust-analyzer
       unstable.rustc
-      unstable.clippy
+      unstable.rustfmt
       unstable.vhs
       unstable.wezterm
       unstable.xplr
@@ -247,6 +247,7 @@ in
       youtube-dl
       yq # YAML viewer
       zathura
+      zip
       zsh-syntax-highlighting
     ];
   };

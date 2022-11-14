@@ -727,7 +727,7 @@ require("packer").startup(function(use)
         au ColorScheme * hi EndOfBuffer ctermbg=none guibg=none
         set guifont=FiraCode\ Nerd\ Font:h19
         set background=dark
-        let g:material_style = "oceanic"
+        let g:material_style = "darker"
         highlight link CompeDocumentation NormalFloat
         colorscheme material
       ]])
