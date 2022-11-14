@@ -201,7 +201,6 @@ in
       redis
       ripgrep
       rnix-lsp # Nix language server
-      rust-analyzer
       sc-im # spreadsheet
       sd # sed replacement
       skim # sk: fzf alternative in rust
@@ -219,6 +218,9 @@ in
       universal-ctags # Tags creator for vim
       unrar
       unstable.cargo
+      unstable.rustfmt
+      unstable.clippy
+      unstable.rust-analyzer
       unstable.mprocs
       unstable.progress
       unstable.rustc

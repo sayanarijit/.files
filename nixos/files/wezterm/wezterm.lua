@@ -114,7 +114,7 @@ return {
   font = wezterm.font("Hack"),
   font_size = 12.0,
   -- colors = colors,
-  color_scheme = "MaterialDark",
+  -- color_scheme = "MaterialDark",
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = false,
   scrollback_lines = 3500,
@@ -125,5 +125,5 @@ return {
   keys = keys,
   audible_bell = "Disabled",
   hyperlink_rules = hyperlink_rules,
-  window_background_opacity = 0.95,
+  window_background_opacity = 0.90,
 }

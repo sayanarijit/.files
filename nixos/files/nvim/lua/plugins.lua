@@ -22,7 +22,7 @@ require("packer").startup(function(use)
     "sayanarijit/xplr.vim",
     config = function()
       cmd([[
-        let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Debug' } }
+        let g:nnn#layout = { 'window': { 'width': 0.95, 'height': 0.95, 'highlight': 'Debug' } }
         let g:nnn#action = {
               \ '<c-t>': 'tab split',
               \ '<c-x>': 'split',
@@ -727,7 +727,7 @@ require("packer").startup(function(use)
         au ColorScheme * hi EndOfBuffer ctermbg=none guibg=none
         set guifont=FiraCode\ Nerd\ Font:h19
         set background=dark
-        let g:material_style = "darker"
+        let g:material_style = "oceanic"
         highlight link CompeDocumentation NormalFloat
         colorscheme material
       ]])
