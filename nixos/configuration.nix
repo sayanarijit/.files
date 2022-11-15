@@ -73,6 +73,10 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -115,6 +119,18 @@
     curl
   ];
 
+  environment.etc = {
+    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.enable-hw-volume"] = true,
+        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+      }
+    '';
+  };
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -141,6 +157,7 @@
   # List services that you want to enable:
 
   services.pcscd.enable = true;
+
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
