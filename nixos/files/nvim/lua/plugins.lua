@@ -86,6 +86,8 @@ require("packer").startup(function(use)
           nls.builtins.formatting.isort,
           nls.builtins.formatting.black,
           nls.builtins.formatting.taplo,
+          nls.builtins.formatting.taplo,
+          nls.builtins.formatting.shfmt,
         },
 
         on_attach = function(_)

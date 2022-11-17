@@ -203,6 +203,7 @@ in
       rnix-lsp # Nix language server
       sc-im # spreadsheet
       sd # sed replacement
+      shfmt
       skim # sk: fzf alternative in rust
       slack
       sqlite
