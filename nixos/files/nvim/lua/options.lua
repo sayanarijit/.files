@@ -127,10 +127,6 @@ cmd([[
 
 -- Color Scheme
 cmd[[
-  " Transparent background
-  au ColorScheme * hi Normal ctermbg=none guibg=none
-  au ColorScheme * hi EndOfBuffer ctermbg=none guibg=none
-
   set guifont=FiraCode\ Nerd\ Font:h19
   set background=dark
   highlight link CompeDocumentation NormalFloat

@@ -220,7 +220,6 @@ in
       unrar
       unstable.cargo
       unstable.clippy
-      unstable.clippy
       unstable.mprocs
       unstable.progress
       unstable.rust-analyzer
@@ -239,6 +238,7 @@ in
       wrk # Modern HTTP benchmarking tool
       xclip
       xdotool
+      git
       xdragon
       xterm
       xz
@@ -250,6 +250,7 @@ in
       zathura
       zip
       zsh-syntax-highlighting
+      stylua
     ];
   };
 
@@ -261,7 +262,69 @@ in
 
     neovim = {
       enable = true;
-      plugins = with pkgs.vimPlugins; [ packer-nvim ];
+
+      # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
+      plugins = with pkgs.vimPlugins; [
+        # cmp-buffer
+        # cmp-calc
+        # cmp-cmdline
+        # cmp-conjure
+        # cmp-conventionalcommits
+        # cmp-copilot
+        # cmp-dictionary
+        # cmp-digraphs
+        # cmp-emoji
+        # cmp-fuzzy-buffer
+        # cmp-fuzzy-path
+        # cmp-git
+        # cmp-neosnippet
+        # cmp-nvim-lsp
+        # cmp-nvim-lsp-document-symbol
+        # cmp-nvim-lsp-signature-help
+        # cmp-nvim-lua
+        # cmp-nvim-tags
+        # cmp-nvim-ultisnips
+        # cmp-omni
+        # cmp-path
+        # cmp-snippy
+        # cmp-spell
+        # cmp-treesitter
+        # cmp-zsh
+        # cmp_luasnip
+        # comment-nvim
+        # diffview-nvim
+        # friendly-snippets
+        # git-messenger-vim
+        # luasnip
+        # neoscroll-nvim
+        # nginx-vim
+        # nnn-vim
+        # null-ls-nvim
+        # nvim-colorizer-lua
+        # nvim-lightbulb
+        # nvim-lightbulb
+        # nvim-lspconfig
+        # nvim-surround
+        # nvim-treesitter
+        # nvim-treesitter-textobjects
+        # nvim-ts-autotag
+        # open-browser-github-vim
+        # playground
+        # registers-nvim
+        # splitjoin-vim
+        # surround-nvim
+        # telescope-nvim
+        # vim-expand-region
+        # vim-fugitive
+        # vim-gitgutter
+        # vim-nix
+        # vim-protobuf
+        # vim-startify
+        # vim-test
+        # vim-toml
+        # which-key-nvim
+        packer-nvim
+      ];
       extraConfig = ''
         packadd! packer.nvim
         luafile ${./files/nvim/lua/util.lua}

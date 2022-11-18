@@ -6,7 +6,7 @@ require("packer").startup(function(use)
   use({
     "wbthomason/packer.nvim",
     opt = true,
-    setup = function()
+    config = function()
       cmd([[
         augroup packer_user_config
           autocmd!
@@ -143,7 +143,14 @@ require("packer").startup(function(use)
       require("nvim-treesitter.configs").setup({
         ensure_installed = "all",
         sync_install = false,
-        ignore_install = { "php", "phpdoc", "norg" },
+        ignore_install = {
+          "php",
+          "phpdoc",
+          "norg",
+          "swift",
+          "pascal",
+          "grammer.js",
+        },
         autotag = {
           enable = true,
         },
@@ -174,7 +181,7 @@ require("packer").startup(function(use)
   })
 
   -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
   -- Brings physics-based smooth scrolling to the Vim world!
   -- use({ "yuttie/comfortable-motion.vim" })
@@ -188,11 +195,11 @@ require("packer").startup(function(use)
     end,
   })
 
-  --  vimspector - A multi-language debugging system for Vim
-  use({
-    "puremourning/vimspector",
-    run = "python3 install_gadget.py --all",
-  })
+  -- --  vimspector - A multi-language debugging system for Vim
+  -- use({
+  --   "puremourning/vimspector",
+  --   run = "python3 install_gadget.py --all",
+  -- })
 
   --  Improved nginx vim plugin (incl. syntax highlighting)
   use({ "chr4/nginx.vim" })
@@ -516,9 +523,6 @@ require("packer").startup(function(use)
   --  Vim configuration files for Nix http://nixos.org/nix
   use({ "LnL7/vim-nix" })
 
-  --  Vim syntax highlighting and indentation for Svelte 3 components.
-  use({ "evanleck/vim-svelte" })
-
   -- Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination.
   use({
     "terryma/vim-expand-region",
@@ -680,35 +684,35 @@ require("packer").startup(function(use)
   --  A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation.
   use({ "jparise/vim-graphql" })
 
-  --  Neovim extension for zk
-  use({
-    "mickael-menu/zk-nvim",
-    cinfig = function()
-      require("zk").setup({
-        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-        -- it's recommended to use "telescope" or "fzf"
-        picker = "telescope",
-      })
-    end,
-  })
+  -- --  Neovim extension for zk
+  -- use({
+  --   "mickael-menu/zk-nvim",
+  --   cinfig = function()
+  --     require("zk").setup({
+  --       -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+  --       -- it's recommended to use "telescope" or "fzf"
+  --       picker = "telescope",
+  --     })
+  --   end,
+  -- })
 
   use({ "tversteeg/registers.nvim" })
 
-  -- Tools to help create flutter apps in neovim using the native lsp
-  use({
-    "akinsho/flutter-tools.nvim",
-    requires = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("flutter-tools").setup()
-      require("telescope").load_extension("flutter")
-      cmd(
-        [[autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null']]
-      )
-    end,
-  })
+  -- -- Tools to help create flutter apps in neovim using the native lsp
+  -- use({
+  --   "akinsho/flutter-tools.nvim",
+  --   requires = {
+  --     "nvim-telescope/telescope.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   config = function()
+  --     require("flutter-tools").setup()
+  --     require("telescope").load_extension("flutter")
+  --     cmd(
+  --       [[autocmd BufWritePost *.dart silent execute '!kill -s USR1 "$(pgrep -f flutter_tools.snapshot\ run)" &> /dev/null']]
+  --     )
+  --   end,
+  -- })
 
   -- -- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
   -- use({
@@ -720,7 +724,12 @@ require("packer").startup(function(use)
   -- })
 
   -- The fastest Neovim colorizer.
-  use({ "norcalli/nvim-colorizer.lua" })
+  use({
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+  })
 
   -- -- Material colorscheme for NeoVim
   -- use({
@@ -734,7 +743,11 @@ require("packer").startup(function(use)
   -- })
 
   -- A dark and light Neovim theme written in Rust, inspired by IBM Carbon.
-  use {'shaunsingh/oxocarbon.nvim', branch = 'fennel', config = function()
-      cmd[[colorscheme oxocarbon]]
-  end}
+  use({
+    "shaunsingh/oxocarbon.nvim",
+    branch = "fennel",
+    config = function()
+      cmd([[colorscheme oxocarbon]])
+    end,
+  })
 end)
