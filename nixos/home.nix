@@ -139,6 +139,7 @@ in
       fzf
       gcc
       geckodriver
+      git
       gitAndTools.gh
       glow
       gnumake
@@ -207,6 +208,7 @@ in
       skim # sk: fzf alternative in rust
       slack
       sqlite
+      stylua
       sxiv
       sysctl
       tabbed
@@ -219,6 +221,7 @@ in
       universal-ctags # Tags creator for vim
       unrar
       unstable.cargo
+      unstable.cargo-edit
       unstable.clippy
       unstable.mprocs
       unstable.progress
@@ -238,7 +241,6 @@ in
       wrk # Modern HTTP benchmarking tool
       xclip
       xdotool
-      git
       xdragon
       xterm
       xz
@@ -250,7 +252,6 @@ in
       zathura
       zip
       zsh-syntax-highlighting
-      stylua
     ];
   };
 
