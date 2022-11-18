@@ -173,6 +173,9 @@ require("packer").startup(function(use)
     end,
   })
 
+  -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
   -- Brings physics-based smooth scrolling to the Vim world!
   -- use({ "yuttie/comfortable-motion.vim" })
 
@@ -719,19 +722,19 @@ require("packer").startup(function(use)
   -- The fastest Neovim colorizer.
   use({ "norcalli/nvim-colorizer.lua" })
 
-  -- Material colorscheme for NeoVim
-  use({
-    "marko-cerovac/material.nvim",
-    config = function()
-      cmd([[
-        au ColorScheme * hi Normal ctermbg=none guibg=none
-        au ColorScheme * hi EndOfBuffer ctermbg=none guibg=none
-        set guifont=FiraCode\ Nerd\ Font:h19
-        set background=dark
-        let g:material_style = "darker"
-        highlight link CompeDocumentation NormalFloat
-        colorscheme material
-      ]])
-    end,
-  })
+  -- -- Material colorscheme for NeoVim
+  -- use({
+  --   "marko-cerovac/material.nvim",
+  --   config = function()
+  --     cmd([[
+  --       let g:material_style = "darker"
+  --       colorscheme material
+  --     ]])
+  --   end,
+  -- })
+
+  -- A dark and light Neovim theme written in Rust, inspired by IBM Carbon.
+  use {'shaunsingh/oxocarbon.nvim', branch = 'fennel', config = function()
+      cmd[[colorscheme oxocarbon]]
+  end}
 end)

@@ -124,3 +124,14 @@ cmd([[
   vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
   vnoremap <leader>R "hy:bufdo %s/<C-r>h/<C-r>h/gce<left><left><left><left>
 ]])
+
+-- Color Scheme
+cmd[[
+  " Transparent background
+  au ColorScheme * hi Normal ctermbg=none guibg=none
+  au ColorScheme * hi EndOfBuffer ctermbg=none guibg=none
+
+  set guifont=FiraCode\ Nerd\ Font:h19
+  set background=dark
+  highlight link CompeDocumentation NormalFloat
+]]
