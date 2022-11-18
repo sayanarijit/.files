@@ -27,6 +27,9 @@
     "/crypto_keyfile.bin" = null;
   };
 
+  # Clean /tmp on reboot
+  boot.cleanTmpDir = true;
+
   networking.hostName = "katana"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
