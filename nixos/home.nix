@@ -245,7 +245,7 @@ in
       xterm
       xz
       yank
-      yarn
+      unstable.yarn
       yarnPkgs
       youtube-dl
       yq # YAML viewer
