@@ -58,7 +58,7 @@ require("packer").startup(function(use)
     config = function()
       local nls = require("null-ls")
       nls.setup({
-        debiunce = 150,
+        debounce = 150,
         save_after_format = false,
         sources = {
           nls.builtins.formatting.stylua.with({
@@ -203,6 +203,9 @@ require("packer").startup(function(use)
 
   --  Improved nginx vim plugin (incl. syntax highlighting)
   use({ "chr4/nginx.vim" })
+
+  -- Markdown Vim Mode
+  use({ "preservim/vim-markdown", requires = "godlygeek/tabular" })
 
   -- -- A fast and lightweight Neovim lua plugin to keep an eye on where your cursor has jumped.
   -- use({
@@ -731,33 +734,33 @@ require("packer").startup(function(use)
     end,
   })
 
-  -- -- Material colorscheme for NeoVim
-  -- use({
-  --   "marko-cerovac/material.nvim",
-  --   config = function()
-  --     cmd([[
-  --       let g:material_style = "darker"
-  --       colorscheme material
-  --     ]])
-  --   end,
-  -- })
-
-  -- A dark and light Neovim theme written in Rust, inspired by IBM Carbon.
+  -- Material colorscheme for NeoVim
   use({
-    "shaunsingh/oxocarbon.nvim",
-    branch = "fennel",
+    "marko-cerovac/material.nvim",
     config = function()
-      cmd([[colorscheme oxocarbon]])
+      cmd([[
+        let g:material_style = "darker"
+        colorscheme material
+      ]])
     end,
   })
+
+  -- -- A dark and light Neovim theme written in Rust, inspired by IBM Carbon.
+  -- use({
+  --   "shaunsingh/oxocarbon.nvim",
+  --   branch = "fennel",
+  --   config = function()
+  --     cmd([[colorscheme oxocarbon]])
+  --   end,
+  -- })
 
   use({
     "xiyaowong/nvim-transparent",
     config = function()
       require("transparent").setup({
         enable = true, -- boolean: enable transparent
-        extra_groups = "all", -- table/string: additional groups that should be cleared
-        exclude = {}, -- table: groups you don't want to clear
+        -- extra_groups = "all", -- table/string: additional groups that should be cleared
+        -- exclude = {}, -- table: groups you don't want to clear
       })
     end,
   })

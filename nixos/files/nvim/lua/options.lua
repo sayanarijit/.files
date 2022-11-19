@@ -126,9 +126,9 @@ cmd([[
 ]])
 
 -- Color Scheme
-cmd([[
-  let g:transparent_enabled = v:true
-  set guifont=FiraCode\ Nerd\ Font:h19
-  set background=dark
-  highlight link CompeDocumentation NormalFloat
-]])
+-- cmd([[
+--   let g:transparent_enabled = v:true
+--   set guifont=FiraCode\ Nerd\ Font:h19
+--   set background=dark
+--   highlight link CompeDocumentation NormalFloat
+-- ]])
