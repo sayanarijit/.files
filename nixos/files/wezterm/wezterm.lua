@@ -1,33 +1,33 @@
 local wezterm = require("wezterm")
 
--- local color = {
---   bg_dark = "#151515",
---   bg_light = "#212121",
---   fg_dark = "#434343",
---   fg_light = "#E5E5E5",
--- }
---
--- local colors = {
---   tab_bar = {
---     active_tab = {
---       bg_color = color.bg_light,
---       fg_color = color.fg_light,
---     },
---     inactive_tab = {
---       bg_color = color.bg_dark,
---       fg_color = color.fg_dark,
---     },
---     inactive_tab_hover = {
---       bg_color = color.bg_light,
---       fg_color = color.fg_dark,
---     },
---     new_tab = {
---       bg_color = color.bg_dark,
---       fg_color = color.fg_dark,
---     },
---     background = color.bg_dark,
---   },
--- }
+local color = {
+  bg_dark = "#151515",
+  bg_light = "#212121",
+  fg_dark = "#434343",
+  fg_light = "#E5E5E5",
+}
+
+local colors = {
+  tab_bar = {
+    active_tab = {
+      bg_color = color.bg_light,
+      fg_color = color.fg_light,
+    },
+    inactive_tab = {
+      bg_color = color.bg_dark,
+      fg_color = color.fg_dark,
+    },
+    inactive_tab_hover = {
+      bg_color = color.bg_light,
+      fg_color = color.fg_dark,
+    },
+    new_tab = {
+      bg_color = color.bg_dark,
+      fg_color = color.fg_dark,
+    },
+    background = color.bg_dark,
+  },
+}
 
 local hyperlink_rules = {
   -- Linkify things that look like URLs
@@ -113,8 +113,8 @@ end
 return {
   font = wezterm.font("Hack"),
   font_size = 12.0,
-  -- colors = colors,
-  -- color_scheme = "MaterialDark",
+  colors = colors,
+  color_scheme = "MaterialDark",
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = false,
   scrollback_lines = 3500,
@@ -125,5 +125,5 @@ return {
   keys = keys,
   audible_bell = "Disabled",
   hyperlink_rules = hyperlink_rules,
-  window_background_opacity = 0.90,
+  window_background_opacity = 0.95,
 }
