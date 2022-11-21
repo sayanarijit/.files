@@ -211,6 +211,7 @@ in
       stylua
       sxiv
       sysctl
+      tcpdump
       tabbed
       tdesktop
       tldr

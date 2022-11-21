@@ -103,7 +103,7 @@
   users.users.sayanarijit = {
     isNormalUser = true;
     description = "Arijit Basu";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
     shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
@@ -120,6 +120,7 @@
   environment.systemPackages = with pkgs; [
     vim
     curl
+    wireshark
   ];
 
   environment.etc = {
@@ -143,6 +144,8 @@
       enableSSHSupport = true;
       pinentryFlavor = "curses";
     };
+
+    wireshark.enable = true;
   };
 
   virtualisation = {

@@ -99,6 +99,9 @@ local keys = {
       os.remove(tmpfile)
     end),
   },
+
+  { key = "PageUp", mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
+  { key = "PageDown", mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(1) },
 }
 
 for i = 1, 8 do
