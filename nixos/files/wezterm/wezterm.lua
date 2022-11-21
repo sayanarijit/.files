@@ -126,4 +126,5 @@ return {
   audible_bell = "Disabled",
   hyperlink_rules = hyperlink_rules,
   window_background_opacity = 0.95,
+  window_decorations = "NONE",
 }
