@@ -104,6 +104,7 @@ in
 
     packages = with pkgs; [
       # jitsi-meet
+      # unstable.xplr  ~ via flake
       # zoom-us
       act # Run GitHUb actions locally
       amfora # A fancy terminal browser for the Gemini protocol.
@@ -152,6 +153,7 @@ in
       http-prompt
       httpie # curl replacement
       hugo
+      hunspell
       hyperfine # A command-line benchmarking tool
       imgp
       inetutils
@@ -163,6 +165,7 @@ in
       kakoune
       killall
       lazygit # Git TUI
+      libreoffice-qt
       lsd # ls replacement
       luajit
       luarocks
@@ -211,8 +214,8 @@ in
       stylua
       sxiv
       sysctl
-      tcpdump
       tabbed
+      tcpdump
       tdesktop
       tldr
       tmate # Instant terminal sharing
@@ -231,7 +234,7 @@ in
       unstable.rustfmt
       unstable.vhs
       unstable.wezterm
-      # unstable.xplr  ~ via flake
+      unstable.yarn
       unstable.zig
       upx
       vifm
@@ -246,7 +249,6 @@ in
       xterm
       xz
       yank
-      unstable.yarn
       yarnPkgs
       youtube-dl
       yq # YAML viewer
