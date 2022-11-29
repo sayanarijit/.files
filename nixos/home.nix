@@ -231,7 +231,7 @@ in
       unstable.rustfmt
       unstable.vhs
       unstable.wezterm
-      unstable.xplr
+      # unstable.xplr  ~ via flake
       unstable.zig
       upx
       vifm
