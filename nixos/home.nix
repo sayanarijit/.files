@@ -116,6 +116,8 @@ in
       bitwarden-cli
       bottom
       bpytop
+      nushell
+      fish
       broot
       cachix
       circleci-cli # CircleCI CLI
