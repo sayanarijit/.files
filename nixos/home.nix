@@ -118,6 +118,7 @@ in
       bpytop
       nushell
       fish
+      fd
       broot
       cachix
       circleci-cli # CircleCI CLI
