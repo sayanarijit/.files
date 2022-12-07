@@ -116,11 +116,10 @@ in
       bitwarden-cli
       bottom
       bpytop
-      nushell
-      fish
-      fd
       broot
       cachix
+      wasm-pack
+      unstable.devbox
       circleci-cli # CircleCI CLI
       coreutils # GNU coreutils
       curl
@@ -136,9 +135,11 @@ in
       elmPackages.elm-test
       exa # ls replacement
       exiftool
+      fd
       feh
       ffmpeg
       firefox
+      fish
       fselect
       fzf
       gcc
@@ -189,10 +190,12 @@ in
       nixpkgs-fmt
       nnnWithIcons
       nodejs-16_x
+      nushell
       openapi-generator-cli-unstable
       openssl
       p11-kit # Terminal colors
       pandoc # File converter
+      texlive.combined.scheme-basic
       pass
       peek
       pgcli # postgres cli
@@ -230,6 +233,7 @@ in
       unstable.cargo
       unstable.cargo-edit
       unstable.clippy
+      unstable.cmake
       unstable.mprocs
       unstable.progress
       unstable.rust-analyzer
@@ -387,4 +391,5 @@ in
       };
     };
   };
+
 }
