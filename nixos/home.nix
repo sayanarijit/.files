@@ -196,13 +196,14 @@ in
       p11-kit # Terminal colors
       pandoc # File converter
       texlive.combined.scheme-basic
+      unstable.slides
       pass
       peek
       pgcli # postgres cli
       pistol
       pistol
       podman-compose
-      poetry
+      # poetry
       pstree
       pueue
       pythonWithPkgs
