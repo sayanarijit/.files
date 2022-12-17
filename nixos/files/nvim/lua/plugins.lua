@@ -483,7 +483,7 @@ require("packer").startup(function(use)
   use({ "airblade/vim-gitgutter" })
 
   -- Neovim plugin for GitHub Copilot
-  -- use({ "github/copilot.vim" })
+  use({ "github/copilot.vim" })
 
   --  brain muscle // Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more
   use({

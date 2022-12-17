@@ -43,6 +43,7 @@ let
     black
     mypy
     flake8
+    poetry
   ]);
 
 in
@@ -104,6 +105,7 @@ in
 
     packages = with pkgs; [
       # jitsi-meet
+      # poetry
       # unstable.xplr  ~ via flake
       # zoom-us
       act # Run GitHUb actions locally
@@ -118,8 +120,6 @@ in
       bpytop
       broot
       cachix
-      wasm-pack
-      unstable.devbox
       circleci-cli # CircleCI CLI
       coreutils # GNU coreutils
       curl
@@ -195,15 +195,12 @@ in
       openssl
       p11-kit # Terminal colors
       pandoc # File converter
-      texlive.combined.scheme-basic
-      unstable.slides
       pass
       peek
       pgcli # postgres cli
       pistol
       pistol
       podman-compose
-      # poetry
       pstree
       pueue
       pythonWithPkgs
@@ -224,6 +221,7 @@ in
       tabbed
       tcpdump
       tdesktop
+      texlive.combined.scheme-basic
       tldr
       tmate # Instant terminal sharing
       trash-cli
@@ -235,11 +233,14 @@ in
       unstable.cargo-edit
       unstable.clippy
       unstable.cmake
+      unstable.copilot-cli
+      unstable.devbox
       unstable.mprocs
       unstable.progress
       unstable.rust-analyzer
       unstable.rustc
       unstable.rustfmt
+      unstable.slides
       unstable.vhs
       unstable.wezterm
       unstable.yarn
@@ -247,6 +248,7 @@ in
       upx
       vifm
       vim
+      wasm-pack
       websocat
       websocketd
       wget
@@ -274,6 +276,8 @@ in
 
     neovim = {
       enable = true;
+
+      package = unstable.neovim-unwrapped;
 
       # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
       plugins = with pkgs.vimPlugins; [
