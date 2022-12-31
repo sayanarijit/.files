@@ -125,6 +125,7 @@ in
       curl
       discord
       diskonaut
+      distrobox
       dnsutils
       docker-compose
       easyeffects
