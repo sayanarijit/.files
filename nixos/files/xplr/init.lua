@@ -192,10 +192,9 @@ require("xpm").setup({
 
     -- Terminal integration for xplr
     {
-      name = "sayanarijit/alacritty.xplr",
-      rev = "term",
+      name = "dtomvan/term.xplr",
       setup = function()
-        local term = require("alacritty")
+        local term = require("term")
 
         local window = term.profile_wezterm()
         window.send_selection = true

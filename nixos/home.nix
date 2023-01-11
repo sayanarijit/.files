@@ -197,6 +197,7 @@ in
       nodejs-16_x
       nushell
       openapi-generator-cli-unstable
+      alacritty
       openssl
       p11-kit # Terminal colors
       pandoc # File converter
