@@ -106,6 +106,7 @@ in
     packages = with pkgs; [
       # jitsi-meet
       # poetry
+      # unstable.devbox
       # unstable.xplr  ~ via flake
       # zoom-us
       act # Run GitHUb actions locally
@@ -115,6 +116,9 @@ in
       bandwhich
       bash-completion
       bat # cat replacement
+      viu
+      highlight
+      kitty
       bitwarden-cli
       bottom
       bpytop
@@ -235,7 +239,6 @@ in
       unstable.clippy
       unstable.cmake
       unstable.copilot-cli
-      unstable.devbox
       unstable.mprocs
       unstable.progress
       unstable.rust-analyzer
@@ -244,6 +247,7 @@ in
       unstable.slides
       unstable.vhs
       unstable.wezterm
+      unstable.wrangler
       unstable.yarn
       unstable.zig
       upx

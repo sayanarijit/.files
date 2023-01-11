@@ -9,10 +9,10 @@ local home = os.getenv("HOME")
 
 -- Lua search path
 package.path = home
-    .. "/.config/xplr/plugins/?/init.lua;"
-    .. home
-    .. "/.config/xplr/plugins/?.lua;"
-    .. package.path
+  .. "/.config/xplr/plugins/?/init.lua;"
+  .. home
+  .. "/.config/xplr/plugins/?.lua;"
+  .. package.path
 
 -- Add `eval "$(luarocks path --lua-version 5.1)"` in your `.bashrc` or `.zshrc`.
 -- Install packages with `luarocks install $name --local --lua-version 5.1`.
@@ -58,16 +58,16 @@ require("xpm").setup({
       end,
     },
 
-    -- Implements support for dual-pane navigation into xplr
     "sayanarijit/dual-pane.xplr",
-
     "sayanarijit/registers.xplr",
     "sayanarijit/offline-docs.xplr",
     "sayanarijit/scp.xplr",
+
     {
-      name = "sayanarijit/tri-pane.xplr", setup = function()
+      name = "sayanarijit/tri-pane.xplr",
+      setup = function()
         require("tri-pane").setup({ as_default_layout = false })
-      end
+      end,
     },
 
     -- Previewer implementation for xplr using suckless tabbed and nnn preview-tabbed
@@ -229,8 +229,8 @@ xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
   "ExplorePwdAsync",
 }
 
-xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] = xplr.config.modes.builtin.action.key_bindings.on_key["!"]
-
+xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] =
+  xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 
 xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
   help = "fzf",
@@ -345,10 +345,10 @@ xplr.config.modes.builtin.switch_layout.key_bindings.on_key.p = {
 local fennel = require("fennel")
 
 fennel.path = fennel.path
-    .. ";"
-    .. home
-    .. "/.config/xplr/plugins/?/init.fnl;"
-    .. home
-    .. "/.config/xplr/plugins/?.fnl;"
+  .. ";"
+  .. home
+  .. "/.config/xplr/plugins/?/init.fnl;"
+  .. home
+  .. "/.config/xplr/plugins/?.fnl;"
 
 table.insert(package.loaders or package.searchers, fennel.searcher)
