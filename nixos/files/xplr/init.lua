@@ -140,24 +140,26 @@ require("xpm").setup({
     "dtomvan/ouch.xplr",
 
     -- Adds (dev)icons to xplr.
-    {
-      "dtomvan/extra-icons.xplr",
-      after = function()
-        xplr.config.general.table.row.cols[1] = {
-          format = "custom.icons_dtomvan_col_1",
-        }
-      end,
-    },
-
-    -- fzf integration for xplr
     -- {
-    --   name = "sayanarijit/fzf.xplr",
-    --   setup = function()
-    --     require("fzf").setup({
-    --       args = "--preview 'pistol {}'",
-    --     })
+    --   "dtomvan/extra-icons.xplr",
+    --   after = function()
+    --     xplr.config.general.table.row.cols[1] = {
+    --       format = "custom.icons_dtomvan_col_1",
+    --     }
     --   end,
     -- },
+
+    -- fzf integration for xplr
+    {
+      name = "sayanarijit/fzf.xplr",
+      setup = function()
+        require("fzf").setup({
+          args = "--preview 'pistol {}'",
+          recursive = true,
+          enter_dir = true,
+        })
+      end,
+    },
 
     -- Use this plugin to paste your files to paste.rs, and open/delete them later in fzf.
     {
@@ -231,20 +233,20 @@ xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
 xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] =
   xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 
-xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
-  help = "fzf",
-  messages = {
-    "PopMode",
-    {
-      BashExec0 = [===[
-        fzf -m --preview 'pistol {}' --print0 | while IFS= read -r -d '' line; do
-          "$XPLR" -m 'FocusPath: %q' "$PWD/$line"
-          "$XPLR" -m Select
-        done
-      ]===],
-    },
-  },
-}
+-- xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
+--   help = "fzf",
+--   messages = {
+--     "PopMode",
+--     {
+--       BashExec0 = [===[
+--         fzf -m --preview 'pistol {}' --print0 | while IFS= read -r -d '' line; do
+--           "$XPLR" -m 'FocusPath: %q' "$PWD/$line"
+--           "$XPLR" -m Select
+--         done
+--       ]===],
+--     },
+--   },
+-- }
 
 xplr.config.modes.builtin.action.key_bindings.on_key.P = {
   help = "previuwu",

@@ -110,15 +110,13 @@ in
       # unstable.xplr  ~ via flake
       # zoom-us
       act # Run GitHUb actions locally
+      alacritty
       amfora # A fancy terminal browser for the Gemini protocol.
       aria2
       asciinema # Terminal session recorder
       bandwhich
       bash-completion
       bat # cat replacement
-      viu
-      highlight
-      kitty
       bitwarden-cli
       bottom
       bpytop
@@ -159,6 +157,7 @@ in
       gradle
       helix
       heroku # Heroku CLI
+      highlight
       http-prompt
       httpie # curl replacement
       hugo
@@ -173,6 +172,7 @@ in
       jrnl
       kakoune
       killall
+      kitty
       lazygit # Git TUI
       libreoffice-qt
       lsd # ls replacement
@@ -197,7 +197,6 @@ in
       nodejs-16_x
       nushell
       openapi-generator-cli-unstable
-      alacritty
       openssl
       p11-kit # Terminal colors
       pandoc # File converter
@@ -254,6 +253,7 @@ in
       upx
       vifm
       vim
+      viu
       wasm-pack
       websocat
       websocketd
@@ -270,6 +270,7 @@ in
       yq # YAML viewer
       zathura
       zip
+      zoxide
       zsh-syntax-highlighting
     ];
   };
