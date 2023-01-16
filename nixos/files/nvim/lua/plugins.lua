@@ -32,6 +32,9 @@ require("packer").startup(function(use)
     end,
   })
 
+  -- eyes Move faster with unique f/F indicators.
+  use({ "jinh0/eyeliner.nvim" })
+
   --  Switch between single-line and multiline forms of code
   use({ "AndrewRadev/splitjoin.vim" })
 

@@ -254,6 +254,7 @@ in
       vifm
       vim
       viu
+      vlc
       wasm-pack
       websocat
       websocketd
