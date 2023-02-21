@@ -17,9 +17,9 @@ _G.profile = function(cmd, times)
     if not ok then
       error(
         "Command failed: "
-          .. tostring(ok)
-          .. " "
-          .. vim.inspect({ cmd = cmd, args = args })
+        .. tostring(ok)
+        .. " "
+        .. vim.inspect({ cmd = cmd, args = args })
       )
     end
   end
@@ -39,12 +39,7 @@ function M.execute(id)
 end
 
 local map = function(mode, key, cmd, opts, defaults)
-  opts = vim.tbl_deep_extend(
-    "force",
-    { silent = true },
-    defaults or {},
-    opts or {}
-  )
+  opts = vim.tbl_deep_extend("force", { silent = true }, defaults or {}, opts or {})
 
   if type(cmd) == "function" then
     table.insert(M.functions, cmd)
@@ -70,18 +65,23 @@ end
 function M.nmap(key, cmd, opts)
   return map("n", key, cmd, opts)
 end
+
 function M.vmap(key, cmd, opts)
   return map("v", key, cmd, opts)
 end
+
 function M.xmap(key, cmd, opts)
   return map("x", key, cmd, opts)
 end
+
 function M.imap(key, cmd, opts)
   return map("i", key, cmd, opts)
 end
+
 function M.omap(key, cmd, opts)
   return map("o", key, cmd, opts)
 end
+
 function M.smap(key, cmd, opts)
   return map("s", key, cmd, opts)
 end
@@ -89,18 +89,23 @@ end
 function M.nnoremap(key, cmd, opts)
   return map("n", key, cmd, opts, { noremap = true })
 end
+
 function M.vnoremap(key, cmd, opts)
   return map("v", key, cmd, opts, { noremap = true })
 end
+
 function M.xnoremap(key, cmd, opts)
   return map("x", key, cmd, opts, { noremap = true })
 end
+
 function M.inoremap(key, cmd, opts)
   return map("i", key, cmd, opts, { noremap = true })
 end
+
 function M.onoremap(key, cmd, opts)
   return map("o", key, cmd, opts, { noremap = true })
 end
+
 function M.snoremap(key, cmd, opts)
   return map("s", key, cmd, opts, { noremap = true })
 end
@@ -221,36 +226,6 @@ function M.colors(filter)
     end
   end
   dump(defs)
-end
-
-function M.install_missing(servers)
-  local lspi_servers = require("nvim-lsp-installer.servers")
-  for server, _ in pairs(servers) do
-    local ok, s = lspi_servers.get_server(server)
-    if ok then
-      if not s:is_installed() then
-        s:install()
-      end
-    else
-      error("Server " .. server .. " not found")
-    end
-  end
-end
-
-function M.setup(servers, options)
-  local lspi = require("nvim-lsp-installer")
-  lspi.on_server_ready(function(server)
-    local opts = vim.tbl_deep_extend(
-      "force",
-      options,
-      servers[server.name] or {}
-    )
-
-    server:setup(opts)
-    vim.cmd([[ do User LspAttachBuffers ]])
-  end)
-
-  M.install_missing(servers)
 end
 
 return M

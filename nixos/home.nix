@@ -9,7 +9,7 @@ let
 
   unstable = import <nixpkgs-unstable> { };
 
-  nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
+  # nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
 
   yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
     name = "yarnPkgs";
@@ -193,7 +193,7 @@ in
       nix-direnv
       nixfmt
       nixpkgs-fmt
-      nnnWithIcons
+      # nnnWithIcons
       nodejs-16_x
       nushell
       openapi-generator-cli-unstable
@@ -246,7 +246,8 @@ in
       unstable.rustfmt
       unstable.slides
       unstable.vhs
-      unstable.wezterm
+      unstable.lua-language-server
+      wezterm
       unstable.wrangler
       unstable.yarn
       unstable.zig
@@ -257,6 +258,8 @@ in
       vlc
       wasm-pack
       websocat
+      zip
+      unzip
       websocketd
       wget
       wrk # Modern HTTP benchmarking tool
@@ -403,6 +406,10 @@ in
         plugins = [ "git" "python" ];
       };
     };
-  };
 
+    java = {
+      enable = true;
+      package = pkgs.jdk11;
+    };
+  };
 }

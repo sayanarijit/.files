@@ -263,7 +263,6 @@ require("packer").startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     requires = {
-      "williamboman/nvim-lsp-installer",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
@@ -278,13 +277,11 @@ require("packer").startup(function(use)
       "L3MON4D3/LuaSnip",
       -- "lukas-reineke/lsp-format.nvim",
       "kosayoda/nvim-lightbulb",
-      "jose-elias-alvarez/null-ls.nvim",
+      -- "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
-      local util = require("util")
-
       -- Add additional capabilities supported by nvim-cmp
-      capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
       local servers = {
@@ -318,7 +315,7 @@ require("packer").startup(function(use)
         dartls = {},
         prismals = {},
         graphql = {},
-        sumneko_lua = {},
+        lua_ls = {},
         pyright = {},
         vuels = {},
       }
@@ -345,12 +342,15 @@ require("packer").startup(function(use)
         handlers = handlers,
       }
 
-      util.setup(servers, options)
-
-      -- for lsp, setup in pairs(servers) do
-      --   setup.capabilities = capabilities
-      --   lspconfig[lsp].setup(setup)
-      -- end
+      -- local util = require("util")
+      -- util.setup(servers, options)
+      local lspconfig = require("lspconfig")
+      for lsp, setup in pairs(servers) do
+        setup.capabilities = capabilities
+        setup.on_attach = on_attach
+        setup.handlers = handlers
+        lspconfig[lsp].setup(setup)
+      end
 
       -- luasnip setup
       local luasnip = require("luasnip")
@@ -486,7 +486,12 @@ require("packer").startup(function(use)
   use({ "airblade/vim-gitgutter" })
 
   -- Neovim plugin for GitHub Copilot
-  use({ "github/copilot.vim" })
+  use({
+    "github/copilot.vim",
+    config = function()
+      vim.g.copilot_filetypes = { VimspectorPrompt = false }
+    end,
+  })
 
   --  brain muscle // Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more
   use({
