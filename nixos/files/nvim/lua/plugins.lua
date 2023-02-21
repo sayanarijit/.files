@@ -91,7 +91,6 @@ require("packer").startup(function(use)
           nls.builtins.formatting.taplo,
           nls.builtins.formatting.shfmt,
         },
-
         on_attach = function(_)
           vim.cmd([[
             augroup LspFormatting
@@ -100,7 +99,6 @@ require("packer").startup(function(use)
             augroup END
           ]])
         end,
-
         root_dir = require("null-ls.utils").root_pattern(
           ".null-ls-root",
           ".nvim.settings.json",
@@ -277,7 +275,6 @@ require("packer").startup(function(use)
       "L3MON4D3/LuaSnip",
       -- "lukas-reineke/lsp-format.nvim",
       "kosayoda/nvim-lightbulb",
-      -- "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
       -- Add additional capabilities supported by nvim-cmp
@@ -432,7 +429,6 @@ require("packer").startup(function(use)
           -- end, { "i", "s" }),
           ["<S-Tab>"] = {},
         },
-
         sources = {
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
@@ -589,7 +585,6 @@ require("packer").startup(function(use)
             t = { ":tabnew<CR>", "tab" },
           },
         },
-
         c = {
           name = "config",
           c = {
@@ -598,7 +593,6 @@ require("packer").startup(function(use)
           },
           h = { ":tabnew ~/.files/nixos/home.nix<CR>", "home config" },
         },
-
         s = {
           name = "search",
           c = { ":Telescope git_commits<CR>", "commits" },
@@ -617,13 +611,11 @@ require("packer").startup(function(use)
           t = { ":Telescope live_grep<CR>", "grep text" },
           s = { ":Telescope spell_suggest<CR>", "grep text" },
         },
-
         S = {
           name = "split join",
           s = { ":SplitjoinSplit<CR>", "split" },
           j = { ":SplitjoinJoin<CR>", "join" },
         },
-
         g = {
           name = "git",
           a = { ":Git add %<CR>", "add current" },
@@ -646,7 +638,6 @@ require("packer").startup(function(use)
           u = { "<Plug>(GitGutterUndoHunk)<CR>", "undo hunk " },
           o = { ":OpenGithubFile<CR>", "open github " },
         },
-
         l = {
           name = "lsp",
           R = { ":LspRestart<CR>", "restart" },
@@ -661,20 +652,15 @@ require("packer").startup(function(use)
           s = { vim.lsp.buf.document_symbols, "document symbols" },
           S = { vim.lsp.buf.workspace_symbols, "workspace symbols" },
         },
-
         q = { ":q<CR>", "quit" },
-
         w = { ":w<CR>", "write" },
-
         x = {
           name = "explore",
           p = { ":Xp %:p<CR>", "present directory" },
           w = { ":Xp<CR>", "working directory" },
           ["/"] = { ":Xp /<CR>", "fs root" },
         },
-
         X = { require("exec-cursorline-insert-stdout").execute, "execute line" },
-
         Z = {
           name = "zk",
           Z = { ":ZkCd<CR>", "cd" },

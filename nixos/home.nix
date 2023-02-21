@@ -276,6 +276,7 @@ in
       zip
       zoxide
       zsh-syntax-highlighting
+      pyright
     ];
   };
 
