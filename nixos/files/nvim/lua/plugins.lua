@@ -320,7 +320,16 @@ require("packer").startup(function(use)
         graphql = {},
         lua_ls = {},
         pyright = {},
-        vuels = {},
+        volar = {
+          filetypes = {
+            "typescript",
+            "javascript",
+            "javascriptreact",
+            "typescriptreact",
+            "vue",
+            "json",
+          },
+        },
       }
 
       local on_attach = function(client)
