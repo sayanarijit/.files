@@ -55,6 +55,12 @@ require("packer").startup(function(use)
     end,
   })
 
+  use({
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    requires = { "nvim-tree/nvim-web-devicons" },
+  })
+
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
   use({
     "jose-elias-alvarez/null-ls.nvim",
@@ -333,12 +339,6 @@ require("packer").startup(function(use)
         ),
       }
 
-      local options = {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        handlers = handlers,
-      }
-
       -- local util = require("util")
       -- util.setup(servers, options)
       local lspconfig = require("lspconfig")
@@ -380,7 +380,7 @@ require("packer").startup(function(use)
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs( -4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.close(),
@@ -436,10 +436,10 @@ require("packer").startup(function(use)
           -- { name = "cmp_tabnine" },
           -- { name = "copilot" },
           { name = "spell" },
-          { name = "calc", keyword_length = 3 },
-          { name = "emoji", ignored_filetypes = { "yml", "yaml", "json" } },
+          { name = "calc",    keyword_length = 3 },
+          { name = "emoji",   ignored_filetypes = { "yml", "yaml", "json" } },
           { name = "luasnip" },
-          { name = "buffer", keyword_length = 3 },
+          { name = "buffer",  keyword_length = 3 },
         },
       })
 
@@ -595,21 +595,14 @@ require("packer").startup(function(use)
         },
         s = {
           name = "search",
-          c = { ":Telescope git_commits<CR>", "commits" },
-          C = { ":Telescope git_bcommits<CR>", "buffer commits" },
-          f = {
-            ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>",
-            "files",
-          },
-          g = { ":Telescope git_files<CR>", "git files" },
-          m = { ":Telescope marks<CR>", "marks" },
-          M = {
-            ":lua require('telescope').extensions.media_files.media_files()<CR>",
-            "media",
-          },
-          ['"'] = { ":Telescope registers<CR>", "registers" },
-          t = { ":Telescope live_grep<CR>", "grep text" },
-          s = { ":Telescope spell_suggest<CR>", "grep text" },
+          c = { ":FzfLua git_commits<CR>", "commits" },
+          C = { ":FzfLua git_bcommits<CR>", "buffer commits" },
+          f = { ":FzfLua files<CR>", "files" },
+          g = { ":FzfLua git_files<CR>", "git files" },
+          m = { ":FzfLua marks<CR>", "marks" },
+          ['"'] = { ":FzfLua registers<CR>", "registers" },
+          t = { ":FzfLua live_grep<CR>", "grep text" },
+          s = { ":FzfLua spell_suggest<CR>", "grep text" },
         },
         S = {
           name = "split join",

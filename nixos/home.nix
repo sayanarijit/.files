@@ -32,6 +32,7 @@ let
       "sql-formatter"
       "@prisma/language-server"
       "graphql-language-service-cli"
+      "vls"
     ];
   };
 
