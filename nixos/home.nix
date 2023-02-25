@@ -278,6 +278,8 @@ in
       zoxide
       zsh-syntax-highlighting
       pyright
+      tor-browser-bundle-bin
+      transmission
     ];
   };
 
