@@ -279,7 +279,8 @@ in
       zsh-syntax-highlighting
       pyright
       tor-browser-bundle-bin
-      transmission
+      # transmission
+      transmission-gtk
     ];
   };
 
