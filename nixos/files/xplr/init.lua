@@ -1,7 +1,7 @@
 -- https://xplr.dev/en/configuration
 
 ---@diagnostic disable
-version = "0.20.0"
+version = "0.21.0"
 local xplr = xplr
 ---@diagnostic enable
 
@@ -88,9 +88,8 @@ require("xpm").setup({
           m.BashExec([[glow --pager $XPLR_PIPE_GLOBAL_HELP_MENU_OUT]])
         )
 
-        local doc = m.silent_cmd("doc", "show docs")(
-          m.BashExec([[glow /usr/share/doc/xplr]])
-        )
+        local doc =
+          m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
 
         -- map `?` to command `help`
         help.bind("default", "?")

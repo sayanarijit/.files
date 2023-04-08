@@ -17,12 +17,12 @@ export TERMINAL="wezterm"
 export CHROME_EXECUTABLE="google-chrome-stable"
 export FLUTTER_SDK="$HOME/snap/flutter/common/flutter/bin"
 
-export ZK_NOTEBOOK_DIR="$HOME/Documents/GitHub/sayanarijit.github.io/src/site/notes/"
+export ZK_NOTEBOOK_DIR="$HOME/GitHub/sayanarijit.github.io/src/site/notes/"
 
 alias venv="python -m venv .venv && activate"
 alias activate="source .venv/bin/activate"
 alias reactivate="deactivate && activate"
-alias github="cd ~/Documents/GitHub"
+alias github="cd ~/GitHub"
 # alias open="xdg-open"  # Use https://github.com/Byron/open-rs
 
 alias dotdiff="(cd ~/.files && make diff)"

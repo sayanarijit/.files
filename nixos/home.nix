@@ -281,6 +281,7 @@ in
       tor-browser-bundle-bin
       # transmission
       transmission-gtk
+      distrobox
     ];
   };
 

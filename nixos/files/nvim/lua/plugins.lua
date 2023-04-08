@@ -321,6 +321,7 @@ require("packer").startup(function(use)
         lua_ls = {},
         pyright = {},
         volar = {},
+        clangd = {},
       }
 
       local on_attach = function(client)
