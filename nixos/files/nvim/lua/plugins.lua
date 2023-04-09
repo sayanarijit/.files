@@ -738,10 +738,10 @@ require("packer").startup(function(use)
   --   end,
   -- })
 
-  use({
-    "xiyaowong/nvim-transparent",
-    config = function()
-      cmd([[:TransparentEnable]])
-    end,
-  })
+  -- use({
+  --   "xiyaowong/nvim-transparent",
+  --   config = function()
+  --     cmd([[:TransparentEnable]])
+  --   end,
+  -- })
 end)
