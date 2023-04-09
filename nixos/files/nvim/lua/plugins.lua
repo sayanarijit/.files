@@ -381,7 +381,7 @@ require("packer").startup(function(use)
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-d>"] = cmp.mapping.scroll_docs( -4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.close(),
@@ -389,7 +389,6 @@ require("packer").startup(function(use)
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
           }),
-
           ["<down>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -401,7 +400,6 @@ require("packer").startup(function(use)
               fallback()
             end
           end, { "i", "s" }),
-
           ["<up>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -411,7 +409,6 @@ require("packer").startup(function(use)
               fallback()
             end
           end, { "i", "s" }),
-
           -- ["<Tab>"] = cmp.mapping(function(fallback)
           --   if luasnip.jumpable() then
           --     luasnip.expand_or_jump()
@@ -420,7 +417,6 @@ require("packer").startup(function(use)
           --   end
           -- end, { "i", "s" }),
           ["<Tab>"] = {},
-
           -- ["<S-Tab>"] = cmp.mapping(function(fallback)
           --   if luasnip.jumpable(-1) then
           --     luasnip.jump(-1)
@@ -437,10 +433,10 @@ require("packer").startup(function(use)
           -- { name = "cmp_tabnine" },
           -- { name = "copilot" },
           { name = "spell" },
-          { name = "calc",    keyword_length = 3 },
-          { name = "emoji",   ignored_filetypes = { "yml", "yaml", "json" } },
+          { name = "calc", keyword_length = 3 },
+          { name = "emoji", ignored_filetypes = { "yml", "yaml", "json" } },
           { name = "luasnip" },
-          { name = "buffer",  keyword_length = 3 },
+          { name = "buffer", keyword_length = 3 },
         },
       })
 
