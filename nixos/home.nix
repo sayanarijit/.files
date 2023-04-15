@@ -106,7 +106,9 @@ in
 
     packages = with pkgs; [
       # jitsi-meet
+      # nnnWithIcons
       # poetry
+      # transmission
       # unstable.devbox
       # unstable.xplr  ~ via flake
       # zoom-us
@@ -140,6 +142,7 @@ in
       exa # ls replacement
       exiftool
       fd
+      vulkan-tools
       feh
       ffmpeg
       firefox
@@ -151,6 +154,7 @@ in
       git
       gitAndTools.gh
       glow
+      glxinfo
       gnumake
       gnuplot # benchmark tests
       google-chrome
@@ -194,7 +198,6 @@ in
       nix-direnv
       nixfmt
       nixpkgs-fmt
-      # nnnWithIcons
       nodejs-16_x
       nushell
       openapi-generator-cli-unstable
@@ -209,6 +212,7 @@ in
       podman-compose
       pstree
       pueue
+      pyright
       pythonWithPkgs
       ranger # A VIM-inspired filemanager for the console
       rdfind
@@ -230,6 +234,8 @@ in
       texlive.combined.scheme-basic
       tldr
       tmate # Instant terminal sharing
+      tor-browser-bundle-bin
+      transmission-gtk
       trash-cli
       tree
       tree-sitter
@@ -240,6 +246,7 @@ in
       unstable.clippy
       unstable.cmake
       unstable.copilot-cli
+      unstable.lua-language-server
       unstable.mprocs
       unstable.progress
       unstable.rust-analyzer
@@ -247,11 +254,10 @@ in
       unstable.rustfmt
       unstable.slides
       unstable.vhs
-      unstable.lua-language-server
-      wezterm
       unstable.wrangler
       unstable.yarn
       unstable.zig
+      unzip
       upx
       vifm
       vim
@@ -259,9 +265,8 @@ in
       vlc
       wasm-pack
       websocat
-      zip
-      unzip
       websocketd
+      wezterm
       wget
       wrk # Modern HTTP benchmarking tool
       xclip
@@ -277,11 +282,6 @@ in
       zip
       zoxide
       zsh-syntax-highlighting
-      pyright
-      tor-browser-bundle-bin
-      # transmission
-      transmission-gtk
-      distrobox
     ];
   };
 

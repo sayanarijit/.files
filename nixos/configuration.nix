@@ -109,7 +109,10 @@
   hardware.bluetooth.enable = true;
 
   # OpenGL
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;
