@@ -121,6 +121,7 @@ in
       bash-completion
       bat # cat replacement
       bitwarden-cli
+      blender
       bottom
       bpytop
       broot
@@ -151,6 +152,7 @@ in
       fzf
       gcc
       geckodriver
+      gimp
       git
       gitAndTools.gh
       glow
@@ -178,6 +180,7 @@ in
       kakoune
       killall
       kitty
+      krita
       lazygit # Git TUI
       libreoffice-qt
       lsd # ls replacement
