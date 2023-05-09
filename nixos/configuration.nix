@@ -34,6 +34,12 @@
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot/efi";
     };
+
+    # Kernel
+    kernel.sysctl."vm.overcommit_memory" = "1";
+
+    # For Elasticsearch
+    kernel.sysctl."vm.max_map_count" = "262144";
   };
 
   networking.hostName = "katana"; # Define your hostname.
@@ -111,7 +117,7 @@
   # OpenGL
   hardware.opengl = {
     enable = true;
-    driSupport = true;
+    # driSupport = true;
   };
 
   # Enable sound with pipewire.
@@ -126,7 +132,7 @@
   users.users.sayanarijit = {
     isNormalUser = true;
     description = "Arijit Basu";
-    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
+    extraGroups = [ "networkmanager" "wheel" "wireshark" "docker" ];
     shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
@@ -181,6 +187,8 @@
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.dnsname.enable = true;
     };
+
+    docker.enable = true;
   };
 
   # Open ports in the firewall.

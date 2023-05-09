@@ -143,7 +143,6 @@ in
       exa # ls replacement
       exiftool
       fd
-      vulkan-tools
       feh
       ffmpeg
       firefox
@@ -170,6 +169,7 @@ in
       hugo
       hunspell
       hyperfine # A command-line benchmarking tool
+      imagemagick
       imgp
       inetutils
       inotify-tools
@@ -199,6 +199,7 @@ in
       ngrok
       niv # Easy dependency management for Nix projects
       nix-direnv
+      nix-index
       nixfmt
       nixpkgs-fmt
       nodejs-16_x
@@ -242,6 +243,7 @@ in
       trash-cli
       tree
       tree-sitter
+      ttyd
       universal-ctags # Tags creator for vim
       unrar
       unstable.cargo
@@ -266,6 +268,7 @@ in
       vim
       viu
       vlc
+      vulkan-tools
       wasm-pack
       websocat
       websocketd
@@ -297,7 +300,7 @@ in
     neovim = {
       enable = true;
 
-      package = unstable.neovim-unwrapped;
+      package = pkgs.neovim-unwrapped;
 
       # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
       plugins = with pkgs.vimPlugins; [
