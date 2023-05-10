@@ -132,6 +132,7 @@ in
       discord
       diskonaut
       distrobox
+      dmidecode
       dnsutils
       docker-compose
       easyeffects
@@ -184,6 +185,7 @@ in
       lazygit # Git TUI
       libreoffice-qt
       lsd # ls replacement
+      lshw
       luajit
       luarocks
       massren
