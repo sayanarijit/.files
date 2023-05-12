@@ -231,6 +231,7 @@ in
       skim # sk: fzf alternative in rust
       slack
       sqlite
+      conda
       stylua
       sxiv
       sysctl
@@ -393,12 +394,16 @@ in
       enable = true;
       userName = name;
       userEmail = email;
-      extraConfig = { init = { defaultBranch = "main"; }; };
       signing = {
         signByDefault = true;
         key = "0F8EF5258DC38077";
       };
-      delta = { enable = true; };
+      ignores = [ ".DS_Store" "*~" "*.swp" ".null-ls_*.md" ];
+      extraConfig.init.defaultBranch = "main";
+
+      # Extensions
+      delta.enable = true;
+      lfs.enable = true;
     };
 
     fzf = {
