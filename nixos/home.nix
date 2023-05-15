@@ -208,6 +208,7 @@ in
       nushell
       openapi-generator-cli-unstable
       openssl
+      ouch
       p11-kit # Terminal colors
       pandoc # File converter
       pass
@@ -231,7 +232,6 @@ in
       skim # sk: fzf alternative in rust
       slack
       sqlite
-      conda
       stylua
       sxiv
       sysctl
@@ -270,6 +270,7 @@ in
       vifm
       vim
       viu
+      vivid
       vlc
       vulkan-tools
       wasm-pack
