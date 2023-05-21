@@ -129,6 +129,7 @@ in
       circleci-cli # CircleCI CLI
       coreutils # GNU coreutils
       curl
+      datasette
       discord
       diskonaut
       distrobox
@@ -148,6 +149,7 @@ in
       ffmpeg
       firefox
       fish
+      flyctl
       fselect
       fzf
       gcc
@@ -226,6 +228,7 @@ in
       redis
       ripgrep
       rnix-lsp # Nix language server
+      ronn # convert markdown files to manpages
       sc-im # spreadsheet
       sd # sed replacement
       shfmt
@@ -233,6 +236,7 @@ in
       slack
       sqlite
       stylua
+      swagger-codegen
       sxiv
       sysctl
       tabbed
@@ -247,6 +251,7 @@ in
       tree
       tree-sitter
       ttyd
+      txt2man
       universal-ctags # Tags creator for vim
       unrar
       unstable.cargo

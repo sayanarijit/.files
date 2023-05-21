@@ -113,6 +113,11 @@ qrserve () {
     && python -m http.server $port -b $ip -d $dir
 }
 
+# https://github.com/sayanarijit/jf
+alias str='jf %q'
+alias arr='jf "[%*s]"'
+alias obj='jf "{%**s}"'
+
 # lipsum () {
 #     local paragraphs=${1:-1}
 #     local sentences=${1:-1}
