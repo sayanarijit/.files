@@ -32,8 +32,8 @@ alias ymlfdoctest="cargo run --bin yamlfun-doctest --"
 alias ymlf="cargo run --bin yamlfun --"
 
 # Getting rusty
-alias cat="bat"
-alias ls="lsd"
+alias ll="lsd -l"
+alias la="lsd -la"
 alias m="mind"
 alias x="xplr"
 alias f="fzf"
