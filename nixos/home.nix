@@ -223,6 +223,7 @@ in
       pueue
       pyright
       pythonWithPkgs
+      qrcp
       ranger # A VIM-inspired filemanager for the console
       rdfind
       redis
