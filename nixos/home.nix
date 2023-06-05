@@ -293,7 +293,7 @@ in
       xz
       yank
       yarnPkgs
-      unstable.youtube-dl
+      # unstable.youtube-dl
       yq # YAML viewer
       zathura
       zip
