@@ -260,6 +260,7 @@ in
       unstable.clippy
       unstable.cmake
       unstable.copilot-cli
+      unstable.f2
       unstable.lua-language-server
       unstable.mprocs
       unstable.progress
@@ -292,7 +293,7 @@ in
       xz
       yank
       yarnPkgs
-      youtube-dl
+      unstable.youtube-dl
       yq # YAML viewer
       zathura
       zip

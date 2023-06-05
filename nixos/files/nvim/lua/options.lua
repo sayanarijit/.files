@@ -118,13 +118,6 @@ cmd(
 )
 cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
 
--- Rename
-cmd([[
-  " Remap for rename current word
-  vnoremap <leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
-  vnoremap <leader>R "hy:bufdo %s/<C-r>h/<C-r>h/gce<left><left><left><left>
-]])
-
 -- Color Scheme
 -- cmd([[
 --   let g:transparent_enabled = v:true
