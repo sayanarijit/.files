@@ -42,15 +42,31 @@
     kernel.sysctl."vm.max_map_count" = "262144";
   };
 
-  networking.hostName = "katana"; # Define your hostname.
-  # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking = rec {
+    hostName = "katana"; # Define your hostname.
+    # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Configure network proxy if necessary
+    # networking.proxy.default = "http://user:password@proxy:port/";
+    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # Manual DNS servers
+    nameservers = [
+      "1.1.1.1"
+      "8.8.4.4"
+      "8.8.8.8"
+      "9.9.9.9"
+    ];
+
+    # Enable networking
+    networkmanager = {
+      enable = true;
+      insertNameservers = nameservers;
+    };
+
+    # Disable resolvconf auto update
+    resolvconf.enable = false;
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -146,21 +162,23 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    curl
-    # wireshark
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      vim
+      curl
+      # wireshark
+    ];
 
-  environment.etc = {
-    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-      bluez_monitor.properties = {
-        ["bluez5.enable-sbc-xq"] = true,
-        ["bluez5.enable-msbc"] = true,
-        ["bluez5.enable-hw-volume"] = true,
-        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-      }
-    '';
+    etc = {
+      "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+        bluez_monitor.properties = {
+          ["bluez5.enable-sbc-xq"] = true,
+          ["bluez5.enable-msbc"] = true,
+          ["bluez5.enable-hw-volume"] = true,
+          ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+        }
+      '';
+    };
   };
 
 
