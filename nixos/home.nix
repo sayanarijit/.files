@@ -111,6 +111,7 @@ in
       # transmission
       # unstable.devbox
       # unstable.xplr  ~ via flake
+      # unstable.youtube-dl
       # zoom-us
       act # Run GitHUb actions locally
       alacritty
@@ -293,7 +294,6 @@ in
       xz
       yank
       yarnPkgs
-      # unstable.youtube-dl
       yq # YAML viewer
       zathura
       zip
@@ -311,7 +311,7 @@ in
     neovim = {
       enable = true;
 
-      package = pkgs.neovim-unwrapped;
+      package = unstable.neovim-unwrapped;
 
       # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
       plugins = with pkgs.vimPlugins; [

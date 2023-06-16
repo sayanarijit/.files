@@ -120,7 +120,7 @@ require("packer").startup(function(use)
 
       vim.lsp.buf.null_ls_format_if_enabled = function()
         if nls.enabled then
-          vim.lsp.buf.formatting_seq_sync()
+          vim.lsp.buf.format({async = true})
         end
       end
 
