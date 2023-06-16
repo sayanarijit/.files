@@ -143,7 +143,7 @@
   # Security
   security = {
     rtkit.enable = true;
-    sudo.wheelNeedsPassword = false;
+    # sudo.wheelNeedsPassword = false;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
