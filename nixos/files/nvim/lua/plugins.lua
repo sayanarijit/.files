@@ -120,7 +120,7 @@ require("packer").startup(function(use)
 
       vim.lsp.buf.null_ls_format_if_enabled = function()
         if nls.enabled then
-          vim.lsp.buf.format({async = true})
+          vim.lsp.buf.format({ async = false })
         end
       end
 
@@ -433,10 +433,10 @@ require("packer").startup(function(use)
           -- { name = "cmp_tabnine" },
           -- { name = "copilot" },
           { name = "spell" },
-          { name = "calc", keyword_length = 3 },
-          { name = "emoji", ignored_filetypes = { "yml", "yaml", "json" } },
+          { name = "calc",    keyword_length = 3 },
+          { name = "emoji",   ignored_filetypes = { "yml", "yaml", "json" } },
           { name = "luasnip" },
-          { name = "buffer", keyword_length = 3 },
+          { name = "buffer",  keyword_length = 3 },
         },
       })
 
