@@ -139,7 +139,12 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+
+  # Security
+  security = {
+    rtkit.enable = true;
+    sudo.wheelNeedsPassword = false;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
