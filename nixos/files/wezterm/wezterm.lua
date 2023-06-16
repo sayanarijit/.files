@@ -100,7 +100,7 @@ local keys = {
     end),
   },
 
-  { key = "PageUp", mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
+  { key = "PageUp",   mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
   { key = "PageDown", mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(1) },
 }
 
@@ -130,4 +130,5 @@ return {
   hyperlink_rules = hyperlink_rules,
   window_background_opacity = 0.95,
   window_decorations = "NONE",
+  warn_about_missing_glyphs = false,
 }
