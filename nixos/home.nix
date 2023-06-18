@@ -124,7 +124,7 @@ in
       bitwarden-cli
       blender
       bottom
-      bpytop
+      btop
       broot
       cachix
       circleci-cli # CircleCI CLI
