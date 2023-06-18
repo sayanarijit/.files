@@ -147,8 +147,14 @@ require("packer").startup(function(use)
       vim.opt.tags = ".vim/tags"
       vim.g.autotagTagsFile = ".vim/tags"
 
+      local ensure_installed = "all"
+      -- Disable treesitter for raspberry pi
+      if vim.loop.os_gethostname() == "katanapi" then
+        ensure_installed = "maintained"
+      end
+
       require("nvim-treesitter.configs").setup({
-        ensure_installed = "all",
+        ensure_installed = ensure_installed,
         sync_install = false,
         ignore_install = {
           "php",
