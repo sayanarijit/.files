@@ -8,13 +8,16 @@ base // {
     stateVersion = "23.05";
     packages = with pkgs; [
       luarocks
-      # vivid
-      # xplr
-      # lsd
-      # bat
-      # fzf
-      # qrcp
-      # jf
+      vivid
+      xplr
+      lsd
+      bat
+      fzf
+      qrcp
+      jf
+      curl
+      yarn
+      wget
     ];
   };
 }
