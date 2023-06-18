@@ -7,8 +7,14 @@ base // {
   home = base.home // {
     stateVersion = "23.05";
     packages = with pkgs; [
-      # vivid
       luarocks
+      # vivid
+      # xplr
+      # lsd
+      # bat
+      # fzf
+      # qrcp
+      # jf
     ];
   };
 }
