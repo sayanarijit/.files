@@ -150,7 +150,7 @@ require("packer").startup(function(use)
       local ensure_installed = "all"
       -- Disable treesitter for raspberry pi
       if vim.loop.os_gethostname() == "katanapi" then
-        ensure_installed = "maintained"
+        ensure_installed = {}
       end
 
       require("nvim-treesitter.configs").setup({
