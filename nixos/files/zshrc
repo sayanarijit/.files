@@ -129,10 +129,6 @@ alias obj='jf "{%**s}"'
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init --path)"
 
-eval "$(luarocks path --lua-version 5.1)"
-
-export LS_COLORS=$(vivid generate catppuccin-frappe)
-
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -140,3 +136,6 @@ export LS_COLORS=$(vivid generate catppuccin-frappe)
 [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 [[ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 [[ -e "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+eval "$(luarocks path --lua-version 5.1)"
+export LS_COLORS=$(vivid generate catppuccin-frappe)
