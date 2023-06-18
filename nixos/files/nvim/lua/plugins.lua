@@ -152,7 +152,7 @@ require("packer").startup(function(use)
 
       -- Raspberry Pi
       if vim.loop.os_gethostname() == "katanapi" then
-        ensure_installed = "maintained"
+        ensure_installed = {}
         sync_install = true
       end
 
