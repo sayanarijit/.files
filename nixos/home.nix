@@ -44,7 +44,7 @@ let
     black
     mypy
     flake8
-    poetry
+    poetry-core
   ]);
 
 in
@@ -207,7 +207,7 @@ in
       nix-index
       nixfmt
       nixpkgs-fmt
-      nodejs-16_x
+      nodejs
       nushell
       openapi-generator-cli-unstable
       openssl

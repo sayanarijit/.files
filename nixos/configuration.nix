@@ -26,7 +26,7 @@
     };
 
     # Clean /tmp on reboot
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
 
     # Bootloader
     loader = {
@@ -191,6 +191,8 @@
   # started in user sessions.
   # programs.mtr.enable = true;
   programs = {
+    zsh.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -208,7 +210,7 @@
       dockerCompat = false;
 
       # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.dnsname.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
     };
 
     docker.enable = true;
