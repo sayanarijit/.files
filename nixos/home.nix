@@ -124,8 +124,8 @@ in
       bitwarden-cli
       blender
       bottom
-      btop
       broot
+      btop
       cachix
       circleci-cli # CircleCI CLI
       coreutils # GNU coreutils
@@ -207,6 +207,7 @@ in
       nix-index
       nixfmt
       nixpkgs-fmt
+      nmap
       nodejs
       nushell
       openapi-generator-cli-unstable
