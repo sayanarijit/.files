@@ -101,6 +101,7 @@ require("xpm").setup({
 
     -- xplr icon theme
     "prncss-xyz/icons.xplr",
+    "gitlab:hartan/web-devicons.xplr",
 
     -- A clean, distraction free xplr table UI
     "sayanarijit/zentable.xplr",
