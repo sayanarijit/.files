@@ -59,6 +59,14 @@ require("xpm").setup({
     },
 
     "sayanarijit/dual-pane.xplr",
+
+    {
+      name = "sayanarijit/tree-view.xplr",
+      setup = function()
+        require("tree-view").setup({ as_initial_layout = true })
+      end,
+    },
+
     "sayanarijit/registers.xplr",
     "sayanarijit/offline-docs.xplr",
     "sayanarijit/scp.xplr",
@@ -353,7 +361,3 @@ fennel.path = fennel.path
     .. "/.config/xplr/plugins/?.fnl;"
 
 table.insert(package.loaders or package.searchers, fennel.searcher)
-
-require("tree-view").setup({
-  as_initial_layout = true,
-})
