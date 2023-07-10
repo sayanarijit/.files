@@ -63,7 +63,10 @@ require("xpm").setup({
     {
       name = "sayanarijit/tree-view.xplr",
       setup = function()
-        require("tree-view").setup({ as_initial_layout = true })
+        require("tree-view").setup({
+          as_initial_layout = true,
+          fallback_threshold = 500,
+        })
       end,
     },
 
