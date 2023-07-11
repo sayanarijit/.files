@@ -66,8 +66,6 @@ require("xpm").setup({
         require("tree-view").setup({
           as_initial_layout = true,
           fallback_threshold = 500,
-          focus_next_key = "down",
-          focus_prev_key = "up",
         })
       end,
     },
