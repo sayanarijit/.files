@@ -16,21 +16,21 @@ require("packer").startup(function(use)
     end,
   })
 
-  --  Don't go there. It's a rabbithole.
-  --  cmd: Xp
-  use({
-    "sayanarijit/xplr.vim",
-    config = function()
-      cmd([[
-        let g:nnn#layout = { 'window': { 'width': 0.95, 'height': 0.95, 'highlight': 'Debug' } }
-        let g:nnn#action = {
-              \ '<c-t>': 'tab split',
-              \ '<c-x>': 'split',
-              \ '<c-v>': 'vsplit' }
-        let g:nnn#replace_netrw = 1
-      ]])
-    end,
-  })
+  -- --  Don't go there. It's a rabbithole.
+  -- --  cmd: Xp
+  -- use({
+  --   "sayanarijit/xplr.vim",
+  --   config = function()
+  --     cmd([[
+  --       let g:nnn#layout = { 'window': { 'width': 0.95, 'height': 0.95, 'highlight': 'Debug' } }
+  --       let g:nnn#action = {
+  --             \ '<c-t>': 'tab split',
+  --             \ '<c-x>': 'split',
+  --             \ '<c-v>': 'vsplit' }
+  --       let g:nnn#replace_netrw = 1
+  --     ]])
+  --   end,
+  -- })
 
   -- eyes Move faster with unique f/F indicators.
   use({ "jinh0/eyeliner.nvim" })
@@ -655,9 +655,9 @@ require("packer").startup(function(use)
         w = { ":w<CR>", "write" },
         x = {
           name = "explore",
-          p = { ":Xp %:p<CR>", "present directory" },
-          w = { ":Xp<CR>", "working directory" },
-          ["/"] = { ":Xp /<CR>", "fs root" },
+          p = { ":Xplr %:p<CR>", "present directory" },
+          w = { ":Xplr<CR>", "working directory" },
+          ["/"] = { ":Xplr /<CR>", "fs root" },
         },
         X = { require("exec-cursorline-insert-stdout").execute, "execute line" },
         Z = {
@@ -735,6 +735,26 @@ require("packer").startup(function(use)
         let g:material_style = "darker"
         colorscheme material
       ]])
+    end,
+  })
+
+  use({
+    "is0n/fm-nvim",
+    config = function()
+      require("fm-nvim").setup({
+        default = "float",
+        ui = {
+          float = {
+            x = 0.05,
+            y = 0.05,
+            height = 0.95,
+            width = 0.95,
+          },
+        },
+        cmds = {
+          xplr_cmd = "xplr",
+        },
+      })
     end,
   })
 
