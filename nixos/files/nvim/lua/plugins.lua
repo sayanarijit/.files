@@ -745,10 +745,8 @@ require("packer").startup(function(use)
         default = "float",
         ui = {
           float = {
-            x = 0.05,
-            y = 0.05,
-            height = 0.95,
-            width = 0.95,
+            height = 0.9,
+            width = 0.9,
           },
         },
         cmds = {
