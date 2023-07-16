@@ -195,6 +195,7 @@ in
       maven
       mdbook
       mmv-go
+      mosh
       mpv
       navi
       ncdu # Disk utilization viewer
