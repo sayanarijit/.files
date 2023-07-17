@@ -195,7 +195,6 @@ in
       maven
       mdbook
       mmv-go
-      mosh
       mpv
       navi
       ncdu # Disk utilization viewer
@@ -237,7 +236,6 @@ in
       sd # sed replacement
       shfmt
       skim # sk: fzf alternative in rust
-      slack
       sqlite
       stylua
       swagger-codegen
