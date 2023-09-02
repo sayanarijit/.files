@@ -192,6 +192,14 @@ require("packer").startup(function(use)
             },
           },
         },
+        textsubjects = {
+          prev_selection = ",", -- (Optional) keymap to select the previous selection
+          enable = true,
+          keymaps = {
+            ["."] = "textsubjects-smart",
+            [";"] = "textsubjects-container-outer",
+          },
+        },
       })
     end,
   })

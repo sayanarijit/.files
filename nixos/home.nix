@@ -226,6 +226,7 @@ in
       pyright
       pythonWithPkgs
       qrcp
+      unstable.qrscan
       ranger # A VIM-inspired filemanager for the console
       rdfind
       redis

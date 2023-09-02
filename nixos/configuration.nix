@@ -200,6 +200,8 @@
     };
 
     # wireshark.enable = true;
+
+    hyprland.enable = true;
   };
 
   virtualisation = {
