@@ -142,6 +142,7 @@ require("packer").startup(function(use)
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
       "windwp/nvim-ts-autotag",
+      "David-Kunz/markid",
     },
     config = function()
       vim.opt.tags = ".vim/tags"
@@ -200,6 +201,7 @@ require("packer").startup(function(use)
             [";"] = "textsubjects-container-outer",
           },
         },
+        markid = { enable = true },
       })
     end,
   })
