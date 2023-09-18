@@ -82,8 +82,8 @@ in
       ".config/alacritty/alacritty.yml".source =
         ./files/alacritty/alacritty.yml;
       ".config/wezterm/wezterm.lua".source = ./files/wezterm/wezterm.lua;
-      ".config/nvim/lua/plugins.lua".source = ./files/nvim/lua/plugins.lua;
       ".config/nvim/lua/options.lua".source = ./files/nvim/lua/options.lua;
+      ".config/nvim/lua/plugins.lua".source = ./files/nvim/lua/plugins.lua;
       ".config/nvim/lua/util.lua".source = ./files/nvim/lua/util.lua;
       ".config/nvim/lua/keys.lua".source = ./files/nvim/lua/keys.lua;
       ".config/xplr/init.lua".source = ./files/xplr/init.lua;
@@ -379,8 +379,8 @@ in
       extraConfig = ''
         packadd! packer.nvim
         luafile ${./files/nvim/lua/util.lua}
-        luafile ${./files/nvim/lua/plugins.lua}
         luafile ${./files/nvim/lua/options.lua}
+        luafile ${./files/nvim/lua/plugins.lua}
         luafile ${./files/nvim/lua/keys.lua}
       '';
     };

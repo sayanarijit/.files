@@ -193,14 +193,14 @@ require("packer").startup(function(use)
             },
           },
         },
-        textsubjects = {
-          prev_selection = ",", -- (Optional) keymap to select the previous selection
-          enable = true,
-          keymaps = {
-            ["."] = "textsubjects-smart",
-            [";"] = "textsubjects-container-outer",
-          },
-        },
+        -- textsubjects = {
+        --   prev_selection = ",", -- (Optional) keymap to select the previous selection
+        --   enable = true,
+        --   keymaps = {
+        --     ["."] = "textsubjects-smart",
+        --     [";"] = "textsubjects-container-outer",
+        --   },
+        -- },
         -- markid = { enable = true },
       })
     end,
@@ -495,7 +495,7 @@ require("packer").startup(function(use)
   -- use({ "simrat39/symbols-outline.nvim" })
 
   --  A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
-  use({ "airblade/vim-gitgutter" })
+  -- use({ "airblade/vim-gitgutter" })
 
   -- Neovim plugin for GitHub Copilot
   use({
@@ -518,7 +518,7 @@ require("packer").startup(function(use)
   use({ "cespare/vim-toml" })
 
   -- fugitive.vim: A Git wrapper so awesome, it should be illegal
-  use({ "tpope/vim-fugitive" })
+  -- use({ "tpope/vim-fugitive" })
 
   -- Run your tests at the speed of thought
   use({
@@ -541,7 +541,7 @@ require("packer").startup(function(use)
   use({ "tpope/vim-surround" })
 
   -- Git commit message viewer
-  use({ "rhysd/git-messenger.vim" })
+  -- use({ "rhysd/git-messenger.vim" })
 
   --  Vim configuration files for Nix http://nixos.org/nix
   use({ "LnL7/vim-nix" })
