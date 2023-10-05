@@ -143,7 +143,7 @@ in
       elmPackages.elm-language-server
       elmPackages.elm-live
       elmPackages.elm-test
-      exa # ls replacement
+      # eza # ls replacement
       exiftool
       fd
       feh

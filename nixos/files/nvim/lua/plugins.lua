@@ -35,6 +35,14 @@ require("packer").startup(function(use)
   -- eyes Move faster with unique f/F indicators.
   use({ "jinh0/eyeliner.nvim" })
 
+  -- Generate markdown table of contents
+  use({
+    "richardbizik/nvim-toc",
+    config = function()
+      require("nvim-toc").setup({})
+    end,
+  })
+
   --  Switch between single-line and multiline forms of code
   use({ "AndrewRadev/splitjoin.vim" })
 
@@ -600,6 +608,7 @@ require("packer").startup(function(use)
             name = "open",
             t = { ":tabnew<CR>", "tab" },
           },
+          t = { ":TOC<CR>", "table of contents" },
         },
         c = {
           name = "config",
