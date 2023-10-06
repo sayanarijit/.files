@@ -439,5 +439,9 @@ in
       enable = true;
       package = pkgs.jdk11;
     };
+
+    obs-studio = {
+      enable = true;
+    };
   };
 }
