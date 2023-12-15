@@ -17,22 +17,18 @@ let
     packageJSON = ./files/yarn/package.json;
     yarnLock = ./files/yarn/yarn.lock;
     publishBinsFor = [
-      "bash-language-server"
       "diagnostic-languageserver"
       "dockerfile-language-server-nodejs"
       "vim-language-server"
       "vscode-langservers-extracted"
       "yaml-language-server"
       "typescript-language-server"
-      "svelte-language-server"
       "typescript"
       "prettier"
       "@fsouza/prettierd"
       "terser"
       "sql-formatter"
-      "@prisma/language-server"
-      "graphql-language-service-cli"
-      "@volar/vue-language-server"
+      "vls"
     ];
   };
 
@@ -105,11 +101,14 @@ in
     };
 
     packages = with pkgs; [
+      # eza # ls replacement
       # jitsi-meet
       # nnnWithIcons
       # poetry
+      # sc-im # spreadsheet
       # transmission
       # unstable.devbox
+      # unstable.wrangler
       # unstable.xplr  ~ via flake
       # unstable.youtube-dl
       # zoom-us
@@ -143,7 +142,6 @@ in
       elmPackages.elm-language-server
       elmPackages.elm-live
       elmPackages.elm-test
-      # eza # ls replacement
       exiftool
       fd
       feh
@@ -226,16 +224,15 @@ in
       pyright
       pythonWithPkgs
       qrcp
-      unstable.qrscan
       ranger # A VIM-inspired filemanager for the console
       rdfind
       redis
       ripgrep
       rnix-lsp # Nix language server
       ronn # convert markdown files to manpages
-      sc-im # spreadsheet
       sd # sed replacement
       shfmt
+      simplescreenrecorder
       skim # sk: fzf alternative in rust
       sqlite
       stylua
@@ -265,17 +262,19 @@ in
       unstable.f2
       unstable.lua-language-server
       unstable.mprocs
+      unstable.numbat
       unstable.progress
+      unstable.qrscan
       unstable.rust-analyzer
       unstable.rustc
       unstable.rustfmt
       unstable.slides
       unstable.vhs
-      unstable.wrangler
       unstable.yarn
       unstable.zig
       unzip
       upx
+      google-cloud-sdk
       vifm
       vim
       viu
