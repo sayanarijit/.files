@@ -63,11 +63,11 @@ require("packer").startup(function(use)
     end,
   })
 
-  use({
-    "ibhagwan/fzf-lua",
-    -- optional for icon support
-    requires = { "nvim-tree/nvim-web-devicons" },
-  })
+  -- use({
+  --   "ibhagwan/fzf-lua",
+  --   -- optional for icon support
+  --   requires = { "nvim-tree/nvim-web-devicons" },
+  -- })
 
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
   use({

@@ -114,7 +114,7 @@ for i = 1, 8 do
 end
 
 return {
-  font = wezterm.font("Hack"),
+  font = wezterm.font_with_fallback({ "Hack", "icons-in-terminal", "Material Icons" }),
   font_size = 12.0,
   colors = colors,
   color_scheme = "MaterialDark",
