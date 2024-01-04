@@ -161,6 +161,7 @@ in
       gnumake
       gnuplot # benchmark tests
       google-chrome
+      google-cloud-sdk
       gpp
       gradle
       helix
@@ -274,7 +275,6 @@ in
       unstable.zig
       unzip
       upx
-      google-cloud-sdk
       vifm
       vim
       viu
