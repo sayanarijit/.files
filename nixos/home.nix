@@ -109,7 +109,6 @@ in
       # transmission
       # unstable.devbox
       # unstable.wrangler
-      # unstable.xplr  ~ via flake
       # unstable.youtube-dl
       # zoom-us
       act # Run GitHUb actions locally
@@ -271,6 +270,7 @@ in
       unstable.rustfmt
       unstable.slides
       unstable.vhs
+      unstable.xplr
       unstable.yarn
       unstable.zig
       unzip
