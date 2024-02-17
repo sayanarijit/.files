@@ -137,6 +137,14 @@ require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
+  use({
+    "xiyaowong/virtcolumn.nvim",
+    config = function()
+      vim.g.virtcolumn_char = "▕" -- char to display the line
+      vim.g.virtcolumn_priority = 10 -- priority of extmark
+    end,
+  })
+
   --  Nvim Treesitter configurations and abstraction layer
   use({
     "nvim-treesitter/nvim-treesitter",
