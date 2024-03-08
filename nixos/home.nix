@@ -117,6 +117,7 @@ in
       amfora # A fancy terminal browser for the Gemini protocol.
       aria2
       asciinema # Terminal session recorder
+      audio-recorder
       bandwhich
       bash-completion
       bat # cat replacement
@@ -177,6 +178,7 @@ in
       inetutils
       inotify-tools
       irssi
+      jf
       jpegoptim
       jq # JSON viewer
       jrnl
