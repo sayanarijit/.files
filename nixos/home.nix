@@ -231,7 +231,7 @@ in
       rdfind
       redis
       ripgrep
-      rnix-lsp # Nix language server
+      # rnix-lsp # Nix language server
       ronn # convert markdown files to manpages
       sd # sed replacement
       shfmt
