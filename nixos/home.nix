@@ -105,6 +105,7 @@ in
       # jitsi-meet
       # nnnWithIcons
       # poetry
+      # rnix-lsp # Nix language server
       # sc-im # spreadsheet
       # transmission
       # unstable.devbox
@@ -118,6 +119,7 @@ in
       aria2
       asciinema # Terminal session recorder
       audio-recorder
+      awscli2
       bandwhich
       bash-completion
       bat # cat replacement
@@ -231,13 +233,13 @@ in
       rdfind
       redis
       ripgrep
-      # rnix-lsp # Nix language server
       ronn # convert markdown files to manpages
       sd # sed replacement
       shfmt
       simplescreenrecorder
       skim # sk: fzf alternative in rust
       sqlite
+      sshs
       stylua
       swagger-codegen
       sxiv
