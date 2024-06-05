@@ -84,30 +84,33 @@
     avahi.enable = true;
     # Important to resolve .local domains of printers, otherwise you get an error
     # like  "Impossible to connect to XXX.local: Name or service not known"
-    avahi.nssmdns = true;
+    avahi.nssmdns4 = true;
 
     pcscd.enable = true;
 
     # Configure keymap in X11
     xserver = {
       enable = true;
-      layout = "us";
-      xkbVariant = "";
-      desktopManager.plasma5.enable = true;
-      displayManager.sddm = {
-        enable = true;
-        settings = {
-          Autologin = {
-            User = "sayanarijit";
-            Session = "plasma.desktop";
-          };
-        };
+      xkb = {
+        layout = "us";
+        variant = "";
       };
+      desktopManager.plasma5.enable = true;
 
       # Key repeat
       displayManager.sessionCommands = ''
         ${pkgs.xorg.xset}/bin/xset r rate 200 50
       '';
+    };
+
+    displayManager.sddm = {
+      enable = true;
+      settings = {
+        Autologin = {
+          User = "sayanarijit";
+          Session = "plasma.desktop";
+        };
+      };
     };
 
     pipewire = {
@@ -124,7 +127,7 @@
     };
 
     # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
+    # openssh.enable = true;
   };
 
   # Bluetooth
@@ -196,7 +199,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "curses";
+      pinentryPackage = pkgs.pinentry-curses;
     };
 
     # wireshark.enable = true;

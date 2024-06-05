@@ -33,7 +33,7 @@ let
   };
 
 
-  pythonWithPkgs = pkgs.python310.withPackages (p: with p; [
+  pythonWithPkgs = pkgs.python312.withPackages (p: with p; [
     pip
     pynvim
     isort
@@ -163,10 +163,12 @@ in
       glxinfo
       gnumake
       gnuplot # benchmark tests
-      google-chrome
+      # google-chrome
+      slack
       google-cloud-sdk
       gpp
       gradle
+      graphviz
       helix
       heroku # Heroku CLI
       highlight
@@ -204,16 +206,16 @@ in
       neofetch
       netcat
       newsboat
-      ngrok
       niv # Easy dependency management for Nix projects
+      frp
       nix-direnv
       nix-index
-      nixfmt
+      nixfmt-classic
       nixpkgs-fmt
       nmap
       nodejs
       nushell
-      openapi-generator-cli-unstable
+      openapi-generator-cli
       openssl
       ouch
       p11-kit # Terminal colors
@@ -426,7 +428,7 @@ in
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       initExtra = builtins.readFile ./files/zshrc;
       initExtraBeforeCompInit = ''
         source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
