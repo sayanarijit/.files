@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   # Personal Info
   # Stolen from https://github.com/JonathanReeve/dotfiles
@@ -82,7 +82,7 @@ in
       ".config/nvim/lua/plugins.lua".source = ./files/nvim/lua/plugins.lua;
       ".config/nvim/lua/util.lua".source = ./files/nvim/lua/util.lua;
       ".config/nvim/lua/keys.lua".source = ./files/nvim/lua/keys.lua;
-      ".config/xplr/init.lua".source = ./files/xplr/init.lua;
+      # ".config/xplr/init.lua".source = ./files/xplr/init.lua;
       ".config/xplr/plugins/fennel.lua".source = ./files/xplr/plugins/fennel.lua;
       ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
       ".newsboat/urls".source = ./files/newsboat/urls;
@@ -447,6 +447,20 @@ in
 
     obs-studio = {
       enable = true;
+    };
+
+    xplr = {
+      enable = true;
+      plugins = {
+        xpm = pkgs.fetchFromGitHub {
+          owner = "dtomvan";
+          repo = "xpm.xplr";
+          rev = "main";
+          sha256 = "sha256-L41RBzOf7YvmYLeeSUQrh6fqMmRxxFR66arLPnty65s=";
+        };
+      };
+
+      extraConfig = builtins.readFile ./files/xplr/init.lua;
     };
   };
 }
