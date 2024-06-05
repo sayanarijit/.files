@@ -163,7 +163,7 @@ in
       glxinfo
       gnumake
       gnuplot # benchmark tests
-      # google-chrome
+      google-chrome
       slack
       google-cloud-sdk
       gpp
