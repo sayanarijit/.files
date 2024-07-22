@@ -462,5 +462,6 @@ in
 
       extraConfig = builtins.readFile ./files/xplr/init.lua;
     };
+
   };
 }

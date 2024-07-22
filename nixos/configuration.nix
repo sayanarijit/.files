@@ -127,7 +127,7 @@
     };
 
     # Enable the OpenSSH daemon.
-    # openssh.enable = true;
+    openssh.enable = true;
   };
 
   # Bluetooth
@@ -195,6 +195,7 @@
   # programs.mtr.enable = true;
   programs = {
     zsh.enable = true;
+    nix-ld.enable = true;
 
     gnupg.agent = {
       enable = true;
