@@ -124,6 +124,7 @@ in
     # Important to resolve .local domains of printers, otherwise you get an error
     # like  "Impossible to connect to XXX.local: Name or service not known"
     avahi.nssmdns4 = true;
+    fstrim.enable = true;
 
     pcscd.enable = true;
 
@@ -157,8 +158,8 @@ in
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
+      # jack.enable = true;
+      # wireplumber.enable = true;
 
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
@@ -166,7 +167,7 @@ in
     };
 
     # Enable the OpenSSH daemon.
-    openssh.enable = true;
+    # openssh.enable = true;
   };
 
   # Bluetooth
@@ -423,6 +424,7 @@ in
         p11-kit # Terminal colors
         pandoc # File converter
         pass
+        pciutils
         peek
         pgcli # postgres cli
         pistol
