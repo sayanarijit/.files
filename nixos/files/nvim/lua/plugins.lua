@@ -624,7 +624,7 @@ require("packer").startup(function(use)
         {
           "<space>X",
           require("exec-cursorline-insert-stdout").execute,
-          "execute line",
+          desc = "execute line",
         },
         { "<space>Z",  group = "zk" },
         { "<space>ZZ", ":ZkCd<CR>",         desc = "cd" },
@@ -683,16 +683,16 @@ require("packer").startup(function(use)
         { "<space>gu", "<Plug>(GitGutterUndoHunk)<CR>", desc = "undo hunk " },
         { "<space>l",  group = "lsp" },
         { "<space>lR", ":LspRestart<CR>",               desc = "restart" },
-        { "<space>lS", vim.lsp.buf.workspace_symbols,   "workspace symbols" },
-        { "<space>ls", vim.lsp.buf.document_symbols,    "document symbols" },
-        { "<space>lL", vim.diagnostic.goto_prev,        "prev diagnostic" },
-        { "<space>la", vim.lsp.buf.code_action,         "code action" },
-        { "<space>lc", vim.lsp.buf.rename,              "rename" },
-        { "<space>ld", vim.lsp.buf.definition,          "definition" },
-        { "<space>lh", vim.lsp.buf.hover,               "hover" },
-        { "<space>li", vim.lsp.buf.implementation,      "implementation" },
-        { "<space>ll", vim.diagnostic.goto_next,        "next diagnostic" },
-        { "<space>lr", vim.lsp.buf.references,          "references" },
+        { "<space>lS", vim.lsp.buf.workspace_symbols,   desc = "workspace symbols" },
+        { "<space>ls", vim.lsp.buf.document_symbols,    desc = "document symbols" },
+        { "<space>lL", vim.diagnostic.goto_prev,        desc = "prev diagnostic" },
+        { "<space>la", vim.lsp.buf.code_action,         desc = "code action" },
+        { "<space>lc", vim.lsp.buf.rename,              desc = "rename" },
+        { "<space>ld", vim.lsp.buf.definition,          desc = "definition" },
+        { "<space>lh", vim.lsp.buf.hover,               desc = "hover" },
+        { "<space>li", vim.lsp.buf.implementation,      desc = "implementation" },
+        { "<space>ll", vim.diagnostic.goto_next,        desc = "next diagnostic" },
+        { "<space>lr", vim.lsp.buf.references,          desc = "references" },
         { "<space>q",  ":q<CR>",                        desc = "quit" },
         { "<space>s",  group = "search" },
         { '<space>s"', ":FzfLua registers<CR>",         desc = "registers" },
@@ -718,7 +718,7 @@ require("packer").startup(function(use)
         },
       }
 
-      wk.register(wk_mappings, wk_options)
+      wk.add(wk_mappings, wk_options)
       vim.api.nvim_command("set timeoutlen=0")
     end,
   })
