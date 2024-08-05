@@ -317,6 +317,7 @@ in
         act # Run GitHUb actions locally
         alacritty
         amfora # A fancy terminal browser for the Gemini protocol.
+        android-studio
         aria2
         asciinema # Terminal session recorder
         audio-recorder
@@ -407,6 +408,7 @@ in
         neofetch
         netcat
         newsboat
+        nil
         niv # Easy dependency management for Nix projects
         nix-direnv
         nix-index
@@ -443,6 +445,7 @@ in
         slack
         sqlite
         sshs
+        statix
         stylua
         swagger-codegen
         sxiv
