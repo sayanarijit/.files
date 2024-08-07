@@ -2,52 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
-let
-
-  # Personal Info
-  # Stolen from https://github.com/JonathanReeve/dotfiles
-  name = "Arijit Basu";
-  email = "sayanarijit@gmail.com";
-  username = "sayanarijit";
-  homedir = "/home/${username}";
-
-  unstable = import <nixpkgs-unstable> { };
-
-  # nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
-
-  yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
-    name = "yarnPkgs";
-    src = ../files/yarn;
-    packageJSON = ../files/yarn/package.json;
-    yarnLock = ../files/yarn/yarn.lock;
-    publishBinsFor = [
-      "diagnostic-languageserver"
-      "dockerfile-language-server-nodejs"
-      "vim-language-server"
-      "vscode-langservers-extracted"
-      "yaml-language-server"
-      "typescript-language-server"
-      "typescript"
-      "prettier"
-      "@fsouza/prettierd"
-      "terser"
-      "sql-formatter"
-      "vls"
-    ];
-  };
-
-
-  pythonWithPkgs = pkgs.python312.withPackages (p: with p; [
-    pip
-    pynvim
-    isort
-    black
-    mypy
-    flake8
-    poetry-core
-  ]);
-in
 {
   imports =
     [
