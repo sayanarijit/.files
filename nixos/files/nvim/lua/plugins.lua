@@ -607,7 +607,11 @@ require("packer").startup(function(use)
     config = function()
       local wk = require("which-key")
 
-      local wk_options = { prefix = "<space>" }
+      local wk_options = {
+        prefix = "<space>",
+        delay = 0,
+      }
+
       local wk_mappings = {
         { "<space>S",  group = "split join" },
         {
@@ -718,7 +722,6 @@ require("packer").startup(function(use)
       }
 
       wk.add(wk_mappings, wk_options)
-      vim.api.nvim_command("set timeoutlen=0")
     end,
   })
 
