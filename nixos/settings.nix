@@ -47,12 +47,21 @@ let
 in
 
 {
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "root" "sayanarijit" ];
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [ "root" "sayanarijit" ];
+    };
+
+    gc = {
+      automatic = true;
+      randomizedDelaySec = "14m";
+      options = "--delete-older-than 10d";
+    };
   };
 
   boot = {
+
     # Clean /tmp on reboot
     tmp.cleanOnBoot = true;
 
@@ -67,7 +76,11 @@ in
 
     # For Elasticsearch
     kernel.sysctl."vm.max_map_count" = "262144";
+
+    # https://discourse.nixos.org/t/realtek-audio-sound-card-not-recognized-by-pipewire/36637/2
+    kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
   };
+
 
   networking = rec {
     # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
@@ -159,7 +172,7 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
       # jack.enable = true;
-      # wireplumber.enable = true;
+      wireplumber.enable = true;
 
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
@@ -207,21 +220,19 @@ in
     systemPackages = with pkgs; [
       vim
       curl
-      pavucontrol
-      sof-firmware
       # wireshark
     ];
 
-    etc = {
-      "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-        bluez_monitor.properties = {
-          ["bluez5.enable-sbc-xq"] = true,
-          ["bluez5.enable-msbc"] = true,
-          ["bluez5.enable-hw-volume"] = true,
-          ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-        }
-      '';
-    };
+    # etc = {
+    #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+    #     bluez_monitor.properties = {
+    #       ["bluez5.enable-sbc-xq"] = true,
+    #       ["bluez5.enable-msbc"] = true,
+    #       ["bluez5.enable-hw-volume"] = true,
+    #       ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+    #     }
+    #   '';
+    # };
   };
 
 
@@ -270,7 +281,7 @@ in
   };
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  sound.enable = false;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
