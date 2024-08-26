@@ -79,6 +79,9 @@ in
 
     # https://discourse.nixos.org/t/realtek-audio-sound-card-not-recognized-by-pipewire/36637/2
     kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+    extraModprobeConfig = ''
+      options snd-hda-intel model=auto
+    '';
   };
 
 
@@ -171,6 +174,7 @@ in
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
       # jack.enable = true;
       wireplumber.enable = true;
 
@@ -183,7 +187,6 @@ in
     # openssh.enable = true;
   };
 
-  # Bluetooth
   hardware = {
     bluetooth.enable = true;
     pulseaudio.enable = false;
@@ -193,9 +196,6 @@ in
       enable = true;
       # driSupport = true;
     };
-
-
-
   };
 
   users.users.sayanarijit = {
@@ -212,6 +212,7 @@ in
   nixpkgs.config = {
     allowUnfree = true;
     # cudaSupport = true;
+    nvidia.acceptLicense = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -280,7 +281,7 @@ in
     sudo.wheelNeedsPassword = true;
   };
 
-  # Enable sound with pipewire.
+  # Enable sound with: true=pulseaudio, false=alsa
   sound.enable = false;
 
   # Home Manager needs a bit of information about you and the
