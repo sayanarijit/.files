@@ -46,18 +46,20 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
 
     # Laptop
     prime = {
       sync.enable = true;
-
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0"; # lspci | grep VGA
       nvidiaBusId = "PCI:1:0:0"; # lspci | grep VGA
       # amdgpuBusId = "PCI:54:0:0"; For AMD GPU
     };
   };
+
+  # Cuda support for packages
+  # nixpkgs.config.cudaSupport = true;
 
 
   # This value determines the NixOS release from which the default
