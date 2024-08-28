@@ -27,7 +27,7 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # https://github.com/TLATER/dotfiles/blob/e633196dca42d96f42f9aa9016fa8d307959232f/nixos-config/yui/nvidia.nix#L33
-  environment.variables = {
+  environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     # Apparently, without this nouveau may attempt to be used instead
     # (despite it being blacklisted)
