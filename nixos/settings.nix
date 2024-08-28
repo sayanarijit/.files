@@ -436,6 +436,7 @@ in
         nodejs
         nushell
         openapi-generator-cli
+        openshot-qt
         openssl
         ouch
         p11-kit # Terminal colors
@@ -459,6 +460,7 @@ in
         ronn # convert markdown files to manpages
         sd # sed replacement
         shfmt
+        shotcut
         simplescreenrecorder
         skim # sk: fzf alternative in rust
         slack
