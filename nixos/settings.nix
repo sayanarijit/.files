@@ -412,6 +412,7 @@ in
         krita
         lazygit # Git TUI
         libreoffice-qt
+        libva-utils
         lsd # ls replacement
         lshw
         luajit
