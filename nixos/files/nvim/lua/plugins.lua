@@ -348,7 +348,7 @@ require("packer").startup(function(use)
         yamlls = {},
         jsonls = {},
         vimls = {},
-        tsserver = {},
+        ts_ls = {},
         dartls = {},
         prismals = {},
         graphql = {},
