@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "@fsouza/prettierd": "^0.21.1",
+    "bash-language-server": "^5.4.0",
     "diagnostic-languageserver": "^1.6.1",
     "dockerfile-language-server-nodejs": "^0.1.1",
     "graphql": "^16.3.0",

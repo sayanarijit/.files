@@ -339,7 +339,7 @@ require("packer").startup(function(use)
         svelte = {},
         dockerls = {},
         cssls = {},
-        beautysh = {},
+        bashls = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = { cargo = { loadOutDirsFromCheck = true } },
@@ -545,9 +545,6 @@ require("packer").startup(function(use)
       ]])
     end,
   })
-
-  -- Easily speed up your neovim startup time!
-  use({ "nathom/filetype.nvim" })
 
   -- Vim syntax highlighting for Google's Protocol Buffers
   use({ "uarun/vim-protobuf" })

@@ -18,18 +18,19 @@ let
     packageJSON = ./files/yarn/package.json;
     yarnLock = ./files/yarn/yarn.lock;
     publishBinsFor = [
+      "@fsouza/prettierd"
+      "bash-language-server"
       "diagnostic-languageserver"
       "dockerfile-language-server-nodejs"
+      "prettier"
+      "sql-formatter"
+      "terser"
+      "typescript"
+      "typescript-language-server"
       "vim-language-server"
+      "vls"
       "vscode-langservers-extracted"
       "yaml-language-server"
-      "typescript-language-server"
-      "typescript"
-      "prettier"
-      "@fsouza/prettierd"
-      "terser"
-      "sql-formatter"
-      "vls"
     ];
   };
 
@@ -460,6 +461,7 @@ in
         ripgrep
         ronn # convert markdown files to manpages
         sd # sed replacement
+        shellcheck
         shfmt
         shotcut
         simplescreenrecorder
