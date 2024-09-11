@@ -339,7 +339,7 @@ require("packer").startup(function(use)
         svelte = {},
         dockerls = {},
         cssls = {},
-        bashls = {},
+        beautysh = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = { cargo = { loadOutDirsFromCheck = true } },
