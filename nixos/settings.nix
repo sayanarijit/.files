@@ -197,6 +197,8 @@ in
       enable = true;
       # driSupport = true;
     };
+
+    keyboard.qmk.enable = true;
   };
 
   users.users.sayanarijit = {
@@ -408,6 +410,7 @@ in
         jq # JSON viewer
         jrnl
         kakoune
+        keymapp
         killall
         kitty
         krita
@@ -468,6 +471,7 @@ in
         skim # sk: fzf alternative in rust
         slack
         sqlite
+        sqlitebrowser
         sshs
         statix
         stylua
@@ -516,6 +520,7 @@ in
         vlc
         vulkan-tools
         wasm-pack
+        webcamoid
         websocat
         websocketd
         wezterm
