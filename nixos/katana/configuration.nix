@@ -48,6 +48,8 @@ in
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
 
+  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
+
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -59,6 +61,8 @@ in
       libvdpau-va-gl
     ];
   };
+
+  hardware.nvidia-container-toolkit.enable = true;
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -88,7 +92,7 @@ in
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
 
     nvidiaPersistenced = true;
 
