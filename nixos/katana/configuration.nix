@@ -48,15 +48,12 @@ in
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
 
-  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
-
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-compute-runtime
-
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
       libvdpau-va-gl
     ];

@@ -449,10 +449,11 @@ in
         pass
         pciutils
         peek
+        pgadmin
         pgcli # postgres cli
         pistol
-        pistol
         podman-compose
+        postgresql
         pstree
         pueue
         pyright
