@@ -130,6 +130,14 @@ in
     };
   };
 
+  fonts.packages = with pkgs; [
+    font-awesome
+    material-icons
+    powerline-fonts
+    powerline-symbols
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
+
   # Enable the X11 windowing system.
 
   # Enable the KDE Plasma Desktop Environment.
@@ -375,6 +383,7 @@ in
         firefox
         fish
         flyctl
+        fontfor # Find fonts which can show a specified character and preview them in terminal or browser.
         frp
         fselect
         fzf
@@ -449,7 +458,7 @@ in
         pass
         pciutils
         peek
-        pgadmin
+        pgadmin4-desktopmode
         pgcli # postgres cli
         pistol
         podman-compose
@@ -482,6 +491,7 @@ in
         tabbed
         tcpdump
         tdesktop
+        terraform-ls
         texlive.combined.scheme-basic
         tldr
         tmate # Instant terminal sharing
