@@ -108,6 +108,9 @@ require("packer").startup(function(use)
           nls.builtins.formatting.black,
           nls.builtins.formatting.taplo,
           nls.builtins.formatting.shfmt,
+          nls.builtins.formatting.terraform_fmt,
+          nls.builtins.diagnostics.terraform_validate,
+          nls.builtins.diagnostics.tfsec,
         },
         on_attach = function(_)
           vim.cmd([[

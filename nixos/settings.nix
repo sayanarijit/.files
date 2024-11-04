@@ -491,6 +491,7 @@ in
         tabbed
         tcpdump
         tdesktop
+        terraform
         terraform-ls
         texlive.combined.scheme-basic
         tldr
@@ -536,7 +537,7 @@ in
         websocketd
         wezterm
         wget
-        wrk # Modern HTTP benchmarking tool
+        wrk2 # Modern HTTP benchmarking tool improved
         xclip
         xdotool
         xdragon
