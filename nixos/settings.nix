@@ -354,6 +354,7 @@ in
         bandwhich
         bash-completion
         bat # cat replacement
+        betterbird
         bitwarden-cli
         blender
         bottom
@@ -494,6 +495,7 @@ in
         terraform
         terraform-ls
         texlive.combined.scheme-basic
+        tfsec
         tldr
         tmate # Instant terminal sharing
         tor-browser-bundle-bin
