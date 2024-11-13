@@ -362,9 +362,11 @@ in
         btop
         cachix
         circleci-cli # CircleCI CLI
+        clang-tools
         coreutils # GNU coreutils
         curl
         datasette
+        dfu-util
         discord
         diskonaut
         distrobox
@@ -389,6 +391,7 @@ in
         fselect
         fzf
         gcc
+        gcc-arm-embedded
         geckodriver
         gimp
         git
@@ -553,6 +556,7 @@ in
         zathura
         zip
         zoxide
+        zsa-udev-rules
         zsh-syntax-highlighting
       ];
     };
