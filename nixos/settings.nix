@@ -468,6 +468,7 @@ in
         pueue
         pyright
         pythonWithPkgs
+        qmk
         qrcp
         ranger # A VIM-inspired filemanager for the console
         rdfind
@@ -522,6 +523,7 @@ in
         unstable.rustc
         unstable.rustfmt
         unstable.slides
+        unstable.tesseract5
         unstable.vhs
         unstable.yarn
         unstable.zig
