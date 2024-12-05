@@ -31,6 +31,8 @@ let
       "vls"
       "vscode-langservers-extracted"
       "yaml-language-server"
+      "grunt"
+      "sass"
     ];
   };
 
@@ -393,6 +395,7 @@ in
         gcc
         gcc-arm-embedded
         geckodriver
+        ghostscript
         gimp
         git
         gitAndTools.gh
@@ -544,7 +547,7 @@ in
         websocketd
         wezterm
         wget
-        wrk2 # Modern HTTP benchmarking tool improved
+        wrk # Modern HTTP benchmarking tool improved
         xclip
         xdotool
         xdragon
