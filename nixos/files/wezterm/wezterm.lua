@@ -136,4 +136,5 @@ return {
   window_background_opacity = 0.95,
   window_decorations = "NONE",
   warn_about_missing_glyphs = false,
+  max_fps = 120,
 }

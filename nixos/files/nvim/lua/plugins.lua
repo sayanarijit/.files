@@ -717,7 +717,7 @@ require("packer").startup(function(use)
         { "<space>x/", ":Xplr /<CR>",                     desc = "fs root" },
         {
           "<space>xp",
-          ":Xplr %:p<CR>",
+          ":Xplr '%:p'<CR>",
           desc = "present directory",
         },
         {
