@@ -158,6 +158,8 @@ in
     avahi.nssmdns4 = true;
     fstrim.enable = true;
 
+    ipp-usb.enable = true; # USB support for scanner
+
     pcscd.enable = true;
 
     # Configure keymap in X11
@@ -214,6 +216,14 @@ in
     };
 
     keyboard.qmk.enable = true;
+
+    # Scanner
+    sane = {
+      enable = true;
+      extraBackends = with pkgs; [
+        hplipWithPlugin
+      ];
+    };
   };
 
   users.users.sayanarijit = {
@@ -375,6 +385,11 @@ in
         datasette
         dfu-util
         discord
+        xsane
+        libusb
+        cups
+        dbus
+        libjpeg
         diskonaut
         distrobox
         dmidecode
@@ -437,6 +452,7 @@ in
         krita
         lazygit # Git TUI
         libreoffice-qt
+        libtool
         libva-utils
         lsd # ls replacement
         lshw
@@ -490,6 +506,7 @@ in
         shellcheck
         shfmt
         shotcut
+        simple-scan
         simplescreenrecorder
         skim # sk: fzf alternative in rust
         slack
