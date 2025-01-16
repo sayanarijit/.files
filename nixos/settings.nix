@@ -386,6 +386,7 @@ in
         dfu-util
         discord
         xsane
+        fend # Arbitrary-precision unit-aware calculator
         libusb
         cups
         dbus
