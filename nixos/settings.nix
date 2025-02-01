@@ -210,7 +210,7 @@ in
     pulseaudio.enable = false;
 
     # OpenGL
-    opengl = {
+    graphics = {
       enable = true;
       # driSupport = true;
     };
@@ -309,8 +309,6 @@ in
     sudo.wheelNeedsPassword = true;
   };
 
-  # Enable sound with: true=pulseaudio, false=alsa
-  sound.enable = false;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -348,6 +346,7 @@ in
       };
 
       packages = with pkgs; [
+        # betterbird
         # eza # ls replacement
         # jitsi-meet
         # nnnWithIcons
@@ -371,7 +370,6 @@ in
         bandwhich
         bash-completion
         bat # cat replacement
-        betterbird
         bitwarden-cli
         blender
         bottom
@@ -381,16 +379,12 @@ in
         circleci-cli # CircleCI CLI
         clang-tools
         coreutils # GNU coreutils
+        cups
         curl
         datasette
+        dbus
         dfu-util
         discord
-        xsane
-        fend # Arbitrary-precision unit-aware calculator
-        libusb
-        cups
-        dbus
-        libjpeg
         diskonaut
         distrobox
         dmidecode
@@ -405,6 +399,7 @@ in
         exiftool
         fd
         feh
+        fend # Arbitrary-precision unit-aware calculator
         ffmpeg
         firefox
         fish
@@ -452,8 +447,10 @@ in
         kitty
         krita
         lazygit # Git TUI
+        libjpeg
         libreoffice-qt
         libtool
+        libusb1
         libva-utils
         lsd # ls replacement
         lshw
@@ -529,7 +526,7 @@ in
         tldr
         tmate # Instant terminal sharing
         tor-browser-bundle-bin
-        transmission-gtk
+        transmission_4-gtk
         trash-cli
         tree
         tree-sitter
@@ -574,6 +571,7 @@ in
         xclip
         xdotool
         xdragon
+        xsane
         xterm
         xz
         yank

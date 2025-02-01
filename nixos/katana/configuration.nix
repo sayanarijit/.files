@@ -48,10 +48,8 @@ in
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-compute-runtime
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
