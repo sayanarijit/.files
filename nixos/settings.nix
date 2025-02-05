@@ -202,7 +202,7 @@ in
     };
 
     # Enable the OpenSSH daemon.
-    openssh.enable = true;
+    openssh.enable = false;
   };
 
   hardware = {
