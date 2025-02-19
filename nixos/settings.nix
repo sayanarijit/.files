@@ -229,7 +229,7 @@ in
   users.users.sayanarijit = {
     isNormalUser = true;
     description = "Arijit Basu";
-    extraGroups = [ "networkmanager" "wheel" "wireshark" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "wireshark" "docker" "lxd" ];
     shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
@@ -301,6 +301,7 @@ in
     };
 
     docker.enable = true;
+    lxd.enable = true;
   };
 
   # Security
@@ -367,6 +368,7 @@ in
         asciinema # Terminal session recorder
         audio-recorder
         awscli2
+        azure-cli
         bandwhich
         bash-completion
         bat # cat replacement
@@ -425,6 +427,7 @@ in
         gradle
         graphviz
         helix
+        helmfile
         heroku # Heroku CLI
         highlight
         http-prompt
@@ -446,6 +449,8 @@ in
         killall
         kitty
         krita
+        kubectl
+        kubernetes-helm
         lazygit # Git TUI
         libjpeg
         libreoffice-qt

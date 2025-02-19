@@ -101,9 +101,6 @@ in
     };
   };
 
-  virtualisation.docker.enableNvidia = true;
-  virtualisation.podman.enableNvidia = true;
-
   # Cuda support for packages
   # nixpkgs.config.cudaSupport = true;
 
