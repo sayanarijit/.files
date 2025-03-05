@@ -137,4 +137,5 @@ return {
   window_decorations = "NONE",
   warn_about_missing_glyphs = false,
   max_fps = 120,
+  front_end = "OpenGL",
 }

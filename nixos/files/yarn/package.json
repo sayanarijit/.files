@@ -18,6 +18,7 @@
     "upgrade": "^1.1.0",
     "vim-language-server": "^2.1.0",
     "vls": "^0.8.5",
+    "vscode-json-languageservice": "^5.4.3",
     "vscode-langservers-extracted": "^4.0.0",
     "yaml-language-server": "^0.10.1"
   }

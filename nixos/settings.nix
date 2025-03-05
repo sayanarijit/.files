@@ -427,6 +427,7 @@ in
         gradle
         graphviz
         helix
+        helm-ls
         helmfile
         heroku # Heroku CLI
         highlight
@@ -465,6 +466,8 @@ in
         maven
         mdbook
         mmv-go
+        mongodb-tools
+        mongosh
         mpv
         navi
         ncdu # Disk utilization viewer
