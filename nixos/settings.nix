@@ -466,6 +466,7 @@ in
         maven
         mdbook
         mmv-go
+        mongodb-compass
         mongodb-tools
         mongosh
         mpv
