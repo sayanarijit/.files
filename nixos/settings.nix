@@ -498,6 +498,7 @@ in
         pistol
         podman-compose
         postgresql
+        presenterm # A markdown terminal slideshow tool
         pstree
         pueue
         pyright
