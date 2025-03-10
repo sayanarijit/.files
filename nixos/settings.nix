@@ -587,6 +587,7 @@ in
         yarnPkgs
         yq # YAML viewer
         zathura
+        zenith-nvidia # Zenith - sort of like top or htop but with zoom-able charts, CPU, GPU, network, and disk usage
         zip
         zoxide
         zsa-udev-rules
