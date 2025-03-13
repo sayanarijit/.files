@@ -38,6 +38,7 @@ alias m="mind"
 alias x="xplr"
 alias f="fzf"
 alias k="kubectl"
+alias hf="helmfile"
 alias "cargo-examples"='for e in $(ls examples); do cargo run --example ${e%.*}; done'
 alias xcd='cd "$(xplr --print-pwd-as-result)"'
 alias tf='terraform'

@@ -445,13 +445,17 @@ in
         jpegoptim
         jq # JSON viewer
         jrnl
+        k9s
         kakoune
+        kdash # A simple and fast dashboard for Kubernetes
         keymapp
         killall
         kitty
         krita
         kubectl
+        kubefwd
         kubernetes-helm
+        kubetail
         lazygit # Git TUI
         libjpeg
         libreoffice-qt
@@ -474,6 +478,7 @@ in
         ncdu # Disk utilization viewer
         neofetch
         netcat
+        netscanner # Terminal Network scanner & diagnostic tool with modern TUI
         newsboat
         nil
         niv # Easy dependency management for Nix projects
@@ -565,6 +570,7 @@ in
         unstable.zig
         unzip
         upx
+        uv
         vifm
         vim
         viu
