@@ -249,6 +249,7 @@ in
     systemPackages = with pkgs; [
       vim
       curl
+      # cudaPackages.cudatoolkit
       # wireshark
     ];
 
@@ -439,12 +440,14 @@ in
         imagemagick
         imgp
         inetutils
+        infracost
         inotify-tools
         irssi
         jf
         jpegoptim
         jq # JSON viewer
         jrnl
+        jujutsu
         k9s
         kakoune
         kdash # A simple and fast dashboard for Kubernetes
@@ -462,6 +465,7 @@ in
         libtool
         libusb1
         libva-utils
+        lmstudio
         lsd # ls replacement
         lshw
         luajit
@@ -469,6 +473,7 @@ in
         massren
         maven
         mdbook
+        mermaid-cli
         mmv-go
         mongodb-compass
         mongodb-tools
@@ -489,6 +494,7 @@ in
         nmap
         nodejs
         nushell
+        ollama
         openapi-generator-cli
         openshot-qt
         openssl
@@ -571,6 +577,7 @@ in
         unzip
         upx
         uv
+        velero
         vifm
         vim
         viu
