@@ -454,6 +454,7 @@ in
         keymapp
         killall
         kitty
+        krew
         krita
         kubectl
         kubefwd
@@ -561,6 +562,7 @@ in
         unstable.cmake
         unstable.copilot-cli
         unstable.f2
+        unstable.kustomize
         unstable.lua-language-server
         unstable.mprocs
         unstable.numbat
