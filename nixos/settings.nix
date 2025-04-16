@@ -149,7 +149,7 @@ in
     printing = {
       enable = true;
       drivers = with pkgs; [
-        hplipWithPlugin
+        # hplipWithPlugin  # TODO: uncomment
       ];
     };
     avahi.enable = true;
@@ -221,7 +221,7 @@ in
     sane = {
       enable = true;
       extraBackends = with pkgs; [
-        hplipWithPlugin
+        # hplipWithPlugin  # TODO: uncomment
       ];
     };
   };
@@ -447,7 +447,6 @@ in
         jpegoptim
         jq # JSON viewer
         jrnl
-        jujutsu
         k9s
         kakoune
         kdash # A simple and fast dashboard for Kubernetes
@@ -562,6 +561,7 @@ in
         unstable.cmake
         unstable.copilot-cli
         unstable.f2
+        unstable.jujutsu
         unstable.kustomize
         unstable.lua-language-server
         unstable.mprocs
