@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   # Personal Info
   # Stolen from https://github.com/JonathanReeve/dotfiles
   name = "Arijit Basu";
@@ -8,7 +11,7 @@ let
   username = "sayanarijit";
   homedir = "/home/${username}";
 
-  unstable = import <nixpkgs-unstable> { };
+  unstable = import <nixpkgs-unstable> {};
 
   # nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
 
@@ -36,24 +39,21 @@ let
     ];
   };
 
-
-  pythonWithPkgs = pkgs.python312.withPackages (p: with p; [
-    pip
-    pynvim
-    isort
-    black
-    mypy
-    flake8
-    poetry-core
-  ]);
-
-in
-
-{
+  pythonWithPkgs = pkgs.python312.withPackages (p:
+    with p; [
+      pip
+      pynvim
+      isort
+      black
+      mypy
+      flake8
+      poetry-core
+    ]);
+in {
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "sayanarijit" ];
+      experimental-features = ["nix-command" "flakes"];
+      trusted-users = ["root" "sayanarijit"];
     };
 
     gc = {
@@ -64,7 +64,6 @@ in
   };
 
   boot = {
-
     # Clean /tmp on reboot
     tmp.cleanOnBoot = true;
 
@@ -81,12 +80,11 @@ in
     kernel.sysctl."vm.max_map_count" = "262144";
 
     # https://discourse.nixos.org/t/realtek-audio-sound-card-not-recognized-by-pipewire/36637/2
-    kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+    kernelParams = ["snd-intel-dspcfg.dsp_driver=1"];
     extraModprobeConfig = ''
       options snd-hda-intel model=auto
     '';
   };
-
 
   networking = rec {
     # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
@@ -137,7 +135,7 @@ in
     material-icons
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
   ];
 
   # Enable the X11 windowing system.
@@ -229,7 +227,7 @@ in
   users.users.sayanarijit = {
     isNormalUser = true;
     description = "Arijit Basu";
-    extraGroups = [ "networkmanager" "wheel" "wireshark" "docker" "lxd" ];
+    extraGroups = ["networkmanager" "wheel" "wireshark" "docker" "lxd"];
     shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
@@ -264,7 +262,6 @@ in
     #   '';
     # };
   };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -310,7 +307,6 @@ in
     rtkit.enable = true;
     sudo.wheelNeedsPassword = true;
   };
-
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -399,6 +395,7 @@ in
         elmPackages.elm-language-server
         elmPackages.elm-live
         elmPackages.elm-test
+        eslint
         exiftool
         fd
         feh
@@ -432,6 +429,7 @@ in
         helmfile
         heroku # Heroku CLI
         highlight
+        htmlhint
         http-prompt
         httpie # curl replacement
         hugo
@@ -469,6 +467,7 @@ in
         lsd # ls replacement
         lshw
         luajit
+        luajitPackages.luacheck
         luarocks
         massren
         maven
@@ -533,6 +532,7 @@ in
         sqlitebrowser
         sshs
         statix
+        stylelint
         stylua
         swagger-codegen
         sxiv
@@ -550,11 +550,11 @@ in
         transmission_4-gtk
         trash-cli
         tree
-        tree-sitter
         ttyd
         txt2man
         universal-ctags # Tags creator for vim
         unrar
+        unstable.alejandra
         unstable.cargo
         unstable.cargo-edit
         unstable.clippy
@@ -573,6 +573,7 @@ in
         unstable.rustfmt
         unstable.slides
         unstable.tesseract5
+        unstable.tree-sitter
         unstable.vhs
         unstable.yarn
         unstable.zig
@@ -599,6 +600,8 @@ in
         xsane
         xterm
         xz
+        yamlfix
+        yamllint
         yank
         yarnPkgs
         yq # YAML viewer
@@ -624,68 +627,10 @@ in
 
         # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
         plugins = with pkgs.vimPlugins; [
-          # cmp-buffer
-          # cmp-calc
-          # cmp-cmdline
-          # cmp-conjure
-          # cmp-conventionalcommits
-          # cmp-copilot
-          # cmp-dictionary
-          # cmp-digraphs
-          # cmp-emoji
-          # cmp-fuzzy-buffer
-          # cmp-fuzzy-path
-          # cmp-git
-          # cmp-neosnippet
-          # cmp-nvim-lsp
-          # cmp-nvim-lsp-document-symbol
-          # cmp-nvim-lsp-signature-help
-          # cmp-nvim-lua
-          # cmp-nvim-tags
-          # cmp-nvim-ultisnips
-          # cmp-omni
-          # cmp-path
-          # cmp-snippy
-          # cmp-spell
-          # cmp-treesitter
-          # cmp-zsh
-          # cmp_luasnip
-          # comment-nvim
-          # diffview-nvim
-          # friendly-snippets
-          # git-messenger-vim
-          # luasnip
-          # neoscroll-nvim
-          # nginx-vim
-          # nnn-vim
-          # null-ls-nvim
-          # nvim-colorizer-lua
-          # nvim-lightbulb
-          # nvim-lightbulb
-          # nvim-lspconfig
-          # nvim-surround
-          # nvim-treesitter
-          # nvim-treesitter-textobjects
-          # nvim-ts-autotag
-          # open-browser-github-vim
-          # playground
-          # registers-nvim
-          # splitjoin-vim
-          # surround-nvim
-          # telescope-nvim
-          # vim-expand-region
-          # vim-fugitive
-          # vim-gitgutter
-          # vim-nix
-          # vim-protobuf
-          # vim-startify
-          # vim-test
-          # vim-toml
-          # which-key-nvim
-          packer-nvim
+          lazy-nvim
         ];
         extraConfig = ''
-          packadd! packer.nvim
+          packadd! lazy.nvim
           luafile ${./files/nvim/lua/util.lua}
           luafile ${./files/nvim/lua/options.lua}
           luafile ${./files/nvim/lua/plugins.lua}
@@ -696,7 +641,7 @@ in
       tmux = {
         enable = true;
         # tmuxp = { enable = true; };
-        tmuxinator = { enable = true; };
+        tmuxinator = {enable = true;};
         plugins = with pkgs.tmuxPlugins; [
           fzf-tmux-url
           fpp
@@ -715,7 +660,7 @@ in
           signByDefault = true;
           key = "0F8EF5258DC38077";
         };
-        ignores = [ ".DS_Store" "*~" "*.swp" ".null-ls_*.md" ];
+        ignores = [".DS_Store" "*~" "*.swp" ".null-ls_*.md"];
         extraConfig.init.defaultBranch = "main";
 
         # Extensions
@@ -739,7 +684,7 @@ in
         oh-my-zsh = {
           enable = true;
           theme = "robbyrussell";
-          plugins = [ "git" "python" ];
+          plugins = ["git" "python"];
         };
       };
 
