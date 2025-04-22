@@ -21,8 +21,8 @@
 -- vim.g.mapleader = " "
 -- vim.g.maplocalleader = "\\"
 
-_G.vim = vim
-_G.cmd = vim.cmd
+local vim = vim
+local cmd = vim.cmd
 
 -- Setup lazy.nvim
 require("lazy").setup({
