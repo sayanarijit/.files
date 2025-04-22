@@ -538,6 +538,7 @@ in {
         sxiv
         sysctl
         tabbed
+        taplo
         tcpdump
         tdesktop
         terraform

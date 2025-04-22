@@ -266,7 +266,6 @@ require("lazy").setup({
       config = function()
         local prettier = { "prettierd", "prettier", stop_after_first = true }
         local prettier_args = {
-          "--single-quote",
           "--trailing-comma",
           "all",
           "--tab-width",
@@ -279,10 +278,10 @@ require("lazy").setup({
             html = prettier,
             css = prettier,
             json = prettier,
-            yaml = { "yamlfix" },
+            yaml = prettier,
+            markdown = prettier,
             lua = { "stylua" },
             rust = { "rustfmt" },
-            markdown = prettier,
             nix = { "alejandra" },
             toml = { "taplo" },
             sh = { "shfmt" },
@@ -292,7 +291,7 @@ require("lazy").setup({
           },
           format_on_save = {
             timeout_ms = 1000,
-            -- lsp_format = "fallback",
+            lsp_format = "prefer",
           },
           formatters = {
             stylua = {
@@ -307,11 +306,11 @@ require("lazy").setup({
                 "AutoPreferDouble",
               },
             },
-            prettierd = {
-              prepend_args = prettier_args,
-            },
+            -- prettierd = {
+            --   -- prepend_args = prettier_args,
+            -- },
             prettier = {
-              args = prettier_args,
+              prettier_args = prettier_args,
             },
           },
         })
