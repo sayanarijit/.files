@@ -310,7 +310,7 @@ require("lazy").setup({
             --   -- prepend_args = prettier_args,
             -- },
             prettier = {
-              prettier_args = prettier_args,
+              prepend_args = prettier_args,
             },
           },
         })
