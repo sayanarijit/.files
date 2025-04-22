@@ -543,6 +543,7 @@ in {
         terraform
         terraform-ls
         texlive.combined.scheme-basic
+        tflint
         tfsec
         tldr
         tmate # Instant terminal sharing
@@ -580,6 +581,7 @@ in {
         unzip
         upx
         uv
+        vale
         velero
         vifm
         vim

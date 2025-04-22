@@ -253,7 +253,7 @@ require("lazy").setup({
     --       "williamboman/mason-lspconfig.nvim",
     --       -- "williamboman/mason-tool-installer.nvim",
     --     },
-    --     setup = function()
+    --     config = function()
     --       require("mason").setup()
     --     end,
     -- },
@@ -323,7 +323,7 @@ require("lazy").setup({
     {
       "mfussenegger/nvim-lint",
       event = { "BufWritePost" },
-      setup = function()
+      config = function()
         require("lint").linters_by_ft = {
           python = { "flake8" },
           javascript = { "eslint" },
@@ -332,7 +332,8 @@ require("lazy").setup({
           html = { "htmlhint" },
           css = { "stylelint" },
           yaml = { "yamllint" },
-          terraform = { "terraform_validate", "tfsec" },
+          terraform = { "tfsec", "tflint", "terraform_validate" },
+          markdown = { "vale" },
         }
 
         vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -405,6 +406,8 @@ require("lazy").setup({
           volar = {},
           clangd = {},
           terraformls = {},
+          tflint = {},
+          vale_ls = {},
         }
 
         -- Add additional capabilities supported by nvim-cmp
@@ -425,8 +428,8 @@ require("lazy").setup({
         vim.lsp.config("*", {
           capabilities = capabilities,
           handlers = handlers,
-          -- on_attach = on_attach,
           root_markers = root_markers,
+          -- on_attach = on_attach,
         })
 
         for lsp, config in pairs(servers) do
@@ -616,41 +619,41 @@ require("lazy").setup({
     { "LnL7/vim-nix" },
 
     -- -- Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination.
-    -- {
-    --   "terryma/vim-expand-region",
-    --   config = function()
-    --     cmd([[
-    --       let g:expand_region_text_objects = {
-    --         \ 'iw'  :0,
-    --         \ 'aw'  :0,
-    --         \ 'iW'  :0,
-    --         \ 'V'  :1,
-    --         \ 'it'  :1,
-    --         \ 'at'  :1,
-    --         \ 'if'  :1,
-    --         \ 'af'  :1,
-    --         \ 'ic'  :1,
-    --         \ 'ac'  :1,
-    --         \ 'ip'  :1,
-    --         \ 'ap'  :1,
-    --         \ 'i"'  :1,
-    --         \ 'a"'  :1,
-    --         \ 'i''' :1,
-    --         \ 'a''' :1,
-    --         \ 'i]'  :1,
-    --         \ 'a]'  :1,
-    --         \ 'i)'  :1,
-    --         \ 'a)'  :1,
-    --         \ 'i}'  :1,
-    --         \ 'a}'  :1,
-    --         \ 'i>'  :1,
-    --         \ 'a>'  :1,
-    --         \ 'i`'  :1,
-    --         \ 'a`'  :1,
-    --         \ }
-    --     ]])
-    --   end,
-    -- },
+    {
+      "terryma/vim-expand-region",
+      config = function()
+        cmd([[
+          let g:expand_region_text_objects = {
+            \ 'iw'  :0,
+            \ 'aw'  :0,
+            \ 'iW'  :0,
+            \ 'V'  :1,
+            \ 'it'  :1,
+            \ 'at'  :1,
+            \ 'if'  :1,
+            \ 'af'  :1,
+            \ 'ic'  :1,
+            \ 'ac'  :1,
+            \ 'ip'  :1,
+            \ 'ap'  :1,
+            \ 'i"'  :1,
+            \ 'a"'  :1,
+            \ 'i''' :1,
+            \ 'a''' :1,
+            \ 'i]'  :1,
+            \ 'a]'  :1,
+            \ 'i)'  :1,
+            \ 'a)'  :1,
+            \ 'i}'  :1,
+            \ 'a}'  :1,
+            \ 'i>'  :1,
+            \ 'a>'  :1,
+            \ 'i`'  :1,
+            \ 'a`'  :1,
+            \ }
+        ]])
+      end,
+    },
 
     --  link The fancy start screen for Vim.
     { "mhinz/vim-startify" },
