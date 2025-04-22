@@ -291,7 +291,7 @@ require("lazy").setup({
           },
           format_on_save = {
             timeout_ms = 1000,
-            lsp_format = "prefer",
+            lsp_format = "fallback",
           },
           formatters = {
             stylua = {
@@ -478,10 +478,10 @@ require("lazy").setup({
             ["<down>"] = cmp.mapping(function(fallback)
               if cmp.visible() then
                 cmp.select_next_item()
-              -- elseif luasnip.expand_or_jumpable() then
-              --   luasnip.expand_or_jump()
-              -- elseif has_words_before() then
-              --   cmp.complete()
+                -- elseif luasnip.expand_or_jumpable() then
+                --   luasnip.expand_or_jump()
+                -- elseif has_words_before() then
+                --   cmp.complete()
               else
                 fallback()
               end
@@ -489,8 +489,8 @@ require("lazy").setup({
             ["<up>"] = cmp.mapping(function(fallback)
               if cmp.visible() then
                 cmp.select_prev_item()
-              -- elseif luasnip.jumpable(-1) then
-              --   luasnip.jump(-1)
+                -- elseif luasnip.jumpable(-1) then
+                --   luasnip.jump(-1)
               else
                 fallback()
               end
@@ -519,10 +519,10 @@ require("lazy").setup({
             -- { name = "cmp_tabnine" },
             -- { name = "copilot" },
             { name = "spell" },
-            { name = "calc", keyword_length = 3 },
-            { name = "emoji", ignored_filetypes = { "yml", "yaml", "json" } },
+            { name = "calc",    keyword_length = 3 },
+            { name = "emoji",   ignored_filetypes = { "yml", "yaml", "json" } },
             { name = "luasnip" },
-            { name = "buffer", keyword_length = 3 },
+            { name = "buffer",  keyword_length = 3 },
           },
         })
 
@@ -669,7 +669,7 @@ require("lazy").setup({
         }
 
         local wk_mappings = {
-          { "<space>S", group = "split join" },
+          { "<space>S",  group = "split join" },
           {
             "<space>Sj",
             ":SplitjoinJoin<CR>",
@@ -685,8 +685,8 @@ require("lazy").setup({
             require("exec-cursorline-insert-stdout").execute,
             desc = "execute line",
           },
-          { "<space>Z", group = "zk" },
-          { "<space>ZZ", ":ZkCd<CR>", desc = "cd" },
+          { "<space>Z",  group = "zk" },
+          { "<space>ZZ", ":ZkCd<CR>",         desc = "cd" },
           {
             "<space>Zb",
             ":ZkBacklinks<CR>",
@@ -702,30 +702,30 @@ require("lazy").setup({
             ":ZkNotes<CR>",
             desc = "notes",
           },
-          { "<space>a", group = "action" },
-          { "<space>ao", group = "open" },
-          { "<space>aot", ":tabnew<CR>", desc = "tab" },
+          { "<space>a",   group = "action" },
+          { "<space>ao",  group = "open" },
+          { "<space>aot", ":tabnew<CR>",   desc = "tab" },
           {
             "<space>at",
             ":TOC<CR>",
             desc = "table of contents",
           },
-          { "<space>c", group = "config" },
+          { "<space>c",  group = "config" },
           {
             "<space>cc",
             ":tabnew ~/.files/nixos/settings.nix<CR>",
             desc = "nixos config",
           },
-          { "<space>g", group = "git" },
-          { "<space>gA", ":Git add .<CR>", desc = "add all" },
-          { "<space>gB", ":GBrowse<CR>", desc = "browse" },
-          { "<space>gD", ":Gdiffsplit<CR>", desc = "diff split" },
+          { "<space>g",  group = "git" },
+          { "<space>gA", ":Git add .<CR>",                   desc = "add all" },
+          { "<space>gB", ":GBrowse<CR>",                     desc = "browse" },
+          { "<space>gD", ":Gdiffsplit<CR>",                  desc = "diff split" },
           { "<space>gH", "<Plug>(GitGutterPreviewHunk)<CR>", desc = "preview hunk" },
-          { "<space>gP", ":Git pull<CR>", desc = "pull " },
-          { "<space>ga", ":Git add %<CR>", desc = "add current" },
-          { "<space>gb", ":Git blame<CR>", desc = "blame" },
-          { "<space>gc", ":Git commit<CR>", desc = "commit" },
-          { "<space>gd", ":DiffviewOpen<CR>", desc = "diff" },
+          { "<space>gP", ":Git pull<CR>",                    desc = "pull " },
+          { "<space>ga", ":Git add %<CR>",                   desc = "add current" },
+          { "<space>gb", ":Git blame<CR>",                   desc = "blame" },
+          { "<space>gc", ":Git commit<CR>",                  desc = "commit" },
+          { "<space>gd", ":DiffviewOpen<CR>",                desc = "diff" },
           {
             "<space>gh",
             ":GitGutterLineHighlightsToggle<CR>",
@@ -733,43 +733,43 @@ require("lazy").setup({
           },
           { "<space>gj", "<Plug>(GitGutterNextHunk)<CR>", desc = "next hunk" },
           { "<space>gk", "<Plug>(GitGutterPrevHunk)<CR>", desc = "prev hunk" },
-          { "<space>gl", ":Git log<CR>", desc = "log " },
+          { "<space>gl", ":Git log<CR>",                  desc = "log " },
           {
             "<space>gm",
             "<Plug>(git-messenger)<CR>",
             desc = "show commit message ",
           },
-          { "<space>go", ":OpenGithubFile<CR>", desc = "open github " },
-          { "<space>gp", ":Git push<CR>", desc = "push " },
-          { "<space>gr", ":GRemove<CR>", desc = "remove " },
-          { "<space>gs", ":Gstatus<CR>", desc = "status" },
-          { "<space>gu", "<Plug>(GitGutterUndoHunk)<CR>", desc = "undo hunk " },
-          { "<space>l", group = "lsp" },
-          { "<space>lR", ":LspRestart<CR>", desc = "restart" },
-          { "<space>lS", vim.lsp.buf.workspace_symbols, desc = "workspace symbols" },
-          { "<space>ls", vim.lsp.buf.document_symbols, desc = "document symbols" },
-          { "<space>lL", vim.diagnostic.goto_prev, desc = "prev diagnostic" },
-          { "<space>la", vim.lsp.buf.code_action, desc = "code action" },
-          { "<space>lc", vim.lsp.buf.rename, desc = "rename" },
-          { "<space>ld", vim.lsp.buf.definition, desc = "definition" },
-          { "<space>lh", vim.lsp.buf.hover, desc = "hover" },
-          { "<space>li", vim.lsp.buf.implementation, desc = "implementation" },
-          { "<space>ll", vim.diagnostic.goto_next, desc = "next diagnostic" },
-          { "<space>lr", vim.lsp.buf.references, desc = "references" },
-          { "<space>q", ":q<CR>", desc = "quit" },
-          { "<space>s", group = "search" },
-          { '<space>s"', ":FzfLua registers<CR>", desc = "registers" },
-          { "<space>sC", ":FzfLua git_bcommits<CR>", desc = "buffer commits" },
-          { "<space>sc", ":FzfLua git_commits<CR>", desc = "commits" },
-          { "<space>sf", ":FzfLua files<CR>", desc = "files" },
-          { "<space>sg", ":FzfLua git_files<CR>", desc = "git files" },
-          { "<space>sm", ":FzfLua marks<CR>", desc = "marks" },
-          { "<space>ss", ":FzfLua spell_suggest<CR>", desc = "grep text" },
-          { "<space>st", ":FzfLua live_grep<CR>", desc = "grep text" },
+          { "<space>go", ":OpenGithubFile<CR>",             desc = "open github " },
+          { "<space>gp", ":Git push<CR>",                   desc = "push " },
+          { "<space>gr", ":GRemove<CR>",                    desc = "remove " },
+          { "<space>gs", ":Gstatus<CR>",                    desc = "status" },
+          { "<space>gu", "<Plug>(GitGutterUndoHunk)<CR>",   desc = "undo hunk " },
+          { "<space>l",  group = "lsp" },
+          { "<space>lR", ":LspRestart<CR>",                 desc = "restart" },
+          { "<space>lS", vim.lsp.buf.workspace_symbols,     desc = "workspace symbols" },
+          { "<space>ls", vim.lsp.buf.document_symbols,      desc = "document symbols" },
+          { "<space>lL", vim.diagnostic.goto_prev,          desc = "prev diagnostic" },
+          { "<space>la", vim.lsp.buf.code_action,           desc = "code action" },
+          { "<space>lc", vim.lsp.buf.rename,                desc = "rename" },
+          { "<space>ld", vim.lsp.buf.definition,            desc = "definition" },
+          { "<space>lh", vim.lsp.buf.hover,                 desc = "hover" },
+          { "<space>li", vim.lsp.buf.implementation,        desc = "implementation" },
+          { "<space>ll", vim.diagnostic.goto_next,          desc = "next diagnostic" },
+          { "<space>lr", vim.lsp.buf.references,            desc = "references" },
+          { "<space>q",  ":q<CR>",                          desc = "quit" },
+          { "<space>s",  group = "search" },
+          { '<space>s"', ":FzfLua registers<CR>",           desc = "registers" },
+          { "<space>sC", ":FzfLua git_bcommits<CR>",        desc = "buffer commits" },
+          { "<space>sc", ":FzfLua git_commits<CR>",         desc = "commits" },
+          { "<space>sf", ":FzfLua files<CR>",               desc = "files" },
+          { "<space>sg", ":FzfLua git_files<CR>",           desc = "git files" },
+          { "<space>sm", ":FzfLua marks<CR>",               desc = "marks" },
+          { "<space>ss", ":FzfLua spell_suggest<CR>",       desc = "grep text" },
+          { "<space>st", ":FzfLua live_grep<CR>",           desc = "grep text" },
           { "<space>sh", ":Telescope git_file_history<CR>", desc = "git file hist" },
-          { "<space>w", ":w<CR>", desc = "write" },
-          { "<space>x", group = "explore" },
-          { "<space>x/", ":Xplr /<CR>", desc = "fs root" },
+          { "<space>w",  ":w<CR>",                          desc = "write" },
+          { "<space>x",  group = "explore" },
+          { "<space>x/", ":Xplr /<CR>",                     desc = "fs root" },
           {
             "<space>xp",
             ":Xplr '%:p'<CR>",
