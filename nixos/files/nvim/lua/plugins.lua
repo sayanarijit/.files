@@ -287,7 +287,11 @@ require("lazy").setup({
             sh = { "shfmt" },
             bash = { "shfmt" },
             terraform = { "terraform_fmt" },
-            python = { "black", "isort" },
+            python = {
+              "ruff_format", -- format
+              "ruff_organize_imports", -- organize imports
+              "ruff_fix", -- fix lints
+            },
           },
           format_on_save = {
             lsp_format = "fallback",
@@ -322,8 +326,9 @@ require("lazy").setup({
       "mfussenegger/nvim-lint",
       event = { "BufWritePost" },
       config = function()
-        require("lint").linters_by_ft = {
-          python = { "flake8" },
+        local lint = require("lint")
+        lint.linters_by_ft = {
+          python = { "ruff" },
           javascript = { "eslint" },
           typescript = { "eslint" },
           lua = { "luacheck" },
@@ -332,6 +337,11 @@ require("lazy").setup({
           yaml = { "yamllint" },
           terraform = { "tfsec", "tflint", "terraform_validate" },
           markdown = { "vale" },
+          sql = { "sqruff" },
+        }
+
+        lint.linters.ruff.args = {
+          "--max-line-length=88",
         }
 
         vim.api.nvim_create_autocmd({ "BufWritePost" }, {

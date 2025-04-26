@@ -384,26 +384,22 @@ in {
         broot
         btop
         cachix
-        wl-clipboard # clipboard
-        slurp # select utility
-        grim # screenshot
         circleci-cli # CircleCI CLI
         clang-tools
+        clipboard-jh
         coreutils # GNU coreutils
         cups
         curl
         datasette
         dbus
         dfu-util
-        clipboard-jh
         discord
         diskonaut
         distrobox
         dmidecode
-        networkmanagerapplet
         dnsutils
-        labwc
         docker-compose
+        dunst
         easyeffects
         elmPackages.elm
         elmPackages.elm-format
@@ -411,6 +407,7 @@ in {
         elmPackages.elm-live
         elmPackages.elm-test
         eslint
+        eww
         exiftool
         fd
         feh
@@ -421,9 +418,6 @@ in {
         flyctl
         fontfor # Find fonts which can show a specified character and preview them in terminal or browser.
         frp
-        swaybg
-        wpaperd
-        swww
         fselect
         fuzzel
         fzf
@@ -443,6 +437,7 @@ in {
         gpp
         gradle
         graphviz
+        grim # screenshot
         helix
         helm-ls
         helmfile
@@ -476,8 +471,10 @@ in {
         kubefwd
         kubernetes-helm
         kubetail
+        labwc
         lazygit # Git TUI
         libjpeg
+        libnotify
         libreoffice-qt
         libtool
         libusb1
@@ -502,6 +499,7 @@ in {
         neofetch
         netcat
         netscanner # Terminal Network scanner & diagnostic tool with modern TUI
+        networkmanagerapplet
         newsboat
         nil
         niv # Easy dependency management for Nix projects
@@ -539,6 +537,7 @@ in {
         redis
         ripgrep
         ronn # convert markdown files to manpages
+        ruff
         sd # sed replacement
         shellcheck
         shfmt
@@ -547,6 +546,7 @@ in {
         simplescreenrecorder
         skim # sk: fzf alternative in rust
         slack
+        slurp # select utility
         sqlite
         sqlitebrowser
         sshs
@@ -554,7 +554,9 @@ in {
         stylelint
         stylua
         swagger-codegen
+        swaybg
         swaylock
+        swww
         sxiv
         sysctl
         tabbed
@@ -611,15 +613,14 @@ in {
         vlc
         vulkan-tools
         wasm-pack
-        webcamoid
         waybar
-        eww
-        dunst
-        libnotify
+        webcamoid
         websocat
         websocketd
         wezterm
         wget
+        wl-clipboard # clipboard
+        wpaperd
         wrk # Modern HTTP benchmarking tool improved
         xclip
         xdotool
