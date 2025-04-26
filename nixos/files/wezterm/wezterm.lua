@@ -100,7 +100,7 @@ local keys = {
     end),
   },
 
-  { key = "PageUp",   mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
+  { key = "PageUp", mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
   { key = "PageDown", mods = "CTRL|SHIFT", action = wezterm.action.ScrollToPrompt(1) },
 }
 
@@ -138,5 +138,5 @@ return {
   warn_about_missing_glyphs = false,
   max_fps = 120,
   front_end = "Software",
-  enable_wayland = false,
+  -- enable_wayland = false,
 }

@@ -190,9 +190,8 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      # jack.enable = true;
-      wireplumber.enable = true;
+      jack.enable = true;
+      # wireplumber.enable = true;
 
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
@@ -222,6 +221,14 @@ in {
         # hplipWithPlugin  # TODO: uncomment
       ];
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      # pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-kde
+    ];
   };
 
   users.users.sayanarijit = {
@@ -277,8 +284,10 @@ in {
     };
 
     # wireshark.enable = true;
+    # hyprland.enable = true;
 
-    hyprland.enable = true;
+    niri.enable = true;
+    xwayland.enable = true;
 
     steam = {
       enable = true;
@@ -375,6 +384,9 @@ in {
         broot
         btop
         cachix
+        wl-clipboard # clipboard
+        slurp # select utility
+        grim # screenshot
         circleci-cli # CircleCI CLI
         clang-tools
         coreutils # GNU coreutils
@@ -383,11 +395,14 @@ in {
         datasette
         dbus
         dfu-util
+        clipboard-jh
         discord
         diskonaut
         distrobox
         dmidecode
+        networkmanagerapplet
         dnsutils
+        labwc
         docker-compose
         easyeffects
         elmPackages.elm
@@ -406,7 +421,11 @@ in {
         flyctl
         fontfor # Find fonts which can show a specified character and preview them in terminal or browser.
         frp
+        swaybg
+        wpaperd
+        swww
         fselect
+        fuzzel
         fzf
         gcc
         gcc-arm-embedded
@@ -535,6 +554,7 @@ in {
         stylelint
         stylua
         swagger-codegen
+        swaylock
         sxiv
         sysctl
         tabbed
@@ -592,6 +612,10 @@ in {
         vulkan-tools
         wasm-pack
         webcamoid
+        waybar
+        eww
+        dunst
+        libnotify
         websocat
         websocketd
         wezterm
@@ -602,6 +626,7 @@ in {
         xdragon
         xsane
         xterm
+        xwayland-satellite
         xz
         yamlfix
         yamllint

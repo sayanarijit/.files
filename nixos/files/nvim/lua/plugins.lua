@@ -290,7 +290,6 @@ require("lazy").setup({
             python = { "black", "isort" },
           },
           format_on_save = {
-            timeout_ms = 1000,
             lsp_format = "fallback",
           },
           formatters = {
