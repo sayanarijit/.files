@@ -336,7 +336,7 @@ require("lazy").setup({
           css = { "stylelint" },
           yaml = { "yamllint" },
           terraform = { "tfsec", "tflint", "terraform_validate" },
-          markdown = { "vale" },
+          -- markdown = { "vale" },
           sql = { "sqruff" },
         }
 

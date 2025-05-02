@@ -42,6 +42,7 @@ alias hf="helmfile"
 alias "cargo-examples"='for e in $(ls examples); do cargo run --example ${e%.*}; done'
 alias xcd='cd "$(xplr --print-pwd-as-result)"'
 alias tf='terraform'
+alias dy="dig +short @dns.toys" # https://dns.toys
 
 bindkey -s '^X' 'xcd\n'
 # bindkey -s '^D' 'exit\n'
@@ -142,4 +143,6 @@ alias obj='jf "{%**s}"'
 [[ -e "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 eval "$(luarocks path --lua-version 5.1)"
+eval "$(mcfly init zsh)"
+
 export LS_COLORS=$(vivid generate catppuccin-frappe)

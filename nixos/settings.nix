@@ -109,6 +109,8 @@ in {
 
     # Disable resolvconf auto update
     resolvconf.enable = false;
+
+    extraHosts = "";
   };
 
   # Set your time zone.
@@ -481,7 +483,9 @@ in {
         libva-utils
         lmstudio
         lsd # ls replacement
-        lshw
+        lshw # ls for hardware
+        lsix # ls for images
+        mcfly # Fly through your shell history. Great Scott!
         luajit
         luajitPackages.luacheck
         luarocks
@@ -549,6 +553,7 @@ in {
         slurp # select utility
         sqlite
         sqlitebrowser
+        sqruff
         sshs
         statix
         stylelint
@@ -560,6 +565,7 @@ in {
         sxiv
         sysctl
         tabbed
+        tabiew # A lightweight TUI application to view and query tabular data files, such as CSV, TSV, and parquet.
         taplo
         tcpdump
         tdesktop
@@ -699,7 +705,7 @@ in {
 
       fzf = {
         enable = true;
-        enableZshIntegration = true;
+        # enableZshIntegration = true;
       };
 
       zsh = {
