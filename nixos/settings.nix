@@ -327,11 +327,12 @@ in {
       homeDirectory = homedir;
 
       file = {
-        ".config/i3/config".source = ./files/i3/config;
-        ".config/i3status/config".source = ./files/i3status/config;
-        ".config/alacritty/alacritty.yml".source =
-          ./files/alacritty/alacritty.yml;
-        ".config/wezterm/wezterm.lua".source = ./files/wezterm/wezterm.lua;
+        # ".config/i3/config".source = ./files/i3/config;
+        # ".config/i3status/config".source = ./files/i3status/config;
+        # ".config/alacritty/alacritty.yml".source =
+        #   ./files/alacritty/alacritty.yml;
+        # ".config/wezterm/wezterm.lua".source = ./files/wezterm/wezterm.lua;
+        ".config/ghostty/config".source = ./files/ghostty/config;
         ".config/nvim/lua/options.lua".source = ./files/nvim/lua/options.lua;
         ".config/nvim/lua/plugins.lua".source = ./files/nvim/lua/plugins.lua;
         ".config/nvim/lua/util.lua".source = ./files/nvim/lua/util.lua;
@@ -340,18 +341,18 @@ in {
         ".config/xplr/plugins/fennel.lua".source = ./files/xplr/plugins/fennel.lua;
         ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
         ".newsboat/urls".source = ./files/newsboat/urls;
-        ".local/bin/ftwind" = {
-          source = ./files/bin/ftwind;
-          executable = true;
-        };
-        ".local/bin/lipsum" = {
-          source = ./files/bin/lipsum;
-          executable = true;
-        };
-        ".local/bin/elmtags.py" = {
-          source = ./files/bin/elmtags.py;
-          executable = true;
-        };
+        # ".local/bin/ftwind" = {
+        #   source = ./files/bin/ftwind;
+        #   executable = true;
+        # };
+        # ".local/bin/lipsum" = {
+        #   source = ./files/bin/lipsum;
+        #   executable = true;
+        # };
+        # ".local/bin/elmtags.py" = {
+        #   source = ./files/bin/elmtags.py;
+        #   executable = true;
+        # };
       };
 
       packages = with pkgs; [
@@ -367,6 +368,7 @@ in {
         # unstable.wrangler
         # unstable.xplr
         # unstable.youtube-dl
+        # wezterm
         # zoom-us
         act # Run GitHUb actions locally
         alacritty
@@ -485,12 +487,12 @@ in {
         lsd # ls replacement
         lshw # ls for hardware
         lsix # ls for images
-        mcfly # Fly through your shell history. Great Scott!
         luajit
         luajitPackages.luacheck
         luarocks
         massren
         maven
+        mcfly # Fly through your shell history. Great Scott!
         mdbook
         mermaid-cli
         mmv-go
@@ -591,6 +593,7 @@ in {
         unstable.cmake
         unstable.copilot-cli
         unstable.f2
+        unstable.ghostty
         unstable.jujutsu
         unstable.kustomize
         unstable.lua-language-server
@@ -623,7 +626,6 @@ in {
         webcamoid
         websocat
         websocketd
-        wezterm
         wget
         wl-clipboard # clipboard
         wpaperd

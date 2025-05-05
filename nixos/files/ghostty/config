@@ -1,0 +1,11 @@
+# vim syn=config
+
+# background = 212121
+# foreground = B0BEC5
+
+keybind = cmd+n=new_window
+
+background-opacity = 0.95
+background-blur = true
+
+theme = Afterglow
