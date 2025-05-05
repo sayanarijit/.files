@@ -113,6 +113,16 @@ for i = 1, 8 do
   })
 end
 
+local front_end = "Software"
+local webgpu_preferred_adapter = nil
+for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+  if gpu.backend == "Vulkan" and gpu.device_type == "IntegratedGpu" then
+    webgpu_preferred_adapter = gpu
+    front_end = "WebGpu"
+    break
+  end
+end
+
 return {
   font = wezterm.font_with_fallback({
     "Hack",
@@ -137,6 +147,7 @@ return {
   window_decorations = "NONE",
   warn_about_missing_glyphs = false,
   max_fps = 120,
-  front_end = "Software",
+  front_end = front_end,
+  webgpu_preferred_adapter = webgpu_preferred_adapter,
   -- enable_wayland = false,
 }
