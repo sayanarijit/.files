@@ -359,6 +359,7 @@ in {
         # betterbird
         # eza # ls replacement
         # jitsi-meet
+        # mcfly # Fly through your shell history. Great Scott!
         # nnnWithIcons
         # poetry
         # rnix-lsp # Nix language server
@@ -461,7 +462,6 @@ in {
         irssi
         jf
         jpegoptim
-        jq # JSON viewer
         jrnl
         k9s
         kakoune
@@ -492,7 +492,6 @@ in {
         luarocks
         massren
         maven
-        mcfly # Fly through your shell history. Great Scott!
         mdbook
         mermaid-cli
         mmv-go
@@ -516,7 +515,6 @@ in {
         nmap
         nodejs
         nushell
-        ollama
         openapi-generator-cli
         openshot-qt
         openssl
@@ -594,11 +592,14 @@ in {
         unstable.copilot-cli
         unstable.f2
         unstable.ghostty
+        unstable.jq # JSON viewer
         unstable.jujutsu
         unstable.kustomize
+        unstable.llama-cpp
         unstable.lua-language-server
         unstable.mprocs
         unstable.numbat
+        unstable.ollama
         unstable.progress
         unstable.qrscan
         unstable.rust-analyzer
