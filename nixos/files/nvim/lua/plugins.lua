@@ -261,6 +261,7 @@ require("lazy").setup({
     -- Lightweight yet powerful formatter plugin for Neovim
     {
       "stevearc/conform.nvim",
+      -- enabled = false,
       event = { "BufWritePre" },
       cmd = { "ConformInfo" },
       config = function()
@@ -275,6 +276,7 @@ require("lazy").setup({
           formatters_by_ft = {
             javascript = prettier,
             typescript = prettier,
+            vue = prettier,
             html = prettier,
             css = prettier,
             json = prettier,
@@ -324,6 +326,7 @@ require("lazy").setup({
 
     {
       "mfussenegger/nvim-lint",
+      -- enabled = false,
       event = { "BufWritePost" },
       config = function()
         local lint = require("lint")
