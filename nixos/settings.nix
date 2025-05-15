@@ -527,6 +527,7 @@ in {
         pgadmin4-desktopmode
         pgcli # postgres cli
         pistol
+        pnpm
         podman-compose
         postgresql
         presenterm # A markdown terminal slideshow tool
@@ -699,8 +700,10 @@ in {
           key = "0F8EF5258DC38077";
         };
         ignores = [".DS_Store" "*~" "*.swp" ".null-ls_*.md"];
-        extraConfig.init.defaultBranch = "main";
-
+        extraConfig = {
+          init.defaultBranch = "main";
+          push.autoSetupRemote = true;
+        };
         # Extensions
         delta.enable = true;
         lfs.enable = true;
