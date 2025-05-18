@@ -413,7 +413,17 @@ require("lazy").setup({
           prismals = {},
           graphql = {},
           lua_ls = {},
-          pyright = {},
+          pyright = {
+            settings = {
+              python = {
+                analysis = {
+                  autoSearchPaths = true,
+                  useLibraryCodeForTypes = true,
+                  diagnosticMode = "openFilesOnly",
+                },
+              },
+            },
+          },
           volar = {},
           clangd = {},
           terraformls = {},

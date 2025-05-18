@@ -36,6 +36,7 @@
       "yaml-language-server"
       "grunt"
       "sass"
+      "@anthropic-ai/claude-code"
     ];
   };
 
@@ -404,7 +405,7 @@ in {
         dmidecode
         dnsutils
         docker-compose
-        dunst
+        # dunst
         easyeffects
         elmPackages.elm
         elmPackages.elm-format
