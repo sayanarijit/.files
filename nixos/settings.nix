@@ -49,6 +49,7 @@
       mypy
       flake8
       poetry-core
+      weasyprint
     ]);
 in {
   nix = {
@@ -357,7 +358,9 @@ in {
       };
 
       packages = with pkgs; [
+        # android-studio
         # betterbird
+        # dunst
         # eza # ls replacement
         # jitsi-meet
         # mcfly # Fly through your shell history. Great Scott!
@@ -375,7 +378,6 @@ in {
         act # Run GitHUb actions locally
         alacritty
         amfora # A fancy terminal browser for the Gemini protocol.
-        android-studio
         aria2
         asciinema # Terminal session recorder
         audio-recorder
@@ -405,7 +407,6 @@ in {
         dmidecode
         dnsutils
         docker-compose
-        # dunst
         easyeffects
         elmPackages.elm
         elmPackages.elm-format
@@ -646,6 +647,7 @@ in {
         yarnPkgs
         yq # YAML viewer
         zathura
+        zed-editor
         zenith-nvidia # Zenith - sort of like top or htop but with zoom-able charts, CPU, GPU, network, and disk usage
         zip
         zoxide
