@@ -71,12 +71,7 @@ in {
 
     # Bootloader
     loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
-        configurationLimit = 1;
-      };
-      # systemd-boot.enable = true;
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
 
