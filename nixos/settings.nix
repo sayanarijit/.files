@@ -139,7 +139,7 @@ in {
     material-icons
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+    nerd-fonts.symbols-only
   ];
 
   # Enable the X11 windowing system.
@@ -171,13 +171,14 @@ in {
         layout = "us";
         variant = "";
       };
-      desktopManager.plasma5.enable = true;
 
       # Key repeat
       displayManager.sessionCommands = ''
         ${pkgs.xorg.xset}/bin/xset r rate 200 50
       '';
     };
+
+    desktopManager.plasma6.enable = true;
 
     displayManager.sddm = {
       enable = true;
@@ -202,13 +203,14 @@ in {
       #media-session.enable = true;
     };
 
+    pulseaudio.enable = false;
+
     # Enable the OpenSSH daemon.
     openssh.enable = false;
   };
 
   hardware = {
     bluetooth.enable = true;
-    pulseaudio.enable = false;
 
     # OpenGL
     graphics = {
@@ -230,8 +232,8 @@ in {
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      # pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-kde
+      # pkgs.kdePackages.xdg-desktop-portal-gtk
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
   };
 
@@ -360,6 +362,7 @@ in {
       packages = with pkgs; [
         # android-studio
         # betterbird
+        # diskonaut
         # dunst
         # eza # ls replacement
         # jitsi-meet
@@ -402,7 +405,6 @@ in {
         dbus
         dfu-util
         discord
-        diskonaut
         distrobox
         dmidecode
         dnsutils
@@ -721,8 +723,8 @@ in {
         enable = true;
         enableCompletion = true;
         autosuggestion.enable = true;
-        initExtra = builtins.readFile ./files/zshrc;
-        initExtraBeforeCompInit = ''
+        initContent = ''
+          ${builtins.readFile ./files/zshrc};
           source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         '';
         oh-my-zsh = {
