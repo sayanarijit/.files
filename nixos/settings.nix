@@ -75,6 +75,9 @@ in {
       efi.canTouchEfiVariables = true;
     };
 
+    # NixOS uses NTFS-3G for NTFS support.
+    supportedFilesystems = ["ntfs"];
+
     # Kernel
     kernel.sysctl."vm.overcommit_memory" = "1";
 
@@ -182,12 +185,12 @@ in {
 
     displayManager.sddm = {
       enable = true;
-      settings = {
-        Autologin = {
-          User = "sayanarijit";
-          Session = "plasma.desktop";
-        };
-      };
+      # settings = {
+      #   Autologin = {
+      #     User = "sayanarijit";
+      #     Session = "plasma.desktop";
+      #   };
+      # };
     };
 
     pipewire = {
@@ -363,7 +366,6 @@ in {
         # android-studio
         # betterbird
         # diskonaut
-        # dunst
         # eza # ls replacement
         # jitsi-meet
         # mcfly # Fly through your shell history. Great Scott!
@@ -378,6 +380,7 @@ in {
         # unstable.youtube-dl
         # wezterm
         # zoom-us
+        # zoxide
         act # Run GitHUb actions locally
         alacritty
         amfora # A fancy terminal browser for the Gemini protocol.
@@ -391,13 +394,18 @@ in {
         bat # cat replacement
         bitwarden-cli
         blender
+        blueman
+        bluetui
         bottom
         broot
         btop
         cachix
+        pavucontrol # PulseAudio volume control
+        playerctl
         circleci-cli # CircleCI CLI
         clang-tools
         clipboard-jh
+        cliphist # Wayland clipboard manager with support for multimedia
         coreutils # GNU coreutils
         cups
         curl
@@ -409,6 +417,7 @@ in {
         dmidecode
         dnsutils
         docker-compose
+        dunst # Lightweight notification daemon
         easyeffects
         elmPackages.elm
         elmPackages.elm-format
@@ -428,7 +437,7 @@ in {
         fontfor # Find fonts which can show a specified character and preview them in terminal or browser.
         frp
         fselect
-        fuzzel
+        fuzzel # App launcher and fuzzy finder for Wayland, inspired by rofi(1) and dmenu(1).
         fzf
         gcc
         gcc-arm-embedded
@@ -494,6 +503,7 @@ in {
         luajit
         luajitPackages.luacheck
         luarocks
+        mako # A lightweight Wayland notification daemon
         massren
         maven
         mdbook
@@ -514,7 +524,6 @@ in {
         niv # Easy dependency management for Nix projects
         nix-direnv
         nix-index
-        nixfmt-classic
         nixpkgs-fmt
         nmap
         nodejs
@@ -523,6 +532,7 @@ in {
         openshot-qt
         openssl
         ouch
+        overskride # A simple yet powerful bluetooth client.
         p11-kit # Terminal colors
         pandoc # File converter
         pass
@@ -533,6 +543,7 @@ in {
         pistol
         pnpm
         podman-compose
+        polonium
         postgresql
         presenterm # A markdown terminal slideshow tool
         pstree
@@ -566,6 +577,7 @@ in {
         swagger-codegen
         swaybg
         swaylock
+        swayosd
         swww
         sxiv
         sysctl
@@ -587,6 +599,7 @@ in {
         tree
         ttyd
         txt2man
+        udiskie # Automounter for removable media
         universal-ctags # Tags creator for vim
         unrar
         unstable.alejandra
@@ -629,11 +642,13 @@ in {
         vulkan-tools
         wasm-pack
         waybar
+        waybar-mpris
         webcamoid
         websocat
         websocketd
         wget
         wl-clipboard # clipboard
+        wluma
         wpaperd
         wrk # Modern HTTP benchmarking tool improved
         xclip
@@ -652,7 +667,6 @@ in {
         zed-editor
         zenith-nvidia # Zenith - sort of like top or htop but with zoom-able charts, CPU, GPU, network, and disk usage
         zip
-        zoxide
         zsa-udev-rules
         zsh-syntax-highlighting
       ];
