@@ -350,6 +350,7 @@ in {
         ".newsboat/urls".source = ./files/newsboat/urls;
         ".config/niri/config.kdl".source = ./files/niri/config.kdl;
         ".config/waybar/config.jsonc".source = ./files/waybar/config.jsonc;
+        ".config/waybar/style.css".source = ./files/waybar/style.sass;
         ".config/waybar/power_menu.xml".source = ./files/waybar/power_menu.xml;
         ".config/waybar/mediaplayer.sh" = {
           source = ./files/waybar/mediaplayer.sh;
