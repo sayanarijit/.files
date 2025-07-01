@@ -348,6 +348,13 @@ in {
         ".config/xplr/plugins/fennel.lua".source = ./files/xplr/plugins/fennel.lua;
         ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
         ".newsboat/urls".source = ./files/newsboat/urls;
+        ".config/niri/config.kdl".source = ./files/niri/config.kdl;
+        ".config/waybar/config.jsonc".source = ./files/waybar/config.jsonc;
+        ".config/waybar/power_menu.xml".source = ./files/waybar/power_menu.xml;
+        ".config/waybar/mediaplayer.sh" = {
+          source = ./files/waybar/mediaplayer.sh;
+          executable = true;
+        };
         # ".local/bin/ftwind" = {
         #   source = ./files/bin/ftwind;
         #   executable = true;
