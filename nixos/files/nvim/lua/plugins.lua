@@ -699,6 +699,16 @@ require("lazy").setup({
           { "<space>c", group = "config" },
           { "<space>cc", ":tabnew ~/.files/nixos/settings.nix<CR>", desc = "nix cfg" },
           { "<space>cn", ":Xplr ~/.files/nixos/files/nvim/lua/<CR>", desc = "nvim cfg" },
+          {
+            "<space>cs",
+            ":tabnew ~/.files/nixos/files/waybar/config.jsonc<CR>",
+            desc = "statusbar cfg",
+          },
+          {
+            "<space>cw",
+            ":tabnew  ~/.files/nixos/files/niri/config.kdl<CR>",
+            desc = "wm cfg",
+          },
           { "<space>g", group = "git" },
           { "<space>gA", ":Git add .<CR>", desc = "add all" },
           { "<space>gB", ":GBrowse<CR>", desc = "browse" },
