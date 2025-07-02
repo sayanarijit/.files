@@ -65,11 +65,11 @@
     "format-icons": {
       // Named workspaces
       // (you need to configure them in niri)
-      "browser": "",
+      "browser": "",
       "editor": "",
       "services": "",
       "chat": "",
-      "music": "🎜",
+      "music": "♫",
       // Icons by state
       "default": ""
     }
