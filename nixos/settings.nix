@@ -519,6 +519,7 @@ in {
         mongodb-compass
         mongodb-tools
         mongosh
+        mpd # Music Player Daemon
         mpv
         navi
         ncdu # Disk utilization viewer
