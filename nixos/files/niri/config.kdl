@@ -183,13 +183,13 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        active-gradient from="#80c8ff" to="#bbddff" angle=45
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
         // To do that, set relative-to="workspace-view".
         //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -243,16 +243,34 @@ layout {
         color "#0007"
     }
 
+    // tab-indicator {
+    //     // off
+    //     hide-when-single-tab
+    //     place-within-column
+    //     gap 5
+    //     width 4
+    //     length total-proportion=1.0
+    //     position "right"
+    //     gaps-between-tabs 2
+    //     corner-radius 8
+    //     active-color "red"
+    //     inactive-color "gray"
+    //     urgent-color "blue"
+    //     // active-gradient from="#80c8ff" to="#bbddff" angle=45
+    //     // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    //     // urgent-gradient from="#800" to="#a33" angle=45
+    // }
+
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
     // You can think of them as a kind of outer gaps. They are set in logical pixels.
     // Left and right struts will cause the next window to the side to always be visible.
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+        // left 4
+        // right 4
+        // top 0
+        // bottom 0
     }
 }
 
