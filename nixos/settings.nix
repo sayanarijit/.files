@@ -408,8 +408,6 @@ in {
         broot
         btop
         cachix
-        pavucontrol # PulseAudio volume control
-        playerctl
         circleci-cli # CircleCI CLI
         clang-tools
         clipboard-jh
@@ -511,6 +509,7 @@ in {
         luajit
         luajitPackages.luacheck
         luarocks
+        lz4 # Extremely Fast Compression algorithm, for compressing frames when animating
         mako # A lightweight Wayland notification daemon
         massren
         maven
@@ -544,11 +543,13 @@ in {
         p11-kit # Terminal colors
         pandoc # File converter
         pass
+        pavucontrol # PulseAudio volume control
         pciutils
         peek
         pgadmin4-desktopmode
         pgcli # postgres cli
         pistol
+        playerctl
         pnpm
         podman-compose
         polonium

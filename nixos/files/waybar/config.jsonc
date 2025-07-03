@@ -260,9 +260,9 @@
     "menu-actions": {
       "shutdown": "poweroff",
       "reboot": "reboot",
-      "suspend": "systemctl suspend",
-      "hibernate": "systemctl hibernate",
-      "logout": "pkill niri"
+      // "suspend": "systemctl suspend",
+      // "hibernate": "systemctl hibernate",
+      "logout": "niri msg action quit --skip-confirmation"
     }
   },
   "privacy": {
