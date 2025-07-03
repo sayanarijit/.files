@@ -377,6 +377,7 @@ in {
         # eza # ls replacement
         # jitsi-meet
         # mcfly # Fly through your shell history. Great Scott!
+        # mpd # Music Player Daemon
         # nnnWithIcons
         # poetry
         # rnix-lsp # Nix language server
@@ -519,7 +520,6 @@ in {
         mongodb-compass
         mongodb-tools
         mongosh
-        mpd # Music Player Daemon
         mpv
         navi
         ncdu # Disk utilization viewer
