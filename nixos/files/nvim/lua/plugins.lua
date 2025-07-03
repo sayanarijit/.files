@@ -424,7 +424,7 @@ require("lazy").setup({
               },
             },
           },
-          volar = {},
+          -- volar = {},
           clangd = {},
           terraformls = {},
           tflint = {},
