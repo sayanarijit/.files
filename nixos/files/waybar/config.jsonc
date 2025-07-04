@@ -131,15 +131,26 @@
   },
   "clock": {
     // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "format": "{:%A, %Y-%m-%d | %R}",
+    "format-alt": "{:%A, %B %d, %Y | %R}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "format": {
+        // "months": "<span color='#ffead3'><b>{}</b></span>",
+        // "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        // "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
   },
   "cpu": {
-    "format": "{usage}% ",
+    "format": "{usage}% "
     // "tooltip": false
   },
   "memory": {
-    "format": "{}% "
+    "format": "{}% ",
+    "tooltip-format": "{used:0.1f}G/{total:0.1f}G"
   },
   "temperature": {
     // "thermal-zone": 2,
