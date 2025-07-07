@@ -415,12 +415,15 @@ binds {
     // XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     // XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-    XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume=raise"; }
-    XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume=lower"; }
-    XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--output-volume=mute-toggle"; }
-    XF86AudioMicMute      allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "swayosd-client" "--brightness=raise"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness=lower"; }
+    XF86AudioRaiseVolume      allow-when-locked=true { spawn "swayosd-client" "--output-volume=raise"; }
+    Mod+XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--input-volume=raise"; }
+    XF86AudioLowerVolume      allow-when-locked=true { spawn "swayosd-client" "--output-volume=lower"; }
+    Mod+XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--input-volume=lower"; }
+    XF86AudioMute             allow-when-locked=true { spawn "swayosd-client" "--output-volume=mute-toggle"; }
+    Mod+XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
+    XF86AudioMicMute          allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
+    XF86MonBrightnessUp       allow-when-locked=true { spawn "swayosd-client" "--brightness=raise"; }
+    XF86MonBrightnessDown     allow-when-locked=true { spawn "swayosd-client" "--brightness=lower"; }
 
     Mod+Q { close-window; }
 
