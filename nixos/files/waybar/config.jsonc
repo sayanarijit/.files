@@ -265,8 +265,8 @@
     "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null" // Script in resources/custom_modules folder
   },
   "custom/power": {
-    "format": "⏻ ",
-    "tooltip": false,
+    "format": "󰐦 ",
+    "tooltip": true,
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
     "menu-actions": {
