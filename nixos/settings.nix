@@ -262,6 +262,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
+    # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
     etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
     systemPackages = with pkgs; [
       vim
