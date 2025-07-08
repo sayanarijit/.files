@@ -287,8 +287,8 @@ environment {
   NIXOS_OZONE_WL "1"
 
   MOZ_ENABLE_WAYLAND "1"
-  XDG_CURRENT_DESKTOP "Niri"
-  XDG_SESSION_TYPE "wayland"
+  // XDG_CURRENT_DESKTOP "Niri"
+  // XDG_SESSION_TYPE "wayland"
   QT_QPA_PLATFORM "wayland"
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
 }
@@ -305,7 +305,7 @@ spawn-at-startup "blueman-applet"  // Bluetooth applet for managing Bluetooth de
 spawn-at-startup "wluma" // A Wayland screen dimmer
 spawn-at-startup "swayosd-server" // A Wayland screen dimmer
 spawn-at-startup "swww-daemon" // A Wayland wallpaper manager
-spawn-at-startup "bash" "-c" "curl \"https://bing.com$(curl 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US' | jq -r '.images[0].url')\" -o ~/Pictures/bing-wallpaper-of-the-day.jpeg"
+spawn-at-startup "bash" "-c" "curl \"https://bing.com$(curl 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US' | jq -r '.images[0].url')\" -o ~/Pictures/bing-wallpaper-of-the-day.jpeg &> /var/log/bing-wallpaper-of-the-day.log"
 
 // spawn-at-startup swayidle timeout 300 "swaylock -f --clock --fade-in 1 --grace 30 --indicator-idle-visible &&\
 //                                          systemctl suspend" \

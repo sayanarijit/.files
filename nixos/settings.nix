@@ -232,12 +232,14 @@ in {
     };
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      # pkgs.kdePackages.xdg-desktop-portal-gtk
-      pkgs.kdePackages.xdg-desktop-portal-kde
-    ];
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        # pkgs.kdePackages.xdg-desktop-portal-gtk
+        pkgs.kdePackages.xdg-desktop-portal-kde
+      ];
+    };
   };
 
   users.users.sayanarijit = {
@@ -260,6 +262,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
+    etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
     systemPackages = with pkgs; [
       vim
       curl
@@ -427,6 +430,7 @@ in {
         dunst # Lightweight notification daemon
         easyeffects
         elmPackages.elm
+        kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
         elmPackages.elm-format
         elmPackages.elm-language-server
         elmPackages.elm-live
@@ -500,6 +504,7 @@ in {
         libjpeg
         libnotify
         libreoffice-qt
+        libsForQt5.kcalc
         libtool
         libusb1
         libva-utils
@@ -569,6 +574,7 @@ in {
         ronn # convert markdown files to manpages
         ruff
         sd # sed replacement
+        selectdefaultapplication
         shellcheck
         shfmt
         shotcut
