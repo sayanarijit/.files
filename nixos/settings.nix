@@ -360,6 +360,10 @@ in {
         #   source = ./files/waybar/mediaplayer.sh;
         #   executable = true;
         # };
+        ".local/bin/wallpaper-of-the-day.sh" = {
+          source = ./files/bin/wallpaper-of-the-day.sh;
+          executable = true;
+        };
         # ".local/bin/ftwind" = {
         #   source = ./files/bin/ftwind;
         #   executable = true;
