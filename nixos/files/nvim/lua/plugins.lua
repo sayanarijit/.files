@@ -481,6 +481,10 @@ require("lazy").setup({
         -- nvim-cmp setup
         local cmp = require("cmp")
         cmp.setup({
+          window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
+          },
           snippet = {
             expand = function(args)
               require("luasnip").lsp_expand(args.body)
@@ -737,7 +741,13 @@ require("lazy").setup({
           { "<space>la", vim.lsp.buf.code_action, desc = "code action" },
           { "<space>lc", vim.lsp.buf.rename, desc = "rename" },
           { "<space>ld", vim.lsp.buf.definition, desc = "definition" },
-          { "<space>lh", vim.lsp.buf.hover, desc = "hover" },
+          {
+            "<space>lh",
+            function()
+              vim.lsp.buf.hover({ border = "single" })
+            end,
+            desc = "hover",
+          },
           { "<space>li", vim.lsp.buf.implementation, desc = "implementation" },
           { "<space>ll", vim.diagnostic.goto_next, desc = "next diagnostic" },
           { "<space>lr", vim.lsp.buf.references, desc = "references" },
