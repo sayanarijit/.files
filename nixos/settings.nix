@@ -235,9 +235,11 @@ in {
   xdg = {
     portal = {
       enable = true;
+      xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
-        # pkgs.kdePackages.xdg-desktop-portal-gtk
         pkgs.kdePackages.xdg-desktop-portal-kde
+        pkgs.xdg-desktop-portal-wlr
+        pkgs.xdg-desktop-portal-gtk
       ];
     };
   };
@@ -435,7 +437,6 @@ in {
         dunst # Lightweight notification daemon
         easyeffects
         elmPackages.elm
-        kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
         elmPackages.elm-format
         elmPackages.elm-language-server
         elmPackages.elm-live
@@ -464,6 +465,7 @@ in {
         gitAndTools.gh
         glow
         glxinfo
+        gnome-keyring
         gnumake
         gnuplot # benchmark tests
         google-chrome
@@ -495,6 +497,7 @@ in {
         k9s
         kakoune
         kdash # A simple and fast dashboard for Kubernetes
+        kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
         keymapp
         killall
         kitty
