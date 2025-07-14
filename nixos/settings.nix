@@ -235,15 +235,16 @@ in {
   xdg = {
     portal = {
       enable = true;
-      wlr.enable = true;
-      lxqt.enable = true;
+      # wlr.enable = true;
+      # lxqt.enable = true;
       # xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
         pkgs.kdePackages.xdg-desktop-portal-kde
+        pkgs.xdg-desktop-portal-gtk
       ];
       config = {
         common = {
-          default = "kde";
+          default = "gtk";
         };
       };
     };
