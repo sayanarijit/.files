@@ -1,0 +1,25 @@
+format= %a\n<b>%s</b>\n%b
+sort=-time
+layer=overlay
+anchor=top-right
+background-color=#222222
+border-color=#ffffff
+padding=0,5,10
+border-size=1
+border-radius=5
+icons=0
+max-icon-size=64
+default-timeout=5000
+
+[urgency=high]
+border-color=#ff0000
+default-timeout=10000
+
+[app-name=lightcord]
+border-color=#88c0d0
+
+[summary~="log-.*"]
+border-color=#ff0000
+
+[app-name=lightcord summary~="(.*(^| )orz|ORZ|sto|STO|otl|OTL( |$).*)"]
+invisible=1

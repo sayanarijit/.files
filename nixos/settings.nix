@@ -361,6 +361,7 @@ in {
         ".gnupg/gpg.conf".source = ./files/gnupg/gpg.conf;
         ".newsboat/urls".source = ./files/newsboat/urls;
         ".config/niri/config.kdl".source = ./files/niri/config.kdl;
+        ".config/mako/config".source = ./files/mako/config;
         ".config/waybar/config.jsonc".source = ./files/waybar/config.jsonc;
         ".config/waybar/style.css".source = ./files/waybar/style.sass;
         ".config/waybar/power_menu.xml".source = ./files/waybar/power_menu.xml;
@@ -440,7 +441,6 @@ in {
         dmidecode
         dnsutils
         docker-compose
-        dunst # Lightweight notification daemon
         easyeffects
         elmPackages.elm
         elmPackages.elm-format
