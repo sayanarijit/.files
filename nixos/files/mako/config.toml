@@ -13,7 +13,7 @@ default-timeout=5000
 
 [urgency=high]
 border-color=#ff0000
-default-timeout=10000
+default-timeout=60000
 
 [app-name=lightcord]
 border-color=#88c0d0
