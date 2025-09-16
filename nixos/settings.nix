@@ -115,7 +115,9 @@ in {
     # Disable resolvconf auto update
     resolvconf.enable = false;
 
-    extraHosts = "";
+    hosts = {
+      "64.225.84.32" = ["stck.me" "sandbox.stck.me"];
+    };
   };
 
   # Set your time zone.

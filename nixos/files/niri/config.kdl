@@ -307,7 +307,7 @@ spawn-at-startup "blueman-applet"  // Bluetooth applet for managing Bluetooth de
 spawn-at-startup "wluma" // A Wayland screen dimmer
 spawn-at-startup "swayosd-server" // A Wayland screen dimmer
 spawn-at-startup "swww-daemon" // A Wayland wallpaper manager
-spawn-at-startup "~/.local/bin/wallpaper-of-the-day.sh" "~/Pictures/bing-wallpaper-of-the-day.jpeg" // A script to set a daily wallpaper
+spawn-at-startup "bash" "-i" "wallpaper-of-the-day.sh" // A script to set a daily wallpaper
 spawn-at-startup "systemctl" "--user" "restart" "xdg-desktop-portal.service"
 
 // spawn-at-startup swayidle timeout 300 "swaylock -f --clock --fade-in 1 --grace 30 --indicator-idle-visible &&\

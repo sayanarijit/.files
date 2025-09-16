@@ -9,10 +9,10 @@ local home = os.getenv("HOME")
 
 -- Lua search path
 package.path = home
-    .. "/.config/xplr/plugins/?/init.lua;"
-    .. home
-    .. "/.config/xplr/plugins/?.lua;"
-    .. package.path
+  .. "/.config/xplr/plugins/?/init.lua;"
+  .. home
+  .. "/.config/xplr/plugins/?.lua;"
+  .. package.path
 
 -- Add `eval "$(luarocks path --lua-version 5.1)"` in your `.bashrc` or `.zshrc`.
 -- Install packages with `luarocks install $name --local --lua-version 5.1`.
@@ -95,7 +95,7 @@ require("xpm").setup({
         )
 
         local doc =
-            m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
+          m.silent_cmd("doc", "show docs")(m.BashExec([[glow /usr/share/doc/xplr]]))
 
         -- map `?` to command `help`
         help.bind("default", "?")
@@ -237,41 +237,65 @@ xplr.config.modes.builtin.action.key_bindings.on_key["!"].messages = {
 }
 
 xplr.config.modes.custom.command_mode.key_bindings.on_key["!"] =
-    xplr.config.modes.builtin.action.key_bindings.on_key["!"]
+  xplr.config.modes.builtin.action.key_bindings.on_key["!"]
 
--- xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"] = {
---   help = "fzf",
---   messages = {
---     "PopMode",
---     {
---       BashExec0 = [===[
---         fzf -m --preview 'pistol {}' --print0 | while IFS= read -r -d '' line; do
---           "$XPLR" -m 'FocusPath: %q' "$PWD/$line"
---           "$XPLR" -m Select
---         done
---       ]===],
---     },
---   },
--- }
-
-xplr.config.modes.builtin.action.key_bindings.on_key.P = {
-  help = "previuwu",
+xplr.config.modes.builtin.create.key_bindings.on_key["c"] = {
+  help = "create file or directory/",
   messages = {
     "PopMode",
-    {
-      BashExecSilently0 = [===[
-        fifo="/tmp/xplr.fifo"
-        if [ -e "$fifo" ]; then
-          "$XPLR" -m StopFifo
-          rm -f -- "$fifo"
-        else
-          win="$(xdotool getactivewindow)"
-          mkfifo "$fifo"
-          previuwu --pipe "$fifo" &
-          "$XPLR" -m 'StartFifo: %q' "$fifo"
-          "$XPLR" -m 'BashExecSilently: %q' "sleep 0.2 && xdotool windowactivate $win"
-        fi
-      ]===],
+    { SwitchModeBuiltin = "create_conditional" },
+    { SetInputBuffer = "" },
+  },
+}
+
+-- The builtin create conditional mode.
+--
+-- Type: [Mode](https://xplr.dev/en/mode)
+xplr.config.modes.builtin.create_conditional = {
+  name = "create conditional",
+  prompt = "* ❯ ",
+  key_bindings = {
+    on_key = {
+      ["tab"] = {
+        help = "try complete",
+        messages = {
+          "TryCompletePath",
+        },
+      },
+      ["enter"] = {
+        help = "submit",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PTH="$XPLR_INPUT_BUFFER"
+              PTH_ESC=$(printf %q "$PTH")
+              if [ "$PTH" ]; then
+                if [ "${PTH: -1}" = "/" ]; then
+                  mkdir -p -- "$PTH" \
+                  && "$XPLR" -m 'SetInputBuffer: ""' \
+                  && "$XPLR" -m ExplorePwd \
+                  && "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC created" \
+                  && "$XPLR" -m 'FocusPath: %q' "$PTH"
+                else
+                  mkdir -p -- "$(dirname -- "$PTH")" \
+                  && touch -- "$PTH" \
+                  && "$XPLR" -m 'SetInputBuffer: ""' \
+                  && "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC created" \
+                  && "$XPLR" -m 'ExplorePwd' \
+                  && "$XPLR" -m 'FocusPath: %q' "$PTH"
+                fi
+              else
+                "$XPLR" -m PopMode
+              fi
+            ]===],
+          },
+        },
+      },
+    },
+    default = {
+      messages = {
+        "UpdateInputBufferFromKey",
+      },
     },
   },
 }
@@ -352,10 +376,10 @@ xplr.config.modes.builtin.switch_layout.key_bindings.on_key.p = {
 local fennel = require("fennel")
 
 fennel.path = fennel.path
-    .. ";"
-    .. home
-    .. "/.config/xplr/plugins/?/init.fnl;"
-    .. home
-    .. "/.config/xplr/plugins/?.fnl;"
+  .. ";"
+  .. home
+  .. "/.config/xplr/plugins/?/init.fnl;"
+  .. home
+  .. "/.config/xplr/plugins/?.fnl;"
 
 table.insert(package.loaders or package.searchers, fennel.searcher)
