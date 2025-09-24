@@ -391,6 +391,7 @@ in {
         # diskonaut
         # eza # ls replacement
         # jitsi-meet
+        # kdePackages.xwaylandvideobridge # Screen sharing
         # mcfly # Fly through your shell history. Great Scott!
         # mpd # Music Player Daemon
         # nnnWithIcons
@@ -505,7 +506,6 @@ in {
         kakoune
         kdash # A simple and fast dashboard for Kubernetes
         kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
-        kdePackages.xwaylandvideobridge # Screen sharing
         keymapp
         killall
         kitty
