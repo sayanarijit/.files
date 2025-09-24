@@ -114,10 +114,6 @@ in {
 
     # Disable resolvconf auto update
     resolvconf.enable = false;
-
-    hosts = {
-      "64.225.84.32" = ["stck.me" "sandbox.stck.me"];
-    };
   };
 
   # Set your time zone.
@@ -403,6 +399,7 @@ in {
         # sc-im # spreadsheet
         # transmission
         # unstable.devbox
+        # unstable.qrscan
         # unstable.wrangler
         # unstable.xplr
         # unstable.youtube-dl
@@ -432,6 +429,7 @@ in {
         clang-tools
         clipboard-jh
         cliphist # Wayland clipboard manager with support for multimedia
+        codex
         coreutils # GNU coreutils
         cups
         curl
@@ -467,6 +465,7 @@ in {
         gcc
         gcc-arm-embedded
         geckodriver
+        gemini-cli
         ghostscript
         gimp
         git
@@ -506,6 +505,7 @@ in {
         kakoune
         kdash # A simple and fast dashboard for Kubernetes
         kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
+        kdePackages.xwaylandvideobridge # Screen sharing
         keymapp
         killall
         kitty
@@ -651,7 +651,6 @@ in {
         unstable.numbat
         unstable.ollama
         unstable.progress
-        unstable.qrscan
         unstable.rust-analyzer
         unstable.rustc
         unstable.rustfmt
