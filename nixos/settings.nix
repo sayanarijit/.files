@@ -239,6 +239,7 @@ in {
       extraPortals = with pkgs; [
         pkgs.kdePackages.xdg-desktop-portal-kde
         pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-wlr
       ];
       config = {
         common = {
@@ -398,6 +399,7 @@ in {
         # poetry
         # rnix-lsp # Nix language server
         # sc-im # spreadsheet
+        # simplescreenrecorder
         # transmission
         # unstable.devbox
         # unstable.qrscan
@@ -595,7 +597,6 @@ in {
         shfmt
         shotcut
         simple-scan
-        simplescreenrecorder
         skim # sk: fzf alternative in rust
         slack
         slurp # select utility
@@ -677,6 +678,7 @@ in {
         webcamoid
         websocat
         websocketd
+        wf-recorder # Wayland screen recorder
         wget
         wl-clipboard # clipboard
         wluma
@@ -786,6 +788,19 @@ in {
 
       obs-studio = {
         enable = true;
+        package = (
+          pkgs.obs-studio.override {
+            cudaSupport = true;
+          }
+        );
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+          # obs-vaapi #optional AMD hardware acceleration
+          obs-gstreamer
+          obs-vkcapture
+        ];
       };
 
       xplr = {

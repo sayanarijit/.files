@@ -30,7 +30,7 @@ alias dotreset="(cd ~/.files && make reset)"
 alias dotsync="(cd ~/.files && make sync)"
 
 # Getting rusty
-alias '$'="env"
+alias '$'=""
 alias l="lsd"
 alias ll="lsd -l"
 alias la="lsd -la"

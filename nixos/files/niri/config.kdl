@@ -297,7 +297,7 @@ environment {
 }
 
 // spawn-at-startup "~/.config/niri/start.sh"
-spawn-at-startup "xwayland-sattelite" // XWayland satellite for Wayland compositors
+spawn-at-startup "xwayland-satellite" // XWayland satellite for Wayland compositors
 spawn-at-startup "nm-applet" "--indicator" // NetworkManager applet for managing network connections
 spawn-at-startup "waybar"  // A customizable Wayland status bar
 spawn-at-startup "mako" // A lightweight Wayland notification daemon
@@ -306,7 +306,7 @@ spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 spawn-at-startup "blueman-applet"  // Bluetooth applet for managing Bluetooth devices
 spawn-at-startup "wluma" // A Wayland screen dimmer
-spawn-at-startup "swayosd-server" // A Wayland screen dimmer
+spawn-at-startup "swayosd-server" // A GTK based on screen display for keyboard shortcuts like caps-lock and volume
 spawn-at-startup "swww-daemon" // A Wayland wallpaper manager
 spawn-at-startup "bash" "-i" "wallpaper-of-the-day.sh" // A script to set a daily wallpaper
 spawn-at-startup "systemctl" "--user" "restart" "xdg-desktop-portal.service"
@@ -328,7 +328,8 @@ prefer-no-csd
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/Pictures/Screenshots/Niri_Screenshot_%Y-%m-%d_%H-%M-%S.png"
+// You can also set this option to null to disable saving screenshots to disk.
+screenshot-path null
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -635,6 +636,8 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    Mod+Print { spawn-sh "wf-recorder -a -f ~/Videos/screencast-$(date +%Y%m%d-%H%M%S).mkv"; }
+    Mod+Shift+Print { spawn "pkill" "wf-recorder"; }
 
     // Mod+Print { screenshot "clipboard"; }
 
@@ -649,7 +652,7 @@ binds {
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
+    // Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
