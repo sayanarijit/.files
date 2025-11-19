@@ -633,7 +633,7 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
+    Print { screenshot show-pointer=false; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
     Mod+Print { spawn-sh "wf-recorder -a -f ~/Videos/screencast-$(date +%Y%m%d-%H%M%S).mkv"; }

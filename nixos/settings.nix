@@ -632,6 +632,7 @@ in {
         tree
         ttyd
         txt2man
+        ty # An extremely fast Python type checker, written in Rust.
         udiskie # Automounter for removable media
         universal-ctags # Tags creator for vim
         unrar
@@ -671,6 +672,7 @@ in {
         viu
         vivid
         vlc
+        vscode
         vulkan-tools
         wasm-pack
         waybar
