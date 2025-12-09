@@ -65,6 +65,11 @@ input {
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
     // focus-follows-mouse max-scroll-amount="99%"
+
+    // Disable touch input globally.
+    touch {
+      off
+    }
 }
 
 // You can configure outputs by their name, which you can find
@@ -297,7 +302,6 @@ environment {
 }
 
 // spawn-at-startup "~/.config/niri/start.sh"
-spawn-at-startup "xwayland-satellite" // XWayland satellite for Wayland compositors
 spawn-at-startup "nm-applet" "--indicator" // NetworkManager applet for managing network connections
 spawn-at-startup "waybar"  // A customizable Wayland status bar
 spawn-at-startup "mako" // A lightweight Wayland notification daemon

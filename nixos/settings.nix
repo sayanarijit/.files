@@ -161,6 +161,15 @@ in {
     avahi.nssmdns4 = true;
     fstrim.enable = true;
 
+    # # Fingerprint reader support
+    # fprintd = {
+    #   enable = true;
+    #   # tod = {
+    #   #   enable = true;
+    #   #   driver = pkgs.libfprint-2-tod1-goodix;
+    #   # };
+    # };
+
     ipp-usb.enable = true; # USB support for scanner
 
     pcscd.enable = true;
@@ -240,6 +249,7 @@ in {
         pkgs.kdePackages.xdg-desktop-portal-kde
         pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal-wlr
+        # pkgs.xdg-desktop-portal-hyprland
       ];
       config = {
         common = {
