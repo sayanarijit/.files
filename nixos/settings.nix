@@ -197,8 +197,11 @@ in {
 
     displayManager.sddm = {
       enable = true;
-      wayland.enable = true;
-      theme = "${pkgs.sddm-chili-theme}/share/sddm/themes/chili";
+      theme = "sddm-astronaut-theme";
+      extraPackages = with pkgs; [
+        kdePackages.qt6ct
+        kdePackages.qtmultimedia
+      ];
       # settings = {
       #   Autologin = {
       #     User = "sayanarijit";
@@ -291,6 +294,7 @@ in {
     systemPackages = with pkgs; [
       vim
       curl
+      sddm-astronaut
       # cudaPackages.cudatoolkit
       # wireshark
     ];
