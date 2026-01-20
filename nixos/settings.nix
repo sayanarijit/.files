@@ -197,6 +197,8 @@ in {
 
     displayManager.sddm = {
       enable = true;
+      wayland.enable = true;
+      theme = "${pkgs.sddm-chili-theme}/share/sddm/themes/chili";
       # settings = {
       #   Autologin = {
       #     User = "sayanarijit";
@@ -415,6 +417,7 @@ in {
         # glxinfo
         # http-prompt
         # jitsi-meet
+        # kdePackages.dolphin
         # kdePackages.kirigami
         # kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
         # kdePackages.xwaylandvideobridge # Screen sharing
@@ -579,6 +582,7 @@ in {
         mpv
         navi
         ncdu # Disk utilization viewer
+        nemo
         neofetch
         netcat
         netscanner # Terminal Network scanner & diagnostic tool with modern TUI
