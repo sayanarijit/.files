@@ -299,6 +299,9 @@ environment {
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
   QT_QPA_PLATFORMTHEME "qt6ct"
   GTK_THEME "Adwaita:dark"
+
+  // Enable hardware cursors in wlroots-based compositors.
+  WLR_NO_HARDWARE_CURSORS "1"
 }
 
 // spawn-at-startup "~/.config/niri/start.sh"

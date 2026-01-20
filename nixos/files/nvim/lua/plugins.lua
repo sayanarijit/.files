@@ -424,8 +424,9 @@ require("lazy").setup({
               },
             },
           },
-          ty = {},
+          -- ty = {},  -- A little broken atm
           -- volar = {},
+          pyrefly = {},
           clangd = {},
           terraformls = {},
           tflint = {},

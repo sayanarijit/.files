@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: let
   # Personal Info
@@ -40,7 +41,7 @@
     ];
   };
 
-  pythonWithPkgs = pkgs.python312.withPackages (p:
+  pythonWithPkgs = pkgs.python313.withPackages (p:
     with p; [
       pip
       pynvim
@@ -56,6 +57,7 @@ in {
     settings = {
       experimental-features = ["nix-command" "flakes"];
       trusted-users = ["root" "sayanarijit"];
+      auto-optimise-store = true;
     };
 
     gc = {
@@ -71,7 +73,10 @@ in {
 
     # Bootloader
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 2;
+      };
       efi.canTouchEfiVariables = true;
     };
 
@@ -160,6 +165,10 @@ in {
     # like  "Impossible to connect to XXX.local: Name or service not known"
     avahi.nssmdns4 = true;
     fstrim.enable = true;
+
+    # power management
+    tuned.enable = true;
+    upower.enable = true;
 
     # # Fingerprint reader support
     # fprintd = {
@@ -338,7 +347,7 @@ in {
     };
 
     docker.enable = true;
-    lxd.enable = true;
+    # lxd.enable = true;
   };
 
   # Security
@@ -349,7 +358,12 @@ in {
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
   home-manager.users."${username}" = {
+    imports = [
+      inputs.noctalia.homeModules.default
+    ];
     home = {
       username = username;
       homeDirectory = homedir;
@@ -398,14 +412,21 @@ in {
 
       packages = with pkgs; [
         # android-studio
+        # audio-recorder
         # betterbird
         # diskonaut
         # eza # ls replacement
+        # glxinfo
+        # http-prompt
         # jitsi-meet
         # kdePackages.xwaylandvideobridge # Screen sharing
+        libreoffice
+        # libsForQt5.kcalc
+        # lmstudio
         # mcfly # Fly through your shell history. Great Scott!
         # mpd # Music Player Daemon
         # nnnWithIcons
+        # openshot-qt
         # poetry
         # rnix-lsp # Nix language server
         # sc-im # spreadsheet
@@ -424,7 +445,6 @@ in {
         amfora # A fancy terminal browser for the Gemini protocol.
         aria2
         asciinema # Terminal session recorder
-        audio-recorder
         awscli2
         azure-cli
         bandwhich
@@ -442,6 +462,9 @@ in {
         clang-tools
         clipboard-jh
         cliphist # Wayland clipboard manager with support for multimedia
+        cava
+        wlsunset
+        evolution-data-server
         codex
         coreutils # GNU coreutils
         cups
@@ -454,6 +477,7 @@ in {
         dmidecode
         dnsutils
         docker-compose
+        dragon-drop
         easyeffects
         elmPackages.elm
         elmPackages.elm-format
@@ -479,12 +503,11 @@ in {
         gcc-arm-embedded
         geckodriver
         gemini-cli
+        gh
         ghostscript
         gimp
         git
-        gitAndTools.gh
         glow
-        glxinfo
         gnome-keyring
         gnumake
         gnuplot # benchmark tests
@@ -500,7 +523,6 @@ in {
         heroku # Heroku CLI
         highlight
         htmlhint
-        http-prompt
         httpie # curl replacement
         hugo
         hunspell
@@ -531,12 +553,9 @@ in {
         lazygit # Git TUI
         libjpeg
         libnotify
-        libreoffice-qt
-        libsForQt5.kcalc
         libtool
         libusb1
         libva-utils
-        lmstudio
         lsd # ls replacement
         lshw # ls for hardware
         lsix # ls for images
@@ -570,7 +589,6 @@ in {
         nodejs
         nushell
         openapi-generator-cli
-        openshot-qt
         openssl
         ouch
         overskride # A simple yet powerful bluetooth client.
@@ -628,7 +646,7 @@ in {
         tabiew # A lightweight TUI application to view and query tabular data files, such as CSV, TSV, and parquet.
         taplo
         tcpdump
-        tdesktop
+        telegram-desktop
         terraform
         terraform-ls
         texlive.combined.scheme-basic
@@ -636,7 +654,7 @@ in {
         tfsec
         tldr
         tmate # Instant terminal sharing
-        tor-browser-bundle-bin
+        tor-browser
         transmission_4-gtk
         trash-cli
         tree
@@ -698,7 +716,6 @@ in {
         wrk # Modern HTTP benchmarking tool improved
         xclip
         xdotool
-        xdragon
         xsane
         xterm
         xwayland-satellite
@@ -714,10 +731,13 @@ in {
         zip
         zsa-udev-rules
         zsh-syntax-highlighting
+        kdePackages.kirigami
       ];
     };
 
     programs = {
+      noctalia-shell.enable = true;
+
       direnv = {
         enable = true;
         nix-direnv.enable = true;

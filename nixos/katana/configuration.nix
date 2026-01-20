@@ -22,22 +22,22 @@ in {
 
   services.xserver.videoDrivers = ["nvidia"];
 
-  # https://github.com/TLATER/dotfiles/blob/e633196dca42d96f42f9aa9016fa8d307959232f/nixos-config/yui/nvidia.nix#L33
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    # Apparently, without this nouveau may attempt to be used instead
-    # (despite it being blacklisted)
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # Hardware cursors are currently broken on nvidia
-    WLR_NO_HARDWARE_CURSORS = "1";
-    # Required to use va-api it in Firefox. See
-    # https://github.com/elFarto/nvidia-vaapi-driver/issues/96
-    MOZ_DISABLE_RDD_SANDBOX = "1";
-    # It appears that the normal rendering mode is broken on recent
-    # nvidia drivers:
-    # https://github.com/elFarto/nvidia-vaapi-driver/issues/213#issuecomment-1585584038
-    NVD_BACKEND = "direct";
-  };
+  # # https://github.com/TLATER/dotfiles/blob/e633196dca42d96f42f9aa9016fa8d307959232f/nixos-config/yui/nvidia.nix#L33
+  # environment.sessionVariables = {
+  #   LIBVA_DRIVER_NAME = "nvidia";
+  #   # Apparently, without this nouveau may attempt to be used instead
+  #   # (despite it being blacklisted)
+  #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  #   # Hardware cursors are currently broken on nvidia
+  #   WLR_NO_HARDWARE_CURSORS = "1";
+  #   # Required to use va-api it in Firefox. See
+  #   # https://github.com/elFarto/nvidia-vaapi-driver/issues/96
+  #   MOZ_DISABLE_RDD_SANDBOX = "1";
+  #   # It appears that the normal rendering mode is broken on recent
+  #   # nvidia drivers:
+  #   # https://github.com/elFarto/nvidia-vaapi-driver/issues/213#issuecomment-1585584038
+  #   NVD_BACKEND = "direct";
+  # };
 
   # https://nixos.wiki/wiki/Accelerated_Video_Playback
   nixpkgs.config.packageOverrides = pkgs: {
@@ -84,9 +84,10 @@ in {
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
 
     nvidiaPersistenced = true;
+    # nvidiaPersistenced = false;  # NEVER DO
 
     # Laptop
     prime = {
