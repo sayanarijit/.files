@@ -304,19 +304,20 @@ environment {
   WLR_NO_HARDWARE_CURSORS "1"
 }
 
+spawn-at-startup "noctalia-shell"
 // spawn-at-startup "~/.config/niri/start.sh"
-spawn-at-startup "nm-applet" "--indicator" // NetworkManager applet for managing network connections
-spawn-at-startup "waybar"  // A customizable Wayland status bar
-spawn-at-startup "mako" // A lightweight Wayland notification daemon
-spawn-at-startup "udiskie" "--tray"  // Automounter for removable media
-spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
-spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
-spawn-at-startup "blueman-applet"  // Bluetooth applet for managing Bluetooth devices
-spawn-at-startup "wluma" // A Wayland screen dimmer
-spawn-at-startup "swayosd-server" // A GTK based on screen display for keyboard shortcuts like caps-lock and volume
-spawn-at-startup "swww-daemon" // A Wayland wallpaper manager
-spawn-at-startup "bash" "-i" "wallpaper-of-the-day.sh" // A script to set a daily wallpaper
-spawn-at-startup "systemctl" "--user" "restart" "xdg-desktop-portal.service"
+// spawn-at-startup "nm-applet" "--indicator" // NetworkManager applet for managing network connections
+// spawn-at-startup "waybar"  // A customizable Wayland status bar
+// spawn-at-startup "mako" // A lightweight Wayland notification daemon
+// spawn-at-startup "udiskie" "--tray"  // Automounter for removable media
+// spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+// spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+// spawn-at-startup "blueman-applet"  // Bluetooth applet for managing Bluetooth devices
+// spawn-at-startup "wluma" // A Wayland screen dimmer
+// spawn-at-startup "swayosd-server" // A GTK based on screen display for keyboard shortcuts like caps-lock and volume
+// spawn-at-startup "swww-daemon" // A Wayland wallpaper manager
+// spawn-at-startup "bash" "-i" "wallpaper-of-the-day.sh" // A script to set a daily wallpaper
+// spawn-at-startup "systemctl" "--user" "restart" "xdg-desktop-portal.service"
 
 // spawn-at-startup swayidle timeout 300 "swaylock -f --clock --fade-in 1 --grace 30 --indicator-idle-visible &&\
 //                                          systemctl suspend" \
@@ -367,6 +368,11 @@ window-rule {
     default-column-width {}
 }
 
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+
 // // Open the Firefox picture-in-picture player as floating by default.
 // window-rule {
 //     // This app-id regular expression will work for both:
@@ -388,9 +394,7 @@ window-rule {
     // block-out-from "screencast"
 }
 
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
@@ -413,8 +417,10 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T { spawn "ghostty"; }
     Mod+Shift+T { spawn "alacritty"; }
-    Alt+Space { spawn "fuzzel"; }
-    Super+Alt+L { spawn "swaylock"; }
+    // Alt+Space { spawn "fuzzel"; }
+    Alt+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    // Super+Alt+L { spawn "swaylock"; }
+    Super+Alt+L { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -427,15 +433,25 @@ binds {
     // XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     // XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-    XF86AudioRaiseVolume      allow-when-locked=true { spawn "swayosd-client" "--output-volume=raise"; }
-    Mod+XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--input-volume=raise"; }
-    XF86AudioLowerVolume      allow-when-locked=true { spawn "swayosd-client" "--output-volume=lower"; }
-    Mod+XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--input-volume=lower"; }
-    XF86AudioMute             allow-when-locked=true { spawn "swayosd-client" "--output-volume=mute-toggle"; }
-    Mod+XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
-    XF86AudioMicMute          allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
-    XF86MonBrightnessUp       allow-when-locked=true { spawn "swayosd-client" "--brightness=raise"; }
-    XF86MonBrightnessDown     allow-when-locked=true { spawn "swayosd-client" "--brightness=lower"; }
+    // XF86AudioRaiseVolume      allow-when-locked=true { spawn "swayosd-client" "--output-volume=raise"; }
+    // Mod+XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--input-volume=raise"; }
+    // XF86AudioLowerVolume      allow-when-locked=true { spawn "swayosd-client" "--output-volume=lower"; }
+    // Mod+XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--input-volume=lower"; }
+    // XF86AudioMute             allow-when-locked=true { spawn "swayosd-client" "--output-volume=mute-toggle"; }
+    // Mod+XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
+    // XF86AudioMicMute          allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
+    // XF86MonBrightnessUp       allow-when-locked=true { spawn "swayosd-client" "--brightness=raise"; }
+    // XF86MonBrightnessDown     allow-when-locked=true { spawn "swayosd-client" "--brightness=lower"; }
+
+    XF86AudioRaiseVolume      allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    Mod+XF86AudioRaiseVolume  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increaseInput"; }
+    XF86AudioLowerVolume      allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    Mod+XF86AudioLowerVolume  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decreaseInput"; }
+    XF86AudioMute             allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    Mod+XF86AudioMute         allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
+    XF86AudioMicMute          allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
+    XF86MonBrightnessUp       allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown     allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
 
     Mod+Q { close-window; }
 
@@ -623,7 +639,8 @@ binds {
 
     // Clipboard
     // Mod+V { spawn "cp"; }
-    Mod+V { spawn "alacritty" "-e" "cliphist-fzf"; }
+    // Mod+V { spawn "alacritty" "-e" "cliphist-fzf"; }
+    Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -645,6 +662,7 @@ binds {
     Alt+Print { screenshot-window; }
     Mod+Print { spawn-sh "wf-recorder -a -f ~/Videos/screencast-$(date +%Y%m%d-%H%M%S).mkv"; }
     Mod+Shift+Print { spawn "pkill" "wf-recorder"; }
+    Mod+Period { spawn "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
 
     // Mod+Print { screenshot "clipboard"; }
 
@@ -667,10 +685,16 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
-// Put swaybg inside the overview backdrop.
+// // Put swaybg inside the overview backdrop.
+// layer-rule {
+//     match namespace="^wallpaper$"
+//     place-within-backdrop true
+// }
+
+// Set the overview wallpaper on the backdrop.
 layer-rule {
-    match namespace="^wallpaper$"
-    place-within-backdrop true
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
 }
 
 hotkey-overlay {

@@ -75,7 +75,7 @@ in {
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = 2;
+        configurationLimit = 3;
       };
       efi.canTouchEfiVariables = true;
     };
@@ -148,10 +148,6 @@ in {
     nerd-fonts.symbols-only
   ];
 
-  # Enable the X11 windowing system.
-
-  # Enable the KDE Plasma Desktop Environment.
-
   services = {
     # Enable CUPS to print documents.
     printing = {
@@ -197,7 +193,7 @@ in {
       '';
     };
 
-    desktopManager.plasma6.enable = true;
+    # desktopManager.plasma6.enable = true;  # https://github.com/noctalia-dev/noctalia-shell/issues/1440
 
     displayManager.sddm = {
       enable = true;
@@ -419,8 +415,9 @@ in {
         # glxinfo
         # http-prompt
         # jitsi-meet
+        # kdePackages.kirigami
+        # kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
         # kdePackages.xwaylandvideobridge # Screen sharing
-        libreoffice
         # libsForQt5.kcalc
         # lmstudio
         # mcfly # Fly through your shell history. Great Scott!
@@ -431,13 +428,20 @@ in {
         # rnix-lsp # Nix language server
         # sc-im # spreadsheet
         # simplescreenrecorder
+        # swaybg
+        # swaylock
+        # swayosd
+        # swww
         # transmission
         # unstable.devbox
         # unstable.qrscan
         # unstable.wrangler
         # unstable.xplr
         # unstable.youtube-dl
+        # waybar
+        # waybar-mpris
         # wezterm
+        # wluma
         # zoom-us
         # zoxide
         act # Run GitHUb actions locally
@@ -458,13 +462,11 @@ in {
         broot
         btop
         cachix
+        cava
         circleci-cli # CircleCI CLI
         clang-tools
         clipboard-jh
         cliphist # Wayland clipboard manager with support for multimedia
-        cava
-        wlsunset
-        evolution-data-server
         codex
         coreutils # GNU coreutils
         cups
@@ -485,6 +487,7 @@ in {
         elmPackages.elm-live
         elmPackages.elm-test
         eslint
+        evolution-data-server
         eww
         exiftool
         fd
@@ -514,6 +517,7 @@ in {
         google-chrome
         google-cloud-sdk
         gpp
+        gpu-screen-recorder
         gradle
         graphviz
         grim # screenshot
@@ -539,7 +543,6 @@ in {
         k9s
         kakoune
         kdash # A simple and fast dashboard for Kubernetes
-        kdePackages.plasma-workspace # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985
         keymapp
         killall
         kitty
@@ -553,6 +556,7 @@ in {
         lazygit # Git TUI
         libjpeg
         libnotify
+        libreoffice
         libtool
         libusb1
         libva-utils
@@ -613,6 +617,7 @@ in {
         pythonWithPkgs
         qmk
         qrcp
+        quickshell
         ranger # A VIM-inspired filemanager for the console
         rdfind
         redis
@@ -636,10 +641,6 @@ in {
         stylelint
         stylua
         swagger-codegen
-        swaybg
-        swaylock
-        swayosd
-        swww
         sxiv
         sysctl
         tabbed
@@ -703,15 +704,13 @@ in {
         vscode
         vulkan-tools
         wasm-pack
-        waybar
-        waybar-mpris
         webcamoid
         websocat
         websocketd
         wf-recorder # Wayland screen recorder
         wget
         wl-clipboard # clipboard
-        wluma
+        wlsunset
         wpaperd
         wrk # Modern HTTP benchmarking tool improved
         xclip
@@ -731,7 +730,6 @@ in {
         zip
         zsa-udev-rules
         zsh-syntax-highlighting
-        kdePackages.kirigami
       ];
     };
 
@@ -777,20 +775,26 @@ in {
 
       git = {
         enable = true;
-        userName = name;
-        userEmail = email;
+        settings = {
+          user = {
+            name = name;
+            email = email;
+          };
+          init.defaultBranch = "main";
+          push.autoSetupRemote = true;
+        };
         signing = {
           signByDefault = true;
           key = "0F8EF5258DC38077";
         };
         ignores = [".DS_Store" "*~" "*.swp" ".null-ls_*.md"];
-        extraConfig = {
-          init.defaultBranch = "main";
-          push.autoSetupRemote = true;
-        };
         # Extensions
-        delta.enable = true;
         lfs.enable = true;
+      };
+
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
       };
 
       fzf = {
