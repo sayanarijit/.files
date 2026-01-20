@@ -621,6 +621,7 @@ in {
         pythonWithPkgs
         qmk
         qrcp
+        qt6Packages.qt6ct
         quickshell
         ranger # A VIM-inspired filemanager for the console
         rdfind
