@@ -416,6 +416,7 @@ in {
         # android-studio
         # audio-recorder
         # betterbird
+        # blueman
         # diskonaut
         # eza # ls replacement
         # glxinfo
@@ -427,6 +428,7 @@ in {
         # kdePackages.xwaylandvideobridge # Screen sharing
         # libsForQt5.kcalc
         # lmstudio
+        # mako # A lightweight Wayland notification daemon
         # mcfly # Fly through your shell history. Great Scott!
         # mpd # Music Player Daemon
         # nnnWithIcons
@@ -435,6 +437,7 @@ in {
         # rnix-lsp # Nix language server
         # sc-im # spreadsheet
         # simplescreenrecorder
+        # slack
         # swaybg
         # swaylock
         # swayosd
@@ -463,7 +466,6 @@ in {
         bat # cat replacement
         bitwarden-cli
         blender
-        # blueman
         bluetui
         bottom
         broot
@@ -527,6 +529,7 @@ in {
         gpu-screen-recorder
         gradle
         graphviz
+        grex # https://github.com/pemistahl/grex
         grim # screenshot
         helix
         helm-ls
@@ -574,7 +577,6 @@ in {
         luajitPackages.luacheck
         luarocks
         lz4 # Extremely Fast Compression algorithm, for compressing frames when animating
-        # mako # A lightweight Wayland notification daemon
         massren
         maven
         mdbook
@@ -640,7 +642,6 @@ in {
         shotcut
         simple-scan
         skim # sk: fzf alternative in rust
-        slack
         slurp # select utility
         sqlite
         sqlitebrowser
