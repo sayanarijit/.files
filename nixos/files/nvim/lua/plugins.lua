@@ -44,8 +44,8 @@ require("lazy").setup({
     --   end,
     -- })
 
-    -- eyes Move faster with unique f/F indicators.
-    { "jinh0/eyeliner.nvim" },
+    -- -- eyes Move faster with unique f/F indicators.
+    -- { "jinh0/eyeliner.nvim" },
 
     -- Generate markdown table of contents
     {

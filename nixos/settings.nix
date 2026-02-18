@@ -148,6 +148,21 @@ in {
     nerd-fonts.symbols-only
   ];
 
+  systemd.user.services.rclone-gdrive = {
+    enable = true;
+    description = "Google Drive mount using rclone";
+    after = ["network-online.target"];
+    wantedBy = ["default.target"];
+    serviceConfig = {
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/GDrive";
+      ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive: %h/GDrive --vfs-cache-mode full";
+      ExecStop = "${pkgs.fuse}/bin/fusermount -u %h/GDrive";
+      Restart = "on-failure";
+      RestartSec = "10s";
+      Environment = ["PATH=/run/wrappers/bin:$PATH"];
+    };
+  };
+
   services = {
     # Enable CUPS to print documents.
     printing = {
@@ -165,6 +180,11 @@ in {
     # power management
     tuned.enable = true;
     upower.enable = true;
+
+    # Automount disks
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
 
     # # Fingerprint reader support
     # fprintd = {
@@ -630,6 +650,7 @@ in {
         qt6Packages.qt6ct
         quickshell
         ranger # A VIM-inspired filemanager for the console
+        rclone # Rclone syncs your files to cloud storage: Google Drive, S3, Swift, Dropbox, Google Cloud Storage, Azure, Box and many more.
         rdfind
         redis
         ripgrep
