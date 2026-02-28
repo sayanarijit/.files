@@ -14,7 +14,7 @@
 
   unstable = import <nixpkgs-unstable> {};
 
-  # nnnWithIcons = pkgs.nnn.override { withNerdIcons = true; };
+  nnnWithIcons = pkgs.nnn.override {withNerdIcons = true;};
 
   yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
     name = "yarnPkgs";
@@ -185,6 +185,9 @@ in {
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
+
+    # Thumbnail generation for file managers
+    tumbler.enable = true;
 
     # # Fingerprint reader support
     # fprintd = {
@@ -451,7 +454,6 @@ in {
         # mako # A lightweight Wayland notification daemon
         # mcfly # Fly through your shell history. Great Scott!
         # mpd # Music Player Daemon
-        # nnnWithIcons
         # openshot-qt
         # poetry
         # rnix-lsp # Nix language server
@@ -620,6 +622,7 @@ in {
         nix-index
         nixpkgs-fmt
         nmap
+        nnnWithIcons
         nodejs
         nushell
         openapi-generator-cli
@@ -746,6 +749,7 @@ in {
         wrk # Modern HTTP benchmarking tool improved
         xclip
         xdotool
+        xleak # A fast terminal Excel viewer with an interactive TUI. Features full-text search, formula display, lazy loading for large files, clipboard support, and export to CSV/JSON. Built with Rust and ratatui.
         xsane
         xterm
         xwayland-satellite
