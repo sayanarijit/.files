@@ -197,6 +197,7 @@ require("lazy").setup({
 
     -- Markdown Vim Mode
     { "preservim/vim-markdown", dependencies = "godlygeek/tabular" },
+    { "jghauser/follow-md-links.nvim" },
 
     -- -- A fast and lightweight Neovim lua plugin to keep an eye on where your cursor has jumped.
     -- {

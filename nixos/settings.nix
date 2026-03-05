@@ -554,6 +554,7 @@ in {
         gnome-keyring
         gnumake
         gnuplot # benchmark tests
+        go # The Go programming language
         google-chrome
         google-cloud-sdk
         gpp

@@ -77,7 +77,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 export DENO_INSTALL="/home/sayanarijit/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-export GOPATH="$HOME/go"
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
+
 export MANPAGER='nvim +Man!'
 
 function paste() {
@@ -123,6 +125,7 @@ qrserve () {
 alias str='jf %q'
 alias arr='jf "[%*s]"'
 alias obj='jf "{%**s}"'
+alias jqi='echo "" | fzf --print-query --preview "cat *.json | jq {q}"'
 
 # lipsum () {
 #     local paragraphs=${1:-1}
