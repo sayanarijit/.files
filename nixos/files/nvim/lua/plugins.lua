@@ -199,6 +199,16 @@ require("lazy").setup({
     { "preservim/vim-markdown", dependencies = "godlygeek/tabular" },
     { "jghauser/follow-md-links.nvim" },
 
+    -- A Neovim (lua) plugin for working with a markdown zettelkasten / wiki and mixing it with a journal, based on telescope.nvim
+    {
+      "nvim-telekasten/telekasten.nvim",
+      config = function()
+        require("telekasten").setup({
+          home = vim.fn.expand("~/Documents/wiki"),
+        })
+      end,
+    },
+
     -- -- A fast and lightweight Neovim lua plugin to keep an eye on where your cursor has jumped.
     -- {
     --   "edluffy/specs.nvim",
@@ -784,16 +794,16 @@ require("lazy").setup({
     { "jparise/vim-graphql" },
 
     -- --  Neovim extension for zk
-    -- use({
+    -- {
     --   "mickael-menu/zk-nvim",
-    --   cinfig = function()
+    --   config = function()
     --     require("zk").setup({
     --       -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
     --       -- it's recommended to use "telescope" or "fzf"
     --       picker = "telescope",
     --     })
     --   end,
-    -- })
+    -- },
 
     { "tversteeg/registers.nvim" },
 

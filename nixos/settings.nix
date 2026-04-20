@@ -228,7 +228,7 @@ in {
       # settings = {
       #   Autologin = {
       #     User = "sayanarijit";
-      #     Session = "plasma.desktop";
+      #     Session = "niri.desktop";
       #   };
       # };
     };
@@ -568,6 +568,7 @@ in {
         helmfile
         heroku # Heroku CLI
         highlight
+        htmldoc
         htmlhint
         httpie # curl replacement
         hugo
@@ -602,6 +603,7 @@ in {
         libtool
         libusb1
         libva-utils
+        logseq # A privacy-first, open-source platform for knowledge management and collaboration
         lsd # ls replacement
         lshw # ls for hardware
         lsix # ls for images
@@ -635,6 +637,8 @@ in {
         nnnWithIcons
         nodejs
         nushell
+        obsidian
+        obsidian-export # Rust library and CLI to export an Obsidian vault to regular Markdown
         openapi-generator-cli
         openssl
         ouch
@@ -694,7 +698,6 @@ in {
         telegram-desktop
         terraform
         terraform-ls
-        texlive.combined.scheme-basic
         tflint
         tfsec
         tldr
@@ -722,6 +725,7 @@ in {
         unstable.kustomize
         unstable.llama-cpp
         unstable.lua-language-server
+        unstable.mise
         unstable.mprocs
         unstable.numbat
         unstable.ollama
