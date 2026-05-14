@@ -15,7 +15,6 @@ export USE_VIDEOTHUMB="1"
 export TERMINAL="ghostty"
 
 export CHROME_EXECUTABLE="google-chrome-stable"
-export FLUTTER_SDK="$HOME/snap/flutter/common/flutter/bin"
 
 export ZK_NOTEBOOK_DIR="$HOME/GitHub/sayanarijit.github.io/src/site/notes/"
 
@@ -150,3 +149,5 @@ eval "$(luarocks path --lua-version 5.1)"
 # eval "$(mcfly init zsh)"
 
 export LS_COLORS=$(vivid generate catppuccin-frappe)
+
+eval "$(ctg autocomplete zsh)"

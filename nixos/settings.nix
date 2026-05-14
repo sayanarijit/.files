@@ -295,7 +295,7 @@ in {
   users.users.sayanarijit = {
     isNormalUser = true;
     description = "Arijit Basu";
-    extraGroups = ["networkmanager" "wheel" "wireshark" "docker" "lxd"];
+    extraGroups = ["networkmanager" "wheel" "wireshark" "docker" "lxd" "kvm"];
     shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
@@ -445,7 +445,6 @@ in {
       };
 
       packages = with pkgs; [
-        # android-studio
         # audio-recorder
         # betterbird
         # blueman
@@ -486,8 +485,10 @@ in {
         # zoom-us
         # zoxide
         act # Run GitHUb actions locally
+        age
         alacritty
         amfora # A fancy terminal browser for the Gemini protocol.
+        android-studio
         aria2
         asciinema # Terminal session recorder
         awscli2
@@ -674,6 +675,7 @@ in {
         ronn # convert markdown files to manpages
         ruff
         sd # sed replacement
+        secretspec
         selectdefaultapplication
         shellcheck
         shfmt
@@ -681,6 +683,7 @@ in {
         simple-scan
         skim # sk: fzf alternative in rust
         slurp # select utility
+        sops
         sqlite
         sqlitebrowser
         sqruff

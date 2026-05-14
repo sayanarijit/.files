@@ -390,6 +390,13 @@ require("lazy").setup({
         "L3MON4D3/LuaSnip",
         -- "lukas-reineke/lsp-format.nvim",
       },
+      init_options = {
+        userLanguages = {
+          eelixir = "html-eex",
+          eruby = "erb",
+          rust = "html",
+        },
+      },
       config = function()
         -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
         local servers = {
@@ -412,7 +419,10 @@ require("lazy").setup({
           bashls = {},
           rust_analyzer = {
             settings = {
-              ["rust-analyzer"] = { cargo = { loadOutDirsFromCheck = true } },
+              ["rust-analyzer"] = {
+                cargo = { loadOutDirsFromCheck = true },
+                procMacro = { enable = true },
+              },
             },
           },
           -- yamlls = {},
