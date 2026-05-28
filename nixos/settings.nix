@@ -189,14 +189,14 @@ in {
     # Thumbnail generation for file managers
     tumbler.enable = true;
 
-    # Fingerprint reader support
-    fprintd = {
-      enable = true;
-      # tod = {
-      #   enable = true;
-      #   driver = pkgs.libfprint-2-tod1-goodix;
-      # };
-    };
+    # # Fingerprint reader support
+    # fprintd = {
+    #   enable = true;
+    #   # tod = {
+    #   #   enable = true;
+    #   #   driver = pkgs.libfprint-2-tod1-goodix;
+    #   # };
+    # };
 
     ipp-usb.enable = true; # USB support for scanner
 
@@ -393,10 +393,9 @@ in {
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = true;
-    pam.services = {
-      login.fprintAuth = true;
-      # sddm.fprintAuth = true;
-    };
+    # pam.services = {
+    #   login.fprintAuth = true;
+    # };
   };
 
   # Home Manager needs a bit of information about you and the
