@@ -189,18 +189,23 @@ in {
     # Thumbnail generation for file managers
     tumbler.enable = true;
 
-    # # Fingerprint reader support
-    # fprintd = {
-    #   enable = true;
-    #   # tod = {
-    #   #   enable = true;
-    #   #   driver = pkgs.libfprint-2-tod1-goodix;
-    #   # };
-    # };
+    # Fingerprint reader support
+    fprintd = {
+      enable = true;
+      # tod = {
+      #   enable = true;
+      #   driver = pkgs.libfprint-2-tod1-goodix;
+      # };
+    };
 
     ipp-usb.enable = true; # USB support for scanner
 
     pcscd.enable = true;
+
+    # ollama = {
+    #   enable = true;
+    #   package = pkgs.ollama-cuda; # Use the CUDA-built package
+    # };
 
     # Configure keymap in X11
     xserver = {
@@ -388,6 +393,10 @@ in {
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = true;
+    pam.services = {
+      login.fprintAuth = true;
+      # sddm.fprintAuth = true;
+    };
   };
 
   # Home Manager needs a bit of information about you and the
@@ -509,6 +518,7 @@ in {
         clipboard-jh
         cliphist # Wayland clipboard manager with support for multimedia
         codex
+        copilot-cli
         coreutils # GNU coreutils
         cups
         curl
@@ -720,7 +730,6 @@ in {
         unstable.cargo-edit
         unstable.clippy
         unstable.cmake
-        unstable.copilot-cli
         unstable.f2
         unstable.ghostty
         unstable.jq # JSON viewer
