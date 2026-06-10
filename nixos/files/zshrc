@@ -52,6 +52,7 @@ bindkey -s '^X' 'xcd\n'
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.krew/bin:$PATH"
+export PATH="$HOME/.ops/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Android/Sdk/tools/bin"

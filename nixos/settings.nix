@@ -73,6 +73,7 @@ in {
 
     # Bootloader
     loader = {
+      timeout = 0; # Faster boot
       systemd-boot = {
         enable = true;
         configurationLimit = 3;
@@ -148,18 +149,21 @@ in {
     nerd-fonts.symbols-only
   ];
 
-  systemd.user.services.rclone-gdrive = {
-    enable = true;
-    description = "Google Drive mount using rclone";
-    after = ["network-online.target"];
-    wantedBy = ["default.target"];
-    serviceConfig = {
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/GDrive";
-      ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive: %h/GDrive --vfs-cache-mode full";
-      ExecStop = "${pkgs.fuse}/bin/fusermount -u %h/GDrive";
-      Restart = "on-failure";
-      RestartSec = "10s";
-      Environment = ["PATH=/run/wrappers/bin:$PATH"];
+  systemd = {
+    network.wait-online.enable = false; # Optimize boot time by not waiting for network
+    user.services.rclone-gdrive = {
+      enable = true;
+      description = "Google Drive mount using rclone";
+      after = ["network-online.target"];
+      wantedBy = ["default.target"];
+      serviceConfig = {
+        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/GDrive";
+        ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive: %h/GDrive --vfs-cache-mode full";
+        ExecStop = "${pkgs.fuse}/bin/fusermount -u %h/GDrive";
+        Restart = "on-failure";
+        RestartSec = "10s";
+        Environment = ["PATH=/run/wrappers/bin:$PATH"];
+      };
     };
   };
 
@@ -651,6 +655,7 @@ in {
         obsidian-export # Rust library and CLI to export an Obsidian vault to regular Markdown
         openapi-generator-cli
         openssl
+        ops
         ouch
         overskride # A simple yet powerful bluetooth client.
         p11-kit # Terminal colors
@@ -672,6 +677,7 @@ in {
         pueue
         pyright
         pythonWithPkgs
+        qemu
         qmk
         qrcp
         qt6Packages.qt6ct
@@ -688,6 +694,7 @@ in {
         selectdefaultapplication
         shellcheck
         shfmt
+        shotcut
         shotcut
         simple-scan
         skim # sk: fzf alternative in rust
