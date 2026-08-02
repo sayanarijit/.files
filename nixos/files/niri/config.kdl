@@ -636,26 +636,26 @@ binds {
     //
     // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
     // will all refer to the 3rd workspace.
-    Mod+1 { focus-workspace "browser"; }
-    Mod+2 { focus-workspace "editor"; }
-    Mod+3 { focus-workspace "services"; }
-    Mod+4 { focus-workspace "chat"; }
-    Mod+5 { focus-workspace "music"; }
+    Mod+0 { focus-workspace "0-laptop"; }
+    Mod+1 { focus-workspace "1-browser"; }
+    Mod+2 { focus-workspace "2-editor"; }
+    Mod+3 { focus-workspace "3-services"; }
+    Mod+4 { focus-workspace "4-chat"; }
+    Mod+5 { focus-workspace "5-music"; }
     Mod+6 { focus-workspace "6"; }
     Mod+7 { focus-workspace "7"; }
     Mod+8 { focus-workspace "8"; }
     Mod+9 { focus-workspace "9"; }
-    Mod+0 { focus-workspace "0"; }
-    Mod+Shift+1 { move-column-to-workspace "browser"; }
-    Mod+Shift+2 { move-column-to-workspace "editor"; }
-    Mod+Shift+3 { move-column-to-workspace "services"; }
-    Mod+Shift+4 { move-column-to-workspace "chat"; }
-    Mod+Shift+5 { move-column-to-workspace "music"; }
+    Mod+Shift+0 { move-column-to-workspace "0-laptop"; }
+    Mod+Shift+1 { move-column-to-workspace "1-browser"; }
+    Mod+Shift+2 { move-column-to-workspace "2-editor"; }
+    Mod+Shift+3 { move-column-to-workspace "3-services"; }
+    Mod+Shift+4 { move-column-to-workspace "4-chat"; }
+    Mod+Shift+5 { move-column-to-workspace "5-music"; }
     Mod+Shift+6 { move-column-to-workspace "6"; }
     Mod+Shift+7 { move-column-to-workspace "7"; }
     Mod+Shift+8 { move-column-to-workspace "8"; }
     Mod+Shift+9 { move-column-to-workspace "9"; }
-    Mod+Shift+0 { move-column-to-workspace "0"; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -771,19 +771,22 @@ hotkey-overlay {
     skip-at-startup
 }
 
-workspace "browser" {
+workspace "0-laptop" {
+  open-on-output "eDP-1";
+}
+workspace "1-browser" {
   open-on-output "HDMI-A-1";
 }
-workspace "editor" {
+workspace "2-editor" {
   open-on-output "HDMI-A-1";
 }
-workspace "services" {
+workspace "3-services" {
   open-on-output "HDMI-A-1";
 }
-workspace "chat" {
+workspace "4-chat" {
   open-on-output "HDMI-A-1";
 }
-workspace "music" {
+workspace "5-music" {
   open-on-output "HDMI-A-1";
 }
 workspace "6" {
@@ -797,7 +800,4 @@ workspace "8" {
 }
 workspace "9" {
   open-on-output "HDMI-A-1";
-}
-workspace "0" {
-  open-on-output "eDP-1";
 }
