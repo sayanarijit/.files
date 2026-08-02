@@ -790,6 +790,7 @@ in {
         yamllint
         yank
         yarnPkgs
+        yazi
         yq # YAML viewer
         zathura
         zed-editor

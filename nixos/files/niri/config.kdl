@@ -107,6 +107,13 @@ output "eDP-1" {
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     // position x=1280 y=0
+    position x=0 y=1080
+}
+
+output "HDMI-A-1" {
+    focus-at-startup
+    mode "1920x1080@60.000"
+    position x=0 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -538,28 +545,28 @@ binds {
     // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
     // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
 
-    Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
+    // Mod+Home { focus-column-first; }
+    // Mod+End  { focus-column-last; }
+    // Mod+Ctrl+Home { move-column-to-first; }
+    // Mod+Ctrl+End  { move-column-to-last; }
 
-    Mod+Ctrl+Left  { focus-monitor-left; }
-    Mod+Ctrl+Down  { focus-monitor-down; }
-    Mod+Ctrl+Up    { focus-monitor-up; }
-    Mod+Ctrl+Right { focus-monitor-right; }
-    Mod+Ctrl+H     { focus-monitor-left; }
-    Mod+Ctrl+J     { focus-monitor-down; }
-    Mod+Ctrl+K     { focus-monitor-up; }
-    Mod+Ctrl+L     { focus-monitor-right; }
+    // Mod+Ctrl+Left  { focus-monitor-left; }
+    // Mod+Ctrl+Down  { focus-monitor-down; }
+    // Mod+Ctrl+Up    { focus-monitor-up; }
+    // Mod+Ctrl+Right { focus-monitor-right; }
+    // Mod+Ctrl+H     { focus-monitor-left; }
+    // Mod+Ctrl+J     { focus-monitor-down; }
+    // Mod+Ctrl+K     { focus-monitor-up; }
+    // Mod+Ctrl+L     { focus-monitor-right; }
 
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    // Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -569,8 +576,10 @@ binds {
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
 
-    // Mod+Page_Down      { focus-workspace-down; }
-    // Mod+Page_Up        { focus-workspace-up; }
+    Mod+Page_Down      { focus-monitor-down; }
+    Mod+Page_Up        { focus-monitor-up; }
+    Mod+Shift+Page_Down      { move-column-to-monitor-down; }
+    Mod+Shift+Page_Up        { move-column-to-monitor-up; }
     // Mod+U              { focus-workspace-down; }
     // Mod+I              { focus-workspace-up; }
     // Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
@@ -593,22 +602,22 @@ binds {
     // To avoid scrolling through workspaces really fast, you can use
     // the cooldown-ms property. The bind will be rate-limited to this value.
     // You can set a cooldown on any bind, but it's most useful for the wheel.
-    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    // Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    // Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    // Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    // Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
-    Mod+WheelScrollRight      { focus-column-right; }
-    Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+    // Mod+WheelScrollRight      { focus-column-right; }
+    // Mod+WheelScrollLeft       { focus-column-left; }
+    // Mod+Ctrl+WheelScrollRight { move-column-right; }
+    // Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
     // Usually scrolling up and down with Shift in applications results in
     // horizontal scrolling; these binds replicate that.
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    // Mod+Shift+WheelScrollDown      { focus-column-right; }
+    // Mod+Shift+WheelScrollUp        { focus-column-left; }
+    // Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    // Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
@@ -632,19 +641,21 @@ binds {
     Mod+3 { focus-workspace "services"; }
     Mod+4 { focus-workspace "chat"; }
     Mod+5 { focus-workspace "music"; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
-    Mod+Shift+1 { move-column-to-workspace 1; }
-    Mod+Shift+2 { move-column-to-workspace 2; }
-    Mod+Shift+3 { move-column-to-workspace 3; }
-    Mod+Shift+4 { move-column-to-workspace 4; }
-    Mod+Shift+5 { move-column-to-workspace 5; }
-    Mod+Shift+6 { move-column-to-workspace 6; }
-    Mod+Shift+7 { move-column-to-workspace 7; }
-    Mod+Shift+8 { move-column-to-workspace 8; }
-    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+6 { focus-workspace "6"; }
+    Mod+7 { focus-workspace "7"; }
+    Mod+8 { focus-workspace "8"; }
+    Mod+9 { focus-workspace "9"; }
+    Mod+0 { focus-workspace "0"; }
+    Mod+Shift+1 { move-column-to-workspace "browser"; }
+    Mod+Shift+2 { move-column-to-workspace "editor"; }
+    Mod+Shift+3 { move-column-to-workspace "services"; }
+    Mod+Shift+4 { move-column-to-workspace "chat"; }
+    Mod+Shift+5 { move-column-to-workspace "music"; }
+    Mod+Shift+6 { move-column-to-workspace "6"; }
+    Mod+Shift+7 { move-column-to-workspace "7"; }
+    Mod+Shift+8 { move-column-to-workspace "8"; }
+    Mod+Shift+9 { move-column-to-workspace "9"; }
+    Mod+Shift+0 { move-column-to-workspace "0"; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -760,8 +771,33 @@ hotkey-overlay {
     skip-at-startup
 }
 
-workspace "browser"
-workspace "editor"
-workspace "services"
-workspace "chat"
-workspace "music"
+workspace "browser" {
+  open-on-output "HDMI-A-1";
+}
+workspace "editor" {
+  open-on-output "HDMI-A-1";
+}
+workspace "services" {
+  open-on-output "HDMI-A-1";
+}
+workspace "chat" {
+  open-on-output "HDMI-A-1";
+}
+workspace "music" {
+  open-on-output "HDMI-A-1";
+}
+workspace "6" {
+  open-on-output "HDMI-A-1";
+}
+workspace "7" {
+  open-on-output "HDMI-A-1";
+}
+workspace "8" {
+  open-on-output "HDMI-A-1";
+}
+workspace "9" {
+  open-on-output "HDMI-A-1";
+}
+workspace "0" {
+  open-on-output "eDP-1";
+}
