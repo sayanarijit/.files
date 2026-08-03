@@ -120,6 +120,13 @@ in {
 
     # Disable resolvconf auto update
     resolvconf.enable = false;
+
+    nftables = {
+      enable = true;
+      flushRuleset = false;
+    };
+
+    firewall.trustedInterfaces = ["incusbr0"];
   };
 
   # Set your time zone.
@@ -304,7 +311,7 @@ in {
   users.users.sayanarijit = {
     isNormalUser = true;
     description = "Arijit Basu";
-    extraGroups = ["networkmanager" "wheel" "wireshark" "docker" "lxd" "kvm"];
+    extraGroups = ["networkmanager" "wheel" "wireshark" "docker" "lxd" "kvm" "incus-admin"];
     shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
@@ -362,11 +369,11 @@ in {
     niri.enable = true;
     xwayland.enable = true;
 
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    };
+    # steam = {
+    #   enable = true;
+    #   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    # };
 
     thunar = {
       enable = true;
@@ -391,6 +398,7 @@ in {
 
     docker.enable = true;
     # lxd.enable = true;
+    incus.enable = true;
   };
 
   # Security
