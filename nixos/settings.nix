@@ -822,12 +822,11 @@ in {
 
         package = unstable.neovim-unwrapped;
 
-        # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
-        plugins = with pkgs.vimPlugins; [
-          lazy-nvim
-        ];
+        # # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
+        # plugins = with pkgs.vimPlugins; [
+        #   lazy-nvim
+        # ];
         extraConfig = ''
-          packadd! lazy.nvim
           luafile ${./files/nvim/lua/util.lua}
           luafile ${./files/nvim/lua/options.lua}
           luafile ${./files/nvim/lua/plugins.lua}
