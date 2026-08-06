@@ -514,6 +514,7 @@ in {
         bottom
         broot
         btop
+        cacert
         cachix
         cava
         circleci-cli # CircleCI CLI
