@@ -1,9 +1,6 @@
 local vim = vim
 local cmd = vim.cmd
 
--- Ensure site directory is in packpath for vim.pack
-vim.opt.packpath:append(vim.fn.stdpath("data") .. "/site")
-
 local function gh(repo)
   return "https://github.com/" .. repo
 end
@@ -12,7 +9,7 @@ local function cb(repo)
   return "https://codeberg.org/" .. repo
 end
 
--- Setup vim.pack
+-- Setup lazy
 vim.pack.add({
   -- --  Don't go there. It's a rabbithole.
   -- --  cmd: Xp
@@ -43,11 +40,12 @@ vim.pack.add({
   gh("xiyaowong/virtcolumn.nvim"),
 
   -- --  Nvim Treesitter configurations and abstraction layer
-  -- gh("nvim-treesitter/playground"),
-  -- gh("nvim-treesitter/nvim-treesitter-textobjects"),
+  gh("nvim-treesitter/nvim-treesitter"),
+  gh("nvim-treesitter/nvim-treesitter-textobjects"),
   -- gh("RRethy/nvim-treesitter-textsubjects"),
-  -- gh("windwp/nvim-ts-autotag"),
+  gh("windwp/nvim-ts-autotag"),
   -- -- gh("David-Kunz/markid"),
+  gh("JoosepAlviste/nvim-ts-context-commentstring"),
 
   -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
   gh("sindrets/diffview.nvim"),
@@ -167,7 +165,7 @@ vim.pack.add({
   -- gh("hoob3rt/lualine.nvim"),
 
   -- The fastest Neovim colorizer.
-  gh("norcalli/nvim-colorizer.lua"),
+  -- gh("norcalli/nvim-colorizer.lua"),
 
   -- Material colorscheme for NeoVim
   gh("marko-cerovac/material.nvim"),
@@ -178,7 +176,7 @@ vim.pack.add({
   -- gh("shaunsingh/oxocarbon.nvim"),
 
   -- gh("xiyaowong/nvim-transparent"),
-}, { confirm = false })
+})
 
 -- Plugin Configurations
 
@@ -391,19 +389,19 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- local on_attach = require("lsp-format").on_attach
 local root_markers = { ".git", ".jj", ".venv" }
 
-local handlers = {
-  ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-      -- Disable virtual_text
-      virtual_text = false,
-    }
-  ),
-}
+-- local handlers = {  TODO - FIX ME
+--   ["textDocument/publishDiagnostics"] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics,
+--     {
+--       -- Disable virtual_text
+--       virtual_text = false,
+--     }
+--   ),
+-- }
 
 vim.lsp.config("*", {
   capabilities = capabilities,
-  handlers = handlers,
+  -- handlers = handlers,
   root_markers = root_markers,
   -- on_attach = on_attach,
 })
@@ -540,7 +538,15 @@ cmd([[
 vim.g.copilot_filetypes = { VimspectorPrompt = false }
 
 -- Comment.nvim
-require("Comment").setup()
+local ft = require("Comment.ft")
+ft.nix = { "#%s", "/*%s*/" }
+
+require("ts_context_commentstring").setup({
+  enable_autocmd = false,
+})
+require("Comment").setup({
+  pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+})
 
 -- vim-test
 cmd([[
@@ -630,7 +636,13 @@ local wk_mappings = {
   { "<space>lR", ":LspRestart<CR>", desc = "restart" },
   { "<space>lS", vim.lsp.buf.workspace_symbols, desc = "workspace symbols" },
   { "<space>ls", vim.lsp.buf.document_symbols, desc = "document symbols" },
-  { "<space>lL", vim.diagnostic.goto_prev, desc = "prev diagnostic" },
+  {
+    "<space>lL",
+    function()
+      vim.diagnostic.jump({ count = -1 })
+    end,
+    desc = "prev diagnostic",
+  },
   { "<space>la", vim.lsp.buf.code_action, desc = "code action" },
   { "<space>lc", vim.lsp.buf.rename, desc = "rename" },
   { "<space>ld", vim.lsp.buf.definition, desc = "definition" },
@@ -642,11 +654,17 @@ local wk_mappings = {
     desc = "hover",
   },
   { "<space>li", vim.lsp.buf.implementation, desc = "implementation" },
-  { "<space>ll", vim.diagnostic.goto_next, desc = "next diagnostic" },
+  {
+    "<space>ll",
+    function()
+      vim.diagnostic.jump({ count = 1 })
+    end,
+    desc = "next diagnostic",
+  },
   { "<space>lr", vim.lsp.buf.references, desc = "references" },
   { "<space>q", ":q<CR>", desc = "quit" },
   { "<space>p", group = "plugins" },
-  { "<space>pu", vim.pack.update(), desc = "update plugins" },
+  { "<space>pu", vim.pack.update, desc = "update plugins" },
   { "<space>s", group = "search" },
   { '<space>s"', ":FzfLua registers<CR>", desc = "registers" },
   { "<space>sC", ":FzfLua git_bcommits<CR>", desc = "buffer commits" },
@@ -683,7 +701,7 @@ wk.add(wk_mappings, wk_options)
 -- require("lualine").setup()
 
 -- colorizer
-require("colorizer").setup()
+-- require("colorizer").setup()
 
 -- material
 cmd([[

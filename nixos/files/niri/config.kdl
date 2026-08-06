@@ -311,7 +311,7 @@ environment {
   WLR_NO_HARDWARE_CURSORS "1"
 }
 
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 // spawn-at-startup "~/.config/niri/start.sh"
 // spawn-at-startup "nm-applet" "--indicator" // NetworkManager applet for managing network connections
 // spawn-at-startup "waybar"  // A customizable Wayland status bar
@@ -483,9 +483,9 @@ binds {
     Mod+T { spawn "ghostty"; }
     Mod+Shift+T { spawn "alacritty"; }
     // Alt+Space { spawn "fuzzel"; }
-    Alt+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Alt+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     // Super+Alt+L { spawn "swaylock"; }
-    Super+Alt+L { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
+    Super+Alt+L { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -508,15 +508,15 @@ binds {
     // XF86MonBrightnessUp       allow-when-locked=true { spawn "swayosd-client" "--brightness=raise"; }
     // XF86MonBrightnessDown     allow-when-locked=true { spawn "swayosd-client" "--brightness=lower"; }
 
-    XF86AudioRaiseVolume      allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    Mod+XF86AudioRaiseVolume  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increaseInput"; }
-    XF86AudioLowerVolume      allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    Mod+XF86AudioLowerVolume  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decreaseInput"; }
-    XF86AudioMute             allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-    Mod+XF86AudioMute         allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
-    XF86AudioMicMute          allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
-    XF86MonBrightnessUp       allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown     allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    XF86AudioRaiseVolume      allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
+    Mod+XF86AudioRaiseVolume  allow-when-locked=true { spawn "noctalia" "msg" "mic-volume-up"; }
+    XF86AudioLowerVolume      allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
+    Mod+XF86AudioLowerVolume  allow-when-locked=true { spawn "noctalia" "msg" "mic-volume-down"; }
+    XF86AudioMute             allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
+    Mod+XF86AudioMute         allow-when-locked=true { spawn "noctalia" "msg" "mic-mute"; }
+    XF86AudioMicMute          allow-when-locked=true { spawn "noctalia" "msg" "mic-mute"; }
+    XF86MonBrightnessUp       allow-when-locked=true { spawn "noctalia" "msg" "brightness-up" "all"; }
+    XF86MonBrightnessDown     allow-when-locked=true { spawn "noctalia" "msg" "brightness-down" "all"; }
 
     Mod+Q { close-window; }
 
@@ -709,7 +709,7 @@ binds {
     // Clipboard
     // Mod+V { spawn "cp"; }
     // Mod+V { spawn "alacritty" "-e" "cliphist-fzf"; }
-    Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -731,8 +731,7 @@ binds {
     Alt+Print { screenshot-window; }
     Mod+Print { spawn-sh "wf-recorder -a -f ~/Videos/screencast-$(date +%Y%m%d-%H%M%S).mkv"; }
     Mod+Shift+Print { spawn "pkill" "wf-recorder"; }
-    Mod+Period { spawn "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
-    Mod+U { spawn "noctalia-shell" "ipc" "call" "plugin:unicode" "toggle"; }
+    Mod+Period { spawn "noctalia" "msg" "panel-toggle" "launcher" "/emo"; }
 
     // Mod+Print { screenshot "clipboard"; }
 

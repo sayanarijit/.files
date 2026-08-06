@@ -22,5 +22,8 @@
     "vscode-json-languageservice": "^5.4.3",
     "vscode-langservers-extracted": "^4.0.0",
     "yaml-language-server": "^0.10.1"
+  },
+  "scripts": {
+    "build": "true"
   }
 }

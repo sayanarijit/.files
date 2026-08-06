@@ -16,32 +16,7 @@
 
   nnnWithIcons = pkgs.nnn.override {withNerdIcons = true;};
 
-  yarnPkgs = pkgs.yarn2nix-moretea.mkYarnPackage {
-    name = "yarnPkgs";
-    src = ./files/yarn;
-    packageJSON = ./files/yarn/package.json;
-    yarnLock = ./files/yarn/yarn.lock;
-    publishBinsFor = [
-      "@fsouza/prettierd"
-      "bash-language-server"
-      "diagnostic-languageserver"
-      "dockerfile-language-server-nodejs"
-      "prettier"
-      "sql-formatter"
-      "terser"
-      "typescript"
-      "typescript-language-server"
-      "vim-language-server"
-      "vls"
-      "vscode-langservers-extracted"
-      "yaml-language-server"
-      "grunt"
-      "sass"
-      "@anthropic-ai/claude-code"
-    ];
-  };
-
-  pythonWithPkgs = pkgs.python313.withPackages (p:
+  pythonWithPkgs = pkgs.python3.withPackages (p:
     with p; [
       pip
       pynvim
@@ -55,6 +30,8 @@
 in {
   nix = {
     settings = {
+      extra-substituters = ["https://noctalia.cachix.org"];
+      extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
       experimental-features = ["nix-command" "flakes"];
       trusted-users = ["root" "sayanarijit"];
       auto-optimise-store = true;
@@ -213,10 +190,10 @@ in {
 
     pcscd.enable = true;
 
-    # ollama = {
-    #   enable = true;
-    #   package = pkgs.ollama-cuda; # Use the CUDA-built package
-    # };
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-cuda; # Use the CUDA-built package
+    };
 
     # Configure keymap in X11
     xserver = {
@@ -228,7 +205,7 @@ in {
 
       # Key repeat
       displayManager.sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 200 50
+        ${pkgs.xset}/bin/xset r rate 200 50
       '';
     };
 
@@ -319,10 +296,18 @@ in {
   };
 
   # Allow unfree packages
-  nixpkgs.config = {
-    allowUnfree = true;
-    # cudaSupport = true;
-    nvidia.acceptLicense = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      # cudaSupport = true;
+      nvidia.acceptLicense = true;
+      problems.handlers = {
+        asgi-csrf.broken = "warn"; # or "ignore"
+      };
+      permittedInsecurePackages = [
+        "electron-39.8.10"
+      ];
+    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -468,10 +453,13 @@ in {
         # audio-recorder
         # betterbird
         # blueman
+        # datasette
         # diskonaut
         # eza # ls replacement
         # glxinfo
+        # grunt
         # http-prompt
+        # imgp
         # jitsi-meet
         # kdePackages.dolphin
         # kdePackages.kirigami
@@ -479,6 +467,7 @@ in {
         # kdePackages.xwaylandvideobridge # Screen sharing
         # libsForQt5.kcalc
         # lmstudio
+        # logseq # A privacy-first, open-source platform for knowledge management and collaboration
         # mako # A lightweight Wayland notification daemon
         # mcfly # Fly through your shell history. Great Scott!
         # mpd # Music Player Daemon
@@ -494,10 +483,12 @@ in {
         # swww
         # transmission
         # unstable.devbox
+        # unstable.ollama
         # unstable.qrscan
         # unstable.wrangler
         # unstable.xplr
         # unstable.youtube-dl
+        # vls
         # waybar
         # waybar-mpris
         # wezterm
@@ -515,6 +506,7 @@ in {
         azure-cli
         bandwhich
         bash-completion
+        bash-language-server
         bat # cat replacement
         bitwarden-cli
         blender
@@ -529,18 +521,18 @@ in {
         clipboard-jh
         cliphist # Wayland clipboard manager with support for multimedia
         codex
-        copilot-cli
         coreutils # GNU coreutils
         cups
         curl
-        datasette
         dbus
         dfu-util
+        diagnostic-languageserver
         discord
         distrobox
         dmidecode
         dnsutils
         docker-compose
+        dockerfile-language-server
         dragon-drop
         easyeffects
         elmPackages.elm
@@ -597,7 +589,6 @@ in {
         hunspell
         hyperfine # A command-line benchmarking tool
         imagemagick
-        imgp
         inetutils
         infracost
         inotify-tools
@@ -607,7 +598,6 @@ in {
         jrnl
         k9s
         kakoune
-        kdash # A simple and fast dashboard for Kubernetes
         keymapp
         killall
         kitty
@@ -625,7 +615,6 @@ in {
         libtool
         libusb1
         libva-utils
-        logseq # A privacy-first, open-source platform for knowledge management and collaboration
         lsd # ls replacement
         lshw # ls for hardware
         lsix # ls for images
@@ -645,7 +634,6 @@ in {
         navi
         ncdu # Disk utilization viewer
         nemo
-        neofetch
         netcat
         netscanner # Terminal Network scanner & diagnostic tool with modern TUI
         networkmanagerapplet
@@ -678,9 +666,10 @@ in {
         playerctl
         pnpm
         podman-compose
-        polonium
         postgresql
         presenterm # A markdown terminal slideshow tool
+        prettier
+        prettierd
         pstree
         pueue
         pyright
@@ -697,6 +686,7 @@ in {
         ripgrep
         ronn # convert markdown files to manpages
         ruff
+        sass
         sd # sed replacement
         secretspec
         selectdefaultapplication
@@ -708,6 +698,7 @@ in {
         skim # sk: fzf alternative in rust
         slurp # select utility
         sops
+        sql-formatter
         sqlite
         sqlitebrowser
         sqruff
@@ -725,6 +716,7 @@ in {
         telegram-desktop
         terraform
         terraform-ls
+        terser
         tflint
         tfsec
         tldr
@@ -736,6 +728,8 @@ in {
         ttyd
         txt2man
         ty # An extremely fast Python type checker, written in Rust.
+        typescript
+        typescript-language-server
         udiskie # Automounter for removable media
         universal-ctags # Tags creator for vim
         unrar
@@ -754,7 +748,6 @@ in {
         unstable.mise
         unstable.mprocs
         unstable.numbat
-        unstable.ollama
         unstable.progress
         unstable.rust-analyzer
         unstable.rustc
@@ -772,10 +765,12 @@ in {
         velero
         vifm
         vim
+        vim-language-server
         viu
         vivid
         vlc
         vscode
+        vscode-langservers-extracted
         vulkan-tools
         wasm-pack
         webcamoid
@@ -794,10 +789,10 @@ in {
         xterm
         xwayland-satellite
         xz
+        yaml-language-server
         yamlfix
         yamllint
         yank
-        yarnPkgs
         yazi
         yq # YAML viewer
         zathura
@@ -810,7 +805,9 @@ in {
     };
 
     programs = {
-      noctalia-shell.enable = true;
+      noctalia = {
+        enable = true;
+      };
 
       direnv = {
         enable = true;
@@ -819,13 +816,17 @@ in {
 
       neovim = {
         enable = true;
+        defaultEditor = true;
+
+        withRuby = false;
+        withPython3 = false;
 
         package = unstable.neovim-unwrapped;
 
-        # # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
-        # plugins = with pkgs.vimPlugins; [
-        #   lazy-nvim
-        # ];
+        # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
+        plugins = with pkgs.vimPlugins; [
+          lazy-nvim
+        ];
         extraConfig = ''
           luafile ${./files/nvim/lua/util.lua}
           luafile ${./files/nvim/lua/options.lua}
