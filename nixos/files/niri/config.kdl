@@ -637,7 +637,7 @@ binds {
     //
     // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
     // will all refer to the 3rd workspace.
-    Mod+0 { focus-workspace "0-laptop"; }
+    Mod+0 { focus-workspace "Z-laptop"; }
     Mod+1 { focus-workspace "1-browser"; }
     Mod+2 { focus-workspace "2-editor"; }
     Mod+3 { focus-workspace "3-services"; }
@@ -647,7 +647,7 @@ binds {
     Mod+7 { focus-workspace "7"; }
     Mod+8 { focus-workspace "8"; }
     Mod+9 { focus-workspace "9"; }
-    Mod+Shift+0 { move-column-to-workspace "0-laptop"; }
+    Mod+Shift+0 { move-column-to-workspace "Z-laptop"; }
     Mod+Shift+1 { move-column-to-workspace "1-browser"; }
     Mod+Shift+2 { move-column-to-workspace "2-editor"; }
     Mod+Shift+3 { move-column-to-workspace "3-services"; }
@@ -771,9 +771,6 @@ hotkey-overlay {
     skip-at-startup
 }
 
-workspace "0-laptop" {
-  open-on-output "eDP-1";
-}
 workspace "1-browser" {
   open-on-output "HDMI-A-1";
 }
@@ -800,4 +797,8 @@ workspace "8" {
 }
 workspace "9" {
   open-on-output "HDMI-A-1";
+}
+
+workspace "Z-laptop" {
+  open-on-output "eDP-1";
 }
