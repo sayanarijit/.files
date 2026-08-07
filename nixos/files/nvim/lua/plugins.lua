@@ -540,6 +540,7 @@ vim.g.copilot_filetypes = { VimspectorPrompt = false }
 -- Comment.nvim
 local ft = require("Comment.ft")
 ft.nix = { "#%s", "/*%s*/" }
+ft.kdl = ft.get("rust")
 
 require("ts_context_commentstring").setup({
   enable_autocmd = false,

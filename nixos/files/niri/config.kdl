@@ -106,13 +106,14 @@ output "eDP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    // position x=1280 y=0
     position x=0 y=1080
+    // position x=0 y=768
 }
 
 output "HDMI-A-1" {
     focus-at-startup
     mode "1920x1080@60.000"
+    // mode "1024x768@60.004"
     position x=0 y=0
 }
 
