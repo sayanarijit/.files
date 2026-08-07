@@ -589,6 +589,7 @@ in {
         hugo
         hunspell
         hyperfine # A command-line benchmarking tool
+        hyprpicker
         imagemagick
         inetutils
         infracost
