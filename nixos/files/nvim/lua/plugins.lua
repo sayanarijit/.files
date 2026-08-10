@@ -116,8 +116,8 @@ vim.pack.add({
   -- Neovim plugin for GitHub Copilot
   gh("github/copilot.vim"),
 
-  --  brain muscle // Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more
-  gh("numToStr/Comment.nvim"),
+  -- --  brain muscle // Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more
+  -- gh("numToStr/Comment.nvim"),
 
   --  Vim syntax for TOML
   gh("cespare/vim-toml"),
@@ -537,17 +537,25 @@ cmd([[
 -- copilot
 vim.g.copilot_filetypes = { VimspectorPrompt = false }
 
--- Comment.nvim
-local ft = require("Comment.ft")
-ft.nix = { "#%s", "/*%s*/" }
-ft.kdl = ft.get("rust")
+-- -- Comment.nvim
+-- local ft = require("Comment.ft")
+-- ft.nix = { "#%s", "/*%s*/" }
+-- ft.kdl = ft.get("rust")
 
+-- ts_context_commentstring
 require("ts_context_commentstring").setup({
   enable_autocmd = false,
 })
-require("Comment").setup({
-  pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-})
+local get_option = vim.filetype.get_option
+vim.filetype.get_option = function(filetype, option)
+  return option == "commentstring"
+      and require("ts_context_commentstring.internal").calculate_commentstring()
+    or get_option(filetype, option)
+end
+
+-- require("Comment").setup({
+--   pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+-- })
 
 -- vim-test
 cmd([[
