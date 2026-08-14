@@ -649,6 +649,7 @@ local wk_mappings = {
     "<space>lL",
     function()
       vim.diagnostic.jump({ count = -1 })
+      vim.diagnostic.open_float()
     end,
     desc = "prev diagnostic",
   },
@@ -667,6 +668,7 @@ local wk_mappings = {
     "<space>ll",
     function()
       vim.diagnostic.jump({ count = 1 })
+      vim.diagnostic.open_float()
     end,
     desc = "next diagnostic",
   },
