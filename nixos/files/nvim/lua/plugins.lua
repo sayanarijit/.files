@@ -14,6 +14,7 @@ vim.pack.add({
   -- --  Don't go there. It's a rabbithole.
   -- --  cmd: Xp
   -- gh("sayanarijit/xplr.vim"),
+  gh("sayanarijit/cottage.vim"),
 
   -- -- eyes Move faster with unique f/F indicators.
   -- gh("jinh0/eyeliner.nvim"),
@@ -240,7 +241,8 @@ require("telekasten").setup({
 -- })
 
 -- Lightweight yet powerful formatter plugin for Neovim
-local prettier = { "prettierd", "prettier", stop_after_first = true }
+-- local prettier = { "prettierd", "prettier", stop_after_first = true }
+local prettier = { "prettier" }
 local prettier_args = {
   "--trailing-comma",
   "all",
@@ -269,6 +271,7 @@ require("conform").setup({
       "ruff_organize_imports", -- organize imports
       "ruff_fix", -- fix lints
     },
+    sql = { "sqruff" },
   },
   format_on_save = {
     lsp_format = "fallback",
@@ -331,7 +334,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 -- Quickstart configurations for the Nvim completions & LSP
 local servers = {
   html = {
-    cmd = { "html-languageserver", "--stdio" },
+    cmd = { "vscode-html-language-server", "--stdio" },
     filttypes = { "html" },
     init_options = {
       configurationSection = { "html", "css", "javascript" },
@@ -361,7 +364,7 @@ local servers = {
   vimls = {},
   ts_ls = {},
   dartls = {},
-  prismals = {},
+  -- prismals = {},
   graphql = {},
   lua_ls = {},
   pyright = {
@@ -381,7 +384,7 @@ local servers = {
   clangd = {},
   terraformls = {},
   tflint = {},
-  vale_ls = {},
+  vale = {},
 }
 
 -- Add additional capabilities supported by nvim-cmp
@@ -642,7 +645,7 @@ local wk_mappings = {
   { "<space>gs", ":Gstatus<CR>", desc = "status" },
   { "<space>gu", "<Plug>(GitGutterUndoHunk)<CR>", desc = "undo hunk " },
   { "<space>l", group = "lsp" },
-  { "<space>lR", ":LspRestart<CR>", desc = "restart" },
+  { "<space>lR", ":lsp restart<CR>", desc = "restart" },
   { "<space>lS", vim.lsp.buf.workspace_symbols, desc = "workspace symbols" },
   { "<space>ls", vim.lsp.buf.document_symbols, desc = "document symbols" },
   {

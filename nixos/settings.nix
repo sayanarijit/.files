@@ -502,6 +502,7 @@ in {
         android-studio
         aria2
         asciinema # Terminal session recorder
+        atac # A simple API client (postman like) in your terminal
         awscli2
         azure-cli
         bandwhich
@@ -528,12 +529,15 @@ in {
         dbus
         dfu-util
         diagnostic-languageserver
+        diffnav # A git diff pager based on delta but with a file tree, à la GitHub.
         discord
         distrobox
+        dive # Docker A tool for exploring each layer in a docker image
         dmidecode
         dnsutils
         docker-compose
         dockerfile-language-server
+        doggo # 🐶 Command-line DNS Client for Humans. Written in Golang
         dragon-drop
         easyeffects
         elmPackages.elm
@@ -575,6 +579,7 @@ in {
         gpp
         gpu-screen-recorder
         gradle
+        graphql-language-service-cli
         graphviz
         grex # https://github.com/pemistahl/grex
         grim # screenshot
@@ -674,6 +679,7 @@ in {
         prettierd
         pstree
         pueue
+        pyrefly
         pyright
         pythonWithPkgs
         qemu
@@ -706,6 +712,7 @@ in {
         sqruff
         sshs
         statix
+        steampipe # Zero-ETL, infinite possibilities. Live query APIs, code & more with SQL. No DB required.
         stylelint
         stylua
         swagger-codegen
@@ -781,6 +788,7 @@ in {
         wf-recorder # Wayland screen recorder
         wget
         wl-clipboard # clipboard
+        wl-screenrec # Screen recorder
         wlsunset
         wpaperd
         wrk # Modern HTTP benchmarking tool improved
@@ -825,10 +833,6 @@ in {
 
         package = unstable.neovim-unwrapped;
 
-        # See https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
-        plugins = with pkgs.vimPlugins; [
-          lazy-nvim
-        ];
         extraConfig = ''
           luafile ${./files/nvim/lua/util.lua}
           luafile ${./files/nvim/lua/options.lua}
