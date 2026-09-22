@@ -173,6 +173,8 @@ vim.pack.add({
 
   gh("is0n/fm-nvim"),
 
+  gh("Kicamon/markdown-table-mode.nvim"), -- A lightweight markdown format plugin like vim-table-mode but write in lua
+
   -- -- A dark and light Neovim theme written in Rust, inspired by IBM Carbon.
   -- gh("shaunsingh/oxocarbon.nvim"),
 
@@ -736,6 +738,9 @@ require("fm-nvim").setup({
     xplr_cmd = "xplr",
   },
 })
+
+-- markdown-table-mode
+require("markdown-table-mode").setup()
 
 -- -- A dark and light Neovim theme written in Rust, inspired by IBM Carbon.
 -- cmd([[colorscheme oxocarbon]])

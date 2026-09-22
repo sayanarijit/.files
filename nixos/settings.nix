@@ -28,6 +28,9 @@
       weasyprint
     ]);
 in {
+  imports = [
+    inputs.noctalia-greeter.nixosModules.default
+  ];
   nix = {
     settings = {
       extra-substituters = ["https://noctalia.cachix.org"];
@@ -211,19 +214,29 @@ in {
 
     # desktopManager.plasma6.enable = true;  # https://github.com/noctalia-dev/noctalia-shell/issues/1440
 
-    displayManager.sddm = {
+    # displayManager.sddm = {
+    #   enable = true;
+    #   # theme = "sddm-astronaut-theme";
+    #   extraPackages = with pkgs; [
+    #     kdePackages.qt6ct
+    #     kdePackages.qtmultimedia
+    #   ];
+    #   # settings = {
+    #   #   Autologin = {
+    #   #     User = "sayanarijit";
+    #   #     Session = "niri.desktop";
+    #   #   };
+    #   # };
+    # };
+    displayManager.noctalia-greeter = {
       enable = true;
-      theme = "sddm-astronaut-theme";
-      extraPackages = with pkgs; [
-        kdePackages.qt6ct
-        kdePackages.qtmultimedia
-      ];
-      # settings = {
-      #   Autologin = {
-      #     User = "sayanarijit";
-      #     Session = "niri.desktop";
-      #   };
-      # };
+      settings = {
+        cursor = {
+          theme = "Bibata-Modern-Ice";
+          size = 24;
+          path = "${pkgs.bibata-cursors}/share/icons";
+        };
+      };
     };
 
     pipewire = {
@@ -318,7 +331,7 @@ in {
     systemPackages = with pkgs; [
       vim
       curl
-      sddm-astronaut
+      # sddm-astronaut
       # cudaPackages.cudatoolkit
       # wireshark
     ];

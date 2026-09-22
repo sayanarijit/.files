@@ -40,6 +40,14 @@ require("xpm").setup({
     -- Let xpm manage itself
     "dtomvan/xpm.xplr",
 
+    -- Hide or dynamically stretch the selection pane
+    {
+      "sayanarijit/zenselection.xplr",
+      setup = function()
+        require("zenselection").setup() -- default config
+      end,
+    },
+
     {
       name = "Junker/nuke.xplr",
       setup = function()
