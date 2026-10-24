@@ -262,7 +262,7 @@ require("conform").setup({
     yaml = prettier,
     markdown = prettier,
     lua = { "stylua" },
-    rust = { "rustfmt" },
+    -- rust = { "rustfmt", lsp_format = "never" },
     nix = { "alejandra" },
     toml = { "taplo" },
     sh = { "shfmt" },

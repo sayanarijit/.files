@@ -41,12 +41,7 @@ require("xpm").setup({
     "dtomvan/xpm.xplr",
 
     -- Hide or dynamically stretch the selection pane
-    {
-      "sayanarijit/zenselection.xplr",
-      setup = function()
-        require("zenselection").setup() -- default config
-      end,
-    },
+    "sayanarijit/zenselection.xplr",
 
     {
       name = "Junker/nuke.xplr",
@@ -308,31 +303,6 @@ xplr.config.modes.builtin.create_conditional = {
   },
 }
 
-local function stat(node)
-  return node.mime_essence
-end
-
-local function read(path, lines)
-  local out = ""
-  local p = io.open(path)
-
-  if p == nil then
-    return stat(path)
-  end
-
-  local i = 0
-  for line in p:lines() do
-    out = out .. line .. "\n"
-    if i == lines then
-      break
-    end
-    i = i + 1
-  end
-  p:close()
-
-  return out
-end
-
 xplr.config.layouts.custom.preview_pane = {
   Horizontal = {
     config = {
@@ -343,12 +313,7 @@ xplr.config.layouts.custom.preview_pane = {
     },
     splits = {
       "Table",
-      {
-        CustomContent = {
-          title = "preview",
-          body = { DynamicParagraph = { render = "custom.preview_pane.render" } },
-        },
-      },
+      { Dynamic = "custom.preview_pane.render" },
     },
   },
 }
@@ -356,20 +321,50 @@ xplr.config.layouts.custom.preview_pane = {
 xplr.fn.custom.preview_pane = {}
 xplr.fn.custom.preview_pane.render = function(ctx)
   local n = ctx.app.focused_node
-
   if n and n.canonical then
     n = n.canonical
   end
 
   if n then
-    if n.is_file then
-      return read(n.absolute_path, ctx.layout_size.height)
+    local fallback = xplr.util.to_yaml(xplr.util.node(n.absolute_path))
+    if n.is_dir then
+      return {
+        CustomOutput = {
+          ui = { title = { format = " 📁 " } },
+          command = { "tree", "-x", "-C", "-L", "2", n.absolute_path },
+          fallback = fallback,
+        },
+      }
+    elseif n.mime_essence and n.mime_essence:match("^image/") then
+      return {
+        CustomGraphics = {
+          ui = { title = { format = " 🖼️ " } },
+          path = n.absolute_path,
+          fallback = fallback,
+        },
+      }
+    elseif n.is_file then
+      return {
+        CustomOutput = {
+          ui = { title = { format = " 📄 " } },
+          command = {
+            "bat",
+            "-f",
+            "--binary=as-text",
+            string.format("--line-range=:%s", ctx.layout_size.height),
+            string.format("--terminal-width=%s", ctx.layout_size.width),
+            n.absolute_path,
+          },
+          fallback = fallback,
+        },
+      }
     else
-      return stat(n)
+      return {
+        CustomParagraph = { ui = { title = { format = " 🤷 " } }, body = fallback },
+      }
     end
-  else
-    return ""
   end
+  return { CustomParagraph = { ui = { title = { format = " 🚫 " } }, body = "" } }
 end
 
 xplr.config.modes.builtin.switch_layout.key_bindings.on_key.p = {

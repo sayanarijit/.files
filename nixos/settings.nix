@@ -106,7 +106,11 @@ in {
       flushRuleset = false;
     };
 
-    firewall.trustedInterfaces = ["incusbr0"];
+    firewall = {
+      trustedInterfaces = ["incusbr0" "p2p-wl+"];
+      allowedTCPPorts = [7236 7250];
+      allowedUDPPorts = [7236 5353];
+    };
   };
 
   # Set your time zone.
@@ -406,6 +410,10 @@ in {
     # pam.services = {
     #   login.fprintAuth = true;
     # };
+    pki.caCertificateBlacklist = [
+      "Comodo AAA Services root"
+      "emSign ECC Root CA - G3"
+    ];
   };
 
   # Home Manager needs a bit of information about you and the
@@ -544,6 +552,9 @@ in {
         diagnostic-languageserver
         diffnav # A git diff pager based on delta but with a file tree, à la GitHub.
         discord
+        gnome-network-displays
+        uxplay
+        sunshine
         distrobox
         dive # Docker A tool for exploring each layer in a docker image
         dmidecode

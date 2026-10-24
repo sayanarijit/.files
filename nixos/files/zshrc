@@ -152,3 +152,4 @@ eval "$(luarocks path --lua-version 5.1)"
 export LS_COLORS=$(vivid generate catppuccin-frappe)
 
 eval "$(ctg autocomplete zsh)"
+eval "$(settingspec autocomplete zsh)"
