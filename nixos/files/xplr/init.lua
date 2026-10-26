@@ -1,7 +1,7 @@
 -- https://xplr.dev/en/configuration
 
 ---@diagnostic disable
-version = "1.0.0"
+version = "1.2.2"
 local xplr = xplr
 ---@diagnostic enable
 
@@ -303,21 +303,6 @@ xplr.config.modes.builtin.create_conditional = {
   },
 }
 
-xplr.config.layouts.custom.preview_pane = {
-  Horizontal = {
-    config = {
-      constraints = {
-        { Percentage = 60 },
-        { Percentage = 40 },
-      },
-    },
-    splits = {
-      "Table",
-      { Dynamic = "custom.preview_pane.render" },
-    },
-  },
-}
-
 xplr.fn.custom.preview_pane = {}
 xplr.fn.custom.preview_pane.render = function(ctx)
   local n = ctx.app.focused_node
@@ -367,13 +352,21 @@ xplr.fn.custom.preview_pane.render = function(ctx)
   return { CustomParagraph = { ui = { title = { format = " 🚫 " } }, body = "" } }
 end
 
-xplr.config.modes.builtin.switch_layout.key_bindings.on_key.p = {
-  help = "preview pane",
-  messages = {
-    "PopMode",
-    { SwitchLayoutCustom = "preview_pane" },
-  },
-}
+xplr.config.layouts.builtin.default =
+  xplr.util.layout_replace(xplr.config.layouts.builtin.default, "Table", {
+    Horizontal = {
+      config = {
+        constraints = {
+          { Percentage = 60 },
+          { Percentage = 40 },
+        },
+      },
+      splits = {
+        "Table",
+        { Dynamic = "custom.preview_pane.render" },
+      },
+    },
+  })
 
 -- Fennel Support
 local fennel = require("fennel")
