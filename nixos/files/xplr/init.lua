@@ -353,8 +353,8 @@ xplr.config.layouts.builtin.default =
     Horizontal = {
       config = {
         constraints = {
-          { Percentage = 60 },
           { Percentage = 40 },
+          { Percentage = 60 },
         },
       },
       splits = {
